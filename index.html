@@ -7,6 +7,7 @@
 </head>
 <body>
 <style>
+body{background:white;}
 #box{position:fixed;top:50%;left:50%;trnasform:translate(-50%,-50%);
 -webkit-transform-style:preserve-3d;
         transform-style:preserve-3d;
@@ -32,23 +33,23 @@ z-index:999;
 	75%{-webkit-transform:rotate3d(-1,1,1,360deg) translate(-50%,-50%);transform:rotate3d(-1,1,1,360deg) translate(-50%,-50%);}
 	to{-webkit-transform:rotate3d(1,1,1,0) translate(-50%,-50%);transform:rotate3d(1,1,1,0) translate(-50%,-50%);}
 }
-#box .item{width:180px;height:180px;color:#fff;text-align:center;line-height:180px;font-size:0;font-weight:bold;position:absolute;top:50%;left:50%;margin:-90px 0 0 -90px;background:url(http://data.upfitapp.com/data/2017/08/07/1721815020703995727.jpg) no-repeat center;background-size:100%;border-radius:30px;z-index:9999;font-size:100px;color:rgba(255,255,255,.5);}
-#box .face_1{-webkit-transform:translateZ(90px);transform:translateZ(90px);background-color:rgba(139,0,255,.96);}
-#box .face_2{-webkit-transform:rotateX(-90deg) translateZ(90px);transform:rotateX(-90deg) translateZ(90px);background-color:rgba(255,0,0,.96);}
-#box .face_3{-webkit-transform:rotateY(90deg) translateZ(90px);transform:rotateY(90deg) translateZ(90px);background-color:rgba(255,255,0,.96);}
-#box .face_4{-webkit-transform:rotateY(-90deg) translateZ(90px);transform:rotateY(-90deg) translateZ(90px);background-color:rgba(0,255,0,.96);}
-#box .face_5{-webkit-transform:rotateX(90deg) translateZ(90px);transform:rotateX(90deg) translateZ(90px);background-color:rgba(0,255,0,.96);}
-#box .face_6{-webkit-transform:rotateY(180deg) translateZ(90px);transform:rotateY(180deg) translateZ(90px);background-color:rgba(0,0,255,.96);}
-.box_bg{position:fixed;top:0;right:0;bottom:0;left:0;z-index:-1;background:radial-gradient(rgba(0,0,0,.2),rgba(0,0,0,.8));}
+#box .item{width:180px;height:180px;color:#fff;text-align:center;line-height:180px;font-size:0;font-weight:bold;position:absolute;top:50%;left:50%;margin:-90px 0 0 -90px;border-radius:20px;z-index:9999;font-size:88px;color:rgba(62,74,180,.9);}
+#box .face_1{-webkit-transform:translateZ(90px);transform:translateZ(90px);background-image:linear-gradient(#0a6efd,#a939bc);}
+#box .face_2{-webkit-transform:rotateX(-90deg) translateZ(90px);transform:rotateX(-90deg) translateZ(90px);background-image:linear-gradient(#a939bc,#f13737);}
+#box .face_3{-webkit-transform:rotateY(90deg) translateZ(90px);transform:rotateY(90deg) translateZ(90px);background-image:linear-gradient(#f13737,#159886);}
+#box .face_4{-webkit-transform:rotateY(-90deg) translateZ(90px);transform:rotateY(-90deg) translateZ(90px);background-image:linear-gradient(#159886,#7db64d);}
+#box .face_5{-webkit-transform:rotateX(90deg) translateZ(90px);transform:rotateX(90deg) translateZ(90px);background-image:linear-gradient(#7db64d,#fe9e0a);}
+#box .face_6{-webkit-transform:rotateY(180deg) translateZ(90px);transform:rotateY(180deg) translateZ(90px);background-image:linear-gradient(#fe9e0a,#a939bc);}
+.box_bg{position:fixed;top:0;right:0;bottom:0;left:0;z-index:-1;background:radial-gradient(rgba(62,74,180,.2),rgba(62,74,180,.8));}
 </style>
 <div class="box_bg"></div>
 <div id="box">
-	<div class="item face_1">A</div>
-	<div class="item face_2">B</div>
-	<div class="item face_3">C</div>
-	<div class="item face_4">D</div>
-	<div class="item face_5">E</div>
-	<div class="item face_6">F</div>
+	<div class="item face_1">嗡</div>
+	<div class="item face_2">嘛</div>
+	<div class="item face_3">呢</div>
+	<div class="item face_4">呗</div>
+	<div class="item face_5">咪</div>
+	<div class="item face_6">吽</div>
 </div>
 </body>
 </html>
