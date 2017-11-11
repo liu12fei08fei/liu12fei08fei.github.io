@@ -19,20 +19,6 @@ body{background:white;}
         animation:box3d 9s infinite ease-in-out;
 z-index:999;
 }
-@-webkit-keyframes box3d{
-	from{-webkit-transform:rotate3d(1,1,1,0) translate(-50%,-50%);transform:rotate3d(1,1,1,0) translate(-50%,-50%);}
-	25%{-webkit-transform:rotate3d(1,1,1,360deg) translate(-50%,-50%);transform:rotate3d(1,1,1,360deg) translate(-50%,-50%);}
-	50%{-webkit-transform:rotate3d(-1,1,1,0) translate(-50%,-50%);transform:rotate3d(-1,1,1,0) translate(-50%,-50%);}
-	75%{-webkit-transform:rotate3d(-1,1,1,360deg) translate(-50%,-50%);transform:rotate3d(-1,1,1,360deg) translate(-50%,-50%);}
-	to{-webkit-transform:rotate3d(1,1,1,0) translate(-50%,-50%);transform:rotate3d(1,1,1,0) translate(-50%,-50%);}
-}
-@keyframes box3d{
-	from{-webkit-transform:rotate3d(1,1,1,0) translate(-50%,-50%);transform:rotate3d(1,1,1,0) translate(-50%,-50%);}
-	25%{-webkit-transform:rotate3d(1,1,1,360deg) translate(-50%,-50%);transform:rotate3d(1,1,1,360deg) translate(-50%,-50%);}
-	50%{-webkit-transform:rotate3d(-1,1,1,0) translate(-50%,-50%);transform:rotate3d(-1,1,1,0) translate(-50%,-50%);}
-	75%{-webkit-transform:rotate3d(-1,1,1,360deg) translate(-50%,-50%);transform:rotate3d(-1,1,1,360deg) translate(-50%,-50%);}
-	to{-webkit-transform:rotate3d(1,1,1,0) translate(-50%,-50%);transform:rotate3d(1,1,1,0) translate(-50%,-50%);}
-}
 #box .item{width:180px;height:180px;color:#fff;text-align:center;line-height:180px;font-size:0;font-weight:bold;position:absolute;top:50%;left:50%;margin:-90px 0 0 -90px;border-radius:20px;z-index:9999;font-size:88px;color:rgba(62,74,180,.9);}
 #box .face_1{-webkit-transform:translateZ(90px);transform:translateZ(90px);background-image:-webkit-gradient(linear,left top, left bottom,from(#0a6efd),to(#a939bc));background-image:linear-gradient(#0a6efd,#a939bc);}
 #box .face_2{-webkit-transform:rotateX(-90deg) translateZ(90px);transform:rotateX(-90deg) translateZ(90px);background-image:-webkit-gradient(linear,left top, left bottom,from(#a939bc),to(#f13737));background-image:linear-gradient(#a939bc,#f13737);}
@@ -41,6 +27,20 @@ z-index:999;
 #box .face_5{-webkit-transform:rotateX(90deg) translateZ(90px);transform:rotateX(90deg) translateZ(90px);background-image:-webkit-gradient(linear,left top, left bottom,from(#7db64d),to(#fe9e0a));background-image:linear-gradient(#7db64d,#fe9e0a);}
 #box .face_6{-webkit-transform:rotateY(180deg) translateZ(90px);transform:rotateY(180deg) translateZ(90px);background-image:-webkit-gradient(linear,left top, left bottom,from(#fe9e0a),to(#a939bc));background-image:linear-gradient(#fe9e0a,#a939bc);}
 .box_bg{position:fixed;top:0;right:0;bottom:0;left:0;z-index:-1;background:radial-gradient(rgba(62,74,180,.2),rgba(62,74,180,.8));}
+@-webkit-keyframes box3d{
+	from{-webkit-transform:rotateX(0) rotateY(0) rotateZ(0) translate(-50%,-50%);transform:rotateX(0) rotateY(0) rotateZ(0) translate(-50%,-50%);}
+	25%{-webkit-transform:rotateX(360deg) rotateY(360deg) rotateZ(360deg) translate(-50%,-50%);transform:rotateX(360deg) rotateY(360deg) rotateZ(360deg) translate(-50%,-50%);}
+	50%{-webkit-transform:rotateX(0) rotateY(0) rotateZ(0) translate(-50%,-50%);transform:rotateX(0) rotateY(0) rotateZ(0) translate(-50%,-50%);}
+	75%{-webkit-transform:rotateX(360deg) rotateY(360deg) rotateZ(360deg) translate(-50%,-50%);transform:rotateX(360deg) rotateY(360deg) rotateZ(360deg) translate(-50%,-50%);}
+	to{-webkit-transform:rotateX(0) rotateY(0) rotateZ(0) translate(-50%,-50%);transform:rotateX(0) rotateY(0) rotateZ(0) translate(-50%,-50%);}
+}
+@keyframes box3d{
+	from{-webkit-transform:rotateX(0) rotateY(0) rotateZ(0) translate(-50%,-50%);transform:rotateX(0) rotateY(0) rotateZ(0) translate(-50%,-50%);}
+	25%{-webkit-transform:rotateX(360deg) rotateY(360deg) rotateZ(360deg) translate(-50%,-50%);transform:rotateX(360deg) rotateY(360deg) rotateZ(360deg) translate(-50%,-50%);}
+	50%{-webkit-transform:rotateX(0) rotateY(0) rotateZ(0) translate(-50%,-50%);transform:rotateX(0) rotateY(0) rotateZ(0) translate(-50%,-50%);}
+	75%{-webkit-transform:rotateX(360deg) rotateY(360deg) rotateZ(360deg) translate(-50%,-50%);transform:rotateX(360deg) rotateY(360deg) rotateZ(360deg) translate(-50%,-50%);}
+	to{-webkit-transform:rotateX(0) rotateY(0) rotateZ(0) translate(-50%,-50%);transform:rotateX(0) rotateY(0) rotateZ(0) translate(-50%,-50%);}
+}
 </style>
 <div class="box_bg"></div>
 <div id="box">
