@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>骰子</title>
+	<title>怪诞咖啡-Blog</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
 	<link rel="icon" sizes="any" href="http://data.upfitapp.com/data/2017/08/07/1721815020703995727.jpg?imageView2/1/w/512/h/512" title="怪诞咖啡">
 </head>
@@ -15,20 +15,19 @@ a{display:block;color:inherit;text-decoration:none;}
         transform-style:preserve-3d;
 -webkit-perspective:8000px;
         perspective:8000px;
--webkit-transform-origin:50%;
-        transform-origin:50%;
+        transform-origin:50% 50% 200px;
 -webkit-animation:box3d 9s infinite linear;
         animation:box3d 9s infinite ease-in-out;
 z-index:999;
 }
-#box .item{width:180px;height:180px;color:#fff;text-align:center;line-height:180px;font-size:0;font-weight:bold;position:absolute;top:50%;left:50%;margin:-90px 0 0 -90px;border-radius:20px;z-index:9999;font-size:88px;color:rgba(62,74,180,.9);}
-#box .face_1{-webkit-transform:translateZ(90px);transform:translateZ(90px);background-image:-webkit-gradient(linear,left top, left bottom,from(#0a6efd),to(#a939bc));background-image:linear-gradient(#0a6efd,#a939bc);}
-#box .face_2{-webkit-transform:rotateX(-90deg) translateZ(90px);transform:rotateX(-90deg) translateZ(90px);background-image:-webkit-gradient(linear,left top, left bottom,from(#a939bc),to(#f13737));background-image:linear-gradient(#a939bc,#f13737);}
-#box .face_3{-webkit-transform:rotateY(90deg) translateZ(90px);transform:rotateY(90deg) translateZ(90px);background-image:-webkit-gradient(linear,left top, left bottom,from(#f13737),to(#159886));background-image:linear-gradient(#f13737,#159886);}
-#box .face_4{-webkit-transform:rotateY(-90deg) translateZ(90px);transform:rotateY(-90deg) translateZ(90px);background-image:-webkit-gradient(linear,left top, left bottom,from(#159886),to(#7db64d));background-image:linear-gradient(#159886,#7db64d);}
-#box .face_5{-webkit-transform:rotateX(90deg) translateZ(90px);transform:rotateX(90deg) translateZ(90px);background-image:-webkit-gradient(linear,left top, left bottom,from(#7db64d),to(#fe9e0a));background-image:linear-gradient(#7db64d,#fe9e0a);}
-#box .face_6{-webkit-transform:rotateY(180deg) translateZ(90px);transform:rotateY(180deg) translateZ(90px);background-image:-webkit-gradient(linear,left top, left bottom,from(#fe9e0a),to(#a939bc));background-image:linear-gradient(#fe9e0a,#a939bc);}
-.box_bg{position:fixed;top:0;right:0;bottom:0;left:0;z-index:-1;background:radial-gradient(rgba(62,74,180,.2),rgba(62,74,180,.8));}
+#box .item{width:180px;height:180px;color:#fff;text-align:center;line-height:180px;font-size:0;font-weight:bold;position:absolute;top:50%;left:50%;margin:-90px 0 0 -90px;border-radius:30px;z-index:9999;font-size:36px;color:rgba(62,74,180,.9);}
+#box .face_1{-webkit-transform:translateZ(90px);transform:translateZ(90px);background-image:linear-gradient(to right, #ff8177 0%, #ff867a 0%, #ff8c7f 21%, #f99185 52%, #cf556c 78%, #b12a5b 100%);}
+#box .face_2{-webkit-transform:rotateX(-90deg) translateZ(90px);transform:rotateX(-90deg) translateZ(90px);background-image:linear-gradient(to right, #eea2a2 0%, #bbc1bf 19%, #57c6e1 42%, #b49fda 79%, #7ac5d8 100%);}
+#box .face_3{-webkit-transform:rotateY(90deg) translateZ(90px);transform:rotateY(90deg) translateZ(90px);background-image:linear-gradient(to top, #fcc5e4 0%, #fda34b 15%, #ff7882 35%, #c8699e 52%, #7046aa 71%, #0c1db8 87%, #020f75 100%);}
+#box .face_4{-webkit-transform:rotateY(-90deg) translateZ(90px);transform:rotateY(-90deg) translateZ(90px);background-image:linear-gradient(to top, #4fb576 0%, #44c489 30%, #28a9ae 46%, #28a2b7 59%, #4c7788 71%, #6c4f63 86%, #432c39 100%);}
+#box .face_5{-webkit-transform:rotateX(90deg) translateZ(90px);transform:rotateX(90deg) translateZ(90px);background-image:linear-gradient(-225deg, #77FFD2 0%, #6297DB 48%, #1EECFF 100%);}
+#box .face_6{-webkit-transform:rotateY(180deg) translateZ(90px);transform:rotateY(180deg) translateZ(90px);background-image:linear-gradient(-225deg, #231557 0%, #44107A 29%, #FF1361 67%, #FFF800 100%);}
+.box_bg{position:fixed;top:0;right:0;bottom:0;left:0;z-index:-1;background:radial-gradient(rgba(67,233,123,.2),rgba(56,249,215,.8));transform:translateZ(-300px);}
 @-webkit-keyframes box3d{
 	from{-webkit-transform:rotateX(0) rotateY(0) rotateZ(0) translate(-50%,-50%);transform:rotateX(0) rotateY(0) rotateZ(0) translate(-50%,-50%);}
 	25%{-webkit-transform:rotateX(360deg) rotateY(360deg) rotateZ(360deg) translate(-50%,-50%);transform:rotateX(360deg) rotateY(360deg) rotateZ(360deg) translate(-50%,-50%);}
@@ -44,18 +43,18 @@ z-index:999;
 	to{-webkit-transform:rotateX(0) rotateY(0) rotateZ(0) translate(-50%,-50%);transform:rotateX(0) rotateY(0) rotateZ(0) translate(-50%,-50%);}
 }
 /*文字*/
-#text{text-align:center;font-size:20px;color:#fff;padding:50px 0;}
+#text{text-align:center;font-size:20px;color:#4facfe;padding:50px 0;}
 </style>
 <a href="lable.html">
 	<div id="text">点击任意位置，进入blog</div>
 	<div class="box_bg"></div>
 	<div id="box">
-		<div class="item face_1">嗡</div>
-		<div class="item face_2">嘛</div>
-		<div class="item face_3">呢</div>
-		<div class="item face_4">呗</div>
-		<div class="item face_5">咪</div>
-		<div class="item face_6">吽</div>
+		<div class="item face_1">怪诞咖啡</div>
+		<div class="item face_2">GitHub</div>
+		<div class="item face_3">Blog</div>
+		<div class="item face_4">怪诞咖啡</div>
+		<div class="item face_5">GitHub</div>
+		<div class="item face_6">Blog</div>
 	</div>
 </a>
 </body>
