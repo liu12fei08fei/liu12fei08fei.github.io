@@ -22,5 +22,13 @@ a:hover{color:#3c5a53;-webkit-transform:scale(1.2);transform:scale(1.2);}
 	<li><a href="/html/4semantic.html">web语义化，从松散到实战</a></li>
 	<!-- <li><a href="/html/"></a></li> -->
 </ol>
+<script>
+// BFcache模式修改
+window.addEventListener('pageshow',function(e){
+    if(e.persisted){
+        window.location.reload();
+    }
+},true);
+</script>
 </body>
 </html>
