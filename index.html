@@ -15,19 +15,20 @@ a{display:block;color:inherit;text-decoration:none;}
         transform-style:preserve-3d;
 -webkit-perspective:8000px;
         perspective:8000px;
-        transform-origin:50% 50% 200px;
+        -webkit-transform-origin:50% 50% 200px;
+                transform-origin:50% 50% 200px;
 -webkit-animation:box3d 9s infinite linear;
         animation:box3d 9s infinite ease-in-out;
 z-index:999;
 }
 #box .item{width:180px;height:180px;color:#fff;text-align:center;line-height:180px;font-size:0;font-weight:bold;position:absolute;top:50%;left:50%;margin:-90px 0 0 -90px;border-radius:30px;z-index:9999;font-size:36px;color:rgba(62,74,180,.9);}
-#box .face_1{-webkit-transform:translateZ(90px);transform:translateZ(90px);background-image:linear-gradient(to right, #ff8177 0%, #ff867a 0%, #ff8c7f 21%, #f99185 52%, #cf556c 78%, #b12a5b 100%);}
-#box .face_2{-webkit-transform:rotateX(-90deg) translateZ(90px);transform:rotateX(-90deg) translateZ(90px);background-image:linear-gradient(to right, #eea2a2 0%, #bbc1bf 19%, #57c6e1 42%, #b49fda 79%, #7ac5d8 100%);}
-#box .face_3{-webkit-transform:rotateY(90deg) translateZ(90px);transform:rotateY(90deg) translateZ(90px);background-image:linear-gradient(to top, #fcc5e4 0%, #fda34b 15%, #ff7882 35%, #c8699e 52%, #7046aa 71%, #0c1db8 87%, #020f75 100%);}
-#box .face_4{-webkit-transform:rotateY(-90deg) translateZ(90px);transform:rotateY(-90deg) translateZ(90px);background-image:linear-gradient(to top, #4fb576 0%, #44c489 30%, #28a9ae 46%, #28a2b7 59%, #4c7788 71%, #6c4f63 86%, #432c39 100%);}
+#box .face_1{-webkit-transform:translateZ(90px);transform:translateZ(90px);background-image:-webkit-gradient(linear, left top, right top, from(#ff8177), color-stop(0%, #ff867a), color-stop(21%, #ff8c7f), color-stop(52%, #f99185), color-stop(78%, #cf556c), to(#b12a5b));background-image:linear-gradient(to right, #ff8177 0%, #ff867a 0%, #ff8c7f 21%, #f99185 52%, #cf556c 78%, #b12a5b 100%);}
+#box .face_2{-webkit-transform:rotateX(-90deg) translateZ(90px);transform:rotateX(-90deg) translateZ(90px);background-image:-webkit-gradient(linear, left top, right top, from(#eea2a2), color-stop(19%, #bbc1bf), color-stop(42%, #57c6e1), color-stop(79%, #b49fda), to(#7ac5d8));background-image:linear-gradient(to right, #eea2a2 0%, #bbc1bf 19%, #57c6e1 42%, #b49fda 79%, #7ac5d8 100%);}
+#box .face_3{-webkit-transform:rotateY(90deg) translateZ(90px);transform:rotateY(90deg) translateZ(90px);background-image:-webkit-gradient(linear, left bottom, left top, from(#fcc5e4), color-stop(15%, #fda34b), color-stop(35%, #ff7882), color-stop(52%, #c8699e), color-stop(71%, #7046aa), color-stop(87%, #0c1db8), to(#020f75));background-image:linear-gradient(to top, #fcc5e4 0%, #fda34b 15%, #ff7882 35%, #c8699e 52%, #7046aa 71%, #0c1db8 87%, #020f75 100%);}
+#box .face_4{-webkit-transform:rotateY(-90deg) translateZ(90px);transform:rotateY(-90deg) translateZ(90px);background-image:-webkit-gradient(linear, left bottom, left top, from(#4fb576), color-stop(30%, #44c489), color-stop(46%, #28a9ae), color-stop(59%, #28a2b7), color-stop(71%, #4c7788), color-stop(86%, #6c4f63), to(#432c39));background-image:linear-gradient(to top, #4fb576 0%, #44c489 30%, #28a9ae 46%, #28a2b7 59%, #4c7788 71%, #6c4f63 86%, #432c39 100%);}
 #box .face_5{-webkit-transform:rotateX(90deg) translateZ(90px);transform:rotateX(90deg) translateZ(90px);background-image:linear-gradient(-225deg, #77FFD2 0%, #6297DB 48%, #1EECFF 100%);}
 #box .face_6{-webkit-transform:rotateY(180deg) translateZ(90px);transform:rotateY(180deg) translateZ(90px);background-image:linear-gradient(-225deg, #231557 0%, #44107A 29%, #FF1361 67%, #FFF800 100%);}
-.box_bg{position:fixed;top:0;right:0;bottom:0;left:0;z-index:-1;background:radial-gradient(rgba(67,233,123,.2),rgba(56,249,215,.8));transform:translateZ(-300px);}
+.box_bg{position:fixed;top:0;right:0;bottom:0;left:0;z-index:-1;background:radial-gradient(rgba(67,233,123,.2),rgba(56,249,215,.8));-webkit-transform:translateZ(-300px);transform:translateZ(-300px);}
 @-webkit-keyframes box3d{
 	from{-webkit-transform:rotateX(0) rotateY(0) rotateZ(0) translate(-50%,-50%);transform:rotateX(0) rotateY(0) rotateZ(0) translate(-50%,-50%);}
 	25%{-webkit-transform:rotateX(360deg) rotateY(360deg) rotateZ(360deg) translate(-50%,-50%);transform:rotateX(360deg) rotateY(360deg) rotateZ(360deg) translate(-50%,-50%);}
