@@ -45,7 +45,7 @@ a:hover {
 
 <body>
     <ol id="list__box">
-        <li v-for="item of list"><a :href="rootDire+item.href" v-text="item.name"></a></li>
+        <li v-for="item of list"><a target="_blank" :href="rootDire+item.href" v-text="item.name"></a></li>
     </ol>
     <script src="http://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
