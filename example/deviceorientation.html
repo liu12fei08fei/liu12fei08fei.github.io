@@ -49,7 +49,7 @@ window.addEventListener('deviceorientation',function(e){
 	var abs = '<p>absolute：'+e.absolute+'</p>';
 	var com = '<p>compassCalibrated：'+e.compassCalibrated+'</p>';
 	$('box_1').innerHTML = a + b + g + abs + com;
-	$('box').style.cssText = 'transform:rotateX('+e.beta+'deg) rotateY('+e.gamma+'deg) rotateZ('+e.alpha+'deg)';
+	$('box').style.cssText = '-webkit-transform:rotateX('+e.beta+'deg) rotateY('+e.gamma+'deg) rotateZ('+e.alpha+'deg);transform:rotateX('+e.beta+'deg) rotateY('+e.gamma+'deg) rotateZ('+e.alpha+'deg);';
 },true);
 function $(id){
 	return document.getElementById(id);

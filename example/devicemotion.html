@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>devicemotion事件</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scaleble=no">
+</head>
+<body>
+<style>
+body{line-height:1.2;font-size:20px;}
+p{margin:0;}
+.box_item{padding-bottom:16px;}
+</style>
+<div id="box_1"></div>
+<script>
+window.addEventListener('devicemotion',function(e){
+    var acceleration = '<div class="box_item">acceleration：<p>x：'+e.acceleration.x+'</p><p>y：'+e.acceleration.y+'</p><p>z：'+e.acceleration.z+'</p></div>';
+    var accelerationIncludingGravity = '<div class="box_item">accelerationIncludingGravity：<p>x：'+e.accelerationIncludingGravity.x+'</p><p>y：'+e.accelerationIncludingGravity.y+'</p><p>z：'+e.accelerationIncludingGravity.z+'</p></div>';
+    var interval = '<div class="box_item">interval：'+e.interval+'</div>';
+    var rotationRate = '<div>rotationRate：<p>alpha：'+e.rotationRate.alpha+'</p><p>beta：'+e.rotationRate.beta+'</p><p>gamma：'+e.rotationRate.gamma+'</p></div>';
+    $('box_1').innerHTML = acceleration + accelerationIncludingGravity + interval + rotationRate;
+},true);
+function $(id){
+    return document.getElementById(id);
+}
+function str(str){
+    return JSON.stringify(str);
+}
+</script>
+</body>
+</html>
