@@ -42,15 +42,22 @@ to{-webkit-transform:rotateX(360deg) rotateY(360deg) rotateZ(360deg);transform:r
     <div class="item face_6">Blog</div>
 </div>
 <script>
-window.addEventListener('deviceorientation',function(e){
-	var a = '<p>alpha：'+e.alpha+'</p>';
-	var b = '<p>beta：'+e.beta+'</p>';
-	var g = '<p>gamma：'+e.gamma+'</p>';
-	var abs = '<p>absolute：'+e.absolute+'</p>';
-	var com = '<p>compassCalibrated：'+e.compassCalibrated+'</p>';
-	$('box_1').innerHTML = a + b + g + abs + com;
-	$('box').style.cssText = '-webkit-transform:rotateX('+e.beta+'deg) rotateY('+e.gamma+'deg) rotateZ('+e.alpha+'deg);transform:rotateX('+e.beta+'deg) rotateY('+e.gamma+'deg) rotateZ('+e.alpha+'deg);';
-},true);
+//检查手机是否支持
+if(window.DeviceOrientationEvent){
+    window.addEventListener('deviceorientation',DeviceOrientationHandler,true);
+}else{
+    alert("您的浏览器不支持DeviceOrientation！");
+}
+// 获得陀螺仪相关信息
+function DeviceOrientationHandler(e){
+    var a = '<p>alpha：'+e.alpha+'</p>';
+    var b = '<p>beta：'+e.beta+'</p>';
+    var g = '<p>gamma：'+e.gamma+'</p>';
+    var abs = '<p>absolute：'+e.absolute+'</p>';
+    var com = '<p>compassCalibrated：'+e.compassCalibrated+'</p>';
+    $('box_1').innerHTML = a + b + g + abs + com;
+    $('box').style.cssText = '-webkit-transform:rotateX('+e.beta+'deg) rotateY('+e.gamma+'deg) rotateZ('+e.alpha+'deg);transform:rotateX('+e.beta+'deg) rotateY('+e.gamma+'deg) rotateZ('+e.alpha+'deg);';
+}
 function $(id){
 	return document.getElementById(id);
 }
