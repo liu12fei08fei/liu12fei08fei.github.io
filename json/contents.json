@@ -16,5 +16,8 @@
     {
         "name": "web语义化，从松散到实战",
         "href": "4semantic.html"
+    },{
+        "name": "陀螺仪属性介绍和实战",
+        "href": "5gyroscope.html"
     }]
 }
