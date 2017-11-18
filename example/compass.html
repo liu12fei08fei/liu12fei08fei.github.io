@@ -97,12 +97,12 @@ window.addEventListener('deviceorientation',function(e){
 	$('cur__degree').innerHTML = Math.round(head)+'°';
 	// 获得指北针数字
 	wheelText({
-		head:a,
+		head:head||a,
 		id:'scale__number'
 	});
 	// 指北针方向文字
 	wheelText({
-		head:a,
+		head:head||a,
 		id:'scale__text'
 	});
 	// 水平圆盘
