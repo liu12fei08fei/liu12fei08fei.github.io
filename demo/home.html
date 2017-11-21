@@ -7,7 +7,11 @@
 </head>
 <body>
 <style type="text/css">
-body{margin:0;font-family:Gotham,"Helvetica Neue",Helvetica,Arial,sans-serif;background:#fff;line-height:1;}
+body{margin:0;padding:0;line-height:1;max-width:720px;margin:0 auto;background:rgba(0,0,0,.5);
+background:radial-gradient(rgba(255,255,255,0),rgba(0,0,0,.4));
+font-family:Gotham,"Helvetica Neue",Helvetica,Arial,sans-serif;
+line-height:1;
+}
 a{display:block;text-decoration:none;color:inherit;}
 /*字体*/
 @font-face{font-family:numFonts;src:url(data/fonts/LightCond.otf);}
@@ -85,85 +89,88 @@ a{display:block;text-decoration:none;color:inherit;}
 .tab__box .name{color:#9B9B9B;text-align:center;font-size:20px;-webkit-transform:scale(.5);transform:scale(.5);line-height:16px;}
 .tab__box .tab_h .name{color:#FD8E25;}
 .tab__box::after{content:'';width:56px;height:60px;background:-webkit-gradient(linear,left top, left bottom,color-stop(50%, #fff),color-stop(0, rgba(255,255,255,0)));background:linear-gradient(to bottom,#fff 50%,rgba(255,255,255,0) 0);position:absolute;border-radius:50%;bottom:0;left:50%;margin-left:-28px;-webkit-box-shadow:0 -2px 0 -1px #dedede;box-shadow:0 -2px 0 -1px #dedede;}
-.tab__height{height:60px;}
+.tab__height{height:60px;background:#fff;}
+.main__box{background:#fff;}
 </style>
-<!-- banner -->
-<div class="home__banner" id="slide__banner">
-    <div class="slide__img">
-        <div class="banner">
-            <div class="rank__box">
-                <div class="loop__back"></div>
-                <div class="loop__box"></div>
-                <div class="loop__step">
-                    <div class="step">29785</div>
-                    <div class="inte">当前积分</div>
-                </div>
-                <div class="info">
-                    <div class="place">第六名</div>
-                    <a href="#" class="rank">排行榜</a>
+<div class="main__box">
+    <!-- banner -->
+    <div class="home__banner" id="slide__banner">
+        <div class="slide__img">
+            <div class="banner">
+                <div class="rank__box">
+                    <div class="loop__back"></div>
+                    <div class="loop__box"></div>
+                    <div class="loop__step">
+                        <div class="step">29785</div>
+                        <div class="inte">当前积分</div>
+                    </div>
+                    <div class="info">
+                        <div class="place">第六名</div>
+                        <a href="#" class="rank">排行榜</a>
+                    </div>
                 </div>
             </div>
+            <div class="banner">
+                <div class="item" style="background:#f4f4f4 url(https://data.upfitapp.com/data/2017/08/09/1722015022735677598.jpg) no-repeat center;background-size:cover;"></div>
+            </div>
+            <a href="#" class="banner">
+                <div class="item" style="background:#f4f4f4 url(https://data.upfitapp.com/data/2017/08/09/1722015022735677598.jpg) no-repeat center;background-size:cover;"></div>
+            </a>
         </div>
-        <div class="banner">
-            <div class="item" style="background:#f4f4f4 url(https://data.upfitapp.com/data/2017/08/09/1722015022735677598.jpg) no-repeat center;background-size:cover;"></div>
-        </div>
-        <a href="#" class="banner">
-            <div class="item" style="background:#f4f4f4 url(https://data.upfitapp.com/data/2017/08/09/1722015022735677598.jpg) no-repeat center;background-size:cover;"></div>
-        </a>
+        <div class="slide__icon"></div>
     </div>
-    <div class="slide__icon"></div>
-</div>
-<!-- 我的团队 -->
-<div class="home__tit">我的团队</div>
-<div class="my__team">
-    <div class="head" style="background-image:url(http://data.upfitapp.com/data/2017/08/07/1721815020703995727.jpg);"></div>
-    <div class="info">
-        <div class="name">Fit365小分队</div>
-        <div class="desc">健康快乐每一天！</div>
-    </div>
-</div>
-<!-- 日常任务 -->
-<div class="home__tit">日常任务</div>
-<div class="daily__task">
-    <div class="icon icon_1"></div>
-    <div class="step"><span>6666</span>/8000</div>
-    <div class="name">今日步数</div>
-</div>
-<div class="daily__task">
-    <div class="icon icon_2"></div>
-    <div class="step"><span>1</span>/2</div>
-    <div class="name">每日阅读</div>
-</div>
-<div class="daily__task">
-    <div class="icon icon_3"></div>
-    <div class="step"><span>1</span>/2</div>
-    <div class="name">健康目标</div>
-</div>
-<!-- 我的活动 -->
-<div class="home__tit">我的活动</div>
-<div class="my__active">
-    <div class="box">
-        <div class="img" style="background-image:url(http://data.upfitapp.com/data/2017/08/07/1721815020703995727.jpg);"></div>
-        <div class="btn">活动预告</div>
+    <!-- 我的团队 -->
+    <div class="home__tit">我的团队</div>
+    <div class="my__team">
+        <div class="head" style="background-image:url(http://data.upfitapp.com/data/2017/08/07/1721815020703995727.jpg);"></div>
         <div class="info">
-            <div class="name">欧洲旅行日记</div>
-            <div class="time">2017/09/01-2017/11/30</div>
+            <div class="name">Fit365小分队</div>
+            <div class="desc">健康快乐每一天！</div>
         </div>
     </div>
-    <div class="box">
-        <div class="img" style="background-image:url(http://data.upfitapp.com/data/2017/08/07/1721815020703995727.jpg);"></div>
-        <div class="btn underway">正在进行</div>
-        <div class="info">
-            <div class="name">水果知多少</div>
-            <div class="time">2017/09/01-2017/11/30</div>
-        </div>
+    <!-- 日常任务 -->
+    <div class="home__tit">日常任务</div>
+    <div class="daily__task">
+        <div class="icon icon_1"></div>
+        <div class="step"><span>6666</span>/8000</div>
+        <div class="name">今日步数</div>
     </div>
-    <div class="box">
-        <div class="img" style="background-image:url(http://data.upfitapp.com/data/2017/08/07/1721815020703995727.jpg);"></div>
-        <div class="btn end">已结束</div>
-        <div class="info">
-            <div class="name">饭后百步走</div>
-            <div class="time">2017/09/01-2017/11/30</div>
+    <div class="daily__task">
+        <div class="icon icon_2"></div>
+        <div class="step"><span>1</span>/2</div>
+        <div class="name">每日阅读</div>
+    </div>
+    <div class="daily__task">
+        <div class="icon icon_3"></div>
+        <div class="step"><span>1</span>/2</div>
+        <div class="name">健康目标</div>
+    </div>
+    <!-- 我的活动 -->
+    <div class="home__tit">我的活动</div>
+    <div class="my__active">
+        <div class="box">
+            <div class="img" style="background-image:url(http://data.upfitapp.com/data/2017/08/07/1721815020703995727.jpg);"></div>
+            <div class="btn">活动预告</div>
+            <div class="info">
+                <div class="name">欧洲旅行日记</div>
+                <div class="time">2017/09/01-2017/11/30</div>
+            </div>
+        </div>
+        <div class="box">
+            <div class="img" style="background-image:url(http://data.upfitapp.com/data/2017/08/07/1721815020703995727.jpg);"></div>
+            <div class="btn underway">正在进行</div>
+            <div class="info">
+                <div class="name">水果知多少</div>
+                <div class="time">2017/09/01-2017/11/30</div>
+            </div>
+        </div>
+        <div class="box">
+            <div class="img" style="background-image:url(http://data.upfitapp.com/data/2017/08/07/1721815020703995727.jpg);"></div>
+            <div class="btn end">已结束</div>
+            <div class="info">
+                <div class="name">饭后百步走</div>
+                <div class="time">2017/09/01-2017/11/30</div>
+            </div>
         </div>
     </div>
 </div>
