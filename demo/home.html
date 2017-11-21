@@ -91,6 +91,20 @@ a{display:block;text-decoration:none;color:inherit;}
 .tab__box::after{content:'';width:56px;height:60px;background:-webkit-gradient(linear,left top, left bottom,color-stop(50%, #fff),color-stop(0, rgba(255,255,255,0)));background:linear-gradient(to bottom,#fff 50%,rgba(255,255,255,0) 0);position:absolute;border-radius:50%;bottom:0;left:50%;margin-left:-28px;-webkit-box-shadow:0 -2px 0 -1px #dedede;box-shadow:0 -2px 0 -1px #dedede;}
 .tab__height{height:60px;background:#fff;}
 .main__box{background:#fff;}
+/*无活动*/
+.active__empty{padding:24px 0 16px;}
+.active__empty .name{font-size:12px;color:#9B9B9B;text-align:center;padding-bottom:8px;}
+.active__empty .icon{width:16px;height:22px;background:url(https://data.upfitapp.com/data/2017/11/21/1732415112401166303.png) no-repeat center;background-size:contain;margin:0 auto;-webkit-animation:toBottom 1.6s infinite ease-in-out;animation:toBottom 1.6s infinite ease-in-out;}
+@-webkit-keyframes toBottom{
+    from{-webkit-transform:translateY(0);transform:translateY(0);}
+    30%{-webkit-transform:translateY(10px);transform:translateY(10px);}
+    to{-webkit-transform:translateY(0);transform:translateY(0);}
+}
+@keyframes toBottom{
+    from{-webkit-transform:translateY(0);transform:translateY(0);}
+    30%{-webkit-transform:translateY(10px);transform:translateY(10px);}
+    to{-webkit-transform:translateY(0);transform:translateY(0);}
+}
 </style>
 <div class="main__box">
     <!-- banner -->
@@ -172,6 +186,11 @@ a{display:block;text-decoration:none;color:inherit;}
                 <div class="time">2017/09/01-2017/11/30</div>
             </div>
         </div>
+    </div>
+    <!-- 无活动 -->
+    <div class="active__empty">
+        <div class="name">您还没有加入活动，快去“活动”看看</div>
+        <div class="icon"></div>
     </div>
 </div>
 <!-- tab -->
