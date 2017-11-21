@@ -51,6 +51,13 @@ a{display:block;text-decoration:none;color:inherit;}
 .my__team .info{overflow:hidden;padding-top:6px;}
 .my__team .name{color:#3A332C;font-size:16px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .my__team .desc{color:#9B9B9B;font-size:12px;padding-top:8px;}
+/*无团队*/
+.team__empty{}
+.team__empty .name{font-size:12px;color:#9B9B9B;text-align:center;padding-bottom:8px;}
+.team__empty .btn{background:linear-gradient(to bottom,#FFB36B,#FF7D34);width:160px;height:44px;line-height:44px;margin:0 auto;border-radius:24px;}
+.team__empty .text{color:#fff;display:table;margin:0 auto;position:relative;padding-left:16px;}
+.team__empty .text::before{content:'';width:10px;height:2px;background:#fff;border-radius:2px;position:absolute;top:21px;left:-4px;}
+.team__empty .text::after{content:'';width:2px;height:10px;background:#fff;border-radius:2px;position:absolute;top:17px;left:0;}
 /*日常任务*/
 .daily__task{overflow:hidden;line-height:48px;padding:16px 16px 0;height:48px;}
 .daily__task .icon{width:48px;height:48px;border-radius:50%;float:left;background:no-repeat center;background-size:contain;}
@@ -140,6 +147,13 @@ a{display:block;text-decoration:none;color:inherit;}
         <div class="info">
             <div class="name">Fit365小分队</div>
             <div class="desc">健康快乐每一天！</div>
+        </div>
+    </div>
+    <!-- 无团队 -->
+    <div class="team__empty">
+        <div class="name">您还没有团队</div>
+        <div class="btn">
+            <div class="text">加入/创建</div>
         </div>
     </div>
     <!-- 日常任务 -->
