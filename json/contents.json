@@ -19,5 +19,8 @@
     },{
         "name": "陀螺仪属性介绍和实战",
         "href": "5gyroscope.html"
+    },{
+        "name": "CSS之BFC、IFC、FFC and GFC",
+        "href": "6fc.html"
     }]
 }
