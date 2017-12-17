@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>酷划在线-登录</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+	<style>
+	body{margin:0;padding:0;background:#f1f1f1;}
+	a{text-decoration:none;}
+	/*login box*/
+	.login__box{text-align:center;max-width:320px;margin:0 auto;}
+	.login__box h1{color:#444;font-size:20px;font-weight:normal;margin:0;padding:80px 0;-webkit-transition:all .6s;transition:all .6s;cursor:pointer;}
+	.login__box h1:hover{color:#179b24;}
+	.login__box .login{background:#fff;padding:30px 20px;margin:0 auto;overflow:hidden;-webkit-box-shadow:0 1px 3px 0 rgba(0,0,0,.1);box-shadow:0 1px 3px 0 rgba(0,0,0,.1)}
+	.login__box .item{overflow:hidden;}
+	.login__box .name{color:#72777c;font-size:14px;text-align:left;padding-bottom:4px;}
+	.login__box .item input{padding:0;margin:0;outline:none;border:none;background:transparent;height:40px;font-size:18px;color:#444;padding:0 12px;margin:0 auto;border:solid 1px #ccc;padding:0 12px;background:#fbfbfb;-webkit-box-shadow:0 0 5px 0 rgba(0,0,0,.1) inset;box-shadow:0 0 5px 0 rgba(0,0,0,.1) inset;border-radius:3px;width:100%;-webkit-box-sizing:border-box;box-sizing:border-box;-webkit-transition:all .6s;transition:all .6s;}
+	.login__box .item input:focus{-webkit-box-shadow:0 0 5px 0 rgba(23,155,36,.6);box-shadow:0 0 5px 0 rgba(23,155,36,.6);border-color:#179b24;}
+	.login__box .item+.item{margin-top:20px;}
+	.login__box .btns{overflow:hidden;padding-top:20px;}
+	.login__box .btn{width:58px;height:34px;float:right;background:#1cb72b;text-align:center;color:#fff;font-size:14px;border-radius:3px;line-height:34px;-webkit-box-shadow:0 -2px 0 0 #179b24 inset;box-shadow:0 -2px 0 0 #179b24 inset;cursor:pointer;-webkit-transition:all .6s;transition:all .6s;}
+	.login__box .btn:hover{-webkit-transform:translateX(-10px);transform:translateX(-10px)}
+	.login__box label{width:16px;height:16px;border:solid 1px #179b24;display:block;cursor:pointer;position:relative;border-radius:2px;margin-top:9px;-webkit-transition:all .6s;transition:all .6s;}
+	.login__box label:hover{-webkit-transform:translateX(10px);transform:translateX(10px);}
+	.login__box label::before{opacity:0;content:'';position:absolute;top:0;right:0;bottom:0;left:0;background:#179b24;-webkit-transform:scale(.6);transform:scale(.6);border-radius:2px;-webkit-transition:all .6s;transition:all .6s;}
+	.login__box label::after{content:'记住我的登录信息';position:absolute;font-size:14px;color:#72777c;white-space:nowrap;line-height:16px;top:0;left:24px;font-size:13px;}
+	.login__box #login:checked+label{-webkit-box-shadow:0 0 3px #179b24;box-shadow:0 0 3px #179b24;}
+	.login__box #login:checked+label::before{opacity:1;}
+	.login__box #login{display:none;}
+	.login__box .signin{overflow:hidden;font-size:14px;color:#72777c;padding-left:20px;padding-top:30px;}
+	.login__box .label{float:left;cursor:pointer;-webkit-transition:all .6s;transition:all .6s;}
+	.login__box .label:hover{color:#179b24;}
+	.login__box .label+.label{margin-left:6px;padding-left:8px;position:relative;}
+	.login__box .label+.label::after{content:'';width:3px;height:32px;background:#72777c;position:absolute;top:50%;left:0;-webkit-transform:translateY(-50%) scale(.4);transform:translateY(-50%) scale(.4);}
+	.login__box .back{cursor:pointer;color:#72777c;text-align:left;padding-left:20px;margin-top:10px;font-size:14px;-webkit-transition:all .6s;transition:all .6s;}
+	.login__box .back:hover{color:#179b24;}
+	/*point*/
+	.point__box{background:#000;color:red;position:fixed;left:50%;top:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);font-size:14px;padding:8px 12px;border-radius:5px;-webkit-box-shadow:0 2px 5px rgba(0,0,0,.2);box-shadow:0 2px 5px rgba(0,0,0,.2);-webkit-transition:all .6s;transition:all .6s;opacity:0;z-index:-9;}
+	.point__box-hover{opacity:1;top:40%;z-index:9;}
+	</style>
+</head>
+<body>
+<!-- point -->
+<div class="point__box">用户名或密码错误，请重试！</div>
+<!-- content -->
+<div class="login__box">
+	<a href="../index.html"><h1>北京酷划在线网络技术有限公司</h1></a>
+	<div class="login">
+		<form action="#">
+			<div class="item">
+				<div class="name">用户名或电子邮件地址</div>
+				<input type="text">
+			</div>
+			<div class="item">
+				<div class="name">密码</div>
+				<input type="password">
+			</div>
+			<div class="btns">
+				<div class="btn">登录</div>
+				<input type="checkbox" id="login">
+				<label for="login"></label>
+			</div>
+		</form>
+	</div>
+	<div class="signin">
+		<div class="label">注册</div>
+		<div class="label">忘记密码？</div>
+	</div>
+	<a href="../index.html"><div class="back">← 返回到北京酷划在线网络技术有限公司</div></a>
+	<script src="../js/jquery-3.2.1.slim.min.js"></script>
+	<script>
+		(function(){
+			var timer = null;
+			$('.login__box .btn').click(function(){
+				$('.point__box').addClass('point__box-hover');
+				timer = setTimeout(function(){
+					$('.point__box').removeClass('point__box-hover');
+					$('input').val('');
+				},600);
+			});
+		})();
+	</script>
+</div>
+</body>
+</html>
