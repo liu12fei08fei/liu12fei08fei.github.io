@@ -1,0 +1,245 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>患者服务</title>
+<link href="../index.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<!--top-->
+<div class="top">
+	<a href="../index.html"><div class="top_01"></div></a>
+    <div class="top_02"></div>
+</div>
+<!--nav-->
+<div class="nav">
+	<div class="nav_01">
+    	<ul>
+        	<li><a href="../index.html" target="_blank">首页</a></li>
+            <li><a href="yyjj.html" target="_blank">医院简介</a></li>
+            <li><a href="yydt.html" target="_blank">医院动态</a></li>
+            <li><a href="zjtd.html" target="_blank">专家团队</a></li>
+            <li><a href="ksdh.html" target="_blank">科室导航</a></li>
+            <li><a href="tsyk.html" target="_blank">特色颐康</a></li>
+            <li><a href="yyhj.html" target="_blank">医院环境</a></li>
+            <li><a href="hzfw.html" target="_blank">患者服务</a></li>
+        </ul>
+    </div>
+</div>
+<!--轮播图-->
+<div class="index_banner" id="banner_tabs">
+  <ul>
+    <li class="third"><a href="#" target="_blank"></a></li>
+    <li class="second"><a href="#" target="_blank"></a></li>    
+    <li class="first"><a href="#" target="_blank"></a></li>
+  </ul>
+  <cite><span class="cur"></span><span></span><span></span></cite>
+</div>
+<div class="dt">
+<!--专家团队-->
+<div class="dt_06">
+	<div class="dt_07">实践活动时间表
+    	<div class="dt_08"></div>
+        <div class="dt_09"></div>
+    </div>
+    <div class="hf_01">
+    	<img src="../images/hf_01.jpg">
+        <div class="hf_02">预约挂号：<span>010-56579239</span></div>
+    </div>
+</div>
+<div class="dt_06">
+	<div class="dt_07">乘车路线
+    	<div class="dt_08"></div>
+        <div class="dt_09"></div>
+    </div>
+    <div class="hf_03">
+    	<div class="hf_04"><span class="ziti_01">医院指南/交通指南：</span><br/><br/><span class="ziti_02">地铁路线：</span><br/>地铁5号线大屯路东站下车B2出口，向南走约800米，见苏宁电器向左转80米即到。或下车出A1出口，乘坐公交车464、538路，到慧忠路东口下车，过马路对面苏宁电器右转80米即到。<br/><br/><span class="ziti_02">公交路线：</span><br/>乘坐464，538，430,387路公交慧忠路东口站下车，苏宁电器向东80米即到，北京西客站直达公交车为387路。<br/><br/><span class="ziti_02">自驾路线：</span><br/>开车导航请输入“欧陆经典北门”</div>
+        <div class="hf_05" id="dituContent"></div>
+    </div>
+</div>
+</div><!--总架子-->
+<!--footer-->
+<div class="footer">版权所有：北京颐康中医医院 京ICP备 13029950号-5<br/>医院地址：北京市朝阳区北苑路172号欧陆经典<br/>联系电话：010-87665777</div>
+<script type="text/javascript">
+			(function(){
+		        if(!Function.prototype.bind){
+		            Function.prototype.bind = function(obj){
+		                var owner = this,args = Array.prototype.slice.call(arguments),callobj = Array.prototype.shift.call(args);
+		                return function(e){e=e||top.window.event||window.event;owner.apply(callobj,args.concat([e]));};
+		            };
+		        }
+		    })();
+		    var banner_tabs = function(id){
+		        this.ctn = document.getElementById(id);
+		        this.adLis = null;
+		        this.btns = null;
+		        this.animStep = 0.2;//动画速度0.1～0.9
+		        this.switchSpeed = 6;//自动播放间隔(s)
+		        this.defOpacity = 1;
+		        this.tmpOpacity = 1;
+		        this.crtIndex = 0;
+		        this.crtLi = null;
+		        this.adLength = 0;
+		        this.timerAnim = null;
+		        this.timerSwitch = null;
+		        this.init();
+		    };
+		    banner_tabs.prototype = {
+		        fnAnim:function(toIndex){
+		            if(this.timerAnim){window.clearTimeout(this.timerAnim);}
+		            if(this.tmpOpacity <= 0){
+		                this.crtLi.style.opacity = this.tmpOpacity = this.defOpacity;
+		                this.crtLi.style.filter = 'Alpha(Opacity=' + this.defOpacity*100 + ')';
+		                this.crtLi.style.zIndex = 0;
+		                this.crtIndex = toIndex;
+		                return;
+		            }
+		            this.crtLi.style.opacity = this.tmpOpacity = this.tmpOpacity - this.animStep;
+		            this.crtLi.style.filter = 'Alpha(Opacity=' + this.tmpOpacity*100 + ')';
+		            this.timerAnim = window.setTimeout(this.fnAnim.bind(this,toIndex),50);
+		        },
+		        fnNextIndex:function(){
+		            return (this.crtIndex >= this.adLength-1)?0:this.crtIndex+1;
+		        },
+		        fnSwitch:function(toIndex){
+		            if(this.crtIndex==toIndex){return;}
+		            this.crtLi = this.adLis[this.crtIndex];
+		            for(var i=0;i<this.adLength;i++){
+		                this.adLis[i].style.zIndex = 0;
+		            }
+		            this.crtLi.style.zIndex = 2;
+		            this.adLis[toIndex].style.zIndex = 1;
+		            for(var i=0;i<this.adLength;i++){
+		                this.btns[i].className = '';
+		            }
+		            this.btns[toIndex].className = 'cur'
+		            this.fnAnim(toIndex);
+		        },
+		        fnAutoPlay:function(){
+		            this.fnSwitch(this.fnNextIndex());
+		        },
+		        fnPlay:function(){
+		            this.timerSwitch = window.setInterval(this.fnAutoPlay.bind(this),this.switchSpeed*1000);
+		        },
+		        fnStopPlay:function(){
+		            window.clearTimeout(this.timerSwitch);
+		        },
+		        init:function(){
+		            this.adLis = this.ctn.getElementsByTagName('li');
+		            this.btns = this.ctn.getElementsByTagName('cite')[0].getElementsByTagName('span');
+		            this.adLength = this.adLis.length;
+		            for(var i=0,l=this.btns.length;i<l;i++){
+		                with({i:i}){
+		                    this.btns[i].index = i;
+		                    this.btns[i].onclick = this.fnSwitch.bind(this,i);
+		                    this.btns[i].onclick = this.fnSwitch.bind(this,i);
+		                }
+		            }
+		            this.adLis[this.crtIndex].style.zIndex = 2;
+		            this.fnPlay();
+		            this.ctn.onmouseover = this.fnStopPlay.bind(this);
+		            this.ctn.onmouseout = this.fnPlay.bind(this);
+		        }
+		    };
+		    var player1 = new banner_tabs('banner_tabs');
+</script>
+
+    	<!--地图开始-->
+        <script type="text/javascript" src="http://api.map.baidu.com/api?key=&v=1.1&services=true"></script>
+       <script type="text/javascript">
+                        //创建和初始化地图函数：
+                        function initMap(){
+                            createMap();//创建地图
+                            setMapEvent();//设置地图事件
+                            addMapControl();//向地图添加控件
+                            addMarker();//向地图中添加marker
+                        }
+                        
+                        //创建地图函数：
+                        function createMap(){
+                            var map = new BMap.Map("dituContent");//在百度地图容器中创建一个地图
+                            var point = new BMap.Point(116.425303,40.001962);//定义一个中心点坐标
+                            map.centerAndZoom(point,17);//设定地图的中心点和坐标并将地图显示在地图容器中
+                            window.map = map;//将map变量存储在全局
+                        }
+                        
+                        //地图事件设置函数：
+                        function setMapEvent(){
+                            map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
+                            map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+                            map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
+                            map.enableKeyboard();//启用键盘上下左右键移动地图
+                        }
+                        
+                        //地图控件添加函数：
+                        function addMapControl(){
+                            //向地图中添加缩放控件
+                        var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
+                        map.addControl(ctrl_nav);
+                                    //向地图中添加比例尺控件
+                        var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
+                        map.addControl(ctrl_sca);
+                        }
+                        
+                        //标注点数组
+                        var markerArr = [{title:"北京颐康中医医院",content:"北京市朝阳区北苑路172号欧陆经典",point:"116.425869|40.00199",isOpen:0,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}}
+                             ];
+                        //创建marker
+                        function addMarker(){
+                            for(var i=0;i<markerArr.length;i++){
+                                var json = markerArr[i];
+                                var p0 = json.point.split("|")[0];
+                                var p1 = json.point.split("|")[1];
+                                var point = new BMap.Point(p0,p1);
+                                var iconImg = createIcon(json.icon);
+                                var marker = new BMap.Marker(point,{icon:iconImg});
+                                var iw = createInfoWindow(i);
+                                var label = new BMap.Label(json.title,{"offset":new BMap.Size(json.icon.lb-json.icon.x+10,-20)});
+                                marker.setLabel(label);
+                                map.addOverlay(marker);
+                                label.setStyle({
+                                            borderColor:"#808080",
+                                            color:"#333",
+                                            cursor:"pointer"
+                                });
+                                
+                                (function(){
+                                    var index = i;
+                                    var _iw = createInfoWindow(i);
+                                    var _marker = marker;
+                                    _marker.addEventListener("click",function(){
+                                        this.openInfoWindow(_iw);
+                                    });
+                                    _iw.addEventListener("open",function(){
+                                        _marker.getLabel().hide();
+                                    })
+                                    _iw.addEventListener("close",function(){
+                                        _marker.getLabel().show();
+                                    })
+                                    label.addEventListener("click",function(){
+                                        _marker.openInfoWindow(_iw);
+                                    })
+                                    if(!!json.isOpen){
+                                        label.hide();
+                                        _marker.openInfoWindow(_iw);
+                                    }
+                                })()
+                            }
+                        }
+                        //创建InfoWindow
+                        function createInfoWindow(i){
+                            var json = markerArr[i];
+                            var iw = new BMap.InfoWindow("<b class='iw_poi_title' title='" + json.title + "'>" + json.title + "</b><div class='iw_poi_content'>"+json.content+"</div>");
+                            return iw;
+                        }
+                        //创建一个Icon
+                        function createIcon(json){
+                            var icon = new BMap.Icon("http://app.baidu.com/map/images/us_mk_icon.png", new BMap.Size(json.w,json.h),{imageOffset: new BMap.Size(-json.l,-json.t),infoWindowOffset:new BMap.Size(json.lb+5,1),offset:new BMap.Size(json.x,json.h)})
+                            return icon;
+                        }
+                        
+                        initMap();//创建和初始化地图
+                    </script>
+        <!--地图结束-->
+</body>
+</html>

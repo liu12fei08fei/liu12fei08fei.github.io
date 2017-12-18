@@ -1,0 +1,266 @@
+/*
+* @Author: liufeifei
+* @Date:   2017-03-01 15:19:28
+* @Last Modified by:   liufeifei
+* @Last Modified time: 2017-03-02 10:51:14
+*/
+/*基础结构+全平台兼容*/
+body{margin:0;padding:0;font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;}
+p{display:block;margin:0;}
+header,nav,section,footer{display:block;}
+a{display:inline-block;color:inherit;text-decoration:none;}
+h1,h2,h3{font-weight:normal;margin:0;}
+/*字体*/
+@font-face{font-family:upfit_num;src:url(../fonts/LightCond.otf);}
+/*导航*/
+.header__box{height:60px;background:rgba(255,255,255,.26);color:#fff;position:fixed;top:0;left:0;right:0;z-index:8;}
+.header__box-1200{max-width:1200px;margin:0 auto;box-sizing:border-box;padding:0 30px;}
+.header__box-logo{width:38px;height:38px;background:url(../images/up_logo.png) no-repeat center;background-size:contain;float:left;margin-top:11px;}
+.header__box-nav{float:right;margin-top:11px;font-size:0;}
+.header__box-nav_item{font-size:14px;height:38px;line-height:38px;margin-left:80px;}
+.header__box-menu{display:none;width:34px;height:38px;background:url(../images/up_menu.png) no-repeat center;background-size:contain;float:right;margin-top:11px;}
+/*banner*/
+.banner__box{display:table;width:100%;background:url(../images/up_banner.jpg) no-repeat center;background-size:cover;color:#fff;text-align:center;overflow:hidden;}
+.banner__box-1200{display:table-cell;vertical-align:middle;}
+.banner__box-name{font-size:50px;margin-top:30px;}
+.banner__box-desc{font-size:20px;}
+/*合作伙伴*/
+.partner__box{text-align:center;padding:60px 0;background:#f8f8f8;overflow:hidden;font-size:0;}
+.partner__box-1200{max-width:1200px;margin:0 auto;box-sizing:border-box;padding:0 30px;}
+.partner__box-item{display:inline-block;width:160px;height:80px;margin:0 24px;mix-blend-mode:multiply;}
+.partner__box-item0{background:url(../images/up_partner_0.png) no-repeat center;background-size:contain;}
+.partner__box-item1{background:url(../images/up_partner_1.png) no-repeat center;background-size:contain;}
+.partner__box-item2{background:url(../images/up_partner_2.png) no-repeat center;background-size:contain;}
+.partner__box-item3{background:url(../images/up_partner_3.png) no-repeat center;background-size:contain;}
+.partner__box-item4{background:url(../images/up_partner_4.png) no-repeat center;background-size:contain;}
+/*目标人群*/
+.target__box{color:#707070;overflow:hidden;position:relative;}
+.target__box-1200{}
+.target__box-img{width:50%;height:100%;background:url(../images/up_target_img.jpg) no-repeat center;background-size:cover;position:absolute;top:0;bottom:0;left:0;}
+.target__box-box{padding:60px 0 60px 66px;width:50%;box-sizing:border-box;float:right;}
+.target__box-h2{font-size:26px;}
+.target__box-h2 span{display:block;font-size:20px;}
+.target__box-item{font-size:20px;position:relative;line-height:80px;padding-left:136px;margin-top:40px;}
+.target__box-icon{width:80px;height:80px;position:absolute;top:0;left:0;}
+.target__box-icon1{background:url(../images/up_target_icon_1.png) no-repeat center;background-size:cover;}
+.target__box-icon2{background:url(../images/up_target_icon_2.png) no-repeat center;background-size:cover;}
+.target__box-icon3{background:url(../images/up_target_icon_3.png) no-repeat center;background-size:cover;}
+/*业务目标*/
+.goal__box{text-align:center;background:#fafafa;padding:80px 0;overflow:hidden;}
+.goal__box-1200{max-width:1200px;margin:0 auto;overflow:hidden;position:relative;}
+.goal__box-img{width:46%;background:url(../images/up_goal-img.png) no-repeat center;background-size:contain;position:absolute;top:0;left:30px;bottom:0;}
+.goal__box-box{width:54%;float:right;position:relative;box-sizing:border-box;padding-left:40px;}
+.goal__box-border{width:110px;background:url(../images/up_goal-icon_0.png) no-repeat center;background-size:contain;position:absolute;top:80px;bottom:50px;left:0;}
+.goal__box-item{color:#707070;font-size:22px;height:80px;background:#eee;position:relative;border-radius:80px;line-height:80px;width:80%;margin-top:30px;}
+.goal__box-item1{}
+.goal__box-item2{margin-left:50px;}
+.goal__box-item3{margin-left:74px;}
+.goal__box-item4{margin-left:50px;}
+.goal__box-item5{}
+.goal__box-icon{width:80px;height:80px;position:absolute;top:0;left:0;}
+.goal__box-icon1{background:url(../images/up_goal-icon_1.png) no-repeat center;background-size:cover;}
+.goal__box-icon2{background:url(../images/up_goal-icon_2.png) no-repeat center;background-size:cover;}
+.goal__box-icon3{background:url(../images/up_goal-icon_3.png) no-repeat center;background-size:cover;}
+.goal__box-icon4{background:url(../images/up_goal-icon_4.png) no-repeat center;background-size:cover;}
+.goal__box-icon5{background:url(../images/up_goal-icon_5.png) no-repeat center;background-size:cover;}
+/*方案*/
+.solution__box{color:#707070;text-align:center;font-size:0;padding:120px 0 80px;overflow:hidden;}
+.solution__box-1200{}
+.solution__box-h2{font-size:26px;padding-bottom:90px;}
+.solution__box-h2 span{display:block;font-size:20px;padding-top:4px;}
+.solution__box-item{display:inline-block;vertical-align:top;width:246px;min-height:360px;padding-top:40px;box-sizing:border-box;box-shadow:1px 0 0 #e4e4e4 inset;}
+.solution__box-item1{box-shadow:none;}
+.solution__box-item2{}
+.solution__box-item3{}
+.solution__box-item4{}
+.solution__box-icon{width:58px;height:58px;margin:0 auto;}
+.solution__box-icon1{background:url(../images/up_plan-icon_1.png) no-repeat center;background-size:cover;}
+.solution__box-icon2{background:url(../images/up_plan-icon_2.png) no-repeat center;background-size:cover;}
+.solution__box-icon3{background:url(../images/up_plan-icon_3.png) no-repeat center;background-size:cover;}
+.solution__box-icon4{background:url(../images/up_plan-icon_4.png) no-repeat center;background-size:cover;}
+.solution__box-name{font-size:16px;padding:50px 0;}
+.solution__box-con{font-size:12px;line-height:160%;}
+.solution__box-con span{display:block;padding-top:10px;}
+/*健康与公益*/
+.weal__box{background:url(../images/up_weal-bg.jpg) no-repeat center;background-size:cover;color:#fff;padding:168px 0;overflow:hidden;}
+.weal__box-1200{max-width:1200px;position:relative;margin:0 auto;box-sizing:border-box;padding:0 30px;overflow:hidden;}
+.weal__box-img{background:url(../images/up_weal-img.jpg) no-repeat center;background-size:cover;position:absolute;top:0;bottom:0;left:30px;width:50%;}
+.weal__box-box{width:50%;float:right;padding-left:100px;box-sizing:border-box;}
+.weal__box-name{font-size:26px;padding-bottom:28px;}
+.weal__box-desc{font-size:16px;line-height:180%;text-align:justify;}
+.weal__box-more{display:block;width:200px;height:58px;text-align:center;line-height:58px;color:#ffa700;border:solid 1px #b2b2b2;font-weight:200;border-radius:58px;margin-top:80px;float:right;}
+/*效果展示*/
+.advantage__box{font-size:0;text-align:center;color:#707070;overflow:hidden;padding:60px 0;}
+.advantage__box-1200{max-width:1200px;margin:0 auto;box-sizing:border-box;padding:0 30px;}
+.advantage__box-h2{font-size:26px;padding-bottom:60px;}
+.advantage__box-h2 span{display:block;font-size:20px;padding-top:4px;}
+.advantage__box-item{display:inline-block;vertical-align:top;margin:30px 70px 0;width:258px;}
+.advantage__box-chart{font-family:upfit_num;font-size:90px;position:relative;height:258px;font-weight:bold;}
+.advantage__box-chart div{position:absolute;width:258px;height:258px;line-height:258px;top:0;left:50%;margin-left:-129px;}
+.advantage__box-chart span{font-size:60px;font-weight:normal;}
+.advantage__box-name{font-size:20px;}
+.advantage__box-desc{display:block;font-size:14px;line-height:160%;padding-top:12px;}
+/*合作企业*/
+.teamwork__box{background:#f8f8f8;text-align:center;padding:80px 0;overflow:hidden;}
+.teamwork__box-1200{font-size:0;}
+.teamwork__box-item{display:inline-block;width:180px;height:40px;mix-blend-mode:multiply;margin:10px 40px;}
+.teamwork__box-item1{background:url(../images/up__corp-img_1.png) no-repeat center;background-size:contain;}
+.teamwork__box-item2{background:url(../images/up__corp-img_2.png) no-repeat center;background-size:contain;}
+.teamwork__box-item3{background:url(../images/up__corp-img_3.png) no-repeat center;background-size:contain;}
+.teamwork__box-item4{background:url(../images/up__corp-img_4.png) no-repeat center;background-size:contain;}
+/*联系*/
+.self__box{color:#707070;text-align:center;padding:80px 0;overflow:hidden;}
+.self__box-1200{font-size:0;}
+.self__box-h2{font-size:26px;padding-bottom:60px;}
+.self__box-h2 span{display:block;font-size:20px;padding-top:4px;}
+.self__box-item{display:inline-block;text-align:left;vertical-align:top;padding:6px 40px;position:relative;margin:10px 0;text-indent:-3em;padding-left:5.5em;font-size:14px;}
+.self__box-shadow{box-shadow:1px 0 0 #e4e4e4,-1px 0 0 #e4e4e4;}
+.self__box-item p{line-height:180%;margin:4px 0;}
+.self__box-self{font-size:16px;}
+.self__box-wechat{width:30px;height:30px;background:url(../images/up__contact-wechat.png) no-repeat center;background-size:cover;margin-left:-3em;cursor:pointer;}
+.self__box-text{font-size:14px;word-break:break-all;}
+/*页脚*/
+.footer__box{background:#17171a;font-size:12px;padding:24px 0;}
+.footer__box-1200{max-width:1200px;margin:0 auto;overflow:hidden;box-sizing:border-box;padding:0 30px;}
+.footer__box-nav{float:left;color:#fff;}
+.footer__box-shadow{margin:0 20px;padding:0 20px;box-shadow:1px 0 0 0 #fff,-1px 0 0 0 #fff;}
+.footer__box-copyright{color:#aeaeae;float:right;}
+/*微信*/
+.up__qr{display:none;background:rgba(0,0,0,.54);position:fixed;top:0;right:0;bottom:0;left:0;z-index:10;}
+.up__qr-img{width:240px;height:240px;position:fixed;top:50%;left:50%;margin:-135px 0 0 -120px;}
+.up__qr-text{width:240px;font-size:14px;color:#474747;background:#fff;height:30px;line-height:10px;text-align:center;position:fixed;top:50%;left:50%;margin:105px 0 0 -120px;}
+/*全平台兼容*/
+@media screen and (max-width:1100px){
+    .partner__box-item{margin:0;width:20%;}
+}
+@media screen and (max-width:1000px){
+    .goal__box-item{font-size:18px;}
+    .solution__box-item{width:25%;}
+    .self__box-item{width:33.3%;box-sizing:border-box;}
+    .advantage__box-item{margin:30px 0 0;}
+    .teamwork__box-item{margin:0;width:25%;}
+}
+@media screen and (max-width:920px){
+    .banner__box-desc,.target__box-h2 span,.solution__box-h2 span,.advantage__box-h2 span,.advantage__box-name,.self__box-h2 span{font-size:16px;}
+    .banner__box-name{font-size:32px;}
+    .target__box-h2,.solution__box-h2,.weal__box-name,.advantage__box-h2,.self__box-h2{font-size:20px;}
+    .target__box-item{font-size:16px;height:60px;line-height:60px;padding-left:100px;margin-top:30px;}
+    .target__box-icon{width:60px;height:60px;}
+    .goal__box-item{font-size:16px;height:60px;line-height:60px;}
+    .goal__box-icon{width:60px;height:60px;}
+    .weal__box-desc{font-size:14px;}
+    .advantage__box-chart{height:220px;font-size:80px;}
+    .advantage__box-chart div{width:220px;height:220px;margin-left:-110px;line-height:220px;}
+    .advantage__box-chart span{font-size:60px;}
+    .advantage__box-item{width:220px;}
+}
+@media screen and (max-width:800px){
+    .goal__box{padding:30px 0;}
+    .goal__box-img{position:static;width:auto;height:400px;margin:0 auto;}
+    .goal__box-box{width:100%;float:none;padding:0;font-size:0;}
+    .goal__box-border{width:auto;background:url(../images/up_goal-icon_01.png) no-repeat center;background-size:contain;height:90px;position:static;margin-top:-10px;}
+    .goal__box-item{width:20px;line-height:normal;padding:80px 20px 40px;height:220px;display:inline-block;margin:-54px 16px 0;border-radius:60px;vertical-align:top;position:relative;}
+    .goal__box-item2,.goal__box-item4{margin-top:-10px;}
+    .goal__box-item3{margin-top:6px;}
+    .goal__box-icon{position:absolute;top:0;left:0;}
+    .partner__box{padding:20px 0;}
+    .partner__box-item{width:33.3%;}
+    .target__box{padding:30px 0;}
+    .target__box-img{position:static;width:auto;height:320px;margin:0 30px;}
+    .target__box-box{padding:30px 30px 0;width:100%;box-sizing:border-box;}
+    .target__box-item{width:50%;float:left;box-sizing:border-box;padding-left:80px;margin-top:20px;}
+    .solution__box-h2{padding-bottom:50px;}
+    .solution__box{padding:60px 0;}
+    .solution__box-item{width:50%;padding-top:10px;min-height:240px;}
+    .solution__box-name{padding:30px 0;}
+    .weal__box{padding:60px 0;}
+    .weal__box-img{position:static;width:auto;height:320px;margin-bottom:30px;}
+    .weal__box-box{width:auto;padding-left:0;}
+    .weal__box-more{margin-top:30px;}
+    .teamwork__box-item{width:50%;margin:10px 0;}
+    .advantage__box-h2{padding-bottom:30px;}
+    /*移动端滚动处理*/
+    .page__box-webapp{position:fixed;top:0;right:0;bottom:0;left:0;overflow:auto;}
+}
+@media screen and (max-width:720px){
+    .target__box{padding:0 0 30px;}
+    .target__box-img{margin:0;height:280px;}
+    .advantage__box{padding:30px 0;}
+    .advantage__box-h2{padding:0;}
+    .advantage__box-chart{height:180px;font-size:60px;}
+    .advantage__box-chart span{font-size:40px;}
+    .advantage__box-chart div{width:180px;height:180px;line-height:180px;margin-left:-90px;}
+    .advantage__box-item{width:180px;}
+    .teamwork__box{padding:50px 0;}
+    .self__box{text-align:left;padding:50px 0;}
+    .self__box-h2{text-align:center;}
+    .self__box-item{width:50%;}
+    .self__box-shadow{box-shadow:none;}
+    .footer__box{text-align:center;}
+    .footer__box-nav{display:inline-block;float:none;}
+    .footer__box-copyright{float:none;padding-top:6px;}
+}
+@media screen and (max-width:600px){
+    .header__box-menu{display:block;}
+    .header__box-nav{float:none;position:fixed;top:60px;bottom:0;left:0;z-index:9;background:rgba(0,0,0,0.8);margin:0;width:50%;height:1000%;padding-top:50px;-webkit-transform:translateX(-100%);-moz-transform:translateX(-100%);-ms-transform:translateX(-100%);-o-transform:translateX(-100%);transform:translateX(-100%);-webkit-transition:all .8s;-moz-transition:all .8s;-ms-transition:all .8s;-o-transition:all .8s;transition:all .8s;}
+    .header__box-nav_item{height:auto;line-height:40px;margin-left:0;display:block;margin-left:20%;font-size:16px;}
+    .header__box-nav_animate-done{-webkit-transform:translateX(0);-moz-transform:translateX(0);-ms-transform:translateX(0);-o-transform:translateX(0);transform:translateX(0);}
+    .banner__box-name{font-size:24px;}
+    .target__box-img{height:240px;}
+    .target__box-box{width:auto;padding:30px 0 0;display:table;margin:0 auto;float:none;}
+    .target__box-item{width:auto;float:none;}
+    .advantage__box-item{width:144px;margin:10px 30px 0;}
+    .advantage__box-chart{height:144px;font-size:50px;}
+    .advantage__box-chart span{font-size:30px;}
+    .advantage__box-chart div{width:144px;height:144px;margin-left:-72px;line-height:144px;}
+    .teamwork__box,.self__box{padding:30px 0;}
+    .self__box-item{width:auto;}
+    .self__box-h2{padding-bottom:30px;}
+}
+@media screen and (max-width:500px){
+    .banner__box-desc{padding:0 40px;font-size:14px;}
+    .banner__box-name{padding:0 30px;font-size:20px;}
+    .goal__box-img{height:320px;}
+    .goal__box-border{height:74px;}
+    .goal__box-item{padding:80px 12px 40px;font-size:14px;}
+    .goal__box-icon{width:44px;height:44px;}
+    .advantage__box-item{margin:10px 10px 0;}
+    .self__box-1200{display:table;margin:0 auto;}
+    .self__box-item{display:block;margin:0;position:relative;padding:6px 20px 6px 5.5em;}
+    .self__box-h2{padding:10px;}
+    .self__box-wechat{position:absolute;right:30px;top:0;}
+    .self__box-self{padding-right:30px;}
+    .weal__box-name{text-align:center;}
+    .weal__box-img{height:240px;}
+    .weal__box-more{float:none;margin:20px auto 0;}
+}
+@media screen and (max-width:400px){
+    .partner__box{padding:10px 0;}
+    .partner__box-1200{padding:0;}
+    .partner__box-item{height:50px;}
+    .target__box-box{padding:20px 0 0;}
+    .target__box-item{margin-top:16px;padding-left:60px;height:50px;line-height:50px;}
+    .target__box-icon{width:50px;height:50px;}
+    .target__box-img{height:160px;}
+    .target__box-h2{font-size:18px;text-align:center;}
+    .target__box-h2 span{font-size:14px;}
+    .goal__box-img{height:280px;}
+    .goal__box-border{height:56px;}
+    .goal__box-item{margin:-30px 6px 0;height:200px;padding:60px 12px 40px;}
+    .goal__box-item2,.goal__box-item4{margin-top:-6px;}
+    .goal__box-item3{margin-top:4px;}
+    .solution__box{padding:30px 0;}
+    .solution__box-h2{padding-bottom:20px;}
+    .solution__box-name{font-size:14px;padding:10px 0;}
+    .solution__box-con span{padding:0 10px;}
+    .solution__box-item{min-height:220px;}
+    .weal__box{padding:30px 0;}
+    .weal__box-img{height:180px;margin-bottom:20px;}
+    .weal__box-name{padding-bottom:20px;}
+    .weal__box-more{width:160px;height:46px;line-height:46px;}
+    .teamwork__box-item{height:30px;}
+    .advantage__box-chart{height:120px;font-size:40px;}
+    .advantage__box-chart span{font-size:30px;}
+    .advantage__box-chart div{width:120px;height:120px;margin-left:-60px;line-height:120px;}
+    .advantage__box-item{margin:10px 4px;width:120px;}
+}

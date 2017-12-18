@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>企业健康管理</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+</head>
+<body>
+<style>
+body{margin:0;background:#eee;font-family:"Helvetica Neue",Helvetica,Arial,'Microsoft YaHei',sans-serif;}
+input{border:none;padding:0;width:100%;font-size:15px;color:#474747;outline:none;height:30px;line-height:30px;text-align:center;}
+input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{color:#e4e4e4}
+textarea:-moz-placeholder,input:-moz-placeholder{color:#e4e4e4}
+textarea::-moz-placeholder,input::-moz-placeholder{color:#e4e4e4}
+textarea:-ms-input-placeholder,input:-ms-input-placeholder{color:#e4e4e4}
+.table{display:table;table-layout:fixed;}
+.cell{display:table-cell;position:relative;}
+/*结构*/
+.upfit_box{}
+.upfit_box>.box{position:relative;overflow:hidden;box-shadow:0 -1px 0 0 rgb(224, 219, 219);-webkit-overflow-scrolling:touch;}
+/*内容*/
+.up_num{text-align:center;font-size:0;padding:28px 0;}
+.up_num .num{background:#e4e4e4;color:#474747;font-size:12px;height:22px;line-height:22px;padding:0 8px;border-radius:6px;display:inline-block;overflow:hidden;}
+/*问题部分*/
+.up_doctor{padding:0 62px 0 12px;}
+.up_doctor+.up_doctor{margin-top:38px;}
+.up_doctor .cell{vertical-align:top;}
+.up_doctor .doctor{width:44px;padding:6px 6px 0 0;}
+.up_doctor .head{overflow:hidden;width:44px;height:44px;}
+.up_doctor .head img{float:left;width:100%;}
+.up_doctor .text{background:#fff;color:#474747;font-size:15px;line-height:150%;letter-spacing:2.4px;padding:14px 10px;overflow:hidden;border-radius:0 6px 6px 6px;}
+.up_doctor .icon{overflow:hidden;width:16px;height:16px;position:absolute;top:0;left:-16px;}
+.up_doctor .icon img{float:left;width:100%;}
+/*用户部分*/
+.up_user{padding:0 12px 0 62px;margin-top:38px;}
+.up_user .table{width:100%;}
+.up_user .cell{vertical-align:bottom;}
+.up_user .user{width:44px;padding:0 0 6px 6px;}
+.up_user .head{overflow:hidden;width:44px;height:44px;}
+.up_user .head img{float:left;width:100%;}
+.up_user .text{background:#fff;color:#474747;font-size:15px;line-height:150%;letter-spacing:2.4px;padding:12px 10px;overflow:hidden;border-radius:6px 6px 0 6px;}
+.up_user .icon{overflow:hidden;width:16px;height:16px;position:absolute;bottom:0;right:-16px;}
+.up_user .icon img{float:left;width:100%;}
+/*输入内容*/
+.up_user .write{overflow:hidden;padding:5px;box-sizing:border-box;border:solid 1px #d8d8d8;border-radius:6px;}
+.up_user .write input{float:left;}
+.up_user .btn{background:#ccc;text-align:center;font-size:15px;height:40px;line-height:40px;color:#fff;border-radius:6px;margin-top:10px;}
+.up_user .hover{background:#fda626;}
+/*单选内容*/
+.up_user .radio{line-height:160%;box-sizing:border-box;border:solid 1px #d8d8d8;border-radius:6px;text-align:center;padding:10px 6px;}
+.up_user .radio+.radio{margin-top:10px;}
+/*单选交互*/
+.radio_hover{}
+.radio_hover .hover{background:#fec167;border-color:#fec167;color:#fff;}
+/*多选内容*/
+.se_select{overflow:hidden;}
+.se_select .select{width:100%;float:left;box-sizing:border-box;border:solid 1px #d8d8d8;border-radius:6px;text-align:center;margin-top:6px;padding:10px 6px;line-height:160%;}
+@media screen and (max-width:375px){
+    .up_user .radio,.se_select .select{font-size:13px;}
+}
+@media screen and (max-width:320px){
+    .up_user .radio,.se_select .select{font-size:12px;}
+}
+/*多选交互*/
+.select_hover{}
+.select_hover .hover{background:#fec167;border-color:#fec167;color:#fff;}
+.up_submit{background:#fda626;font-size:18px;text-align:center;height:40px;line-height:40px;color:#fff;overflow:hidden;border-radius:6px;box-shadow:0 2px 3px -1px rgba(253,166,38,1);position:absolute;left:12px;right:12px;bottom:14px;}
+/*提交按钮*/
+.up_bottom{height:92px;}
+.up_submit{position:fixed;left:0;right:0;bottom:0;padding:0 12px 14px;background:#eee;z-index:1001;}
+.up_submit .submit{background:#fda626;font-size:18px;text-align:center;height:40px;line-height:40px;color:#fff;overflow:hidden;border-radius:6px;box-shadow:0 2px 3px -1px rgba(253,166,38,1);}
+</style>
+<div class="upfit_box"></div>
+<form method="post" class="up_form">
+    <input type="hidden" name="answer" id="answer"/>
+</form>
+<script src="js/jq.js"></script>
+<script>
+$(function(){
+    // 页面高度
+    var pageHeight = $(document).outerHeight(true);
+    // 后台数据存放位置
+    var back_json = {"rtn":[{"uuid":"1633614806710765079","type":2,"question":"性别","options":[{"uuid":"1633614806710765544","text":"A、男"},{"uuid":"1633614806710765964","text":"B、女"}]},{"uuid":"1633614806711675214","type":1,"question":"身高（cm）","options":[]},{"uuid":"1633614806711990600","type":1,"question":"体重（kg）","options":[]},{"uuid":"1633614806712398894","type":1,"question":"年龄","options":[]},{"uuid":"1633614806713217136","type":2,"question":"您平时是否饮酒？","options":[{"uuid":"1633614806713217567","text":"是，经常饮酒"},{"uuid":"1633614806713217688","text":"是，偶尔饮酒，每月喝酒5次以下"},{"uuid":"1633614806713217844","text":"不喝酒"}]},{"uuid":"1633614806713726389","type":2,"question":"您平时是否吸烟？","options":[{"uuid":"1633614806713726817","text":"吸烟"},{"uuid":"1633614806713727053","text":"不吸烟"}]},{"uuid":"1633614806715291745","type":2,"question":"您的工作种类是？","options":[{"uuid":"1633614806715292255","text":"A、技能型职业，包括技术性职业（计算机硬件人员、摄影师、制图员、机械装配工）和技能性职业（木匠、厨师、技工、修理工、农民、一般劳动）"},{"uuid":"1633614806715292414","text":"B、事务型职业，包括秘书、办公室人员、记事员、会计、行政助理、图书馆管理员、出纳员、打字员、投资分析员等"},{"uuid":"1633614806715292610","text":"C、研究型职业，包括科学研究人员、教师、工程师、电脑编程人员、医生、系统分析员等"},{"uuid":"1633614806715292744","text":"D、艺术型职业，包括艺术方面（演员、导演、艺术设计师、雕刻家、建筑师、摄影家、广告制作人） 音乐方面（歌唱家、作曲家、乐队指挥）文学方面（小说家、诗人、剧作家）"},{"uuid":"1633614806715292899","text":"E、经管型职业，包括项目经理、销售人员，营销管理人员、政府官员、企业领导、法官、律师。"},{"uuid":"1633614806715293010","text":"F、社交型职业，包括教育工作者（教师、教育行政人员），社会工作者（咨询人员、公关人员、）"}]},{"uuid":"1633914809025301817","type":2,"question":"回想一下自己的日常睡眠时间为","options":[{"uuid":"1633914809025302513","text":"A．6小时以下"},{"uuid":"1633914809025302641","text":"B．6-8小时"},{"uuid":"1633914809025302764","text":"C．8-9小时"},{"uuid":"1633914809025302879","text":"D．9小时以上"}]},{"uuid":"1633914809025898350","type":2,"question":"自己每天起床时的状态是","options":[{"uuid":"1633914809025898655","text":"A．基本保持自然生物钟，不用挣扎甚至不容闹钟就能起床"},{"uuid":"1633914809025898808","text":"B．只能靠闹钟叫醒，但是没有什么不适"},{"uuid":"1633914809025898943","text":"C．起床非常痛苦和艰难，但是起来后能保持清醒"},{"uuid":"1633914809025899099","text":"D．起床异常艰难，起来后也有很长一段时间昏昏沉沉，或是浑身难受。"}]},{"uuid":"1633914809031967075","type":3,"question":"平时睡觉前一小时是否经常有以下行为","options":[{"uuid":"1633914809031967566","text":"A. 躺床上玩手机或一直看着电脑屏幕"},{"uuid":"1633914809031967744","text":"B. 喝咖啡或浓茶"},{"uuid":"1633914809031967941","text":"C. 思考工作或学习上比较复杂的事"},{"uuid":"1633914809031968067","text":"D. 听一些舒缓的音乐或看书"},{"uuid":"1633914809031968314","text":"E. 没有以上任何行为"}]},{"uuid":"1633914809032943901","type":2,"question":"自己平时的工作时间大概为","options":[{"uuid":"1633914809032944383","text":"A．\t朝九晚五，一周五天正常工作时间（包括少量加班）"},{"uuid":"1633914809032944524","text":"B．\t朝九晚九，朝八晚七，总之比正常时间多一点，一周五天"},{"uuid":"1633914809032944680","text":"C．\t著名的996公司（朝九晚九，一周六天）"},{"uuid":"1633914809032944802","text":"D．\t没有固定工作时间，工作比较随意"},{"uuid":"1633914809032944922","text":"E．\t没有固定休息时间，时刻准备着加班"}]},{"uuid":"1633914809034371143","type":2,"question":"己在工作时的心理状态一般为:","options":[{"uuid":"1633914809034371565","text":"A. 热爱自己的工作，随时充满了斗志"},{"uuid":"1633914809034371698","text":"B. 工作平平淡淡，虽然不觉得开心，但是并没有什么不满"},{"uuid":"1633914809034371813","text":"C. 工作中总带着一点小情绪，总有些地方不满意"},{"uuid":"1633914809034371944","text":"D．忍了很久，自己就像个火山，指不定那一天就爆发了"}]},{"uuid":"1633914809035592856","type":2,"question":"下班后自己的生活是:","options":[{"uuid":"1633914809035593306","text":"A. 经常与同事或朋友们聚聚"},{"uuid":"1633914809035593442","text":"B. 大部分时间会一个人回家，偶尔会和大家聚一下或与家人谈谈心"},{"uuid":"1633914809035593607","text":"C. 一个人宅在屋子里，不过会和大家网上交流"},{"uuid":"1633914809035593724","text":"D. 喜欢自己的世界，不想和大家过多交流"}]},{"uuid":"1633914809036583964","type":2,"question":"平日里自己每天的中等强度运动量（主动性的锻炼行为，如跑步、骑行、健身、球类运动等）大概为：","options":[{"uuid":"1633914809036584584","text":"A. 1小时以上"},{"uuid":"1633914809036584703","text":"B. 0.5-1小时"},{"uuid":"1633914809036584828","text":"C. 10-30分钟"},{"uuid":"1633914809036584948","text":"D. 0-10分钟"}]},{"uuid":"1633914809037211638","type":2,"question":"平日里自己每天的步行量是否达到了6000步：","options":[{"uuid":"1633914809037212145","text":"A．是"},{"uuid":"1633914809037212271","text":"B．否"}]},{"uuid":"1633914809038074387","type":2,"question":"自己平日里的运动频率大概为？","options":[{"uuid":"1633914809038075026","text":"A．每天不管时间长短，总会腾出时间运动一下，持之以恒"},{"uuid":"1633914809038075151","text":"B．按周计划进行，每周一般会有2-3的锻炼计划"},{"uuid":"1633914809038075298","text":"C. 随心所欲，想锻炼时就锻炼"},{"uuid":"1633914809038075440","text":"D．基本不运动"}]},{"uuid":"1633914809038965742","type":2,"question":"我每天会吃了3种以上蔬菜且这些蔬菜占了1/3以上的盘子","options":[{"uuid":"1633914809038966210","text":"A．YES"},{"uuid":"1633914809038966339","text":"B．NO"}]},{"uuid":"1633914809039272716","type":2,"question":"我每天会吃了一份水果(等于一个中型水果如苹果、梨，3/4杯鲜果汁或1/4杯干果）","options":[{"uuid":"1633914809039273237","text":"A．YES"},{"uuid":"1633914809039273360","text":"B．NO"}]},{"uuid":"1633914809039649169","type":2,"question":"我每天除了米饭还会经常吃了其他五谷杂粮","options":[{"uuid":"1633914809039649609","text":"A．YES"},{"uuid":"1633914809039649727","text":"B．NO"}]},{"uuid":"1633914809040021501","type":2,"question":"我每天吃的肉平均有拳头般大","options":[{"uuid":"1633914809040022021","text":"A．YES"},{"uuid":"1633914809040022190","text":"B．NO"}]},{"uuid":"1633914809040302867","type":2,"question":"我平时每天至少会摄入一杯牛奶或同等质量的奶制品","options":[{"uuid":"1633914809040303358","text":"A．YES"},{"uuid":"1633914809040303470","text":"B．NO"}]},{"uuid":"1634014810270707432","type":2,"question":"自己平日里的三餐是否规律？","options":[{"uuid":"1634014810270707920","text":"A、我的三餐饮食十分规律"},{"uuid":"1634014810270708063","text":"B、我每天一般会有一餐没有在固定时间（超过固定用餐时间2小时以上）"},{"uuid":"1634014810270708204","text":"C、我会吃三餐，但是三餐时间完全不规律，或偶尔忘吃一餐"},{"uuid":"1634014810270708340","text":"D、我会经常性的忘记吃饭，三餐时间完全不规律"}]},{"uuid":"1634014810272403434","type":3,"question":"除了正餐以外，我还会经常吃（每周三次以上）","options":[{"uuid":"1634014810272403917","text":"A．油炸类食品"},{"uuid":"1634014810272404055","text":"B．烟熏类食品"},{"uuid":"1634014810272404272","text":"C．罐头类食品"},{"uuid":"1634014810272404427","text":"D．腌制类食品"},{"uuid":"1634014810272404573","text":"E．烧烤"},{"uuid":"1634014810272404725","text":"F．方便面"},{"uuid":"1634014810272404855","text":"G．火锅、麻辣烫"},{"uuid":"1634014810272405000","text":"H．\t路边摊"},{"uuid":"1634014810272405129","text":"I．\t我很少吃这些东西"}]}]};
+    // 显示数据部分 ============显示部分============
+    var backJsonLen = back_json.rtn.length;
+    // 数据检测是否存在不合理现象
+    var dataNo = false;
+    // 第一个问题显示
+    frameSelect(0);
+    // 提交数据仓库 ============提交部分============
+    var data_json = {};
+    // $('body').delegate('.up_submit .submit','click',function(){
+    //     $('.up_form').find('input').val(JSON.stringify(data_json));
+    //     $('.up_form').submit();
+    // });
+    // 设置每个box的高度
+    $('.upfit_box .box').css('min-height',pageHeight);
+    // 进行动画展示
+    var scrTop = 0; //存储滚动距离
+    $('.upfit_box').delegate('.click_btn','click',function(){
+        scrTop = 0; //重置滚动距离
+        if(dataNo){
+            // 当前题目排名, 从1开始
+            var fixedNum = $(this).parents('.box').index()+1;
+            // 用户已经打过多少道题
+            var yetNum = $('.upfit_box').find('.box').size();
+            if(fixedNum!=backJsonLen){
+                if(fixedNum>=yetNum){
+                    frameSelect(fixedNum);
+                };
+                for(var i=0;i<fixedNum;i++){
+                    scrTop += $('.upfit_box .box').eq(i).outerHeight();
+                };
+                // console.log(scrTop)
+                // $('html,body').animate({scrollTop:(fixedNum*pageHeight)},400);
+                $('html,body').animate({scrollTop:scrTop},400);
+                $('.upfit_box .box').css('min-height',pageHeight);
+            }else{
+                $('.up_bottom,.up_submit').remove();
+                $('body').append('<div class="up_bottom"></div><div class="up_submit"><div class="submit">完成，提交</div></div>');
+            };
+        }else{};
+        // dataNo = false;
+    });
+    // 填空题验证
+    deteFn();
+    function deteFn(){
+        $('input').on('input propertychange',function(){
+            // 获取输入数值
+            var writeDete = $(this).val();
+            if($.trim(writeDete)!=""&&!isNaN(Number(writeDete))){
+                dataNo = true;
+                $(this).parents('.text').find('.btn').addClass('hover');
+            }else{
+                dataNo = false;
+                $(this).parents('.text').find('.btn').removeClass('hover');
+                // 清理提交按钮
+                $('.up_bottom,.up_submit').remove();
+            };
+        });
+    };
+    // 填空获取数据
+    $('.upfit_box').delegate('.write_data','click',function(){
+        // 存储最终答案和类型 第一个是答案，第二个是类型
+        var writeArrEnd = [];
+        // 获取输入数值
+        var writeVal = $(this).parents('.text').find('input').val();
+        // 获取问题id
+        var writeId = $(this).parents('.text').attr('data-uuid');
+        // 获取问题的type
+        var writeType = $(this).parents('.text').attr('data-type');
+        // 往数据里面更新内容
+        writeArrEnd[0] = writeVal;
+        writeArrEnd[1] = writeType;
+        data_json[writeId] = writeArrEnd;
+        // 数据结果打印
+        console.log(data_json);
+    });
+    // 单选交互控制和获取数据
+    $('.upfit_box').delegate('.radio_hover .radio','click',function(){
+        // 单选交互控制
+        $(this).parents('.radio_hover').find('.radio').removeClass('hover');
+        $(this).addClass('hover');
+        // 获取数据 =>
+        // 存储最终答案和类型 第一个是答案，第二个是类型
+        var radioArrEnd = [];
+        // 获取问题id
+        var radioId = $(this).parents('.text').attr('data-uuid');
+        // 获取问题的type
+        var radioType = $(this).parents('.text').attr('data-type');
+        // 获取选项id
+        var radioVal = $(this).attr('data-value');
+        // 往数据里面更新内容
+        radioArrEnd[0] = radioVal;
+        radioArrEnd[1] = radioType;
+        data_json[radioId] = radioArrEnd;
+        // 数据结果打印
+        console.log(data_json);
+    });
+    // 多选交互控制和获取数据 =>
+    // 定义新数组用来储存多选答案
+    var selectArr = [];
+    // 获取问题id
+    var selectId = '';
+    // 获取问题的type
+    var selectType = '';
+    // 存储最终答案和类型 第一个是答案，第二个是类型
+    var selectArrEnd = [];
+    $('.upfit_box').delegate('.select_hover .select','click',function(){
+        // 一对一多选题答案，解决多个多选题同一个答案的问题
+        var ownData = $(this).parents('.up_user .text').attr('data-key');
+        selectArr = $(this).parents('.up_user .text').attr('data-key').split(',')||selectArr;
+        // 交互控制
+        var switchAttr = $(this).attr('data_switch');
+        if(switchAttr=="false"){
+            $(this).attr('data_switch',"true").addClass('hover');
+        }else{
+            $(this).attr('data_switch',"false").removeClass('hover');
+        };
+        // 获取数据 =>
+        // 获取问题id
+        selectId = $(this).parents('.se_select').attr('data-uuid');
+        // 获取问题的type
+        selectType = $(this).parents('.se_select').attr('data-type');
+        // 获取答案id
+        var selectVal = $(this).attr('data-value');
+        // 获取选中选项在答案中的排名
+        var valRank = $(this).index();
+        if(switchAttr=="false"){
+            // 向数组中指定位置添加数据
+            selectArr[valRank] = selectVal;
+        }else{
+            // 把指定数据删除
+            // selectArr.splice(valRank, 1);
+            selectArr[valRank] = "";
+        };
+        // 多选题结果检测
+        var selectDete = selectArr.every(function(value,index,arr){
+            return ($.trim(value)=="");
+        });
+        if(!selectDete){
+            dataNo = true;
+            $(this).parents('.text').find('.btn').addClass('hover');
+        }else{
+            dataNo = false;
+            $(this).parents('.text').find('.btn').removeClass('hover');
+            // 清理提交按钮
+            $('.up_bottom,.up_submit').remove();
+        };
+        $(this).parents('.up_user .text').attr('data-key',selectArr.toString());
+    });
+    // 多选问题往数据里面更新内容 =>
+    $('.upfit_box').delegate('.select_data','click',function(){
+        // 把数据保存在json里面
+        // data_json[selectId] = selectArr.join(',');
+        selectArrEnd[0] = $(this).parents('.up_user .text').attr('data-key');
+        selectArrEnd[1] = selectType;
+        data_json[selectId] = selectArrEnd.concat();
+        // 数据结果打印
+        console.log(data_json);
+    });
+    // 调用不同题目结构封装, 参数n为当前题目排序位置
+    function frameSelect(n){
+        dataNo = false;
+        if(back_json.rtn[n].type==1){
+            writeFrame(back_json.rtn[n].uuid, 1, back_json.rtn[n].question, (n+1), backJsonLen);
+        }else if(back_json.rtn[n].type==2){
+            dataNo = true;
+            radioFrame(back_json.rtn[n].uuid, 2, back_json.rtn[n].question, (n+1), backJsonLen, back_json.rtn[n].options);
+        }else if(back_json.rtn[n].type==3){
+            selectFrame(back_json.rtn[n].uuid, 3, back_json.rtn[n].question, (n+1), backJsonLen, back_json.rtn[n].options);
+            selectArr = [];
+        };
+        deteFn();
+    };
+    // 封装题型集合位置, 显示后台数据设置 =>
+    // 填空结构封装
+    // 【参数说明】uuid为问题id, type为问题类型, question为问题描述, nonceNum为当前问题是第几个问题, allNum一共有多少问题
+    function writeFrame(uuid,type,question,nonceNum,allNum){
+        $('.upfit_box').append('<div class="box">'+
+                            '    <div class="up_num">'+
+                            '        <div class="num">'+nonceNum+'/'+allNum+'</div>'+
+                            '    </div>'+
+                            '    <div class="up_doctor">'+
+                            '        <div class="table">'+
+                            '            <div class="cell doctor">'+
+                            '                <div class="head"><img src="image/up_doctor.png" alt="doctor"></div>'+
+                            '            </div>'+
+                            '            <div class="cell">'+
+                            '                <div class="text">'+question+'</div>'+
+                            '                <div class="icon"><img src="image/up_dicon.png" alt="icon"></div>'+
+                            '            </div>'+
+                            '        </div>'+
+                            '    </div>'+
+                            '    <!-- 输入内容 -->'+
+                            '    <div class="up_user" style="padding-left:124px;">'+
+                            '        <div class="table">'+
+                            '            <div class="cell">'+
+                            '                <div class="text" data-uuid="'+uuid+'" data-type="'+type+'">'+
+                            '                    <div class="write"><input type="number" placeholder="请输入数字"></div>'+
+                            '                    <div class="btn write_data click_btn">OK,我填好了</div>'+
+                            '                </div>'+
+                            '                <div class="icon"><img src="image/up_uicon.png" alt="icon"></div>'+
+                            '            </div>'+
+                            '            <div class="cell user">'+
+                            '                <div class="head"><img src="image/up_user.png" alt="user"></div>'+
+                            '            </div>'+
+                            '        </div>'+
+                            '    </div>'+
+                            '</div>');
+    };
+    // 单选结构封装
+    // 【参数说明】uuid为问题id, type为问题类型, question为问题描述, nonceNum为当前问题是第几个问题, allNum一共有多少问题, radioArr为单选答案（数组类型Array）
+    // 答案例子:[{"uuid":"答案【是】的id","text":"答案【是】的描述"},{"uuid":"答案【否】的id","text":"答案【否】的描述"}]
+    function radioFrame(uuid,type,question,nonceNum,allNum,radioArr){
+        // 获得单选答案数组
+        var radioArrFn = radioArr;
+        // 获得单选答案数组长度
+        var radioLenFn = radioArrFn.length;
+        // 用来储存所有答案的结构
+        var radioFraFn = '';
+        for(var i=0;i<radioLenFn;i++){
+            radioFraFn += '<div class="radio click_btn" data-value="'+radioArrFn[i].uuid+'">'+radioArrFn[i].text+'</div>';
+        };
+        $('.upfit_box').append('<div class="box">'+
+                            '    <div class="up_num">'+
+                            '        <div class="num">'+nonceNum+'/'+allNum+'</div>'+
+                            '    </div>'+
+                            '    <div class="up_doctor">'+
+                            '        <div class="table">'+
+                            '            <div class="cell doctor">'+
+                            '                <div class="head"><img src="image/up_doctor.png" alt="doctor"></div>'+
+                            '            </div>'+
+                            '            <div class="cell">'+
+                            '                <div class="text">'+question+'</div>'+
+                            '                <div class="icon"><img src="image/up_dicon.png" alt="icon"></div>'+
+                            '            </div>'+
+                            '        </div>'+
+                            '    </div>'+
+                            '    <!-- 单选内容 -->'+
+                            '    <div class="up_user">'+
+                            '        <div class="table">'+
+                            '            <div class="cell">'+
+                            '                <div class="text radio_hover" data-uuid="'+uuid+'" data-type="'+type+'">'+radioFraFn+'</div>'+
+                            '                <div class="icon"><img src="image/up_uicon.png" alt="icon"></div>'+
+                            '            </div>'+
+                            '            <div class="cell user">'+
+                            '                <div class="head"><img src="image/up_user.png" alt="user"></div>'+
+                            '            </div>'+
+                            '        </div>'+
+                            '    </div>'+
+                            '</div>');
+    };
+    // 多选结构封装
+    // 【参数说明】uuid为问题id, type为问题类型, question为问题描述, nonceNum为当前问题是第几个问题, allNum一共有多少问题, selectArr为多选答案（数组类型Array）
+    // 答案例子:[{"uuid":"1答案id","text":"1答案描述"},{"uuid":"2答案id","text":"2答案描述"},{"uuid":"3答案id","text":"3答案描述"}]
+    function selectFrame(uuid,type,question,nonceNum,allNum,selectArr){
+        // 获得多选答案数组
+        var selectArrFn = selectArr;
+        // 获得多选答案数组长度
+        var selectLenFn = selectArrFn.length;
+        // 用来储存所有答案的结构
+        var selectFraFn = '';
+        for(var i=0;i<selectLenFn;i++){
+            selectFraFn += '<div class="select" data_switch="false" data-value="'+selectArrFn[i].uuid+'">'+selectArrFn[i].text+'</div>';
+        };
+        $('.upfit_box').append('<div class="box">'+
+                            '    <div class="up_num">'+
+                            '        <div class="num">'+nonceNum+'/'+allNum+'</div>'+
+                            '    </div>'+
+                            '    <div class="up_doctor">'+
+                            '        <div class="table">'+
+                            '            <div class="cell doctor">'+
+                            '                <div class="head"><img src="image/up_doctor.png" alt="doctor"></div>'+
+                            '            </div>'+
+                            '            <div class="cell">'+
+                            '                <div class="text">'+
+                            '                    <span>'+question+'</span>'+
+                            '                    <div class="label">(多选，没有的话不选)</div>'+
+                            '                </div>'+
+                            '                <div class="icon"><img src="image/up_dicon.png" alt="icon"></div>'+
+                            '            </div>'+
+                            '        </div>'+
+                            '    </div>'+
+                            '    <!-- 多选内容 -->'+
+                            '    <div class="up_user">'+
+                            '        <div class="table">'+
+                            '            <div class="cell">'+
+                            '                <div class="text" style="padding-top:6px;" data-key="">'+
+                            '                    <div class="se_select select_hover" data-uuid="'+uuid+'" data-type="'+type+'">'+selectFraFn+'</div>'+
+                            '                    <div class="btn click_btn select_data" style="margin-top:6px;">OK,我选好了</div>'+
+                            '                </div>'+
+                            '                <div class="icon"><img src="image/up_uicon.png" alt="icon"></div>'+
+                            '            </div>'+
+                            '            <div class="cell user">'+
+                            '                <div class="head"><img src="image/up_user.png" alt="user"></div>'+
+                            '            </div>'+
+                            '        </div>'+
+                            '    </div>'+
+                            '</div>');
+    };
+})
+</script>
+</body>
+</html>

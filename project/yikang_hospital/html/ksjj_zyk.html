@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>中医科简介</title>
+<link href="../index.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<!--top-->
+<div class="top">
+	<a href="../index.html"><div class="top_01"></div></a>
+    <div class="top_02"></div>
+</div>
+<!--nav-->
+<div class="nav">
+	<div class="nav_01">
+    	<ul>
+        	<li><a href="../index.html" target="_blank">首页</a></li>
+            <li><a href="yyjj.html" target="_blank">医院简介</a></li>
+            <li><a href="yydt.html" target="_blank">医院动态</a></li>
+            <li><a href="zjtd.html" target="_blank">专家团队</a></li>
+            <li><a href="ksdh.html" target="_blank">科室导航</a></li>
+            <li><a href="tsyk.html" target="_blank">特色颐康</a></li>
+            <li><a href="yyhj.html" target="_blank">医院环境</a></li>
+          <li><a href="hzfw.html" target="_blank">患者服务</a></li>
+        </ul>
+    </div>
+</div>
+<div class="dt">
+<!--专家团队-->
+<div class="dt_06">
+	<div class="dt_07">中医科介绍
+    	<div class="dt_08"></div>
+        <div class="dt_09"></div>
+    </div>
+    <div class="kj_01">
+    	<div class="kj_02"><img src="../images/kj_04.jpg"></div>
+        <div class="kj_03">&nbsp;&nbsp;&nbsp;&nbsp;中医科自建科以来秉承“大医精诚，博采众长”的古训治疗常见病、多发病，我院现有中医师4名，全科以中西医结合为学科建设和发展方向，在继承和发扬传统医学的同时，全科医师努力学习现代医学，师承而不泥古，发扬而不离宗，用传统医学和现代医学相结合开展工作，在内外妇儿方面均有特长。<br/>&nbsp;&nbsp;&nbsp;&nbsp;采用中西医结合辩证治疗临床常见病、多发病，如感冒、支气管炎等呼吸系统疾病，慢性胃炎、胃溃疡、慢性肝炎、胆囊炎、胆结石等消化系统疾病，高血压、冠心病、糖尿病、慢性肾病、头痛、眩晕、失眠、抑郁症、习惯性便秘、泄泻、自汗盗汗、急慢性咽炎、口腔溃疡、各种关节炎等内科病。<br/>&nbsp;&nbsp;&nbsp;&nbsp;中西医结合治疗月经不调、慢性妇科炎症、不孕不育等；三伏三九贴及走罐防治慢性呼吸系统疾病；针灸、刺血、拔罐等治疗中风后遗症、面瘫、肩周炎、颈肩腰椎等疾病；综合疗法治疗痤疮、褥疮、皮
+</div>
+<div class="kj_05">炎、湿疹、腋臭、烧烫伤、伤口长期不愈合、周围血管病（包括糖尿病足、脉管炎、动脉硬化闭塞症、下肢静脉曲张、静脉性溃疡）等；以及小儿脐贴、小儿推拿、中药穴位贴敷、中药外洗熏蒸等多个项目，内治外治相结合，充分发挥中医药特色，服务于广大人民群众。</div>
+    </div>
+</div>
+<div class="dt_06">
+	<div class="dt_07">科室特色
+    	<div class="dt_08"></div>
+        <div class="dt_09"></div>
+    </div>
+    <div class="kj_04">
+    	<img src="../images/zyk_01.jpg">
+        <img src="../images/zyk_02.jpg">
+        <img src="../images/zyk_03.jpg">
+    </div>
+</div>
+
+</div><!--总架子-->
+<!--footer-->
+<div class="footer">版权所有：北京颐康中医医院 京ICP备 13029950号-5<br/>医院地址：北京市朝阳区北苑路172号欧陆经典<br/>联系电话：010-87665777</div>
+<script type="text/javascript">
+			(function(){
+		        if(!Function.prototype.bind){
+		            Function.prototype.bind = function(obj){
+		                var owner = this,args = Array.prototype.slice.call(arguments),callobj = Array.prototype.shift.call(args);
+		                return function(e){e=e||top.window.event||window.event;owner.apply(callobj,args.concat([e]));};
+		            };
+		        }
+		    })();
+		    var banner_tabs = function(id){
+		        this.ctn = document.getElementById(id);
+		        this.adLis = null;
+		        this.btns = null;
+		        this.animStep = 0.2;//动画速度0.1～0.9
+		        this.switchSpeed = 6;//自动播放间隔(s)
+		        this.defOpacity = 1;
+		        this.tmpOpacity = 1;
+		        this.crtIndex = 0;
+		        this.crtLi = null;
+		        this.adLength = 0;
+		        this.timerAnim = null;
+		        this.timerSwitch = null;
+		        this.init();
+		    };
+		    banner_tabs.prototype = {
+		        fnAnim:function(toIndex){
+		            if(this.timerAnim){window.clearTimeout(this.timerAnim);}
+		            if(this.tmpOpacity <= 0){
+		                this.crtLi.style.opacity = this.tmpOpacity = this.defOpacity;
+		                this.crtLi.style.filter = 'Alpha(Opacity=' + this.defOpacity*100 + ')';
+		                this.crtLi.style.zIndex = 0;
+		                this.crtIndex = toIndex;
+		                return;
+		            }
+		            this.crtLi.style.opacity = this.tmpOpacity = this.tmpOpacity - this.animStep;
+		            this.crtLi.style.filter = 'Alpha(Opacity=' + this.tmpOpacity*100 + ')';
+		            this.timerAnim = window.setTimeout(this.fnAnim.bind(this,toIndex),50);
+		        },
+		        fnNextIndex:function(){
+		            return (this.crtIndex >= this.adLength-1)?0:this.crtIndex+1;
+		        },
+		        fnSwitch:function(toIndex){
+		            if(this.crtIndex==toIndex){return;}
+		            this.crtLi = this.adLis[this.crtIndex];
+		            for(var i=0;i<this.adLength;i++){
+		                this.adLis[i].style.zIndex = 0;
+		            }
+		            this.crtLi.style.zIndex = 2;
+		            this.adLis[toIndex].style.zIndex = 1;
+		            for(var i=0;i<this.adLength;i++){
+		                this.btns[i].className = '';
+		            }
+		            this.btns[toIndex].className = 'cur'
+		            this.fnAnim(toIndex);
+		        },
+		        fnAutoPlay:function(){
+		            this.fnSwitch(this.fnNextIndex());
+		        },
+		        fnPlay:function(){
+		            this.timerSwitch = window.setInterval(this.fnAutoPlay.bind(this),this.switchSpeed*1000);
+		        },
+		        fnStopPlay:function(){
+		            window.clearTimeout(this.timerSwitch);
+		        },
+		        init:function(){
+		            this.adLis = this.ctn.getElementsByTagName('li');
+		            this.btns = this.ctn.getElementsByTagName('cite')[0].getElementsByTagName('span');
+		            this.adLength = this.adLis.length;
+		            for(var i=0,l=this.btns.length;i<l;i++){
+		                with({i:i}){
+		                    this.btns[i].index = i;
+		                    this.btns[i].onclick = this.fnSwitch.bind(this,i);
+		                    this.btns[i].onclick = this.fnSwitch.bind(this,i);
+		                }
+		            }
+		            this.adLis[this.crtIndex].style.zIndex = 2;
+		            this.fnPlay();
+		            this.ctn.onmouseover = this.fnStopPlay.bind(this);
+		            this.ctn.onmouseout = this.fnPlay.bind(this);
+		        }
+		    };
+		    var player1 = new banner_tabs('banner_tabs');
+</script>
+
+</body>
+</html>
