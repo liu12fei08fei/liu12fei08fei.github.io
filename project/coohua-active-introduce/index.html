@@ -101,34 +101,29 @@ body{margin:0;padding:0;font-family:'helvetica neue', tahoma, 'hiragino sans gb'
 	$('.news__btn .btn').eq(idxHash).addClass('active');
 	// 根据hash值切换内容
 	$('.news__con').eq(idxHash).show();
-	// 请求用户金币数
-	$.ajax({
-		url: '#',
-		type: 'POST',
-		// dataType: 'jsonp',
-		data: {param1: 'value1'},
-	})
-	.done(function() {
-		console.log("success");
-	})
-	.fail(function() {
-		console.log("error");
-	})
-	.always(function() {
-		console.log("complete");
-	});
-
+	// 根据hash值切换内容
+	$('.news__con').eq(idxHash).show();
+	var gold = getParameterValue().filter(function(item,idx){
+		return item.name=='gold';
+	})[0].value;
+	$('.news__con .user span').text(gold);
 	/**
 	 * [getParameterValue 把location.search转化成json格式]
 	 * @param  {[type]} search [传入location.search即:?name=1&age=2&job=3]
 	 * @return {[type]}        [json即:[{"name":"1"},{"age":"2"},{"job":"3"}]]
 	 */
 	function getParameterValue(search){
-		return search.substr(1).split('&').map(function(item){
-			var __obj = {};
-			__obj[item.split('=')[0]] = item.split('=')[1];
-			return __obj;
-		});
+		var search = window.location.search;
+		var rtn;
+		if(search!==''){
+			rtn = search.substr(1).split('&').map(function(item){
+				var __obj = {};
+				__obj.name = item.split('=')[0];
+				__obj.value = item.split('=')[1];
+				return __obj;
+			});
+		}
+		return rtn;
 	}
 })();
 </script>
