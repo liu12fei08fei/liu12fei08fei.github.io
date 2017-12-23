@@ -23,25 +23,25 @@
 "theme": "Material-Theme.sublime-theme","color_scheme": 
 "Packages/Material Theme/schemes/Material-Theme.tmTheme",
 ```
-![material-theme-default@2x](media/15103694266910/material-theme-default@2x.png)
+![material-theme-default@2x](http://p1fg8xetu.bkt.clouddn.com/material-theme-default@2x.png)
 ### DarKer主题
 ```
 "theme": "Material-Theme-Darker.sublime-theme","color_scheme": 
 "Packages/Material Theme/schemes/Material-Theme-Darker.tmTheme",
 ```
-![material-theme-darker@2x](media/15103694266910/material-theme-darker@2x.png)
+![material-theme-darker@2x](http://p1fg8xetu.bkt.clouddn.com/material-theme-darker@2x.png)
 ### palenight主题
 ```
 "theme": "Material-Theme-palenight.sublime-theme","color_scheme": 
 "Packages/Material Theme/schemes/Material-Theme-palenight.tmTheme",
 ```
-![material-theme-palenight@2x](media/15103694266910/material-theme-palenight@2x.png)
+![material-theme-palenight@2x](http://p1fg8xetu.bkt.clouddn.com/material-theme-palenight@2x.png)
 ### Lighter主题
 ```
 "theme": "Material-Theme-Lighter.sublime-theme","color_scheme": 
 "Packages/Material Theme/schemes/Material-Theme-Lighter.tmTheme",
 ```
-![material-theme-lighter@2x](media/15103694266910/material-theme-lighter@2x.png)
+![material-theme-lighter@2x](http://p1fg8xetu.bkt.clouddn.com/material-theme-lighter@2x.png)
 ## 插件
 1. [Emmet](https://packagecontrol.io/packages/Emmet)：编码快捷键，前端必备
 2. [autoprefixer](https://packagecontrol.io/packages/Autoprefixer)：CSS添加私有前缀，选择CSS代码，Ctrl+Shift+P，选择autoprefixer即可

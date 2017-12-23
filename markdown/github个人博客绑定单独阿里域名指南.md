@@ -21,7 +21,7 @@
 ### 获取github pages的ip地址
 
 1. 打开你的电脑的命令行工具，ping你的github地址，忽略“/”后面的路径，比如我的github pages地址是liu12fei08fei.github.io/index.html，那么我需要ping的地址就是liu12fei08fei.github.io，如下图：
-![1](/media/15120517556464/1.jpg)
+![1](http://p1fg8xetu.bkt.clouddn.com/1.jpg)
 2. 得到我们的ip地址：151.101.73.147
 
 * ping：ping是Windows、Unix和Linux系统下的一个命令。ping也属于一个通信协议，是TCP/IP协议的一部分。利用“ping”命令可以检查网络是否连通，可以很好地帮助我们分析和判定网络故障。应用格式：Ping空格IP地址。该命令还可以加许多参数使用，具体是键入Ping按回车即可看到详细说明。
@@ -29,20 +29,20 @@
 ### 配置阿里云域名并解析（是域名就行，是不是阿里不重要）
 
 1. 进入你的阿里云的解析域名列表，选择你想要解析的域名，点击后面的解析。如下图所示：
-![2](/media/15120517556464/2.jpg)
+![2](http://p1fg8xetu.bkt.clouddn.com/2.jpg)
 2. 点击 “解析” 进入具体操作详情页面，如图：
-![3](/media/15120517556464/3.jpg)
+![3](http://p1fg8xetu.bkt.clouddn.com/3.jpg)
 3. 点击添加解析，如图：
-![4](/media/15120517556464/4.jpg)
+![4](http://p1fg8xetu.bkt.clouddn.com/4.jpg)
 * 说明：记录类型默认，主机记录第一次添加 "www" ，第二次添加 "@"
 * 然后把其余的状态都改成禁止状态，不然会默认跳转到你之前定义的主机上（我踩的坑）
 
 ### 配置github pages的custom domain
 
 1. 进入你的github pages仓库（就是你博客的仓库）
-![6](/media/15120517556464/6.jpg)
+![6](http://p1fg8xetu.bkt.clouddn.com/6.jpg)
 2. 点击Settings，在下面找到Custom domain
-![7](/media/15120517556464/7.jpg)
+![7](http://p1fg8xetu.bkt.clouddn.com/7.jpg)
 把之前的域名添加到输入框中，保存即可
 
 然后就可以访问这个配置好的域名，愉快的享受美好的人生了
