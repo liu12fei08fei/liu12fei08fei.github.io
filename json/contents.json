@@ -4,8 +4,10 @@
     {
         "name": "hint.css使用说明",
         "href": "1hint.html"
-    },
-    {
+    },{
+        "name": "抓包工具介绍",
+        "href": "14capture.html"
+    },{
         "name": "快速安装自己的Sublime系列",
         "href": "2sublime.html"
     },
