@@ -23,25 +23,25 @@
 "theme": "Material-Theme.sublime-theme","color_scheme": 
 "Packages/Material Theme/schemes/Material-Theme.tmTheme",
 ```
-![material-theme-default@2x](/media/15103694266910/material-theme-default@2x.png)
+![material-theme-default@2x](media/15103694266910/material-theme-default@2x.png)
 ### DarKer主题
 ```
 "theme": "Material-Theme-Darker.sublime-theme","color_scheme": 
 "Packages/Material Theme/schemes/Material-Theme-Darker.tmTheme",
 ```
-![material-theme-darker@2x](/media/15103694266910/material-theme-darker@2x.png)
+![material-theme-darker@2x](media/15103694266910/material-theme-darker@2x.png)
 ### palenight主题
 ```
 "theme": "Material-Theme-palenight.sublime-theme","color_scheme": 
 "Packages/Material Theme/schemes/Material-Theme-palenight.tmTheme",
 ```
-![material-theme-palenight@2x](/media/15103694266910/material-theme-palenight@2x.png)
+![material-theme-palenight@2x](media/15103694266910/material-theme-palenight@2x.png)
 ### Lighter主题
 ```
 "theme": "Material-Theme-Lighter.sublime-theme","color_scheme": 
 "Packages/Material Theme/schemes/Material-Theme-Lighter.tmTheme",
 ```
-![material-theme-lighter@2x](/media/15103694266910/material-theme-lighter@2x.png)
+![material-theme-lighter@2x](media/15103694266910/material-theme-lighter@2x.png)
 ## 插件
 1. [Emmet](https://packagecontrol.io/packages/Emmet)：编码快捷键，前端必备
 2. [autoprefixer](https://packagecontrol.io/packages/Autoprefixer)：CSS添加私有前缀，选择CSS代码，Ctrl+Shift+P，选择autoprefixer即可
@@ -52,6 +52,8 @@
 7. [File​Diffs](https://packagecontrol.io/packages/FileDiffs)：强大的比较代码不同工具，右键标签页，出现FileDiffs Menu或者Diff with Tab…选择对应文件比较即可
 8. [Chinese​Localizations](https://packagecontrol.io/packages/ChineseLocalizations)：汉化插件，提供简中，繁中，英文，日文四种语言切换
 9. [HTML-CSS-JS Prettify](https://packagecontrol.io/packages/HTML-CSS-JS%20Prettify)：格式化HMTL/CSS/JS
+10. [Delete​Blank​Lines](https://packagecontrol.io/packages/DeleteBlankLines)：删除多余空行
+11. [cssrem](https://github.com/flashlizi/cssrem)：一个CSS值转REM的Sublime Text插件
 
 ## 常用配置
 1. "update_check": false, // 禁止自动更新
