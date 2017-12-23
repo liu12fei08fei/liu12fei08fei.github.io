@@ -1,0 +1,1299 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" >
+<meta name="format-detection" content="telephone=no" >
+<title>双旦活动</title>
+</head>
+<style>
+body{margin:0;padding:0;font-family:'helvetica neue', tahoma, 'hiragino sans gb', stheiti, 'wenquanyi micro hei', \5FAE\8F6F\96C5\9ED1, \5B8B\4F53, sans-serif;line-height:1;}
+a{display:block;color:inherit;text-decoration: none;}
+.table{display:table;table-layout:fixed;width:100%;}
+.cell{display:table-cell;vertical-align:middle;}
+body{background:#00895C url(./img/dan__bg.png) center;background-size:100%;}
+/*banner*/
+.dan__banner{overflow:hidden;position:relative;}
+.dan__banner .banner{float:left;width:100%;}
+.dan__banner .rule{font-size:12px;font-weight:bold;width:20px;border:solid 1px #FCFF00;border-radius:20px;padding:12px 0;background:#fff;position:absolute;top:20px;right:22px;text-align:center;color:#D0192D;line-height:1.4;}
+.dan__banner .rule::after{content:'';width:1px;height:30px;background:#FAFF03;position:absolute;top:-30px;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);}
+.dan__banner .rule::before{content:'';top:-100%;right:-200%;bottom:-50%;left:-200%;position:absolute;}
+/*nav*/
+.dan__nav{padding:6px 3px;
+-webkit-transition:all .6s;transition:all .6s;
+}
+.dan__nav .cell{vertical-align:top;}
+.dan__nav .item{font-size:18px;text-align:center;background:url(./img/dan__bg_base.png) no-repeat center;background-size:100% 100%;padding:20px 0 24px;border-radius:8px;position:relative;}
+.dan__nav .active{background-image:url(./img/dan__bg_cur.png);}
+.dan__nav .name{color:#FCFE03;}
+.dan__nav .multiple{color:#fff;padding-top:6px;}
+/*label*/
+.dan__label{padding:16px 14px;position:relative;}
+.dan__label .title{font-size:20px;height:56px;line-height:48px;color:#fff;background:url(./img/dan__title.png) no-repeat center;background-size:contain;text-align:center;text-shadow:0 1px 0 rgba(0,0,0,.3);position:relative;}
+.dan__label .con{border:solid 5px #E01029;border-radius:16px;background:#fff;padding:40px 6px 32px;margin-top:-26px;-webkit-box-shadow:0 2px 4px rgba(0,95,64,1);box-shadow:0 2px 4px rgba(0,95,64,1);}
+.dan__label .item{overflow:hidden;padding:12px 6px;}
+.dan__label .icon{width:63px;height:60px;background:no-repeat left;background-size:contain;float:left;}
+.dan__label .icon_1{background-image:url(./img/dan__icon_1.png);}
+.dan__label .icon_2{background-image:url(./img/dan__icon_2.png);}
+.dan__label .info{overflow:hidden;padding-left:10px;}
+.dan__label .name{color:#333333;font-size:16px;font-weight:600;}
+.dan__label .name span{color:#E01029;}
+.dan__label .desc{color:#333333;font-size:14px;padding-top:6px;line-height:1.4;text-align:justify;}
+.dan__label .desc span{color:#CF691A;}
+.dan__label .prentice{border:solid 2px #00895C;border-radius:16px;background:#F3E7CA;-webkit-box-shadow:0 2px 4px rgba(64,136,29,.5);box-shadow:0 2px 4px rgba(64,136,29,.5);position:relative;margin:29px 6px 0 20px;}
+.dan__label .caption{background:#00895C;-webkit-box-shadow:0 0 0 2px #fff inset,0 1px 2px rgba(0,97,66,1);box-shadow:0 0 0 2px #fff inset,0 1px 2px rgba(0,97,66,1);width:90px;text-align:center;color:#fff;font-size:16px;height:34px;line-height:34px;border-radius:34px;padding-left:30px;position:absolute;top:-17px;left:-16px;}
+.dan__label .caption::after{content:'';background:#00895C;-webkit-box-sizing:0 1px 2px 0 rgba(0,97,66,1);box-sizing:0 1px 2px 0 rgba(0,97,66,1);position:absolute;width:30px;height:30px;top:0;left:0;border-radius:50%;border:solid 2px #fff;z-index:1;}
+.dan__label .person{width:34px;height:16px;position:absolute;overflow:hidden;left:0;z-index:2;top:9px;border-radius:50%;}
+.dan__label .person::after{content:'';width:8px;height:8px;background:#fff;border-radius:50%;position:absolute;top:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);}
+.dan__label .person::before{content:'';width:16px;height:14px;background:#fff;border-radius:50%;position:absolute;top:9px;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);}
+.dan__label .box{padding:26px 8px 20px;}
+.dan__label .module{background:#fff;border-radius:8px;color:#E01029;text-align:center;-webkit-box-shadow:0 0 5px 0 rgba(165,153,124,.6);box-shadow:0 0 5px 0 rgba(165,153,124,.6);margin:0 8px;padding:14px 0;}
+.dan__label .mondy{font-size:25px;}
+.dan__label .mondy span{font-size:14px;}
+.dan__label .text{font-size:14px;padding-top:10px;}
+/*徒弟活跃*/
+.dan__prentice .con{padding:48px 0 32px;;}
+.dan__prentice .a_box{}
+.dan__prentice .a_title{overflow:hidden;padding-bottom:14px;margin:0 12px;}
+.dan__prentice .a_icon{height:20px;background:-webkit-gradient(linear,left top, left bottom,from(#FF693A),to(#D81232));background:linear-gradient(to bottom,#FF693A,#D81232);font-size:12px;color:#fff;line-height:20px;width:34px;text-align:right;border-radius:12px;position:relative;padding:0 8px;float:right;position:relative;letter-spacing:1px;}
+.dan__prentice .a_icon .person{-webkit-transform:scale(.8);transform:scale(.8);top:2px;left:-4px;}
+.dan__prentice .a_name{font-size:16px;line-height:20px;}
+.dan__prentice .a_icon::after{content:'';background:-webkit-gradient(linear,left top, right bottom,color-stop(50%, transparent),color-stop(0, #DA1632));background:linear-gradient(to bottom right,transparent 50%,#DA1632 0);width:12px;height:12px;-webkit-transform:rotate(45deg) translateX(-50%);transform:rotate(45deg) translateX(-50%);position:absolute;bottom:-8px;left:50%;}
+.dan__prentice .a_plan_box{background:#A86836;height:14px;border-radius:18px;position:relative;border:solid 2px #A86836;margin:0 12px;overflow:hidden;}
+.dan__prentice .a_plan{background:-webkit-gradient(linear,left top, left bottom,from(#FF7054),to(#D81232));background:linear-gradient(to bottom,#FF7054,#D81232);position:absolute;top:0;left:0;bottom:0;border-radius:18px;}
+.dan__prentice .a_point{font-size:14px;color:#666;padding-top:10px;text-align:right;margin:0 12px;}
+.dan__prentice .a_point span{color:#00895C;padding:0 10px;}
+.dan__prentice .b_labels{padding:18px 0 0;}
+.dan__prentice .b_label{overflow:hidden;text-align:center;padding:0 12px 28px;}
+.dan__prentice .b_box{background:#A5997C;border-radius:12px;width:80px;height:90px;position:relative;text-align:center;display:inline-block;z-index:3;-webkit-box-shadow:-8px 3px 4px 0 rgba(172,107,61,.6);box-shadow:-8px 3px 4px 0 rgba(172,107,61,.6);}
+.dan__prentice .b_left{float:left;}
+.dan__prentice .b_right{float:right;}
+.dan__prentice .b_item{background:#F3E7CA;border-radius:8px;position:absolute;top:0;right:0;left:0;bottom:10px;overflow:hidden;color:#A5997C;}
+.dan__prentice .b_icon{background:#00895C;position:absolute;color:#fff;-webkit-transform:rotate(-45deg) scale(.8);transform:rotate(-45deg) scale(.8);top:4px;left:-26px;padding:3px 20px;display:none;}
+.dan__prentice .b_text{font-size:12px;-webkit-transform:scale(.9);transform:scale(.9);height:12px;width:36px;position:relative;}
+.dan__prentice .b_text::after{content:'已发放';position:absolute;top:0;right:0;bottom:0;left:0;}
+.dan__prentice .b_name{font-size:22px;padding:20px 0 6px;position:relative;}
+.dan__prentice .b_desc{font-size:12px;white-space:nowrap;}
+.dan__prentice .b_arrow{position:relative;}
+.dan__prentice .b_arrow::after{content:'';height:40px;background:#E7DDD4 url(./img/dan__arrow.png) repeat no-repeat center;position:absolute;width:90%;-webkit-box-shadow:0 0 2px 0 #7D4921 inset;box-shadow:0 0 2px 0 #7D4921 inset;border:solid 1px rgba(125,73,33,4);border-width:1px 0;left:5%;top:20px;z-index:1;background-size:20px;}
+.b_arrow_reverse::after{-webkit-transform:rotate(180deg);transform:rotate(180deg);}
+.dan__prentice .b_arrows{position:relative;}
+.dan__prentice .b_arrows::after{content:'';height:40px;background:#E7DDD4 url(./img/dan__arrow.png) no-repeat center;position:absolute;-webkit-box-shadow:0 0 2px 0 #7D4921 inset;box-shadow:0 0 2px 0 #7D4921 inset;border:solid 1px rgba(125,73,33,4);border-width:1px 0;right:32px;top:50%;z-index:1;background-size:20px;-webkit-transform:rotate(90deg);transform:rotate(90deg);width:120px;-webkit-transform-origin:top right;transform-origin:top right;}
+.dan__prentice .b_arrows::before{content:'';height:40px;background:#E7DDD4 url(./img/dan__arrow.png) no-repeat center;position:absolute;-webkit-box-shadow:0 0 2px 0 #7D4921 inset;box-shadow:0 0 2px 0 #7D4921 inset;border:solid 1px rgba(125,73,33,4);border-width:1px 0;left:32px;bottom:50%;z-index:1;background-size:20px;-webkit-transform:rotate(90deg);transform:rotate(90deg);width:120px;-webkit-transform-origin:bottom left;transform-origin:bottom left;}
+.dan__prentice .b_number{font-size:12px;position:absolute;right:4px;bottom:2px;color:rgba(0,0,0,.3);}
+/*已发放状态*/
+.dan__prentice .b_full .b_item{color:#E83428;}
+.dan__prentice .b_full .b_icon{display:block;background:#00895C;}
+.dan__prentice .b_full .b_text::after{content:'已发放';}
+/*进行中状态*/
+.dan__prentice .b_boxing{background:#AC221E;}
+.dan__prentice .b_boxing .b_item{background:#E83428;color:#FFF100;}
+.dan__prentice .b_boxing .b_icon{display:block;background:#FF9D08;}
+.dan__prentice .b_boxing .b_text::after{content:'进行中';}
+/*第10名奖励块*/
+.c_box{background:#A5997C;border-radius:12px;height:90px;position:relative;text-align:center;z-index:2;-webkit-box-shadow:-8px 3px 4px 0 rgba(172,107,61,.6);box-shadow:-8px 3px 4px 0 rgba(172,107,61,.6);margin:0 12px;z-index:2;}
+.c_box::after{content:'';height:40px;background:#E7DDD4 url(./img/dan__arrow.png) no-repeat center;position:absolute;-webkit-box-shadow:0 0 2px 0 #7D4921 inset;box-shadow:0 0 2px 0 #7D4921 inset;border:solid 1px rgba(125,73,33,4);border-width:1px 0;right:20px;top:50%;z-index:-1;background-size:20px;-webkit-transform:rotate(90deg);transform:rotate(90deg);width:120px;-webkit-transform-origin:top right;transform-origin:top right;}
+/*幸运用户送iPhone*/
+.dan__phone{color:#333333;font-size:16px;}
+.dan__phone .con{padding:40px 12px 32px;}
+.dan__phone .a_desc{font-size:16px;color:#333333;line-height:1.5;padding-bottom:16px;}
+.dan__phone .a_title{background:#F3E7CA;text-align:right;padding:0 12px 20px;border-radius:8px 8px 0 0;}
+.dan__phone .a_name{font-weight:bold;text-align:center;padding:28px 0 12px;}
+.dan__phone .a_link{color:#00895C;border-bottom:solid 1px #00895C;padding-bottom:2px;display:inline-block;}
+.dan__phone .table{padding:0 8px;-webkit-box-sizing:border-box;box-sizing:border-box;}
+.dan__phone .table+.table{font-size:14px;}
+.dan__phone .table:nth-of-type(2n){background:#F3E7CA;}
+.dan__phone .cell{line-height:1.2;padding:12px 0;}
+.dan__phone .table:last-of-type{border-radius:0 0 8px 8px;}
+.dan__point{font-size:12px;color:#fff;line-height:1.75;text-align:center;padding:0 0 84px;letter-spacing:1px;}
+/*btn*/
+.dan__btn{background:#fff;padding:10px 12px;position:fixed;left:0;right:0;bottom:0;z-index:9;}
+.dan__btn .btn{font-size:20px;background:#FF5645;height:48px;line-height:48px;text-align:center;border-radius:48px;-webkit-box-shadow:0 2px 3px 0 rgba(206,39,22,1);box-shadow:0 2px 3px 0 rgba(206,39,22,1);color:#fff;}
+/*nav悬浮*/
+.dan__nav-float{position:fixed;top:0;left:0;right:0;z-index:9;background:#00895C;-webkit-box-shadow:0 0 5px 0 rgba(0,0,0,.5);box-shadow:0 0 5px 0 rgba(0,0,0,.5);}
+/*定位初始化修正*/
+.dan__label .fixed{top:-82px;position:absolute;}
+/*.弹框集合区域*/
+.point__box{pointer-events:none;}
+.point__box .bg{position:fixed;top:0;right:0;bottom:0;left:0;z-index:888;background:rgba(0,0,0,.3);-webkit-transform-origin:top;transform-origin:top;-webkit-transform:scaleY(0);transform:scaleY(0);
+-webkit-transition:all .4s;transition:all .4s;
+}
+.point__box .item{position:fixed;top:50%;left:30px;right:30px;-webkit-transform:translateY(-50%) scale(3);transform:translateY(-50%) scale(3);background:#058B5F;z-index:999;opacity:0;overflow:hidden;
+-webkit-transition:all .5s;transition:all .5s;
+}
+/*弹框交互*/
+.point__box-show{pointer-events:auto;}
+.point__box-show .bg{-webkit-transform:scaleY(1);transform:scaleY(1);}
+.point__box-show .active{-webkit-transform:translateY(-50%) scale(1);transform:translateY(-50%) scale(1);opacity:1;z-index:9999;}
+/*关闭按钮*/
+.point__box .shut{width:56px;height:48px;position:absolute;top:0;right:0;}
+.point__box .shut::before{content:'';width:2px;height:24px;background:#fff;border-radius:2px;position:absolute;top:50%;left:50%;-webkit-transform:translate(-50%,-50%) rotate(-45deg);transform:translate(-50%,-50%) rotate(-45deg);}
+.point__box .shut::after{content:'';width:2px;height:24px;background:#fff;border-radius:2px;position:absolute;top:50%;left:50%;-webkit-transform:translate(-50%,-50%) rotate(45deg);transform:translate(-50%,-50%) rotate(45deg);}
+/*首次弹框*/
+.point_first{padding:16px 12px 24px;border-radius:16px;}
+.point_first .banner{height:72px;background:url(./img/point__icon_1.png) no-repeat center;background-size:contain;}
+.point_first .name{font-size:18px;color:#fff;line-height:1.4;padding-top:12px;}
+.point_first .name span{color:#FFF100;}
+.point_first .tit{font-size:16px;color:#FAE569;position:relative;padding-left:26px;margin-top:16px;}
+.point_first .icon{color:#9511F5;font-size:14px;width:16px;height:16px;border-radius:50%;background:#FAE569;text-align:center;line-height:16px;position:absolute;top:0;left:0;}
+.point_first .con{font-size:14px;color:#fff;padding-top:10px;line-height:1.4;}
+.point_first .btn{background:#FF5645;color:#fff;height:48px;line-height:48px;border-radius:48px;text-align:center;margin:16px 44px 0;}
+/*收徒进度弹框-未开始*/
+.point_plan_not{text-align:center;padding:40px 16px;border-radius:16px;}
+.point_plan_not .icon{height:112px;background:url(./img/point__icon_2.png) no-repeat center;background-size:contain;}
+.point_plan_not .name{font-size:18px;text-align:center;color:#fff;padding:30px 0;}
+.point_plan_not .money{font-size:46px;color:#FFF100;padding-bottom:30px;}
+.point_plan_not .money span{font-size:18px;}
+.point_plan_not .plan{background:#A86836;-webkit-box-shadow:0 0 2px 0 rgba(0,0,0,.5) inset;box-shadow:0 0 2px 0 rgba(0,0,0,.5) inset;height:18px;border-radius:18px;position:relative;}
+.point_plan_not .box{position:absolute;top:2px;bottom:2px;left:2px;right:2px;border-radius:18px;}
+.point_plan_not .cur{position:absolute;top:0;bottom:0;left:0;width:0;background:-webkit-gradient(linear,left top, left bottom,from(#FF7054),to(#D81232));background:linear-gradient(to bottom,#FF7054,#D81232);border-radius:18px;}
+.point_plan_not .state{width:160px;background:#A5997C;color:#fff;text-align:center;height:44px;line-height:44px;font-size:18px;position:absolute;top:30px;left:30px;-webkit-transform:translate(-50%,-50%) rotate(-45deg);transform:translate(-50%,-50%) rotate(-45deg);z-index:3;}
+/*进度*/
+.point_plan_not .text{height:20px;background:-webkit-gradient(linear,left top, left bottom,from(#FF693A),to(#D81232));background:linear-gradient(to bottom,#FF693A,#D81232);font-size:12px;color:#fff;line-height:20px;width:34px;text-align:right;border-radius:12px;position:absolute;padding:0 8px;float:right;position:relative;letter-spacing:1px;top:-36px;right:0;}
+.point_plan_not .text .person{width:34px;height:16px;position:absolute;overflow:hidden;z-index:2;border-radius:50%;-webkit-transform:scale(.8);transform:scale(.8);top:2px;left:-4px;}
+.point_plan_not .a_name{font-size:16px;line-height:20px;}
+.point_plan_not .text::after{content:'';background:-webkit-gradient(linear,left top, right bottom,color-stop(50%, transparent),color-stop(0, #DA1632));background:linear-gradient(to bottom right,transparent 50%,#DA1632 0);width:12px;height:12px;-webkit-transform:rotate(45deg) translateX(-50%);transform:rotate(45deg) translateX(-50%);position:absolute;bottom:-8px;left:50%;}
+.point_plan_not .person::after{content:'';width:8px;height:8px;background:#fff;border-radius:50%;position:absolute;top:0;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);}
+.point_plan_not .person::before{content:'';width:16px;height:14px;background:#fff;border-radius:50%;position:absolute;top:9px;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);}
+/*复用未开始，已发放*/
+.point_plan_full .state{background:#00724C;}
+/*复用未开始，进行中*/
+.point_plan_march .state{background:#FF9D08;}
+/*活动规则*/
+.point_rule{padding:20px 16px 46px;border-radius:16px;}
+.point_rule .title{font-size:22px;text-align:center;font-weight:bold;color:#fff;padding-bottom:14px;}
+.point_rule .tit{font-size:16px;color:#FAE569;position:relative;padding-left:26px;margin-top:16px;}
+.point_rule .con{font-size:14px;color:#fff;padding-top:10px;line-height:1.4;}
+.point_rule .icon{color:#9511F5;font-size:14px;width:16px;height:16px;border-radius:50%;background:#FAE569;text-align:center;line-height:16px;position:absolute;top:0;left:0;}
+.point_rule .mark{color:#EDE069;}
+.point_rule .point{font-size:12px;color:#00DC93;padding-top:20px;line-height:1.4;letter-spacing:1px;}
+/*历史用户*/
+.point_history{color:#333333;border-radius:16px;padding:0 12px 24px;}
+.point_history .title{font-size:22px;text-align:center;color:#fff;padding:34px 0 26px;}
+.point_history .tit{background:#F9F2FF;font-size:14px;border-radius:8px 8px 0 0;}
+.point_history .table{padding:0 12px;-webkit-box-sizing:border-box;box-sizing:border-box;}
+.point_history .cell{padding:16px 0;}
+.point_history .con{font-size:12px;background:#fff;border-radius:0 0 8px 8px;overflow:hidden;max-height:220px;overflow:auto;overflow-scrolling: touch;}
+.point_history .con .table{background:#F9F2FF;}
+.point_history .con .table:nth-of-type(2n-1){background:#fff;}
+/*请更新酷划至最新版本*/
+.v__box{display:none;}
+.v__box .bg{position:fixed;top:0;right:0;bottom:0;left:0;background:rgba(0,0,0,.4);z-index:8;}
+.v__box .box{background:#fff;position:fixed;top:50%;left:10%;right:10%;-webkit-transform:translateY(-50%);transform:translateY(-50%);z-index:9;padding:60px 24px 40px;}
+.v__box .shut{width:30px;height:30px;position:absolute;top:0;right:0;}
+.v__box .shut::before{content:'';width:2px;background:#b2b2b2;position:absolute;left:50%;top:0;bottom:0;-webkit-transform:scale(.6) rotate(45deg);transform:scale(.6) rotate(45deg);margin-left:-1px;}
+.v__box .shut::after{content:'';height:2px;background:#b2b2b2;position:absolute;top:50%;left:0;right:0;-webkit-transform:scale(.6) rotate(45deg);transform:scale(.6) rotate(45deg);margin-top:-1px;}
+.v__box .name{font-size:22px;font-weight:bold;text-align:center;padding-bottom:30px;}
+.v__box .btn{display:block;height:48px;line-height:48px;color:#fff;background:red;border-radius:5px;text-decoration:none;text-align:center;font-size:20px;}
+</style>
+<!-- 请更新酷划至最新版本 -->
+<div class="v__box">
+	<div class="bg"></div>
+	<div class="box">
+		<div class="shut"></div>
+		<div class="name">请更新酷划至最新版本</div>
+		<a href="http://app.coohua.com/CooHuaClient-online-5.0.6.3.apk" class="btn">升级最新版本</a>
+	</div>
+</div>
+<div class="vm__box">
+	<!-- banner -->
+	<div class="dan__banner">
+		<img src="./img/dan__banner.png" alt="3大重磅奖励" class="banner">
+		<div class="rule" @click="popupRule">活动规则</div>
+	</div>
+	<!-- nav -->
+	<div class="dan__nav">
+		<div class="table">
+			<a href="#dan-1" class="cell">
+				<div class="item">
+					<div class="name">收徒奖励</div>
+					<div class="multiple">3倍</div>
+				</div>
+			</a>
+			<a href="#dan-2" class="cell">
+				<div class="item">
+					<div class="name">徒弟活跃</div>
+					<div class="multiple">6600元</div>
+				</div>
+			</a>
+			<a href="#dan-3" class="cell">
+				<div class="item">
+					<div class="name">参与活动</div>
+					<div class="multiple">iPhoneX</div>
+				</div>
+			</a>
+		</div>
+	</div>
+	<!-- label -->
+	<div class="dan__label">
+		<div class="fixed" id="dan-1"></div>
+		<div class="title">收徒奖励涨3倍</div>
+		<div class="con">
+			<div class="item">
+				<div class="icon icon_1"></div>
+				<div class="info">
+					<div class="name">成功收徒奖励翻<span>3倍</span></div>
+					<div class="desc">每收徒一位，奖励1元变3元，立即到账！</div>
+				</div>
+			</div>
+			<div class="item">
+				<div class="icon icon_2"></div>
+				<div class="info">
+					<div class="name">徒弟活跃再奖最低<span>3元</span></div>
+					<div class="desc">单个徒弟活跃2天，再奖最低3元，次日到账！<span>活跃徒弟越多，奖励越高。</span></div>
+				</div>
+			</div>
+			<div class="prentice" @click="popupPrentice">
+				<div class="caption"><div class="person"></div>徒弟列表</div>
+				<div class="box">
+					<div class="table">
+						<div class="cell">
+							<div class="module">
+								<div class="mondy" v-html="newAddNum+'<span>个</span>'"></div>
+								<div class="text">活动新增徒弟</div>
+							</div>
+						</div>
+						<div class="cell">
+							<div class="module">
+								<div class="mondy" v-html="newAddMoney+'<span>元</span>'"></div>
+								<div class="text">已获收徒奖励</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="dan__label dan__prentice">
+		<div class="fixed" id="dan-2"></div>
+		<div class="title">徒弟活跃领￥6600现金</div>
+		<div class="con">
+			<div class="a_box">
+				<div class="a_title">
+					<div class="a_icon" v-html="'<div class=\'person\'></div>'+activity.cur+'/'+activity.all"></div>
+					<div class="a_name">活跃徒弟</div>
+				</div>
+				<div class="a_plan_box"><div class="a_plan" :style="{width:(activity.cur/(activity.all||1)*100)+'%'}"></div></div>
+				<div class="a_point">已获活跃徒弟奖励<span v-text="activity.money"></span>元</div>
+				<div class="b_labels b_arrows">
+					<div class="b_label b_arrow">
+						<div class="b_box b_left b_box_1" :class="{'b_full':taskList[0]==1,'b_boxing':taskList[0]==2}" @click="popupPlan(1)">
+							<div class="b_item">
+								<div class="b_number">1</div>
+								<div class="b_icon"><div class="b_text"></div></div>
+								<div class="b_name">6元</div>
+								<div class="b_desc">活跃徒弟2名</div>
+							</div>
+						</div>
+						<div class="b_box b_right b_box_3" :class="{'b_full':taskList[2]==1,'b_boxing':taskList[2]==2}" @click="popupPlan(3)">
+							<div class="b_item">
+								<div class="b_number">3</div>
+								<div class="b_icon"><div class="b_text"></div></div>
+								<div class="b_name">24元</div>
+								<div class="b_desc">活跃徒弟6名</div>
+							</div>
+						</div>
+						<div class="b_box b_box_2" :class="{'b_full':taskList[1]==1,'b_boxing':taskList[1]==2}" @click="popupPlan(2)">
+							<div class="b_item">
+								<div class="b_number">2</div>
+								<div class="b_icon"><div class="b_text"></div></div>
+								<div class="b_name">14元</div>
+								<div class="b_desc">活跃徒弟4名</div>
+							</div>
+						</div>
+					</div>
+					<div class="b_label b_arrow b_arrow_reverse">
+						<div class="b_box b_left b_box_6" :class="{'b_full':taskList[5]==1,'b_boxing':taskList[5]==2}" @click="popupPlan(6)">
+							<div class="b_item">
+								<div class="b_number">6</div>
+								<div class="b_icon"><div class="b_text"></div></div>
+								<div class="b_name">90元</div>
+								<div class="b_desc">活跃徒弟15名</div>
+							</div>
+						</div>
+						<div class="b_box b_right b_box_4" :class="{'b_full':taskList[3]==1,'b_boxing':taskList[3]==2}" @click="popupPlan(4)">
+							<div class="b_item">
+								<div class="b_number">4</div>
+								<div class="b_icon"><div class="b_text"></div></div>
+								<div class="b_name">34元</div>
+								<div class="b_desc">活跃徒弟8名</div>
+							</div>
+						</div>
+						<div class="b_box b_box_5" :class="{'b_full':taskList[4]==1,'b_boxing':taskList[4]==2}" @click="popupPlan(5)">
+							<div class="b_item">
+								<div class="b_number">5</div>
+								<div class="b_icon"><div class="b_text"></div></div>
+								<div class="b_name">50元</div>
+								<div class="b_desc">活跃徒弟10名</div>
+							</div>
+						</div>
+					</div>
+					<div class="b_label b_arrow">
+						<div class="b_box b_left b_box_7" :class="{'b_full':taskList[6]==1,'b_boxing':taskList[6]==2}" @click="popupPlan(7)">
+							<div class="b_item">
+								<div class="b_number">7</div>
+								<div class="b_icon"><div class="b_text"></div></div>
+								<div class="b_name">225元</div>
+								<div class="b_desc">活跃徒弟30名</div>
+							</div>
+						</div>
+						<div class="b_box b_right b_box_9" :class="{'b_full':taskList[8]==1,'b_boxing':taskList[8]==2}" @click="popupPlan(9)">
+							<div class="b_item">
+								<div class="b_number">9</div>
+								<div class="b_icon"><div class="b_text"></div></div>
+								<div class="b_name">965元</div>
+								<div class="b_desc">活跃徒弟150名</div>
+							</div>
+						</div>
+						<div class="b_box b_box_8" :class="{'b_full':taskList[7]==1,'b_boxing':taskList[7]==2}" @click="popupPlan(8)">
+							<div class="b_item">
+								<div class="b_number">8</div>
+								<div class="b_icon"><div class="b_text"></div></div>
+								<div class="b_name">525元</div>
+								<div class="b_desc">活跃徒弟60名</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 第十名奖励块 -->
+				<div class="c_box" :class="{'b_full':taskList[9]==1,'b_boxing':taskList[9]==2}" @click="popupPlan(10)">
+					<div class="b_item">
+						<div class="b_icon"><div class="b_text"></div></div>
+						<div class="b_number">10</div>
+						<div class="b_name">6600元</div>
+						<div class="b_desc">活跃徒弟600名</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 幸运用户送iPhone X -->
+	<div class="dan__label dan__phone">
+		<div class="fixed" id="dan-3"></div>
+		<div class="title">幸运用户送iPhone X</div>
+		<div class="con">
+			<div class="a_desc">每天会从前一天成功收徒用户中抽取幸运，用户发放iPhone X 、京东卡、现金等奖励！</div>
+			<div class="a_title">
+				<div class="a_name">昨日获奖幸运用户</div>
+				<div class="a_link" @click="popupHistory">往期名单</div>
+			</div>
+			<div class="a_box">
+				<div class="table">
+					<div class="cell">酷划账号</div>
+					<div class="cell">收徒人数</div>
+					<div class="cell">幸运奖品</div>
+				</div>
+				<div class="table" v-for="item in curPrenticeList">
+					<div class="cell" v-text="item.id"></div>
+					<div class="cell" v-text="item.num+'人'"></div>
+					<div class="cell" v-text="item.text"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="dan__point">本活动最终解释权归“酷划锁屏”所有<br>酷划锁屏会按国家相关规定代扣代缴个人所得税</div>
+	<div class="dan__btn">
+		<div class="btn" @click="popupBtn" v-text="useIsJoin==1?'立即分享收徒':'立即领取任务'"></div>
+	</div>
+	<!-- 流动导航存储位置 -->
+	<div id="flow__nav"></div>
+	<!-- 弹框集合区域 -->
+	<div class="point__box" :class="{'point__box-show':point.box}">
+		<div class="bg"></div>
+		<!-- 首次弹框 -->
+		<div class="item point_first" :class="{'active':point.first}">
+			<div class="shut" @click="popupShut"></div>
+			<div class="banner"></div>
+			<div class="name">2017.12.23号——2018.1.2号期间，年终3大重磅福利！<span>收徒奖励翻三倍，6600现金任性送！</span></div>
+			<div class="tit"><div class="icon">1</div>成功收徒奖励翻3倍</div>
+			<div class="con">每收徒一位，奖励1元变3元，立即到账！</div>
+			<div class="tit"><div class="icon">2</div>徒弟活跃再奖最低3元</div>
+			<div class="con">单个徒弟活跃2天，再奖最低3元，次日到账！活跃徒弟越多，奖励越高。</div>
+			<div class="tit"><div class="icon">3</div>每日幸运用户抽取 iPhone X</div>
+			<div class="con">每天会从前一天成功收徒用户中抽取幸运用户发放iPhone X 、京东卡、现金等奖励！</div>
+			<div class="btn" @click="popupShut">立即领取任务</div>
+		</div>
+		<!-- 收徒进度弹框 -->
+		<div class="item point_plan_not" :class="{'active':point.plan,'point_plan_full':plan.state==1,'point_plan_march':plan.state==2}">
+			<div class="state" v-if="plan.state==0">未开启</div>
+			<div class="state" v-if="plan.state==1">已发放</div>
+			<div class="state" v-if="plan.state==2">进行中</div>
+			<div class="shut" @click="popupShut"></div>
+			<div class="icon"></div>
+			<div class="name">本梯次每个徒弟活跃再奖</div>
+			<div class="money" v-html="plan.money+'<span>元</span>'"></div>
+			<div class="plan">
+				<div class="box">
+					<div class="cur" :style="{width:planWidth}" v-if="plan.state!=0"></div>
+					<div class="text" v-if="plan.state!=0" v-html="plan.current+'/'+plan.all+'<div class=\'person\'></div>'"></div>
+				</div>
+			</div>
+		</div>
+		<!-- 活动规则 -->
+		<div class="item point_rule" :class="{'active':point.rule}">
+			<div class="shut" @click="popupShut"></div>
+			<div class="title">活动规则</div>
+			<div class="tit"><div class="icon">1</div>活动时间：2017.12.23-2018.1.6</div>
+			<div class="con">活跃徒弟结算截止日期：2018.1.8</div>
+			<div class="tit"><div class="icon">2</div>如何参与</div>
+			<div class="con">新老用户不限，点击页面<立即领取任务>按钮即可参与活动。收徒方式不限，匹配师傅除外！</div>
+			<div class="tit"><div class="icon">3</div>奖励规则与发放</div>
+			<div class="con">
+				<span>收徒奖励：</span>每位徒弟注册成功，3元奖励立即到账！<br>
+				<span>活跃徒弟奖励：</span>徒弟活跃（当天收入≥0.01元）达到2天，即为活跃徒弟。活跃徒弟越多，奖励越高，最低3元！次日到账！<br>
+				<span>幸运用户：</span>每天从前日收徒用户中抽取幸运用户发放奖品，奖品包括iPhone X、京东卡、现金等随机奖品。
+				<div class="mark">以上奖励（除实物奖励外），您均可以在收支明细看到奖励明细。</div>
+			</div>
+			<div class="point">为保证平台用户利益，若发现通过恶意方式作弊用户，将被取消活动与奖励资格！</div>
+		</div>
+		<!-- 历史用户 -->
+		<div class="item point_history" :class="{'active':point.history}">
+			<div class="shut" @click="popupShut"></div>
+			<div class="title">往期获奖幸运用户</div>
+			<div class="tit">
+				<div class="table">
+					<div class="cell">酷划账号</div>
+					<div class="cell">收徒人数</div>
+					<div class="cell">幸运奖品</div>
+				</div>
+			</div>
+			<div class="con">
+				<div class="table" v-for="item in historyList">
+					<div class="cell" v-text="item.id"></div>
+					<div class="cell" v-text="item.num+'人'"></div>
+					<div class="cell" v-text="item.text"></div>
+				</div>
+			</div>
+		</div>
+		<!-- 徒弟列表 -->
+		<div class="item point_history" :class="{'active':point.prentice}">
+			<div class="shut" @click="popupShut"></div>
+			<div class="title">徒弟列表</div>
+			<div class="tit">
+				<div class="table">
+					<div class="cell">手机号</div>
+					<div class="cell">注册时间</div>
+				</div>
+			</div>
+			<div class="con">
+				<div class="table" v-for="item in prenticeList">
+					<div class="cell" v-text="item.mobile"></div>
+					<div class="cell" v-text="fromatDate(item.createTime)"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="./js/jquery-3.2.1.min.js"></script>
+<script src="./js/vue.min.js"></script>
+<script>
+(function(){
+	var navHeight = $('.dan__nav').outerHeight(true);
+	// 保存nav和保存三个label的offsetTop
+	var data = {
+		navTop:$('.dan__nav').offset().top,
+		t_1:$('.dan__label').eq(0).offset().top-navHeight,
+		t_2:$('.dan__label').eq(1).offset().top-navHeight,
+		t_3:$('.dan__label').eq(2).offset().top-navHeight,
+	};
+	// 动态修正定位
+	$('.dan__label .fixed').css('top',-navHeight+16);
+	var cloneNav = $(".dan__nav").clone(true);
+	$("#flow__nav").html(cloneNav);
+	$(document).scroll(function(){
+		var top = $(document).scrollTop();
+		// nav flow
+		if(top>=data.navTop-8){
+			$("#flow__nav").find('.dan__nav').addClass('dan__nav-float');
+		}else{
+			$("#flow__nav").find('.dan__nav').removeClass('dan__nav-float');
+		}
+		// nav add active
+		if(top<data.t_2){
+			$('.dan__nav .item').removeClass('active');
+			$('#flow__nav .item').removeClass('active');
+			$('.dan__nav .item').eq(0).addClass('active');
+			$('#flow__nav .item').eq(0).addClass('active');
+		}else if(top>=data.t_2&&top<data.t_3){
+			$('.dan__nav .item').removeClass('active');
+			$('#flow__nav .item').removeClass('active');
+			$('.dan__nav .item').eq(1).addClass('active');
+			$('#flow__nav .item').eq(1).addClass('active');
+		}else{
+			$('.dan__nav .item').removeClass('active');
+			$('#flow__nav .item').removeClass('active');
+			$('.dan__nav .item').eq(2).addClass('active');
+			$('#flow__nav .item').eq(2).addClass('active');
+		}
+	});
+	// 管理数据了事件
+	var vm = new Vue({
+		el:'.vm__box',
+		data:{
+			// 请求参数
+			askData:{
+				baseKey:'',
+				coohuaId:'',
+				Version:''
+			},
+			// 判断用户是否参加了活动 user.isJoin 1代表参加了任务
+			useIsJoin:0,
+			// 弹框控制
+			point:{
+				box:true,
+				first:true,//首次弹框
+				plan:false,//活动状态
+				rule:false,//活动规则
+				history:false,//历史用户
+				prentice:false//徒弟列表
+			},
+			// 弹框状态
+			plan:{
+				state:0,
+				money:0,
+				current:0,
+				all:0
+			},
+			// 徒弟任务管理，0未开放，1已发放，2进行中
+			taskList:[0,0,0,0,0,0,0,0,0,0],
+			// 昨日获奖人数
+			curPrenticeList:[
+				// {
+				// 	id:1111,
+				// 	num:222,
+				// 	text:'京东卡200元'
+				// }
+			],
+			// 徒弟列表
+			prenticeList:[
+				// {
+				// 	mobile:18312356473,
+				// 	createTime:'2019-03-23'
+				// },{
+				// 	mobile:2312923847,
+				// 	createTime:'2019-05-23'
+				// }
+			],
+			// 历史获奖人
+			historyList:[
+				// {
+				// 	id:09999,
+				// 	num:222,
+				// 	text:'京东卡200元'
+				// }
+			],
+			// 徒弟活跃线路图数据
+			danList:[
+				{
+					"numb":2,
+					"money":6,
+					"reward":3
+				},{
+					"numb":4,
+					"money":14,
+					"reward":4
+				},{
+					"numb":6,
+					"money":24,
+					"reward":5
+				},{
+					"numb":8,
+					"money":34,
+					"reward":6
+				},{
+					"numb":10,
+					"money":50,
+					"reward":7
+				},{
+					"numb":15,
+					"money":90,
+					"reward":8
+				},{
+					"numb":30,
+					"money":225,
+					"reward":9
+				},{
+					"numb":60,
+					"money":525,
+					"reward":10
+				},{
+					"numb":150,
+					"money":965,
+					"reward":11
+				},{
+					"numb":600,
+					"money":6600,
+					"reward":12
+				}
+			],
+			newAddNum:0,
+			// 活跃当前和总个数
+			activity:{
+				cur:0,
+				all:0,
+				money:0
+			}
+		},
+		computed:{
+			newAddMoney:function(){
+				return this.newAddNum*3;
+			},
+			// 收徒进度控制
+			planWidth:function(){
+				var cur = this.plan.current;
+				var all = this.plan.all||1;
+				if(cur>=all){
+					cur = all;
+				}else{
+					cur = cur;
+				}
+				return cur/all*100+'%';
+			}
+		},
+		methods:{
+			// 时间统一
+			fromatDate:function(timestamp){
+				var sDate = new Date(timestamp);//日期
+				var sYear = sDate.getFullYear();//年
+				var sMonth = sDate.getMonth()+1;//月
+				var sDay = sDate.getDate();//日
+				var sHour = sDate.getHours();//小时
+				var sMinute = sDate.getMinutes();//分钟
+				var sSecond = sDate.getSeconds();//秒
+				var mSecond = sDate.getMilliseconds();//毫秒
+				return sYear+'-'+this.evenNum(sMonth)+'-'+this.evenNum(sDay);
+			},
+			// 统一显示双数
+			evenNum:function(n){
+				return n<10?'0'+n:''+n;
+			},
+			// 弹出规则
+			popupRule:function(){
+				var point = this.point;
+				point.box = true;
+				point.rule = true;
+			},
+			// 查看历史用户
+			popupHistory:function(){
+				var point = this.point;
+				point.box = true;
+				point.history = true;
+			},
+			// 徒弟列表
+			popupPrentice:function(){
+				var point = this.point;
+				point.box = true;
+				point.prentice = true;
+			},
+			// 显示当前点击进程
+			popupPlan:function(n){
+				var that = this;
+				var point = this.point;
+				point.box = true;
+				point.plan = true;
+				that.plan = {
+					state:that.taskList[n-1],
+					money:that.danList[n-1].reward,
+					current:that.activity.cur,
+					all:that.danList[n-1].numb
+				}
+			},
+			// 领取任务或分享收徒
+			popupBtn(){
+				var that = this;
+				var Version = that.askData.Version;
+				// 判断当前按钮状态
+				// 1代表参加了任务
+				var jsonBoo = that.useIsJoin;
+				if(jsonBoo==1){
+					// 参加了活动，显示立即分享收徒
+					if(Version <= 505100) {
+					    $('.v__box').show();
+					}else{
+					    var json1 = {
+					        "items": [
+					            {
+					                "type": "show",
+					                "bgUrl": "http://images.coohua.com/upload/c717543e-6898-40ac-b106-07ad5b8465e6.jpg?pW=493&pH=829&qrSize=180&qrX=60&qrY=541&coohuaX=281&coohuaY=661&coohuaW=31&coohuaH=153&coohuaSize=31&coohuaColor=e0070f",
+					                "shareUrl": "http://player.orient-electric-mechanical.com/invitation-jump.html?ch=fanbeijiangli&cid="+that.askData.coohuaId,
+					                "shareText": ""
+					            },
+					            {
+					                "type": "wechat_noappid",
+					                "bgUrl": "http://images.coohua.com/upload/c717543e-6898-40ac-b106-07ad5b8465e6.jpg?pW=493&pH=829&qrSize=180&qrX=60&qrY=541&coohuaX=281&coohuaY=661&coohuaW=31&coohuaH=153&coohuaSize=31&coohuaColor=e0070f",
+					                "shareUrl": "http://player.orient-electric-mechanical.com/invitation-jump.html?ch=fanbeijiangli&cid="+that.askData.coohuaId,
+					                "shareText": ""
+					            },
+					            {
+					                "type": "wechatMoment_noappid",
+					                "bgUrl": "http://images.coohua.com/upload/c717543e-6898-40ac-b106-07ad5b8465e6.jpg?pW=493&pH=829&qrSize=180&qrX=60&qrY=541&coohuaX=281&coohuaY=661&coohuaW=31&coohuaH=153&coohuaSize=31&coohuaColor=e0070f",
+					                "shareUrl": "http://player.orient-electric-mechanical.com/invitation-jump.html?ch=fanbeijiangli&cid="+that.askData.coohuaId,
+					                "shareText": "酷划年终收徒奖励翻3倍！新老用户均可不限量1元提现，我已经提现150元了，赶快扫码领5元红包吧！！"
+					            }
+					        ],
+					        "title": "年终收徒奖励翻3倍，更有6600元现金等你拿！"
+					    };
+					    window.$CooHua.showShareInviteActivity(JSON.stringify(json1));
+					}
+				}else{
+					// 未参加
+					var nUrl = '';
+					var nBoo = true;//默认测试
+					if(nBoo){
+						nUrl = 'http://120.27.27.197:9026/invite/doubleEgg/join';
+					}else{
+						nUrl = 'http://invite.coohua.com/invite/doubleEgg/join';
+					}
+					console.log(that.askData);
+					$.ajax({
+						url: nUrl,
+						type: 'POST',
+						data: {
+							baseKey:that.askData.baseKey,
+							coohuaId:that.askData.coohuaId
+						},
+					}).done(function(data) {
+						var data = data;
+						// 检测后台数据返回类型，如果是string转化为json格式
+						if(typeof(data)==='string'){
+							data = JSON.parse(data);
+						}else{
+							data = data;
+						}
+						var err = data.status;
+						if(err>=200&&err<300||err==304){
+							dataJson = data;
+							// 0未开放，1已发放，2进行中
+							var sArr = [];//最终state记录
+							that.danList.map(function(item,idx,curArr){
+								return dataJson.user.validNum >= item.numb;
+							}).forEach(function(item,idx){
+								if(item){
+									sArr.push(1);
+								}else{
+									sArr.push(0);
+								}
+							});
+							// 进行中位置
+							var index = sArr.indexOf(0);
+							sArr[index] = 2;
+							// 控制状态进度状态
+							that.taskList = sArr;
+							// 新增徒弟数量
+							that.newAddNum = dataJson.user.inviteNum;
+							// 活跃当前和总个数
+							that.activity = {
+								cur:dataJson.user.validNum,
+								all:that.danList[that.taskList.indexOf(2)].numb,
+								money:dataJson.reward
+							};
+							// 更新按钮状态
+							that.useIsJoin = dataJson.user.isJoin;
+							// 徒弟列表
+							that.prenticeList = dataJson.discipleList;
+							// 控制初始弹框显示问题
+							if(dataJson.user.isJoin==1){
+								that.point.box = false;
+								that.point.first = false;
+							}else{
+								that.point.box = true;
+								that.point.first = true;
+							}
+							that.point = {
+								box:false,
+								first:false,
+								planNot:false,
+								planFull:false,
+								planMarch:false,
+								rule:false,
+								history:false,
+								active:false
+							};
+						}else{
+							console.log(err);
+						}
+					}).fail(function() {
+						console.log("error");
+					});
+
+				}
+			},
+			// 关闭所有弹框
+			popupShut:function(){
+				this.point = {
+					box:false,
+					first:false,
+					planNot:false,
+					planFull:false,
+					planMarch:false,
+					rule:false,
+					history:false,
+					active:false
+				};
+			}
+		},
+		mounted:function(){
+			var that = this;
+			// 请求接口
+			var dataJson = {
+			    "discipleList": [
+			        {
+			            "coohuaId": 821277752,
+			            "createTime": 1513843334000,
+			            "inviteNum": 0,
+			            "isJoin": 0,
+			            "isRewards": 1,
+			            "masterId": 821276698,
+			            "mobile": "15630628652",
+			            "registerTime": 1513843333000,
+			            "rewardsNum": 0,
+			            "updateTime": 1513871400000,
+			            "validDay": 43,
+			            "validNum": 0
+			        }
+			    ],
+			    "status": 200,
+			    "user": {
+			        "coohuaId": 821276698,
+			        "createTime": 1513842800000,
+			        "inviteNum": 1,
+			        "isJoin": 1,
+			        "isRewards": 0,
+			        "masterId": 0,
+			        "mobile": "18515058281",
+			        "registerTime": 1504769980000,
+			        "rewardsNum": 1,
+			        "updateTime": 1513871400000,
+			        "validDay": 0,
+			        "validNum": 5,
+			        "reward":10
+			    }
+			};
+			// 从安卓获取相关数据
+			var baseKey = '';
+			var coohuaId = '';
+			var Version = '';
+			try {
+			    baseKey = window.$CooHua.getBaseKey();
+			} catch (e) {
+			    console.log('未提供获取酷划ticket接口(getBaseKey)');
+			}
+			try {
+			     coohuaId = window.$CooHua.common_getCooHuaId();
+			} catch (e) {
+			    console.log('未提供获取酷划id接口(common_getCooHuaId)');
+			}
+			try {
+			     Version = window.$CooHua.common_getVersionCode();
+
+			} catch (e) {
+			    console.log('未提供获取酷划Version接口(common_getVersionCode)');
+			}
+			// 地址控制和切换
+			var addressBoo = true;//true测试地址，false为线上地址
+			var url = '';
+			if(addressBoo){
+				url = 'http://120.27.27.197:9026/invite/doubleEgg/activity';
+			}else{
+				url = 'http://invite.coohua.com/invite/doubleEgg/activity';
+			}
+			coohuaId = 821277737;
+			baseKey = 'g0IZ59f-kq9CbO8BEbTgFhsI4xh_TUVwBDREoz0FHbumIcJ7o-qdrTkKsJdJXrZlux6ERzKosGIAAkoqsQxvYQ==';
+			// 基础数据
+			that.askData = {
+				baseKey:baseKey,
+				coohuaId:coohuaId,
+				Version:Version
+			};
+			$.ajax({
+				url: url,
+				type: 'POST',
+				data: {
+					baseKey:baseKey,
+					coohuaId:coohuaId
+				},
+			}).done(function(data) {
+				var data = data;
+				// 检测后台数据返回类型，如果是string转化为json格式
+				if(typeof(data)==='string'){
+					data = JSON.parse(data);
+				}else{
+					data = data;
+				}
+				var err = data.status;
+				if(err>=200&&err<300||err==304){
+					dataJson = data;
+					// 0未开放，1已发放，2进行中
+					var sArr = [];//最终state记录
+					that.danList.map(function(item,idx,curArr){
+						return dataJson.user.validNum >= item.numb;
+					}).forEach(function(item,idx){
+						if(item){
+							sArr.push(1);
+						}else{
+							sArr.push(0);
+						}
+					});
+					// 进行中位置
+					var index = sArr.indexOf(0);
+					sArr[index] = 2;
+					// 控制状态进度状态
+					that.taskList = sArr;
+					// 新增徒弟数量
+					that.newAddNum = dataJson.user.inviteNum;
+					// 活跃当前和总个数
+					that.activity = {
+						cur:dataJson.user.validNum,
+						all:that.danList[that.taskList.indexOf(2)].numb,
+						money:dataJson.reward
+					};
+					// 更新按钮状态
+					that.useIsJoin = dataJson.user.isJoin;
+					// 徒弟列表
+					that.prenticeList = dataJson.discipleList;
+					// 控制初始弹框显示问题
+					if(dataJson.user.isJoin==1){
+						that.point.box = false;
+						that.point.first = false;
+					}else{
+						that.point.box = true;
+						that.point.first = true;
+					}
+				}else{
+					console.log(err);
+				}
+			}).fail(function() {
+				console.log("error");
+			});
+			// 昨日获奖人数
+			// 历史获奖人
+			var list70 = [
+				[{
+					"id":888402133,
+					"num":35,
+					"text":"iPhone X"
+				},{
+					"id":889021357,
+					"num":14,
+					"text":"京东卡200元"
+				},{
+					"id":883127533,
+					"num":27,
+					"text":"京东卡50元"
+				},{
+					"id":890531447,
+					"num":1,
+					"text":"现金20元"
+				},{
+					"id":890691609,
+					"num":3,
+					"text":"现金10元"
+				}],[{
+					"id":870444281,
+					"num":12,
+					"text":"iPhone X"
+				},{
+					"id":889044980,
+					"num":9,
+					"text":"京东卡200元"
+				},{
+					"id":877572380,
+					"num":21,
+					"text":"京东卡50元"
+				},{
+					"id":853384891,
+					"num":17,
+					"text":"现金20元"
+				},{
+					"id":807881966,
+					"num":7,
+					"text":"现金10元"
+				}],[{
+					"id":885653159,
+					"num":18,
+					"text":"iPhone X"
+				},{
+					"id":886627936,
+					"num":31,
+					"text":"京东卡200元"
+				},{
+					"id":883346059,
+					"num":4,
+					"text":"京东卡50元"
+				},{
+					"id":891046113,
+					"num":13,
+					"text":"现金20元"
+				},{
+					"id":889961000,
+					"num":5,
+					"text":"现金10元"
+				}],[{
+					"id":864213052,
+					"num":66,
+					"text":"iPhone X"
+				},{
+					"id":890931382,
+					"num":45,
+					"text":"京东卡200元"
+				},{
+					"id":891398155,
+					"num":9,
+					"text":"京东卡50元"
+				},{
+					"id":809984944,
+					"num":2,
+					"text":"现金20元"
+				},{
+					"id":862611113,
+					"num":11,
+					"text":"现金10元"
+				}],[{
+					"id":867676297,
+					"num":1,
+					"text":"iPhone X"
+				},{
+					"id":8281420,
+					"num":23,
+					"text":"京东卡200元"
+				},{
+					"id":880561048,
+					"num":18,
+					"text":"京东卡50元"
+				},{
+					"id":890343656,
+					"num":11,
+					"text":"现金20元"
+				},{
+					"id":882002302,
+					"num":3,
+					"text":"现金10元"
+				}],[{
+					"id":889159341,
+					"num":49,
+					"text":"iPhone X"
+				},{
+					"id":891406368,
+					"num":33,
+					"text":"京东卡200元"
+				},{
+					"id":89087761,
+					"num":24,
+					"text":"京东卡50元"
+				},{
+					"id":890428951,
+					"num":15,
+					"text":"现金20元"
+				},{
+					"id":834067925,
+					"num":8,
+					"text":"现金10元"
+				}],[{
+					"id":805549809,
+					"num":50,
+					"text":"iPhone X"
+				},{
+					"id":867066866,
+					"num":37,
+					"text":"京东卡200元"
+				},{
+					"id":889987766,
+					"num":5,
+					"text":"京东卡50元"
+				},{
+					"id":82189617,
+					"num":11,
+					"text":"现金20元"
+				},{
+					"id":888607634,
+					"num":10,
+					"text":"现金10元"
+				}],[{
+					"id":8873780,
+					"num":52,
+					"text":"iPhone X"
+				},{
+					"id":889836917,
+					"num":39,
+					"text":"京东卡200元"
+				},{
+					"id":805685347,
+					"num":28,
+					"text":"京东卡50元"
+				},{
+					"id":891468456,
+					"num":17,
+					"text":"现金20元"
+				},{
+					"id":891238656,
+					"num":6,
+					"text":"现金10元"
+				}],[{
+					"id":871277800,
+					"num":6,
+					"text":"iPhone X"
+				},{
+					"id":885611312,
+					"num":37,
+					"text":"京东卡200元"
+				},{
+					"id":885708730,
+					"num":38,
+					"text":"京东卡50元"
+				},{
+					"id":883967562,
+					"num":25,
+					"text":"现金20元"
+				},{
+					"id":881330852,
+					"num":19,
+					"text":"现金10元"
+				}],[{
+					"id":889294137,
+					"num":74,
+					"text":"iPhone X"
+				},{
+					"id":891467476,
+					"num":60,
+					"text":"京东卡200元"
+				},{
+					"id":873470203,
+					"num":2,
+					"text":"京东卡50元"
+				},{
+					"id":868349591,
+					"num":9,
+					"text":"现金20元"
+				},{
+					"id":888056657,
+					"num":1,
+					"text":"现金10元"
+				}],[{
+					"id":888677910,
+					"num":69,
+					"text":"iPhone X"
+				},{
+					"id":891111545,
+					"num":41,
+					"text":"京东卡200元"
+				},{
+					"id":877147207,
+					"num":18,
+					"text":"现金20元"
+				},{
+					"id":886866520,
+					"num":4,
+					"text":"现金10元"
+				},{
+					"id":875762610,
+					"num":56,
+					"text":"iPhone X"
+				}],[{
+					"id":883095461,
+					"num":38,
+					"text":"京东卡200元"
+				},{
+					"id":883999064,
+					"num":24,
+					"text":"京东卡50元"
+				},{
+					"id":885593221,
+					"num":13,
+					"text":"现金20元"
+				},{
+					"id":830529150,
+					"num":6,
+					"text":"现金10元"
+				},{
+					"id":808253732,
+					"num":48,
+					"text":"iPhone X"
+				}],[{
+					"id":890674553,
+					"num":40,
+					"text":"京东卡200元"
+				},{
+					"id":832200426,
+					"num":29,
+					"text":"京东卡50元"
+				},{
+					"id":867066868,
+					"num":13,
+					"text":"现金20元"
+				},{
+					"id":886627938,
+					"num":8,
+					"text":"现金10元"
+				},{
+					"id":864213053,
+					"num":2,
+					"text":"iPhone X"
+				}],[{
+					"id":890428953,
+					"num":7,
+					"text":"京东卡200元"
+				},{
+					"id":883346058,
+					"num":20,
+					"text":"京东卡50元"
+				},{
+					"id":853384892,
+					"num":14,
+					"text":"现金20元"
+				},{
+					"id":886627938,
+					"num":8,
+					"text":"现金10元"
+				},{
+					"id":808253735,
+					"num":4,
+					"text":"现金10元"
+				}]
+			];
+			// var beginTime = Date.parse('2017-12-21');
+			var beginTime = Date.parse('2017-12-23');
+			var curTime = new Date().getTime();
+			var dayNum = (curTime - beginTime)/86400000;
+			// 当前有效
+			var curArr = [];
+			// 历史有效
+			var hisArr = [];
+			// 当前有效使用
+			var curArrList= [];
+			// 历史有效使用
+			var hisArrList = [];
+			if(dayNum>=0){
+				var dayInt = Math.floor(dayNum)-1;
+				// 当前母数组
+				curArr = list70.filter(function(item,idx){
+					return dayInt==idx;
+				});
+				// 历史母数组
+				hisArr = list70.filter(function(item,idx){
+					return dayInt>idx;
+				});
+				curArr.forEach(function(item){
+					item.forEach(function(item){
+						curArrList.push(item);
+					});
+				});
+				hisArr.forEach(function(item){
+					item.forEach(function(item){
+						hisArrList.push(item);
+					});
+				});
+			}
+			that.curPrenticeList = curArrList;
+			that.historyList = hisArrList;
+		}
+	});
+	window.vm = vm;
+	// 关闭弹框
+	$('.v__box .shut').click(function(){
+		$('.v__box').hide();
+	});
+})();
+</script>
+<body>
+</body>
+</html>
