@@ -132,7 +132,8 @@ body{background:-webkit-gradient(linear,left top, left bottom,from(#75CC4E),to(#
 		$('.news__con').hide();
 		$('.news__con').eq(idx).show();
 		// 改变hash值，使得刷新页面进行记忆
-		window.location.hash = idx+1;
+		// window.location.hash = idx+1;
+		window.location.replace(location.href.split('#')[0]+'#'+(idx+1));
 	});
 	// 默认显示
 	var idxHash = Number(window.location.hash.substr(1))-1;//获得hash值
