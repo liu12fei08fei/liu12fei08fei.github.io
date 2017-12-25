@@ -8,77 +8,117 @@
 </head>
 <style>
 body{margin:0;padding:0;font-family:'helvetica neue', tahoma, 'hiragino sans gb', stheiti, 'wenquanyi micro hei', \5FAE\8F6F\96C5\9ED1, \5B8B\4F53, sans-serif;line-height:1;}
+body{background:-webkit-gradient(linear,left top, left bottom,from(#75CC4E),to(#64AF42)) no-repeat;background:linear-gradient(to bottom,#75CC4E,#64AF42) no-repeat;}
+.table{display:table;table-layout:fixed;width:100%;}
 /*tab btn*/
-.news__btn{background-image: -webkit-gradient(linear, left top, right top, from(#7AC654), to(#4DAE4C));background-image: linear-gradient(to right, #7AC654, #4DAE4C);overflow:hidden;text-align:center;color:#fff;}
-.news__btn .btn{width:50%;float:left;position:relative;padding:12px 0 26px;opacity:.5;-webkit-transition:all .4s;transition:all .4s;}
-.news__btn .btn::after{content:'';width:40px;height:40px;background:#fff;position:absolute;bottom:-36px;left:50%;-webkit-transform:translateX(-50%) translateY(100%) rotate(45deg);transform:translateX(-50%) translateY(100%) rotate(45deg);-webkit-transition:all .4s;transition:all .4s;}
+.news__btn{overflow:hidden;text-align:center;color:#fff;}
+.news__btn .btn{position:relative;padding:16px 0;opacity:.5;-webkit-transition:all .4s;transition:all .4s;display:table-cell;vertical-align: middle;}
 .news__btn .active{opacity:1;}
-.news__btn .active::after{-webkit-transform:translateX(-50%) translateY(0) rotate(45deg);transform:translateX(-50%) translateY(0) rotate(45deg);}
-.news__btn .icon{width:46px;height:46px;background:no-repeat center;background-size:contain;margin:0 auto;}
-.news__btn .icon_1{background-image:url(./images/news_icon_1.png);}
-.news__btn .icon_2{background-image:url(./images/news_icon_2.png);}
-.news__btn .name{padding-top:16px;font-size:12px;}
+.news__btn .icon{width:36px;height:36px;background:no-repeat center;background-size:contain;margin:0 auto;}
+.news__btn .icon_1{background-image:url(./img/icon-1.png);}
+.news__btn .icon_2{background-image:url(./img/icon-2.png);}
+.news__btn .icon_3{background-image:url(./img/icon-3.png);}
+.news__btn .name{padding-top:16px;font-size:14px;}
+/*内容架构*/
+.news__con{display:none;padding-bottom:24px;}
 /*红包*/
-.news__con{padding:0 16px 24px;display:none;}
-.news__con .tit{font-size:24px;margin-top:26px;color:rgba(0,0,0,0.87);position:relative;padding-left:12px;}
-.news__con .tit::after{content:'';background:#979797;width:10px;height:10px;border-radius:50%;position:absolute;top:50%;left:0;margin-top:-5px;-webkit-transform:scale(.5);transform:scale(.5);}
-.news__con .con{line-height:1.5;margin-top:12px;color:rgba(0,0,0,0.54);}
-.news__con img{width:100%;margin-top:8px;}
-.news__con .mark{background:#FEFADE;padding:14px 10px;margin-top:24px;}
+.news__box{background:#fff;margin:0 6px;border-radius:8px;padding:24px 12px;}
+.news__box+.news__box{margin-top:12px;}
+.news__tit{font-size:18px;color:#64AF42;text-align:center;position:relative;display:table;margin:0 auto;padding:0 52px;font-weight: bold;line-height:1.4;}
+.news__tit::before{content:'';width:44px;height:12px;background:url(./img/left.png) no-repeat center;background-size:contain;position:absolute;top:50%;left:0;-webkit-transform:translateY(-50%);transform:translateY(-50%);}
+.news__tit::after{content:'';width:44px;height:12px;background:url(./img/right.png) no-repeat center;background-size:contain;position:absolute;top:50%;right:0;-webkit-transform:translateY(-50%);transform:translateY(-50%);}
+.news__box .con{font-size:14px;color:#333333;text-align:justify;line-height:1.5;padding-top:20px;}
+.news__box .img{overflow:hidden;margin:16px 23% 0;}
+.news__box img{float:left;width:100%;}
 /*金币*/
-.news__con .user{color:#000;font-size:24px;margin-top:30px;}
-.news__con .user span{color:#64AF42;padding:0 4px;font-weight:bold;}
-.news__con .gold{border:1px solid #64AF42;border-radius:5px;float:right;font-size:14px;color:#64AF42;height:24px;line-height:24px;padding:0 6px;margin-top:-1px;}
+.news__con .gold{font-size:24px;color:#000;display:table;margin:0 auto;background:url(./img/gold-icon-1.png) no-repeat left;background-size:contain;padding:10px 0 10px 58px;font-weight:bold;}
+.news__con .gold span{color:#64AF42;padding-left:4px;}
+.news__con .text{position:relative;line-height:1.5;color:#333333;font-size:14px;margin-top:25px;padding-left:26px;}
+.news__con .text+.text{margin-top:16px;}
+.news__con .rank{width:18px;height:18px;background:#FF9D08;color:#fff;font-size:16px;text-align:center;line-height:18px;border-radius:50%;position:absolute;top:0;left:0;}
+.news__con .img-icon{overflow:hidden;margin-top:16px;}
 </style>
 <div class="news__btn">
-	<div class="btn active">
-		<div class="icon icon_1"></div>
-		<div class="name">看新闻赚现金红包</div>
-	</div>
-	<div class="btn">
-		<div class="icon icon_2"></div>
-		<div class="name">看新闻赚金币</div>
+	<div class="table">
+		<div class="btn active">
+			<div class="icon icon_1"></div>
+			<div class="name">看新闻赚红包</div>
+		</div>
+		<div class="btn">
+			<div class="icon icon_2"></div>
+			<div class="name">看新闻赚金币</div>
+		</div>
+		<div class="btn">
+			<div class="icon icon_3"></div>
+			<div class="name">每天签到领金币</div>
+		</div>
 	</div>
 </div>
 <!-- 红包 -->
 <div class="news__con news__con_1">
-	<div class="tit">手把手教您领新闻红包</div>
-	<div class="con mark">
-		或许您还不知道，大家平常阅读新闻资讯的过程中，也产生了巨大的价值。酷划将千万网友的浏览进行整合变现，与您一起分享广告带来的收益，现在就带您熟悉领取新闻红包的方法。
+	<div class="news__box">
+		<div class="news__tit">手把手教您领新闻红包</div>
+		<div class="con">或许您还不知道，大家平常阅读新闻资讯的过程中，也产生了巨大的价值。酷划将千万网友的浏览进行整合变现，与您一起分享广告带来的收益，现在就带您熟悉领取新闻红包的方法。</div>
 	</div>
-	<div class="tit">查看红包个数 </div>
-	<div class="con">
-		打开酷划，新闻频道会显示当前的红包个数。如下图所示，表示新闻中有3个红包等你来领取。
+	<div class="news__box">
+		<div class="news__tit">查看红包个数</div>
+		<div class="con">打开酷划，新闻频道会显示当前的红包个数。如下图所示，表示新闻中有3个红包等你来领取</div>
+		<div class="img"><img src="./img/red-img-1.png" alt="查看红包个数"></div>
 	</div>
-	<img src="./images/news_img_1.png" alt="查看红包个数">
-	<div class="tit">找到带红包标志的新闻</div>
-	<div class="con">在看新闻的过程中，很快你就能发现带红包标志的新闻。</div>
-	<img src="./images/news_img_2.png" alt="找到带红包标志的新闻">
-	<div class="tit">阅读红包新闻 获得奖励</div>
-	<div class="con">按照提示阅读新闻，即可获得随机现金红包，可用于微信提现、兑换热门商品。</div>
-	<img src="./images/news_img_3.png" alt="阅读红包新闻 获得奖励">
-	<div class="tit">红包1小时后刷新</div>
-	<div class="con">领取完所有的红包后，等待1小时，又能刷新出一波红包。每天多看看新闻，很快就能提现了。</div>
-	<img src="./images/news_img_4.png" alt="红包1小时后刷新">
+	<div class="news__box">
+		<div class="news__tit">找到带红包标志的新闻</div>
+		<div class="con">在看新闻的过程中，很快你就能发现带红包标志的新闻</div>
+		<div class="img"><img src="./img/red-img-2.png" alt="找到带红包标志的新闻"></div>
+	</div>
+	<div class="news__box">
+		<div class="news__tit">找到带红包标志的新闻</div>
+		<div class="con">按照提示阅读新闻，即可获得随机现金红包，可用于微信提现、兑换热门商品</div>
+		<div class="img"><img src="./img/red-img-3.png" alt="找到带红包标志的新闻"></div>
+	</div>
+	<div class="news__box">
+		<div class="news__tit">红包1小时后刷新</div>
+		<div class="con">领取完所有的红包后，等待1小时，又能刷新出一波红包。每天多看看新闻，很快就能提现了</div>
+		<div class="img"><img src="./img/red-img-4.png" alt="红包1小时后刷新"></div>
+	</div>
 </div>
 <!-- 金币 -->
 <div class="news__con news__con_2">
-	<div class="user">您的金币<span>800</span>个</div>
-	<div class="tit"><div class="gold">20个金币=0.01元现金</div>什么是金币？</div>
-	<div class="con">
-		1、20个金币=0.01元现金，金币是酷划发给您的奖励，您的活跃程度越高，领到的金币越多。<br>
-		2、每天凌晨0至6点，系统自动将金币兑换到您的账户余额，不足20金币的部分将保留。
+	<div class="news__box">
+		<div class="gold">您的金币<span>0枚</span></div>
 	</div>
-	<div class="tit"><div class="gold">5个金币</div>每天看新闻 领阅读金币</div>
-	<div class="con">
-		1、认真阅读任意一篇新闻，即有机会获得5个金币奖励，读得越多概率越大。<br>
-		2、仅限于酷划首页和热闻推送的新闻，可获得金币，在锁屏上的新闻无效。<br>
-		3、为了防止恶意刷金币，不是每篇阅读都有金币哦，保持平常心多阅读，即可获得更多金币奖励，每天最多30次金币奖励。
+	<div class="news__box">
+		<div class="news__tit">什么是金币</div>
+		<div class="text"><div class="rank">1</div>20枚金币=0.01元现金，金币是酷划发给您的奖励，您的活跃程度越高，领到的金币越多</div>
+		<div class="text"><div class="rank">2</div>每天凌晨0至6点，系统自动将金币兑换到您的账户余额，不足20金币的部分将保留</div>
+		<div class="img-icon"><img src="./img/gold-img-1.png" alt="20枚金币=0.01元"></div>
 	</div>
-	<div class="tit"><div class="gold">3-7个金币</div>打开首页 领整点金币</div>
-	<div class="con">
-		1、每个小时，只要您打开酷划首页，即可随机获得3至7个金币。<br>
-		2、每个小时只能获得1次奖励，每天最多可获得24次。
+	<div class="news__box">
+		<div class="news__tit">每天看新闻 领阅读金币</div>
+		<div class="text"><div class="rank">1</div>20枚金币=0.认真阅读任意一篇新闻，即有机会获得5枚金币奖励，读的越多概率越大</div>
+		<div class="text"><div class="rank">2</div>仅限于酷划首页和热闻推送的新闻，可获得金币，在锁屏上的新闻无效</div>
+		<div class="text"><div class="rank">3</div>为了防止恶意刷金币，不是每篇阅读都有金币哦，保持平常心多阅读，即可获得更多金币奖励，每天最多30次金币奖励</div>
+		<div class="img"><img src="./img/gold-img-2.png" alt="每天看新闻 领阅读金币"></div>
+	</div>
+	<div class="news__box">
+		<div class="news__tit">打开首页 领整点金币</div>
+		<div class="text"><div class="rank">1</div>20枚金币=0.每个小时，只要您打开酷划首页，即可随机获得3至7个金币</div>
+		<div class="text"><div class="rank">2</div>每个小时只能获得1次奖励，每天最多可获得24次</div>
+		<div class="img"><img src="./img/gold-img-3.png" alt="打开首页 领整点金币"></div>
+	</div>
+</div>
+<!-- 签到 -->
+<div class="news__con news__con_2">
+	<div class="news__box">
+		<div class="news__tit">新手最高领取88元签到红包</div>
+		<div class="con">新用户连续签到3天，最高可获66元现金红包；连续7天，最高可获88元红包</div>
+		<div class="img"><img src="./img/sign-img-1.png" alt="新手最高领取88元签到红包"></div>
+	</div>
+	<div class="news__box">
+		<div class="news__tit">每天签到领金币</div>
+		<div class="text"><div class="rank">1</div>每天签到均有金币奖励，连续签到，奖励递增</div>
+		<div class="text"><div class="rank">2</div>连续签到7天后，每次签到都能领40金币</div>
+		<div class="text"><div class="rank">3</div>若签到中断，则从第一天开始重新计算</div>
+		<div class="img"><img src="./img/sign-img-2.png" alt="每天签到领金币"></div>
 	</div>
 </div>
 <script src="./js/jquery-3.2.1.min.js"></script>
@@ -96,17 +136,18 @@ body{margin:0;padding:0;font-family:'helvetica neue', tahoma, 'hiragino sans gb'
 	});
 	// 默认显示
 	var idxHash = Number(window.location.hash.substr(1))-1;//获得hash值
+	idxHash===-1?idxHash=0:idxHash=idxHash;
 	// 根据hash值切换tab btn
 	$('.news__btn .btn').removeClass('active');
 	$('.news__btn .btn').eq(idxHash).addClass('active');
 	// 根据hash值切换内容
 	$('.news__con').eq(idxHash).show();
-	// 根据hash值切换内容
-	$('.news__con').eq(idxHash).show();
-	var gold = getParameterValue().filter(function(item,idx){
+	// 获得客户端传过来的金币数
+	var gold = getParameterValue()&&getParameterValue().filter(function(item,idx){
 		return item.name=='gold';
 	})[0].value;
-	$('.news__con .user span').text(gold);
+	$('.news__con .gold span').text(gold||0+'枚');
+	// console.log(getParameterValue())
 	/**
 	 * [getParameterValue 把location.search转化成json格式]
 	 * @param  {[type]} search [传入location.search即:?name=1&age=2&job=3]
