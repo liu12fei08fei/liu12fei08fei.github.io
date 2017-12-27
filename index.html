@@ -207,6 +207,18 @@
         color: #4facfe;
         padding: 50px 0;
     }
+    /*永无BUG*/
+    .bug__box{position:fixed;top:50%;left:50%;-webkit-transform:translate(-50%,-50%) scale(0);transform:translate(-50%,-50%) scale(0);color:rgba(255,255,255,1);-webkit-animation:bug 12s infinite;animation:bug 12s infinite;pointer-events:none;}
+    @-webkit-keyframes bug{
+        form{-webkit-transform:translate(-50%,-50%) scale(0);transform:translate(-50%,-50%) scale(0);}
+        50%{-webkit-transform:translate(-50%,-50%) scale(2);transform:translate(-50%,-50%) scale(2);}
+        to{-webkit-transform:translate(-50%,-50%) scale(0);transform:translate(-50%,-50%) scale(0);}
+    }
+    @keyframes bug{
+        form{-webkit-transform:translate(-50%,-50%) scale(0);transform:translate(-50%,-50%) scale(0);}
+        50%{-webkit-transform:translate(-50%,-50%) scale(2);transform:translate(-50%,-50%) scale(2);}
+        to{-webkit-transform:translate(-50%,-50%) scale(0);transform:translate(-50%,-50%) scale(0);}
+    }
     </style>
     <a href="lable.html">
         <div id="text">点击任意位置，进入blog</div>
@@ -220,6 +232,28 @@
             <div class="item face_6">Blog</div>
         </div>
     </a>
+<pre class="bug__box">
+                   _ooOoo_
+                  o8888888o
+                  88" . "88
+                  (| -_- |)
+                  O\  =  /O
+               ____/`---'\____
+             .'  \\|     |//  `.
+            /  \\|||  :  |||//  \
+           /  _||||| -:- |||||-  \
+           |   | \\\  -  /// |   |
+           | \_|  ''\---/''  |   |
+           \  .-\__  `-`  ___/-. /
+         ___`. .'  /--.--\  `. . __
+      ."" '<  `.___\_<|>_/___.'  >'"".
+     | | :  `- \`.;`\ _ /`;.`/ - ` : | |
+     \  \ `-.   \_ __\ /__ _/   .-` /  /
+======`-.____`-.___\_____/___.-`____.-'======
+                   `=---='
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              佛祖保佑    永无BUG
+</pre>
 </body>
 
 </html>
