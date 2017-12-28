@@ -49,5 +49,8 @@
     },{
         "name": "精简和优化常用逻辑，开发工具优化",
         "href": "15optimize.html"
+    },{
+        "name": "location对象和history对象",
+        "href": "16location_history.html"
     }]
 }
