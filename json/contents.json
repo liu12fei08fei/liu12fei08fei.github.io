@@ -60,6 +60,9 @@
         "href": "18performance.html"
     },{
         "name": "PHP与MySQL开发入门",
-        "href": "19php_mysql_1.html"
+        "href": "19php_mysql.html"
+    },{
+        "name": "php常用语法总结",
+        "href": "20php-grammar.html"
     }]
 }
