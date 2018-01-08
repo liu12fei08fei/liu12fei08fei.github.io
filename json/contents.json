@@ -2,6 +2,9 @@
     "title": "怪诞咖啡blog目录",
     "list": [
     {
+        "name": "iTerm2--MAC终端工具",
+        "href": "22iterm.html"
+    },{
         "name": "正则表达式",
         "href": "21regexp.html"
     },
