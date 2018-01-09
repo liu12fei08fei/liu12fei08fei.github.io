@@ -1,0 +1,15 @@
+{
+    "data": [
+        {
+            "product_id": 0,
+            "product_name": "newsearn",
+            "show_product_name": "淘新闻"
+        },
+        {
+            "product_id": 1,
+            "product_name": "locker",
+            "show_product_name": "锁屏"
+        }
+    ],
+    "rows": 2
+}
