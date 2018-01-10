@@ -2,6 +2,9 @@
     "title": "怪诞咖啡blog目录",
     "list": [
     {
+        "name": "git和github",
+        "href": "23git_github.html"
+    },{
         "name": "iTerm2--MAC终端工具",
         "href": "22iterm.html"
     },{
