@@ -400,7 +400,7 @@
                 },
                 // 获取基础数据接口
                 getReport:function(data){
-                    axios.post('./json/report.json',{
+                    axios.get('./json/report.json',{
                       begin_date: data.begin_date,
                       end_date: data.end_date,
                       product: data.product,
