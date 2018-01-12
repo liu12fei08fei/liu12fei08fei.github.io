@@ -209,17 +209,7 @@
         padding: 50px 0;
     }
     /*永无BUG*/
-    .bug__box{position:fixed;top:50%;left:50%;-webkit-transform:translate(-50%,-50%) scale(0);transform:translate(-50%,-50%) scale(0);color:rgba(255,255,255,1);-webkit-animation:bug 12s infinite;animation:bug 12s infinite;pointer-events:none;}
-    @-webkit-keyframes bug{
-        form{-webkit-transform:translate(-50%,-50%) scale(0);transform:translate(-50%,-50%) scale(0);}
-        50%{-webkit-transform:translate(-50%,-50%) scale(2);transform:translate(-50%,-50%) scale(2);}
-        to{-webkit-transform:translate(-50%,-50%) scale(0);transform:translate(-50%,-50%) scale(0);}
-    }
-    @keyframes bug{
-        form{-webkit-transform:translate(-50%,-50%) scale(0);transform:translate(-50%,-50%) scale(0);}
-        50%{-webkit-transform:translate(-50%,-50%) scale(2);transform:translate(-50%,-50%) scale(2);}
-        to{-webkit-transform:translate(-50%,-50%) scale(0);transform:translate(-50%,-50%) scale(0);}
-    }
+    .bug__box{position:fixed;top:50%;left:50%;-webkit-transform:translate(-50%,-50%) scale(.666);transform:translate(-50%,-50%) scale(.666);color:rgba(255,255,255,1);-webkit-animation:bug 12s infinite;animation:bug 12s infinite;pointer-events:none;}
     /*2018年加点雪*/
     body::after{
         content:'';
