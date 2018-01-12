@@ -2,6 +2,9 @@
     "title": "怪诞咖啡blog目录",
     "list": [
     {
+        "name":"2017 年前端开的统计报告",
+        "href":"24a_statistical_report_on_the_2017_front-end.html"
+    },{
         "name": "git和github",
         "href": "23git_github.html"
     },{
