@@ -2,6 +2,9 @@
     "title": "怪诞咖啡blog目录",
     "list": [
     {
+        "name":"设备检测",
+        "href":"26demo"
+    },{
         "name":"ES6",
         "href":"25ES6.html"
     },{
