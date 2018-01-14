@@ -2,6 +2,9 @@
     "title": "怪诞咖啡blog目录",
     "list": [
     {
+        "name":"ES6",
+        "href":"25ES6.html"
+    },{
         "name":"2017 年前端开的统计报告",
         "href":"24a_statistical_report_on_the_2017_front-end.html"
     },{
