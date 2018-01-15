@@ -8,79 +8,142 @@
     <link rel="icon" sizes="any" href="http://p1g0rvvn6.bkt.clouddn.com/favicon.ico" title="怪诞咖啡">
 </head>
 <style>
-body {
-    margin: 0;
-    background: #cfe6d0;
-    color: #5a3826;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-::-moz-selection {
-    background: pink;
-    color: yellow;
-}
-
-::selection {
-    background: pink;
-    color: yellow;
-}
-
-a {
-    display: inline-block;
-    padding: 6px 10px;
-    -webkit-transition: all .6s;
-    transition: all .6s;
-}
-
-a:hover {
-    color: #3c5a53;
-    -webkit-transform: scale(1.2);
-    transform: scale(1.2);
-}
-#list__box{padding:20px 30px;}
+    body {
+        margin: 0;
+        background: #cfe6d0;
+        color: #5a3826;
+    }
+    
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+    
+     ::-moz-selection {
+        background: pink;
+        color: yellow;
+    }
+    
+     ::selection {
+        background: pink;
+        color: yellow;
+    }
+    
+    a {
+        display: inline-block;
+        padding: 6px 10px;
+        -webkit-transition: all .6s;
+        transition: all .6s;
+    }
+    
+    a:hover {
+        color: #3c5a53;
+        -webkit-transform: scale(1.2);
+        transform: scale(1.2);
+    }
+    
+    #list__box {
+        padding: 20px 30px;
+    }
 </style>
 
 <body>
     <div id="list__box">
-        <div v-for="item,index of list"><span v-text="(list.length-index)+'.'"></span><a target="_blank" :href="rootDire+item.href" v-text="item.name"></a></div>
+        <div v-for="item,index of list"><span v-text="(list.length-index)+'.'"></span>
+            <a target="_blank" :href="rootDire+item.href" v-text="item.name"></a>
+        </div>
     </div>
-    <script src="http://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script>
-    var vm = new Vue({
-        el: '#list__box',
-        data: {
-            rootDire:'/blog/',
-            list: [],
-        },
-        mounted() {
-            $.ajax({
-                    url: 'json/contents.json',
-                    type: 'GET',
-                    dataType: 'json'
-                })
-                .done(function(data, textStatus, jqXHR) {
-                    vm.list = data.list;
-                })
-                .fail(function(jqXHR, textStatus, errorThrown) {
-                    console.log(textStatus);
-                })
-                .always(function(data, textStatus, jqXHR) {
-                    console.log(textStatus);
-                });
-
-        }
-    });
-    // BFcache模式修改
-    window.addEventListener('pageshow', function(e) {
-        if (e.persisted) {
-            window.location.reload();
-        }
-    }, true);
+        var dataList = {
+            "title": "怪诞咖啡blog目录",
+            "list": [{
+                "name": "设备检测",
+                "href": "26device.html"
+            }, {
+                "name": "ES6",
+                "href": "25ES6.html"
+            }, {
+                "name": "2017 年前端开的统计报告",
+                "href": "24a_statistical_report_on_the_2017_front-end.html"
+            }, {
+                "name": "git和github",
+                "href": "23git_github.html"
+            }, {
+                "name": "iTerm2--MAC终端工具",
+                "href": "22iterm.html"
+            }, {
+                "name": "正则表达式",
+                "href": "21regexp.html"
+            }, {
+                "name": "php常用语法总结",
+                "href": "20php-grammar.html"
+            }, {
+                "name": "PHP与MySQL开发入门",
+                "href": "19php_mysql.html"
+            }, {
+                "name": "网页性能管理",
+                "href": "18performance.html"
+            }, {
+                "name": "CCS3知识查缺补漏",
+                "href": "17css3.html"
+            }, {
+                "name": "location对象和history对象",
+                "href": "16location_history.html"
+            }, {
+                "name": "精简和优化常用逻辑，开发工具优化",
+                "href": "15optimize.html"
+            }, {
+                "name": "抓包工具介绍",
+                "href": "14capture.html"
+            }, {
+                "name": "Homebrew-macOS缺失的软件包管理器",
+                "href": "13brew.html"
+            }, {
+                "name": "SEO从理论到实践",
+                "href": "12seo.html"
+            }, {
+                "name": "音标学习记录-国际音标",
+                "href": "11IPA.html"
+            }, {
+                "name": "TypeScript入门",
+                "href": "10typescript.html"
+            }, {
+                "name": "github个人博客绑定单独阿里域名指南",
+                "href": "9github_pages.html"
+            }, {
+                "name": "搜索引擎命令大全！",
+                "href": "8search_engine_shortcuts.html"
+            }, {
+                "name": "Linux入门基础篇",
+                "href": "7linux_base.html"
+            }, {
+                "name": "CSS之BFC、IFC、FFC and GFC",
+                "href": "6fc.html"
+            }, {
+                "name": "陀螺仪属性介绍和实战",
+                "href": "5gyroscope.html"
+            }, {
+                "name": "web语义化，从松散到实战",
+                "href": "4semantic.html"
+            }, {
+                "name": "前端跨域深入理解",
+                "href": "3domain.html"
+            }, {
+                "name": "快速安装自己的Sublime系列",
+                "href": "2sublime.html"
+            }, {
+                "name": "hint.css使用说明",
+                "href": "1hint.html"
+            }]
+        };
+        var vm = new Vue({
+            el: '#list__box',
+            data: {
+                rootDire: '/blog/',
+                list: dataList.list,
+            }
+        });
     </script>
 </body>
 
