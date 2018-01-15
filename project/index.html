@@ -50,7 +50,7 @@
 <body>
     <div id="list__box">
         <div v-for="item,index of list"><span v-text="(list.length-index)+'.'"></span>
-            <a target="_blank" :href="rootDire+item.href" v-text="item.name"></a>
+            <a target="_blank" :href="rootDire+item.href+'.html'" v-text="item.name"></a>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
@@ -65,7 +65,7 @@
                 "href": "other/red_envelopes"
             }, {
                 "name": "UI设计作品-素描作品",
-                "href": "design/index"
+                "href": "design_index"
             }, {
                 "name": "双旦活动",
                 "href": "coohua-double-dan/index"
@@ -104,7 +104,7 @@
         var vm = new Vue({
             el: '#list__box',
             data: {
-                rootDire: '/blog/',
+                rootDire: './',
                 list: dataList.list,
             }
         });
