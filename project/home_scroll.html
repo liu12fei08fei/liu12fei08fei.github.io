@@ -274,7 +274,6 @@ body {
 <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/iScroll/5.2.0/iscroll.min.js"></script>
 <!-- banner -->
-<script type="text/javascript" src="/js/TouchSlide.1.1.js"></script>
 <script type="text/javascript">
 // 微信端禁止滚动出现背景
 var myScroll = null;
@@ -302,30 +301,12 @@ function isPassive() {
 $(function(){
     createFrame('.loop__back',31);
     createFrame('.loop__box',24);
-    bannerCon();
     function createFrame(cls,number){
         var rtn = '';
         for(var i=0;i<number;i++){
             rtn += '<div class="item" style="transform:rotate('+(i*8)+'deg);"></div>';
         }
         $(cls).html(rtn);
-    }
-    function bannerCon(){
-        // 轮播图
-        var bannerLen = $('.slide__img').find('.banner').size();
-        // 当轮播图多余一个的时候进行轮播，否则只显示
-        if(bannerLen>1){
-            TouchSlide({
-                slideCell:"#slide__banner",
-                titCell:".slide__icon",
-                mainCell:".slide__img",
-                effect:"leftLoop",
-                autoPage:true,
-                autoPlay:true,
-                delayTime:500,
-                interTime:3000,
-            });
-        }
     }
 });
 </script>
