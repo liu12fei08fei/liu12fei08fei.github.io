@@ -545,10 +545,10 @@ let fruit = {},
     cook = function() {};
 food.set(fruit, "🍆")
 food.set(cook, "🦁")
-console.log(food) //Map(2) {{…} => "🍆", ƒ => "🦁"}
+console.log(food)
 console.log(food.get(fruit)) // 🍆
 food.delete(cook)
-console.log(food) //Map(1) {{…} => "🍆"}
+console.log(food)
 console.log(food.size)//1
 ```
 
