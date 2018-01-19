@@ -10,230 +10,230 @@
 
 <body>
     <style>
-    body {
-        background: white;
-    }
-
-    a {
-        display: block;
-        color: inherit;
-        text-decoration: none;
-    }
-
-    #box {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        -webkit-transform: translate(-50%, -50%);
-                transform: translate(-50%, -50%);
-        -webkit-transform-style: preserve-3d;
-        transform-style: preserve-3d;
-        -webkit-perspective: 8000px;
-        perspective: 8000px;
-        -webkit-transform-origin: 50% 50% 200px;
-        transform-origin: 50% 50% 200px;
-        -webkit-animation: box3d 12s infinite linear;
-        animation: box3d 12s infinite ease-in-out;
-        z-index: 999;
-    }
-
-    #box .item {
-        width: 180px;
-        height: 180px;
-        color: #fff;
-        text-align: center;
-        line-height: 180px;
-        font-size: 0;
-        font-weight: bold;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin: -90px 0 0 -90px;
-        border-radius: 30px;
-        z-index: 9999;
-        font-size: 36px;
-        color: rgba(62, 74, 180, .9);
-    }
-
-    #box .face_1 {
-        -webkit-transform: translateZ(90px);
-        transform: translateZ(90px);
-        background: linear-gradient(45deg, #92baac 45px, transparent 45px)64px 64px,
-        linear-gradient(45deg, #92baac 45px, transparent 45px, transparent 91px, #e1ebbd 91px, #e1ebbd 135px, transparent 135px),
-        linear-gradient(-45deg, #92baac 23px, transparent 23px, transparent 68px, #92baac 68px, #92baac 113px, transparent 113px, transparent 158px, #92baac 158px);
-        background-color: #e1ebbd;
-        background-size: 128px 128px;
-    }
-
-    #box .face_2 {
-        -webkit-transform: rotateX(-90deg) translateZ(90px);
-        transform: rotateX(-90deg) translateZ(90px);
-        background: linear-gradient(45deg, #dca 12%, transparent 0, transparent 88%, #dca 0),
-        linear-gradient(135deg, transparent 37%, #a85 0, #a85 63%, transparent 0),
-        linear-gradient(45deg, transparent 37%, #dca 0, #dca 63%, transparent 0) #753;
-        background-size: 25px 25px;
-    }
-
-    #box .face_3 {
-        -webkit-transform: rotateY(90deg) translateZ(90px);
-        transform: rotateY(90deg) translateZ(90px);
-        background: linear-gradient(135deg, #ECEDDC 25%, transparent 25%) -50px 0,
-        linear-gradient(225deg, #ECEDDC 25%, transparent 25%) -50px 0,
-        linear-gradient(315deg, #ECEDDC 25%, transparent 25%),
-        linear-gradient(45deg, #ECEDDC 25%, transparent 25%);
-        background-size: 100px 100px;
-        background-color: #EC173A;
-    }
-
-    #box .face_4 {
-        -webkit-transform: rotateY(-90deg) translateZ(90px);
-        transform: rotateY(-90deg) translateZ(90px);
-        background-image: radial-gradient(closest-side, transparent 0%, transparent 75%, #B6CC66 76%, #B6CC66 85%, #EDFFDB 86%, #EDFFDB 94%, #FFFFFF 95%, #FFFFFF 103%, #D9E6A7 104%, #D9E6A7 112%, #798B3C 113%, #798B3C 121%, #FFFFFF 122%, #FFFFFF 130%, #E0EAD7 131%, #E0EAD7 140%),
-        radial-gradient(closest-side, transparent 0%, transparent 75%, #B6CC66 76%, #B6CC66 85%, #EDFFDB 86%, #EDFFDB 94%, #FFFFFF 95%, #FFFFFF 103%, #D9E6A7 104%, #D9E6A7 112%, #798B3C 113%, #798B3C 121%, #FFFFFF 122%, #FFFFFF 130%, #E0EAD7 131%, #E0EAD7 140%);
-        background-size: 110px 110px;
-        background-color: #C8D3A7;
-        background-position: 0 0, 55px 55px;
-    }
-
-    #box .face_5 {
-        -webkit-transform: rotateX(90deg) translateZ(90px);
-        transform: rotateX(90deg) translateZ(90px);
-        background: radial-gradient(circle farthest-side at 0% 50%, #fb1 23.5%, rgba(240, 166, 17, 0) 0)21px 30px,
-        radial-gradient(circle farthest-side at 0% 50%, #B71 24%, rgba(240, 166, 17, 0) 0)19px 30px,
-        linear-gradient(#fb1 14%, rgba(240, 166, 17, 0) 0, rgba(240, 166, 17, 0) 85%, #fb1 0)0 0,
-        linear-gradient(150deg, #fb1 24%, #B71 0, #B71 26%, rgba(240, 166, 17, 0) 0, rgba(240, 166, 17, 0) 74%, #B71 0, #B71 76%, #fb1 0)0 0,
-        linear-gradient(30deg, #fb1 24%, #B71 0, #B71 26%, rgba(240, 166, 17, 0) 0, rgba(240, 166, 17, 0) 74%, #B71 0, #B71 76%, #fb1 0)0 0,
-        linear-gradient(90deg, #B71 2%, #fb1 0, #fb1 98%, #B71 0%)0 0 #fb1;
-        background-size: 40px 60px;
-    }
-
-    #box .face_6 {
-        -webkit-transform: rotateY(180deg) translateZ(90px);
-        transform: rotateY(180deg) translateZ(90px);
-        background-color: #def;
-        background-image: radial-gradient(closest-side, transparent 98%, rgba(0, 0, 0, .3) 99%),
-        radial-gradient(closest-side, transparent 98%, rgba(0, 0, 0, .3) 99%);
-        background-size: 80px 80px;
-        background-position: 0 0, 40px 40px;
-    }
-
-    .box_bg {
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        z-index: -1;
-        -webkit-transform: translateZ(-300px);
-        transform: translateZ(-300px);
-        background-color: black;
-        background-image: radial-gradient(white, rgba(255, 255, 255, .2) 2px, transparent 40px),
-        radial-gradient(white, rgba(255, 255, 255, .15) 1px, transparent 30px),
-        radial-gradient(white, rgba(255, 255, 255, .1) 2px, transparent 40px),
-        radial-gradient(rgba(255, 255, 255, .4), rgba(255, 255, 255, .1) 2px, transparent 30px);
-        background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
-        background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
-    }
-
-    @-webkit-keyframes box3d {
-        from {
-            -webkit-transform: rotateX(-360deg) rotateY(-360deg) rotateZ(-360deg) translate(-50%, -50%) scale3d(0, 0, 0);
-            transform: rotateX(-360deg) rotateY(-360deg) rotateZ(-360deg) translate(-50%, -50%) scale3d(0, 0, 0);
-            -webkit-transform-origin: 50% 50% 2000px;
-            transform-origin: 50% 50% 2000px;
+        body {
+            background: white;
         }
-        25% {
-            -webkit-transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg) translate(-50%, -50%) scale3d(.6, .6, .6);
-            transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg) translate(-50%, -50%) scale3d(.6, .6, .6);
+
+        a {
+            display: block;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        #box {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+                    transform: translate(-50%, -50%);
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            -webkit-perspective: 8000px;
+            perspective: 8000px;
             -webkit-transform-origin: 50% 50% 200px;
             transform-origin: 50% 50% 200px;
+            -webkit-animation: box3d 12s infinite linear;
+            animation: box3d 12s infinite ease-in-out;
+            z-index: 999;
         }
-        50% {
-            -webkit-transform: rotateX(-360deg) rotateY(-360deg) rotateZ(-360deg) translate(-50%, -50%) scale3d(1.8, 1.8, 1.8);
-            transform: rotateX(-360deg) rotateY(-360deg) rotateZ(-360deg) translate(-50%, -50%) scale3d(1.8, 1.8, 1.8);
-            -webkit-transform-origin: 50% 50% 180px;
-            transform-origin: 50% 50% 180px;
-        }
-        75% {
-            -webkit-transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg) translate(-50%, -50%) scale3d(.6, .6, .6);
-            transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg) translate(-50%, -50%) scale3d(.6, .6, .6);
-            -webkit-transform-origin: 50% 50% 200px;
-            transform-origin: 50% 50% 200px;
-        }
-        to {
-            -webkit-transform: rotateX(-360deg) rotateY(-360deg) rotateZ(-360deg) translate(-50%, -50%) scale3d(0, 0, 0);
-            transform: rotateX(-360deg) rotateY(-360deg) rotateZ(-360deg) translate(-50%, -50%) scale3d(0, 0, 0);
-            -webkit-transform-origin: 50% 50% 2000px;
-            transform-origin: 50% 50% 2000px;
-        }
-    }
 
-    @keyframes box3d {
-        from {
-            -webkit-transform: rotateX(-360deg) rotateY(-360deg) rotateZ(-360deg) translate(-50%, -50%) scale3d(0, 0, 0);
-            transform: rotateX(-360deg) rotateY(-360deg) rotateZ(-360deg) translate(-50%, -50%) scale3d(0, 0, 0);
-            -webkit-transform-origin: 50% 50% 2000px;
-            transform-origin: 50% 50% 2000px;
+        #box .item {
+            width: 180px;
+            height: 180px;
+            color: #fff;
+            text-align: center;
+            line-height: 180px;
+            font-size: 0;
+            font-weight: bold;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -90px 0 0 -90px;
+            border-radius: 30px;
+            z-index: 9999;
+            font-size: 36px;
+            color: rgba(62, 74, 180, .9);
         }
-        25% {
-            -webkit-transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg) translate(-50%, -50%) scale3d(.6, .6, .6);
-            transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg) translate(-50%, -50%) scale3d(.6, .6, .6);
-            -webkit-transform-origin: 50% 50% 200px;
-            transform-origin: 50% 50% 200px;
-        }
-        50% {
-            -webkit-transform: rotateX(-360deg) rotateY(-360deg) rotateZ(-360deg) translate(-50%, -50%) scale3d(1.8, 1.8, 1.8);
-            transform: rotateX(-360deg) rotateY(-360deg) rotateZ(-360deg) translate(-50%, -50%) scale3d(1.8, 1.8, 1.8);
-            -webkit-transform-origin: 50% 50% 180px;
-            transform-origin: 50% 50% 180px;
-        }
-        75% {
-            -webkit-transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg) translate(-50%, -50%) scale3d(.6, .6, .6);
-            transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg) translate(-50%, -50%) scale3d(.6, .6, .6);
-            -webkit-transform-origin: 50% 50% 200px;
-            transform-origin: 50% 50% 200px;
-        }
-        to {
-            -webkit-transform: rotateX(-360deg) rotateY(-360deg) rotateZ(-360deg) translate(-50%, -50%) scale3d(0, 0, 0);
-            transform: rotateX(-360deg) rotateY(-360deg) rotateZ(-360deg) translate(-50%, -50%) scale3d(0, 0, 0);
-            -webkit-transform-origin: 50% 50% 2000px;
-            transform-origin: 50% 50% 2000px;
-        }
-    }
-    /*文字*/
 
-    #text {
-        text-align: center;
-        font-size: 20px;
-        color: #4facfe;
-        padding: 50px 0;
-    }
-    /*永无BUG*/
-    .bug__box{position:fixed;top:50%;left:50%;-webkit-transform:translate(-50%,-50%) scale(.666);transform:translate(-50%,-50%) scale(.666);color:rgba(255,255,255,1);-webkit-animation:bug 12s infinite;animation:bug 12s infinite;pointer-events:none;}
-    /*2018年加点雪*/
-    body::after{
-        content:'';
-        position:fixed;
-        left:0;top:0;
-        width:100%;
-        height:100%;
-        background:url(http://p1g0rvvn6.bkt.clouddn.com/snow_1.png),url(http://p1g0rvvn6.bkt.clouddn.com/snow_2.png);
-        -webkit-animation:snow 15s infinite linear;
-                animation:snow 15s infinite linear;
-        pointer-events: none;
-        z-index:9;
-    }
+        #box .face_1 {
+            -webkit-transform: translateZ(90px);
+            transform: translateZ(90px);
+            background: linear-gradient(45deg, #92baac 45px, transparent 45px)64px 64px,
+            linear-gradient(45deg, #92baac 45px, transparent 45px, transparent 91px, #e1ebbd 91px, #e1ebbd 135px, transparent 135px),
+            linear-gradient(-45deg, #92baac 23px, transparent 23px, transparent 68px, #92baac 68px, #92baac 113px, transparent 113px, transparent 158px, #92baac 158px);
+            background-color: #e1ebbd;
+            background-size: 128px 128px;
+        }
 
-    @-webkit-keyframes snow{
-        from{background-position:0 0,0 0;}
-        to{background-position:500px 1000px, 500px 500px;}
-    }
-    @keyframes snow{
-        from{background-position:0 0,0 0;}
-        to{background-position:500px 1000px, 500px 500px;}
-    }
+        #box .face_2 {
+            -webkit-transform: rotateX(-90deg) translateZ(90px);
+            transform: rotateX(-90deg) translateZ(90px);
+            background: linear-gradient(45deg, #dca 12%, transparent 0, transparent 88%, #dca 0),
+            linear-gradient(135deg, transparent 37%, #a85 0, #a85 63%, transparent 0),
+            linear-gradient(45deg, transparent 37%, #dca 0, #dca 63%, transparent 0) #753;
+            background-size: 25px 25px;
+        }
+
+        #box .face_3 {
+            -webkit-transform: rotateY(90deg) translateZ(90px);
+            transform: rotateY(90deg) translateZ(90px);
+            background: linear-gradient(135deg, #ECEDDC 25%, transparent 25%) -50px 0,
+            linear-gradient(225deg, #ECEDDC 25%, transparent 25%) -50px 0,
+            linear-gradient(315deg, #ECEDDC 25%, transparent 25%),
+            linear-gradient(45deg, #ECEDDC 25%, transparent 25%);
+            background-size: 100px 100px;
+            background-color: #EC173A;
+        }
+
+        #box .face_4 {
+            -webkit-transform: rotateY(-90deg) translateZ(90px);
+            transform: rotateY(-90deg) translateZ(90px);
+            background-image: radial-gradient(closest-side, transparent 0%, transparent 75%, #B6CC66 76%, #B6CC66 85%, #EDFFDB 86%, #EDFFDB 94%, #FFFFFF 95%, #FFFFFF 103%, #D9E6A7 104%, #D9E6A7 112%, #798B3C 113%, #798B3C 121%, #FFFFFF 122%, #FFFFFF 130%, #E0EAD7 131%, #E0EAD7 140%),
+            radial-gradient(closest-side, transparent 0%, transparent 75%, #B6CC66 76%, #B6CC66 85%, #EDFFDB 86%, #EDFFDB 94%, #FFFFFF 95%, #FFFFFF 103%, #D9E6A7 104%, #D9E6A7 112%, #798B3C 113%, #798B3C 121%, #FFFFFF 122%, #FFFFFF 130%, #E0EAD7 131%, #E0EAD7 140%);
+            background-size: 110px 110px;
+            background-color: #C8D3A7;
+            background-position: 0 0, 55px 55px;
+        }
+
+        #box .face_5 {
+            -webkit-transform: rotateX(90deg) translateZ(90px);
+            transform: rotateX(90deg) translateZ(90px);
+            background: radial-gradient(circle farthest-side at 0% 50%, #fb1 23.5%, rgba(240, 166, 17, 0) 0)21px 30px,
+            radial-gradient(circle farthest-side at 0% 50%, #B71 24%, rgba(240, 166, 17, 0) 0)19px 30px,
+            linear-gradient(#fb1 14%, rgba(240, 166, 17, 0) 0, rgba(240, 166, 17, 0) 85%, #fb1 0)0 0,
+            linear-gradient(150deg, #fb1 24%, #B71 0, #B71 26%, rgba(240, 166, 17, 0) 0, rgba(240, 166, 17, 0) 74%, #B71 0, #B71 76%, #fb1 0)0 0,
+            linear-gradient(30deg, #fb1 24%, #B71 0, #B71 26%, rgba(240, 166, 17, 0) 0, rgba(240, 166, 17, 0) 74%, #B71 0, #B71 76%, #fb1 0)0 0,
+            linear-gradient(90deg, #B71 2%, #fb1 0, #fb1 98%, #B71 0%)0 0 #fb1;
+            background-size: 40px 60px;
+        }
+
+        #box .face_6 {
+            -webkit-transform: rotateY(180deg) translateZ(90px);
+            transform: rotateY(180deg) translateZ(90px);
+            background-color: #def;
+            background-image: radial-gradient(closest-side, transparent 98%, rgba(0, 0, 0, .3) 99%),
+            radial-gradient(closest-side, transparent 98%, rgba(0, 0, 0, .3) 99%);
+            background-size: 80px 80px;
+            background-position: 0 0, 40px 40px;
+        }
+
+        .box_bg {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: -1;
+            -webkit-transform: translateZ(-300px);
+            transform: translateZ(-300px);
+            background-color: black;
+            background-image: radial-gradient(white, rgba(255, 255, 255, .2) 2px, transparent 40px),
+            radial-gradient(white, rgba(255, 255, 255, .15) 1px, transparent 30px),
+            radial-gradient(white, rgba(255, 255, 255, .1) 2px, transparent 40px),
+            radial-gradient(rgba(255, 255, 255, .4), rgba(255, 255, 255, .1) 2px, transparent 30px);
+            background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+            background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;
+        }
+
+        @-webkit-keyframes box3d {
+            from {
+                -webkit-transform: rotateX(-360deg) rotateY(-360deg) rotateZ(-360deg) translate(-50%, -50%) scale3d(0, 0, 0);
+                transform: rotateX(-360deg) rotateY(-360deg) rotateZ(-360deg) translate(-50%, -50%) scale3d(0, 0, 0);
+                -webkit-transform-origin: 50% 50% 2000px;
+                transform-origin: 50% 50% 2000px;
+            }
+            25% {
+                -webkit-transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg) translate(-50%, -50%) scale3d(.6, .6, .6);
+                transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg) translate(-50%, -50%) scale3d(.6, .6, .6);
+                -webkit-transform-origin: 50% 50% 200px;
+                transform-origin: 50% 50% 200px;
+            }
+            50% {
+                -webkit-transform: rotateX(-360deg) rotateY(-360deg) rotateZ(-360deg) translate(-50%, -50%) scale3d(1.8, 1.8, 1.8);
+                transform: rotateX(-360deg) rotateY(-360deg) rotateZ(-360deg) translate(-50%, -50%) scale3d(1.8, 1.8, 1.8);
+                -webkit-transform-origin: 50% 50% 180px;
+                transform-origin: 50% 50% 180px;
+            }
+            75% {
+                -webkit-transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg) translate(-50%, -50%) scale3d(.6, .6, .6);
+                transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg) translate(-50%, -50%) scale3d(.6, .6, .6);
+                -webkit-transform-origin: 50% 50% 200px;
+                transform-origin: 50% 50% 200px;
+            }
+            to {
+                -webkit-transform: rotateX(-360deg) rotateY(-360deg) rotateZ(-360deg) translate(-50%, -50%) scale3d(0, 0, 0);
+                transform: rotateX(-360deg) rotateY(-360deg) rotateZ(-360deg) translate(-50%, -50%) scale3d(0, 0, 0);
+                -webkit-transform-origin: 50% 50% 2000px;
+                transform-origin: 50% 50% 2000px;
+            }
+        }
+
+        @keyframes box3d {
+            from {
+                -webkit-transform: rotateX(-360deg) rotateY(-360deg) rotateZ(-360deg) translate(-50%, -50%) scale3d(0, 0, 0);
+                transform: rotateX(-360deg) rotateY(-360deg) rotateZ(-360deg) translate(-50%, -50%) scale3d(0, 0, 0);
+                -webkit-transform-origin: 50% 50% 2000px;
+                transform-origin: 50% 50% 2000px;
+            }
+            25% {
+                -webkit-transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg) translate(-50%, -50%) scale3d(.6, .6, .6);
+                transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg) translate(-50%, -50%) scale3d(.6, .6, .6);
+                -webkit-transform-origin: 50% 50% 200px;
+                transform-origin: 50% 50% 200px;
+            }
+            50% {
+                -webkit-transform: rotateX(-360deg) rotateY(-360deg) rotateZ(-360deg) translate(-50%, -50%) scale3d(1.8, 1.8, 1.8);
+                transform: rotateX(-360deg) rotateY(-360deg) rotateZ(-360deg) translate(-50%, -50%) scale3d(1.8, 1.8, 1.8);
+                -webkit-transform-origin: 50% 50% 180px;
+                transform-origin: 50% 50% 180px;
+            }
+            75% {
+                -webkit-transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg) translate(-50%, -50%) scale3d(.6, .6, .6);
+                transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg) translate(-50%, -50%) scale3d(.6, .6, .6);
+                -webkit-transform-origin: 50% 50% 200px;
+                transform-origin: 50% 50% 200px;
+            }
+            to {
+                -webkit-transform: rotateX(-360deg) rotateY(-360deg) rotateZ(-360deg) translate(-50%, -50%) scale3d(0, 0, 0);
+                transform: rotateX(-360deg) rotateY(-360deg) rotateZ(-360deg) translate(-50%, -50%) scale3d(0, 0, 0);
+                -webkit-transform-origin: 50% 50% 2000px;
+                transform-origin: 50% 50% 2000px;
+            }
+        }
+        /*文字*/
+
+        #text {
+            text-align: center;
+            font-size: 20px;
+            color: #4facfe;
+            padding: 50px 0;
+        }
+        /*永无BUG*/
+        .bug__box{position:fixed;top:50%;left:50%;-webkit-transform:translate(-50%,-50%) scale(.666);transform:translate(-50%,-50%) scale(.666);color:rgba(255,255,255,1);-webkit-animation:bug 12s infinite;animation:bug 12s infinite;pointer-events:none;z-index:-1;}
+        /*2018年加点雪*/
+        body::after{
+            content:'';
+            position:fixed;
+            left:0;top:0;
+            width:100%;
+            height:100%;
+            background:url(http://p1g0rvvn6.bkt.clouddn.com/snow_1.png),url(http://p1g0rvvn6.bkt.clouddn.com/snow_2.png);
+            -webkit-animation:snow 15s infinite linear;
+                    animation:snow 15s infinite linear;
+            pointer-events: none;
+            z-index:9;
+        }
+
+        @-webkit-keyframes snow{
+            from{background-position:0 0,0 0;}
+            to{background-position:500px 1000px, 500px 500px;}
+        }
+        @keyframes snow{
+            from{background-position:0 0,0 0;}
+            to{background-position:500px 1000px, 500px 500px;}
+        }
     </style>
-    <a href="lable.html">
+    <a href="./lable.html">
         <div id="text">点击任意位置，进入blog</div>
         <div class="box_bg"></div>
         <div id="box">
@@ -267,6 +267,7 @@
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
               佛祖保佑    永无BUG
 </pre>
+<script type="text/javascript" color="255,255,255" opacity='.8' zIndex="-1" count="480" src="http://cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
 <script>
 console.log(`
 佛曰:
@@ -283,6 +284,9 @@ console.log(`
 面试造火箭，入职扭螺钉
 不会不让进，进了不用做
 `);
+document.querySelector('canvas').onclick=function(){
+    window.location.href="./lable.html";
+}
 </script>
 </body>
 </html>
