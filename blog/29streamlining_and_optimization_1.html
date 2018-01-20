@@ -1,0 +1,1512 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title># 精简和优化常用逻辑，开发工具优化_1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+<meta name="format-detection" content="telephone=no">
+<style>
+
+body {
+  background-color: white;
+}
+
+.markdown-body {
+  min-width: 200px;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 20px;
+
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  color: #333;
+  overflow: hidden;
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+.markdown-body a {
+  background: transparent;;word-wrap: break-word; word-break: break-all;
+}
+
+.markdown-body a:active,
+.markdown-body a:hover {
+  outline: 0;
+}
+
+.markdown-body strong {
+  font-weight: bold;
+}
+
+.markdown-body h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+.markdown-body img {
+  border: 0;
+}
+
+.markdown-body hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+
+.markdown-body pre {
+  overflow: auto;
+}
+
+.markdown-body code,
+.markdown-body kbd,
+.markdown-body pre {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+.markdown-body input {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+.markdown-body html input[disabled] {
+  cursor: default;
+}
+
+.markdown-body input {
+  line-height: normal;
+}
+
+.markdown-body input[type="checkbox"] {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.markdown-body table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.markdown-body td,
+.markdown-body th {
+  padding: 0;
+}
+
+.markdown-body * {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body input {
+  font: 13px/1.4 Helvetica, arial, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.markdown-body a {
+  color: #4183c4;
+  text-decoration: none;
+}
+
+.markdown-body a:hover,
+.markdown-body a:focus,
+.markdown-body a:active {
+  text-decoration: underline;
+}
+
+.markdown-body hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.markdown-body hr:before {
+  display: table;
+  content: "";
+}
+
+.markdown-body hr:after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  line-height: 1.1;
+}
+
+.markdown-body h1 {
+  font-size: 30px;
+}
+
+.markdown-body h2 {
+  font-size: 21px;
+}
+
+.markdown-body h3 {
+  font-size: 16px;
+}
+
+.markdown-body h4 {
+  font-size: 14px;
+}
+
+.markdown-body h5 {
+  font-size: 12px;
+}
+
+.markdown-body h6 {
+  font-size: 11px;
+}
+
+.markdown-body blockquote {
+  margin: 0;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body ol ol,
+.markdown-body ul ol {
+  list-style-type: lower-roman;
+}
+
+.markdown-body ul ul ol,
+.markdown-body ul ol ol,
+.markdown-body ol ul ol,
+.markdown-body ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+.markdown-body dd {
+  margin-left: 0;
+}
+
+.markdown-body code {
+  font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+.markdown-body pre {
+  margin-top: 0;
+  margin-bottom: 0;
+  font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+.markdown-body kbd {
+  background-color: #e7e7e7;
+  background-image: -webkit-linear-gradient(#fefefe, #e7e7e7);
+  background-image: linear-gradient(#fefefe, #e7e7e7);
+  background-repeat: repeat-x;
+  border-radius: 2px;
+  border: 1px solid #cfcfcf;
+  color: #000;
+  padding: 3px 5px;
+  line-height: 10px;
+  font: 11px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  display: inline-block;
+}
+
+.markdown-body>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+.markdown-body .anchor {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  padding-right: 6px;
+  padding-left: 30px;
+  margin-left: -30px;
+}
+
+.markdown-body .anchor:focus {
+  outline: none;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  position: relative;
+  margin-top: 1em;
+  margin-bottom: 16px;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.markdown-body h1 .octicon-link,
+.markdown-body h2 .octicon-link,
+.markdown-body h3 .octicon-link,
+.markdown-body h4 .octicon-link,
+.markdown-body h5 .octicon-link,
+.markdown-body h6 .octicon-link {
+  display: none;
+  color: #000;
+  vertical-align: middle;
+}
+
+.markdown-body h1:hover .anchor,
+.markdown-body h2:hover .anchor,
+.markdown-body h3:hover .anchor,
+.markdown-body h4:hover .anchor,
+.markdown-body h5:hover .anchor,
+.markdown-body h6:hover .anchor {
+  height: 1em;
+  padding-left: 8px;
+  margin-left: -30px;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.markdown-body h1:hover .anchor .octicon-link,
+.markdown-body h2:hover .anchor .octicon-link,
+.markdown-body h3:hover .anchor .octicon-link,
+.markdown-body h4:hover .anchor .octicon-link,
+.markdown-body h5:hover .anchor .octicon-link,
+.markdown-body h6:hover .anchor .octicon-link {
+  display: inline-block;
+}
+
+.markdown-body h1 {
+  padding-bottom: 0.3em;
+  font-size: 2.25em;
+  line-height: 1.2;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h2 {
+  padding-bottom: 0.3em;
+  font-size: 1.75em;
+  line-height: 1.225;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h3 {
+  font-size: 1.5em;
+  line-height: 1.43;
+}
+
+.markdown-body h4 {
+  font-size: 1.25em;
+}
+
+.markdown-body h5 {
+  font-size: 1em;
+}
+
+.markdown-body h6 {
+  font-size: 1em;
+  color: #777;
+}
+
+.markdown-body p,
+.markdown-body blockquote,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl,
+.markdown-body table,
+.markdown-body pre {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.markdown-body hr {
+  height: 4px;
+  padding: 0;
+  margin: 16px 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 2em;
+}
+
+.markdown-body ul ul,
+.markdown-body ul ol,
+.markdown-body ol ol,
+.markdown-body ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body li>p {
+  margin-top: 16px;
+}
+
+.markdown-body dl {
+  padding: 0;
+}
+
+.markdown-body dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown-body dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+.markdown-body blockquote {
+  padding: 0 15px;
+  color: #777;
+  border-left: 4px solid #ddd;
+}
+
+.markdown-body blockquote>:first-child {
+  margin-top: 0;
+}
+
+.markdown-body blockquote>:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all;
+}
+
+.markdown-body table th {
+  font-weight: bold;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  padding: 6px 13px;
+  border: 1px solid #ddd;
+}
+
+.markdown-body table tr {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+.markdown-body img {
+  max-width: 100%;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body code {
+  padding: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(0,0,0,0.04);
+  border-radius: 3px;
+}
+
+.markdown-body code:before,
+.markdown-body code:after {
+  letter-spacing: -0.2em;
+  content: "\00a0";
+}
+
+.markdown-body pre>code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+.markdown-body .highlight {
+  margin-bottom: 16px;
+}
+
+.markdown-body .highlight pre,
+.markdown-body pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f7f7f7;
+  border-radius: 3px;
+}
+
+.markdown-body .highlight pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+.markdown-body pre {
+  word-wrap: normal;
+}
+
+.markdown-body pre code {
+  display: inline;
+  max-width: initial;
+  padding: 0;
+  margin: 0;
+  overflow: initial;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+.markdown-body pre code:before,
+.markdown-body pre code:after {
+  content: normal;
+}
+
+.markdown-body .highlight {
+  background: #fff;
+}
+
+.markdown-body .highlight .mf,
+.markdown-body .highlight .mh,
+.markdown-body .highlight .mi,
+.markdown-body .highlight .mo,
+.markdown-body .highlight .il,
+.markdown-body .highlight .m {
+  color: #945277;
+}
+
+.markdown-body .highlight .s,
+.markdown-body .highlight .sb,
+.markdown-body .highlight .sc,
+.markdown-body .highlight .sd,
+.markdown-body .highlight .s2,
+.markdown-body .highlight .se,
+.markdown-body .highlight .sh,
+.markdown-body .highlight .si,
+.markdown-body .highlight .sx,
+.markdown-body .highlight .s1 {
+  color: #df5000;
+}
+
+.markdown-body .highlight .kc,
+.markdown-body .highlight .kd,
+.markdown-body .highlight .kn,
+.markdown-body .highlight .kp,
+.markdown-body .highlight .kr,
+.markdown-body .highlight .kt,
+.markdown-body .highlight .k,
+.markdown-body .highlight .o {
+  font-weight: bold;
+}
+
+.markdown-body .highlight .kt {
+  color: #458;
+}
+
+.markdown-body .highlight .c,
+.markdown-body .highlight .cm,
+.markdown-body .highlight .c1 {
+  color: #998;
+  font-style: italic;
+}
+
+.markdown-body .highlight .cp,
+.markdown-body .highlight .cs {
+  color: #999;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .cs {
+  font-style: italic;
+}
+
+.markdown-body .highlight .n {
+  color: #333;
+}
+
+.markdown-body .highlight .na,
+.markdown-body .highlight .nv,
+.markdown-body .highlight .vc,
+.markdown-body .highlight .vg,
+.markdown-body .highlight .vi {
+  color: #008080;
+}
+
+.markdown-body .highlight .nb {
+  color: #0086B3;
+}
+
+.markdown-body .highlight .nc {
+  color: #458;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .no {
+  color: #094e99;
+}
+
+.markdown-body .highlight .ni {
+  color: #800080;
+}
+
+.markdown-body .highlight .ne {
+  color: #990000;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .nf {
+  color: #945277;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .nn {
+  color: #555;
+}
+
+.markdown-body .highlight .nt {
+  color: #000080;
+}
+
+.markdown-body .highlight .err {
+  color: #a61717;
+  background-color: #e3d2d2;
+}
+
+.markdown-body .highlight .gd {
+  color: #000;
+  background-color: #fdd;
+}
+
+.markdown-body .highlight .gd .x {
+  color: #000;
+  background-color: #faa;
+}
+
+.markdown-body .highlight .ge {
+  font-style: italic;
+}
+
+.markdown-body .highlight .gr {
+  color: #aa0000;
+}
+
+.markdown-body .highlight .gh {
+  color: #999;
+}
+
+.markdown-body .highlight .gi {
+  color: #000;
+  background-color: #dfd;
+}
+
+.markdown-body .highlight .gi .x {
+  color: #000;
+  background-color: #afa;
+}
+
+.markdown-body .highlight .go {
+  color: #888;
+}
+
+.markdown-body .highlight .gp {
+  color: #555;
+}
+
+.markdown-body .highlight .gs {
+  font-weight: bold;
+}
+
+.markdown-body .highlight .gu {
+  color: #800080;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .gt {
+  color: #aa0000;
+}
+
+.markdown-body .highlight .ow {
+  font-weight: bold;
+}
+
+.markdown-body .highlight .w {
+  color: #bbb;
+}
+
+.markdown-body .highlight .sr {
+  color: #017936;
+}
+
+.markdown-body .highlight .ss {
+  color: #8b467f;
+}
+
+.markdown-body .highlight .bp {
+  color: #999;
+}
+
+.markdown-body .highlight .gc {
+  color: #999;
+  background-color: #EAF2F5;
+}
+
+.markdown-body .octicon {
+  line-height: 1;
+  display: inline-block;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.markdown-body .octicon-link:before {
+  content: '\f05c';
+}
+
+.markdown-body .task-list-item {
+  list-style-type: none;
+}
+
+.markdown-body .task-list-item+.task-list-item {
+  margin-top: 3px;
+}
+
+.markdown-body .task-list-item input {
+  float: left;
+  margin: 0.3em 0 0.25em -1.6em;
+  vertical-align: middle;
+}
+table td{ word-wrap: break-word !important; word-break: break-all !important; }
+/*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+  -webkit-text-size-adjust: none;
+}
+
+.hljs-comment,
+.diff .hljs-header {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.css .rule .hljs-keyword,
+.hljs-winutils,
+.nginx .hljs-title,
+.hljs-subst,
+.hljs-request,
+.hljs-status {
+  color: #333;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-hexcolor,
+.ruby .hljs-constant {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-tag .hljs-value,
+.hljs-doctag,
+.tex .hljs-formula {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-id,
+.scss .hljs-preprocessor {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-list .hljs-keyword,
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-class .hljs-title,
+.hljs-type,
+.vhdl .hljs-literal,
+.tex .hljs-command {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-tag .hljs-title,
+.hljs-rule .hljs-property,
+.django .hljs-tag .hljs-keyword {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-attribute,
+.hljs-variable,
+.lisp .hljs-body,
+.hljs-name {
+  color: #008080;
+}
+
+.hljs-regexp {
+  color: #009926;
+}
+
+.hljs-symbol,
+.ruby .hljs-symbol .hljs-string,
+.lisp .hljs-keyword,
+.clojure .hljs-keyword,
+.scheme .hljs-keyword,
+.tex .hljs-special,
+.hljs-prompt {
+  color: #990073;
+}
+
+.hljs-built_in {
+  color: #0086b3;
+}
+
+.hljs-preprocessor,
+.hljs-pragma,
+.hljs-pi,
+.hljs-doctype,
+.hljs-shebang,
+.hljs-cdata {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.diff .hljs-change {
+  background: #0086b3;
+}
+
+.hljs-chunk {
+  color: #aaa;
+}
+
+@media print{ .hljs{overflow: visible; word-wrap: break-word !important;} }
+</style>
+</head><body><div class="markdown-body">
+<h1 id="toc_0">精简和优化常用逻辑，开发工具优化</h1>
+
+<ul>
+<li>
+<a href="#toc_0">精简和优化常用逻辑，开发工具优化</a>
+<ul>
+<li>
+<a href="#toc_1">格式化日期，时间函数</a>
+</li>
+<li>
+<a href="#toc_2">请求客户端参数</a>
+</li>
+<li>
+<a href="#toc_3">测试环境动态显示版本号</a>
+</li>
+<li>
+<a href="#toc_4">检测后台返回数据类型string/json，统一在前台转换成json格式</a>
+</li>
+<li>
+<a href="#toc_5">SublimeText插件Emmet自定义模板</a>
+</li>
+<li>
+<a href="#toc_6">酷划打点使用代码（老打点系统）</a>
+</li>
+<li>
+<a href="#toc_7">查询字符串转化成对象的属性</a>
+</li>
+<li>
+<a href="#toc_8">操作cookie</a>
+</li>
+<li>
+<a href="#toc_9">jquery使用<code>$.extend()</code>进行方法扩展</a>
+</li>
+<li>
+<a href="#toc_10">把对象序列化编码的<code>jquery</code>工具类函数</a>
+</li>
+<li>
+<a href="#toc_11">动画库</a>
+</li>
+<li>
+<a href="#toc_12">ajax通过header传递参数</a>
+</li>
+<li>
+<a href="#toc_13">axios使用总结</a>
+<ul>
+<li>
+<a href="#toc_14">发送<code>GET</code>请求</a>
+</li>
+<li>
+<a href="#toc_15">发送<code>POST</code>请求</a>
+</li>
+<li>
+<a href="#toc_16">一次性并发多个请求</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_17">数字使用各三个加逗号</a>
+</li>
+<li>
+<a href="#toc_18">获取当前指定的前几天的日期</a>
+</li>
+<li>
+<a href="#toc_19">增强可访问性</a>
+</li>
+<li>
+<a href="#toc_20">常见的左边定宽，右边自适应的 Flex 布局会出现一个奇怪的现象，就是右边会因为不间断的英文单词被撑开超出容器的宽度</a>
+</li>
+<li>
+<a href="#toc_21">想知道页面中的元素结构是怎么渲染的吗？</a>
+</li>
+<li>
+<a href="#toc_22">如何修改 placeholder 的文字颜色？</a>
+</li>
+<li>
+<a href="#toc_23">对于常见的左边自适应右边定宽这样的布局来说，如果我们用 flex 来实现的话，完整的代码应该是</a>
+</li>
+<li>
+<a href="#toc_24">Linux打开文件夹命令</a>
+</li>
+<li>
+<a href="#toc_25">函数排序sort()</a>
+</li>
+<li>
+<a href="#toc_26">对象去重</a>
+</li>
+<li>
+<a href="#toc_27">JSON.stringify()字符串缩进</a>
+</li>
+<li>
+<a href="#toc_28">动态处理查询字符串</a>
+</li>
+<li>
+<a href="#toc_29">数据类型判断</a>
+<ul>
+<li>
+<a href="#toc_30">字符串</a>
+</li>
+<li>
+<a href="#toc_31">数值</a>
+</li>
+<li>
+<a href="#toc_32">布尔值</a>
+</li>
+<li>
+<a href="#toc_33">Undefined</a>
+</li>
+<li>
+<a href="#toc_34">Null</a>
+</li>
+<li>
+<a href="#toc_35">Symbol</a>
+</li>
+<li>
+<a href="#toc_36">Object</a>
+</li>
+<li>
+<a href="#toc_37">Array</a>
+</li>
+<li>
+<a href="#toc_38">Function</a>
+</li>
+<li>
+<a href="#toc_39">Date</a>
+</li>
+<li>
+<a href="#toc_40">RegExp</a>
+</li>
+<li>
+<a href="#toc_41">Math</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_42">字符串转base64，base64转字符串</a>
+</li>
+<li>
+<a href="#toc_43">柯里化理解-类型判断</a>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<h2 id="toc_1">格式化日期，时间函数</h2>
+
+<pre><code>/**
+ * [fromatDate 格式化日期，时间函数]
+ * @param  {[type]} timestamp [时间戳]
+ * @return {[type]}           [根据具体需求自己封装，拒绝冗余]
+ */
+function fromatDate(timestamp){
+    var sDate = new Date(timestamp);//日期
+    var sYear = sDate.getFullYear();//年
+    var sMonth = sDate.getMonth()+1;//月
+    var sDay = sDate.getDate();//日
+    var sHour = sDate.getHours();//小时
+    var sMinute = sDate.getMinutes();//分钟
+    var sSecond = sDate.getSeconds();//秒
+    var mSecond = sDate.getMilliseconds();//毫秒
+}
+
+/**
+ * [evenNum 单数格式化为双数]
+ * @param  {[type]} n [数字]
+ * @return {[type]}   [数字的双数格式]
+ * 例子：0-9，转化成00-09
+ */
+function evenNum(n){
+    return n&lt;10?&#39;0&#39;+n:&#39;&#39;+n;
+}
+</code></pre>
+
+<h2 id="toc_2">请求客户端参数</h2>
+
+<ul>
+<li>三个是全局方法，只要通过安卓端（暂时没有ios）就可以获得</li>
+<li>无需通知客户端给某个页面传递参数值</li>
+</ul>
+
+<pre><code>// 从安卓获取相关数据
+var baseKey = window.$CooHua&amp;&amp;window.$CooHua.getBaseKey?window.$CooHua.getBaseKey():console.log(&#39;客户端未提供获取key方法&#39;);
+var coohuaId = window.$CooHua&amp;&amp;window.$CooHua.common_getCooHuaId?window.$CooHua.common_getCooHuaId():console.log(&#39;客户端未提供获取id方法&#39;);
+var Version = window.$CooHua&amp;&amp;window.$CooHua.common_getVersionCode?window.$CooHua.common_getVersionCode():console.log(&#39;客户端未提供获取版本方法&#39;);
+var Online = window.$CooHua&amp;&amp;window.$CooHua.is_online_environment?window.$CooHua.is_online_environment():console.log(&#39;客户端未提供获取环境方法&#39;);
+</code></pre>
+
+<h2 id="toc_3">测试环境动态显示版本号</h2>
+
+<pre><code>// true代表是线上环境，fales代表是测试环境
+if(!Online&amp;&amp;Online!=undefined){
+    document.title = document.title+&#39;-2.0&#39;;
+}
+</code></pre>
+
+<h2 id="toc_4">检测后台返回数据类型string/json，统一在前台转换成json格式</h2>
+
+<pre><code>var data = typeof(data)===&#39;string&#39;?JSON.parse(data):data;
+var data = Object.prototype.toString.call(data)===&quot;[object String]&quot;?JSON.parse(data):data;
+</code></pre>
+
+<h2 id="toc_5">SublimeText插件Emmet自定义模板</h2>
+
+<blockquote>
+<p>工具栏打开Preferences -&gt; Package Settings -&gt; Emmet -&gt; Setting - Default<br/>
+参考这个来进行自定义模板<br/>
+用户配置文件中修改：我们打开Preferences -&gt; Package Settings -&gt; Emmet -&gt; Setting - User文件，添加如下代码：</p>
+</blockquote>
+
+<pre><code>{
+    // Custom snippets definitions, as per https://github.com/emmetio/emmet/blob/master/snippets.json
+    &quot;snippets&quot;: {
+        &quot;html&quot;: {
+            &quot;abbreviations&quot;: {
+                &quot;example&quot;: &quot;&lt;div class=&#39;example&#39; title=&#39;Custom element example&#39;&gt;&quot;,
+                &quot;viewport&quot;:&quot;meta[name=&#39;viewport&#39; content=&#39;width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no&#39;]&quot;,
+                &quot;telephone&quot;:&quot;meta[name=&#39;format-detection&#39; content=&#39;telephone=no&#39;]&quot;,
+                &quot;doc&quot;: &quot;html&gt;(head&gt;meta[charset=&#39;utf-8&#39;]+viewport+telephone+title{${1:怪诞咖啡}}+style{\n${1:body{margin:0;padding:0;font-family:&#39;helvetica neue&#39;, tahoma, &#39;hiragino sans gb&#39;, stheiti, &#39;wenquanyi micro hei&#39;, Microsoft YaHei, SimSun, sans-serif;line-height:1;}}\n})+body&quot;,
+                &quot;!&quot;: &quot;!!!+doc[lang=&#39;zh-CN&#39;]&quot;
+            }
+        }
+    }
+}
+</code></pre>
+
+<h2 id="toc_6">酷划打点使用代码（老打点系统）</h2>
+
+<pre><code>// 引入一个js文件：`des.js`
+// 打点专用
+/**
+ * [remoteLog 进行打点，就是给数据组发送数据]
+ * @param  {[type]} action [产品给的资料]
+ * @param  {[type]} url    [固定地址+部分参数拼写]
+ * @return {[type]}        [description]
+ */
+// 活动页面pv：double-dan_pv  按钮点击pv：double-dan_button_pv
+remoteLog(&#39;double-dan_pv&#39;);//活动页面pv
+function remoteLog(action) {
+    var ua = navigator.userAgent.toLowerCase();
+    var url = &quot;http://log.coohua.com/domain_click.txt&quot;;
+    var uid = 0;
+    if (url.indexOf(&quot;?&quot;) == -1) {
+        url += &#39;?src=new&amp;action=&#39; + action + &#39;&amp;time=&#39; + new Date().getTime() + &#39;&amp;cid=&#39; + coohuaId + &#39;&amp;uid=&#39;+ &#39;&amp;url=&#39; + strEnc(window.location.href, &#39;coohua@#2014&#39;) + &#39;&amp;ch=&#39; + getParam(&quot;ch&quot;) + &#39;&amp;next_url=&#39;+strEnc(window.location.href, &#39;coohua@#2014&#39;);
+    } else {
+        url += &#39;&amp;src=new&amp;action=&#39; + action + &#39;&amp;time=&#39; + new Date().getTime() + &#39;&amp;cid=&#39; + coohuaId + &#39;&amp;uid=&#39;+ &#39;&amp;url=&#39; + strEnc(window.location.href, &#39;coohua@#2014&#39;) + &#39;&amp;ch=&#39; + getParam(&quot;ch&quot;) + &#39;&amp;next_url=&#39;+strEnc(window.location.href, &#39;coohua@#2014&#39;);
+    }
+    $.ajax({
+        url: url,
+        type: &#39;GET&#39;,
+    }).done(function(data) {
+        console.log(data);
+    }).fail(function(xhr,text) {
+        console.log(text);
+    });
+
+}
+function getParam(param) {
+    var url = &quot;http://log.coohua.com/domain_click.txt&quot;;
+    var r = new RegExp(&quot;\\?(?:.+&amp;)?&quot; + param + &quot;=(.*?)(?:[\?&amp;].*)?$&quot;);
+    var m = url.match(r);
+    return m ? m[1] : &quot;&quot;;
+}
+</code></pre>
+
+<h2 id="toc_7">查询字符串转化成对象的属性</h2>
+
+<pre><code>/**
+ * [getQueryStringArgs 查询字符串转化成对象的属性]
+ * @return {[type]} [Object]
+ */
+function getQueryStringArgs(){
+    // 取得查询字符串并去掉开头的问号
+    var qs = (location.search.length&gt;0?location.search.substring(1):&quot;&quot;),
+    // 保存数据的对象
+    args = {},
+    // 取得每一项
+    items = qs.length?qs.split(&quot;&amp;&quot;):[],
+    item = null,
+    name = null,
+    value = null,
+    // 在for循环中使用
+    i = 0,
+    len = items.length;
+    // 逐个将每一项添加到args对象中
+    for(i=0;i&lt;len;i++){
+        item = items[i].split(&quot;=&quot;);
+        name = decodeURIComponent(item[0]);
+        value = decodeURIComponent(item[1]);
+        if(name.length){
+            args[name] = value;
+        }
+    }
+    return args;
+}
+</code></pre>
+
+<h2 id="toc_8">操作cookie</h2>
+
+<p><a href="https://github.com/js-cookie/js-cookie">js-cookie</a></p>
+
+<h2 id="toc_9">jquery使用<code>$.extend()</code>进行方法扩展</h2>
+
+<pre><code>$.extend({
+    &quot;MaxNum&quot;:function(a,b){
+        return (a&gt;b)?a:b;
+    }
+});
+</code></pre>
+
+<h2 id="toc_10">把对象序列化编码的<code>jquery</code>工具类函数</h2>
+
+<pre><code>$.param(obj);
+</code></pre>
+
+<h2 id="toc_11">动画库</h2>
+
+<ul>
+<li><a href="https://greensock.com/docs">tweenMax</a></li>
+</ul>
+
+<h2 id="toc_12">ajax通过header传递参数</h2>
+
+<ul>
+<li>两种传递方式</li>
+</ul>
+
+<pre><code>headers:{
+    &quot;base-key&quot;:baseKey
+},
+beforeSend: function(XMLHttpRequest) {
+    XMLHttpRequest.setRequestHeader(&#39;base-key&#39;, baseKey);
+},
+</code></pre>
+
+<h2 id="toc_13">axios使用总结</h2>
+
+<h3 id="toc_14">发送<code>GET</code>请求</h3>
+
+<pre><code>//通过给定的ID来发送请求
+axios.get(&#39;/user?ID=12345&#39;)
+  .then(function(response){
+    console.log(response);
+  })
+  .catch(function(err){
+    console.log(err);
+  });
+//以上请求也可以通过这种方式来发送
+axios.get(&#39;/user&#39;,{
+  params:{
+    ID:12345
+  }
+})
+.then(function(response){
+  console.log(response);
+})
+.catch(function(err){
+  console.log(err);
+});
+</code></pre>
+
+<h3 id="toc_15">发送<code>POST</code>请求</h3>
+
+<pre><code>axios.post(&#39;/user&#39;,{
+  firstName:&#39;Fred&#39;,
+  lastName:&#39;Flintstone&#39;
+})
+.then(function(res){
+  console.log(res);
+})
+.catch(function(err){
+  console.log(err);
+});
+</code></pre>
+
+<h3 id="toc_16">一次性并发多个请求</h3>
+
+<pre><code>function getUserAccount(){
+  return axios.get(&#39;/user/12345&#39;);
+}
+function getUserPermissions(){
+  return axios.get(&#39;/user/12345/permissions&#39;);
+}
+axios.all([getUserAccount(),getUserPermissions()])
+  .then(axios.spread(function(acct,perms){
+    //当这两个请求都完成的时候会触发这个函数，两个参数分别代表返回的结果
+  }))
+</code></pre>
+
+<h2 id="toc_17">数字使用各三个加逗号</h2>
+
+<pre><code>&#39;1234567890&#39;.replace(/(\d)(?=(\d{3})+$)/g, &quot;$1,&quot;);
+</code></pre>
+
+<h2 id="toc_18">获取当前指定的前几天的日期</h2>
+
+<pre><code>function getBeforeDate(n){
+    var n = n;
+    var d = new Date();
+    var year = d.getFullYear();
+    var mon=d.getMonth()+1;
+    var day=d.getDate();
+    if(day &lt;= n){
+            if(mon&gt;1) {
+               mon=mon-1;
+            }
+           else {
+             year = year-1;
+             mon = 12;
+             }
+           }
+          d.setDate(d.getDate()-n);
+          year = d.getFullYear();
+          mon=d.getMonth()+1;
+          day=d.getDate();
+     s = year+&quot;-&quot;+(mon&lt;10?(&#39;0&#39;+mon):mon)+&quot;-&quot;+(day&lt;10?(&#39;0&#39;+day):day);
+     return s;
+}
+getBeforeDate(8);//2018-01-02
+</code></pre>
+
+<h2 id="toc_19">增强可访问性</h2>
+
+<ul>
+<li>为了增强可访问性，让自己不忘给图片标签加上 alt 属性，有人在项目中加入了如下的全局 CSS 样式，值得学习</li>
+</ul>
+
+<pre><code>/* you forgot the `alt` attrubute */
+img[alt=&quot;&quot;],
+img:not([alt]){
+    border:5px dashed #c00;
+}
+</code></pre>
+
+<h2 id="toc_20">常见的左边定宽，右边自适应的 Flex 布局会出现一个奇怪的现象，就是右边会因为不间断的英文单词被撑开超出容器的宽度</h2>
+
+<pre><code>.right {
+    word-wrap: break-word;
+    overflow: auto
+}
+</code></pre>
+
+<h2 id="toc_21">想知道页面中的元素结构是怎么渲染的吗？</h2>
+
+<pre><code>* { outline: 4px solid yellow; }
+</code></pre>
+
+<h2 id="toc_22">如何修改 placeholder 的文字颜色？</h2>
+
+<pre><code>::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    #909;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+   color:    #909;
+   opacity:  1;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+   color:    #909;
+   opacity:  1;
+}
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+   color:    #909;
+}
+::-ms-input-placeholder { /* Microsoft Edge */
+   color:    #909;
+}
+</code></pre>
+
+<h2 id="toc_23">对于常见的左边自适应右边定宽这样的布局来说，如果我们用 flex 来实现的话，完整的代码应该是</h2>
+
+<pre><code>.left {
+  flex-grow: 1
+}
+.right {
+  width: 200px;
+  flex-shrink: 0;
+}
+</code></pre>
+
+<ul>
+<li>注意这里的 flex-grow 定义了内部元素未达到容器宽度时的处理方式，flex-shrink 则定义了超过外部容器宽度时内部元素的宽度处理方式。而且缺一不可，否则会在特殊情况下表现出错误的效果</li>
+</ul>
+
+<h2 id="toc_24">Linux打开文件夹命令</h2>
+
+<pre><code>$ open d_name
+</code></pre>
+
+<h2 id="toc_25">函数排序sort()</h2>
+
+<blockquote>
+<p>默认是按照字母顺序进行排序<br/>
+添加比较函数才能按照数字大小进行排序</p>
+</blockquote>
+
+<pre><code>// 比较函数
+function compare(value1, value2){
+    return value1 - value2;
+}
+var arr = [11, 4, 3, 2, 1];
+console.log(arr.sort(compare));//[1, 2, 3, 4, 11]
+</code></pre>
+
+<h2 id="toc_26">对象去重</h2>
+
+<pre><code>var newShowArr =
+[{ year: &#39;2013-2014&#39;, term: &#39;1&#39; },
+{ year: &#39;2013-2014&#39;, term: &#39;1&#39; },
+{ year: &#39;2013-2014&#39;, term: &#39;1&#39; },
+{ year: &#39;2013-2014&#39;, term: &#39;1&#39; },
+{ year: &#39;2013-2014&#39;, term: &#39;1&#39; },
+{ year: &#39;2013-2014&#39;, term: &#39;1&#39; },
+{ year: &#39;2013-2014&#39;, term: &#39;1&#39; },
+{ year: &#39;2013-2014&#39;, term: &#39;1&#39; },
+{ year: &#39;2013-2014&#39;, term: &#39;1&#39; },
+{ year: &#39;2013-2014&#39;, term: &#39;2&#39; },
+{ year: &#39;2013-2014&#39;, term: &#39;2&#39; },
+{ year: &#39;2014-2015&#39;, term: &#39;1&#39; },
+{ year: &#39;2014-2015&#39;, term: &#39;1&#39; },
+{ year: &#39;2014-2015&#39;, term: &#39;1&#39; },
+{ year: &#39;2014-2015&#39;, term: &#39;1&#39; }];
+
+var unique = {};
+newShowArr.forEach(function(item) {
+    unique[JSON.stringify(item)] = item
+});
+newShowArr = Object.keys(unique).map(function(uitem) {
+    return JSON.parse(uitem)
+});
+// [{&quot;year&quot;:&quot;2013-2014&quot;,&quot;term&quot;:&quot;1&quot;},{&quot;year&quot;:&quot;2013-2014&quot;,&quot;term&quot;:&quot;2&quot;},{&quot;year&quot;:&quot;2014-2015&quot;,&quot;term&quot;:&quot;1&quot;}]
+</code></pre>
+
+<h2 id="toc_27">JSON.stringify()字符串缩进</h2>
+
+<pre><code>JSON.stringify({&quot;name&quot;:&quot;怪诞咖啡&quot;,&quot;age&quot;:18,&quot;job&quot;:&quot;攻城狮&quot;},null,4)
+</code></pre>
+
+<h2 id="toc_28">动态处理查询字符串</h2>
+
+<pre><code>/**
+ * [addQueryStringArg 处理查询字符串]
+ * @param {[type]} url   [要追加查询字符串的URL]
+ * @param {[type]} name  [参数名]
+ * @param {[type]} value [参数值]
+ */
+function addQueryStringArg(url, name, value){
+    if(url.indexOf(&quot;?&quot;)==-1){
+        url += &quot;?&quot;;
+    }else{
+        url += &quot;&amp;&quot;;
+    }
+
+    url += encodeURIComponent(name) + &quot;=&quot; + encodeURIComponent(value);
+    return url;
+}
+</code></pre>
+
+<h2 id="toc_29">数据类型判断</h2>
+
+<h3 id="toc_30">字符串</h3>
+
+<pre><code>Object.prototype.toString.call(something)===&#39;[object String]&#39;
+</code></pre>
+
+<h3 id="toc_31">数值</h3>
+
+<pre><code>Object.prototype.toString.call(something)===&#39;[object Number]&#39;
+</code></pre>
+
+<h3 id="toc_32">布尔值</h3>
+
+<pre><code>Object.prototype.toString.call(something)===&#39;[object Boolean]&#39;
+</code></pre>
+
+<h3 id="toc_33">Undefined</h3>
+
+<pre><code>Object.prototype.toString.call(something)===&#39;[object Undefined]&#39;
+</code></pre>
+
+<h3 id="toc_34">Null</h3>
+
+<pre><code>Object.prototype.toString.call(something)===&#39;[object Null]&#39;
+</code></pre>
+
+<h3 id="toc_35">Symbol</h3>
+
+<pre><code>Symbol()
+
+Object.prototype.toString.call(something)===&#39;[object Symbol]&#39;
+</code></pre>
+
+<h3 id="toc_36">Object</h3>
+
+<pre><code>Object.prototype.toString.call(something)===&#39;[object Object]&#39;
+</code></pre>
+
+<h3 id="toc_37">Array</h3>
+
+<pre><code>Object.prototype.toString.call(something)===&#39;[object Array]&#39;
+</code></pre>
+
+<h3 id="toc_38">Function</h3>
+
+<pre><code>Object.prototype.toString.call(something)===&#39;[object Function]&#39;
+</code></pre>
+
+<h3 id="toc_39">Date</h3>
+
+<pre><code>Object.prototype.toString.call(something)===&#39;[object Date]&#39;
+</code></pre>
+
+<h3 id="toc_40">RegExp</h3>
+
+<pre><code>Object.prototype.toString.call(something)===&#39;[object RegExp]&#39;
+</code></pre>
+
+<h3 id="toc_41">Math</h3>
+
+<pre><code>Object.prototype.toString.call(something)===&#39;[object Math]&#39;
+</code></pre>
+
+<h2 id="toc_42">字符串转base64，base64转字符串</h2>
+
+<pre><code>var base64 = {
+    encode(str){
+        // 对字符串进行编码
+        var encode = encodeURI(str);
+        // 对编码的字符串转化base64
+        var base64 = btoa(encode);
+        return base64;
+    },
+    decode(base64){
+        // 对base64转编码
+        var decode = atob(base64);
+        // 编码转字符串
+        var str = decodeURI(decode);
+        return str;
+    }
+};
+// 字符串转base64
+console.log(base64.encode(&#39;怪诞咖啡&#39;));//JUU2JTgwJUFBJUU4JUFGJTlFJUU1JTkyJTk2JUU1JTk1JUEx
+// base64转字符串
+console.log(base64.decode(base64.encode(&#39;怪诞咖啡&#39;)));//怪诞咖啡
+</code></pre>
+
+<h2 id="toc_43">柯里化理解-类型判断</h2>
+
+<blockquote>
+<p>函数设计的时候，必须抽象，要抽象变化<br/>
+其实变化也分为两种，一种是一次性变化，一种是调用一次变一次<br/>
+我们要把这种一次性变化抽离出来，想办法把它变成定量；这样可以降低程序的理解度<br/>
+函数式编程大部分都在干生成函数，写一个函数式为了生成一个更加简单的函数；而把一次性变化的东西抽象到定量里面去<br/>
+柯里化就是去掉一次性变化的变量</p>
+</blockquote>
+
+<p><strong>普通方法</strong></p>
+
+<pre><code>function isType(type,obj){
+    return Object.prototype.toString.call(obj)===&#39;[object &#39;+ type +&#39;]&#39;;
+}
+console.log(isType(&#39;Number&#39;,11))//true
+</code></pre>
+
+<p><strong>柯里化</strong></p>
+
+<pre><code>function isType(type){
+    return function(obj){
+        return Object.prototype.toString.call(obj)===&#39;[object &#39;+ type +&#39;]&#39;;
+    }
+}
+isNumber = isType(&#39;Number&#39;);
+console.log(isNumber(11))//true
+</code></pre>
+
+</div></body>
+
+</html>
