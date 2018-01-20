@@ -244,6 +244,8 @@
         .voice_shut .voice_item{width:16px;height:16px;position:absolute;top:50%;right:-20px;-webkit-transform:translateY(-50%);transform:translateY(-50%);}
         .voice_shut .voice_item::before{content:'';width:2px;position:absolute;top:0;bottom:0;background:#fff;left:50%;-webkit-transform:translateX(-50%) rotate(45deg);transform:translateX(-50%) rotate(45deg);}
         .voice_shut .voice_item::after{content:'';width:2px;position:absolute;top:0;bottom:0;background:#fff;left:50%;-webkit-transform:translateX(-50%) rotate(-45deg);transform:translateX(-50%) rotate(-45deg);}
+        /*视频*/
+        video{position:fixed;top:50%;left:0;width:100%;transform:translateY(-50%);z-index:-1;}
     </style>
     <a href="./lable.html">
         <div id="text">点击任意位置，进入blog</div>
@@ -286,6 +288,8 @@
     <div class="voice_icon"></div>
     <div class="voice_item"></div>
 </div>
+<!-- 视频 -->
+<video src="http://p1g0rvvn6.bkt.clouddn.com/sunrise.mp4" class="glass" autoplay="" loop=""></video>
 <script type="text/javascript" color="255,255,255" opacity='.8' zIndex="-1" count="480" src="http://cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
 <script>
 console.log(`
