@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+	<meta name="format-detection" content="telephone=no">
+	<title>深夜，程序员小哥约我...</title>
+	<style>
+		body{margin:0;padding:0;font-family:'helvetica neue', tahoma, 'hiragino sans gb', stheiti, 'wenquanyi micro hei', Microsoft YaHei, SimSun, sans-serif;line-height:1;
+		background-color: black;
+		background-image: radial-gradient(white, rgba(255, 255, 255, .2) 2px, transparent 40px),
+		radial-gradient(white, rgba(255, 255, 255, .15) 1px, transparent 30px),
+		radial-gradient(white, rgba(255, 255, 255, .1) 2px, transparent 40px),
+		radial-gradient(rgba(255, 255, 255, .4), rgba(255, 255, 255, .1) 2px, transparent 30px);
+		background-size: 550px 550px, 350px 350px, 250px 250px, 150px 150px;
+		background-position: 0 0, 40px 60px, 130px 270px, 70px 100px;}
+		/*音乐开关*/
+		.voice{width:30px;height:30px;border-right:solid 2px #fff;position:fixed;top:20px;right:38px;z-index: 999;cursor:pointer;}
+		.voice::before{content:'';width:8px;height:12px;border:solid 1px #fff;position:absolute;top:50%;right:7px;-webkit-transform:translateY(-50%);transform:translateY(-50%);border-width:2px 0 2px 2px;border-radius:3px 0 0 3px;}
+		.voice_icon{position:absolute;top:0;right:0;bottom:0;width:7px;overflow:hidden;}
+		.voice_icon::after{content:'';width:20px;height:20px;border:solid 2px #fff;-webkit-transform:rotate(45deg);transform:rotate(45deg);position:absolute;top:3px;right:-13px;}
+		.voice_item,.voice_item::before,.voice_item::after{-webkit-transition:all .6s;transition:all .6s;}
+		.voice_open .voice_item{width:6px;height:6px;border:solid 1px #fff;border-color:transparent #fff transparent transparent;position:absolute;top:50%;right:-8px;-webkit-transform:translateY(-50%);transform:translateY(-50%);border-radius:50%;}
+		.voice_open .voice_item::before{content:'';width:16px;height:16px;border:solid 2px #fff;border-color:transparent #fff transparent transparent;position:absolute;top:50%;right:-8px;-webkit-transform:translateY(-50%) scale(.8);transform:translateY(-50%) scale(.8);border-radius:50%;}
+		.voice_open .voice_item::after{content:'';width:24px;height:24px;border:solid 2px #fff;border-color:transparent #fff transparent transparent;position:absolute;top:50%;right:-11px;-webkit-transform:translateY(-50%) scale(1);transform:translateY(-50%) scale(1);border-radius:50%;}
+		.voice_shut .voice_item{width:16px;height:16px;position:absolute;top:50%;right:-20px;-webkit-transform:translateY(-50%);transform:translateY(-50%);}
+		.voice_shut .voice_item::before{content:'';width:2px;position:absolute;top:0;bottom:0;background:#fff;left:50%;-webkit-transform:translateX(-50%) rotate(45deg);transform:translateX(-50%) rotate(45deg);}
+		.voice_shut .voice_item::after{content:'';width:2px;position:absolute;top:0;bottom:0;background:#fff;left:50%;-webkit-transform:translateX(-50%) rotate(-45deg);transform:translateX(-50%) rotate(-45deg);}
+		/*视频*/
+		.video{position:fixed;height:100%;left:50%;-webkit-transform:translateX(-50%);transform:translateX(-50%);}
+		video{height:100%;margin:0 auto;}
+	</style>
+</head>
+<body>
+<div class="video">
+	<video src="http://p1g0rvvn6.bkt.clouddn.com/funny.mp4" autoplay="" loop=""></video>
+</div>
+<audio id="audios" controls="true" loop autoplay="autoplay" class="audio" style="display:none;" src="http://p1g0rvvn6.bkt.clouddn.com/funny.mp3"></audio>
+<!-- 音乐开关 -->
+<div class="voice voice_open" id="voice">
+    <div class="voice_icon"></div>
+    <div class="voice_item"></div>
+</div>
+<script>
+	// 音乐控制
+	document.getElementById("voice").onclick=play;
+	function play() {
+	    var voice = document.getElementById('voice');
+	    var obj = document.getElementById("audios");
+	    if (obj.paused) {
+	        obj.play();
+	        voice.setAttribute("class", "voice voice_open");
+	    } else {
+	        obj.pause();
+	        voice.setAttribute("class", "voice voice_shut");
+	    }
+
+	}
+</script>
+</body>
+</html>
