@@ -289,8 +289,7 @@
     <div class="voice_item"></div>
 </div>
 <!-- 视频 -->
-<video src="http://p1g0rvvn6.bkt.clouddn.com/sunrise.mp4" class="glass" autoplay="" loop=""></video>
-<script type="text/javascript" color="255,255,255" opacity='.8' zIndex="-1" count="480" src="http://cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+<video src="http://p1g0rvvn6.bkt.clouddn.com/sunrise.mp4" id="sunrise" autoplay="" loop=""></video>
 <script>
 console.log(`
 佛曰:
@@ -307,18 +306,33 @@ console.log(`
 面试造火箭，入职扭螺钉
 不会不让进，进了不用做
 `);
+// 动态创建交互线
+var body= document.getElementsByTagName('body')[0];
+var script= document.createElement('script');
+var dw = document.body.offsetWidth;
+var dh = document.body.offsetHeight;
+var sunrise = document.getElementById('sunrise');
+script.type= 'text/javascript';
+script.src= 'http://cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js';
+script.setAttribute('color','255,255,255');
+script.setAttribute('opacity','0.8');
+script.setAttribute('zIndex','-1');
+if(dw<=640){
+    script.setAttribute('count','100');
+    sunrise.style.opacity = 0;
+}else{
+    script.setAttribute('count','480');
+    sunrise.style.opacity = 1;
+}
+body.appendChild(script);
 // 跳转
-document.querySelector('canvas').onclick=function(){
-    window.location.href="./lable.html";
+script.onload=function(){
+    document.getElementsByTagName('canvas')[0].onclick=function(){
+        window.location.href="./lable.html";
+    }
 }
 // 音乐控制
 document.getElementById("voice").onclick=play;
-function GetRandomNum(Min, Max) {
-    var Range = Max - Min;
-    var Rand = Math.random();
-    return (Min + Math.round(Rand * Range));
-}
-
 function play() {
     var voice = document.getElementById('voice');
     var obj = document.getElementById("audios");
