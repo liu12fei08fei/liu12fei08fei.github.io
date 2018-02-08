@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta name="format-detection" content="telephone=no">
+  <title>coohua-loading</title>
+  <style>
+    body{margin:0;padding:0;font-family:'helvetica neue', tahoma, 'hiragino sans gb', stheiti, 'wenquanyi micro hei', Microsoft YaHei, SimSun, sans-serif;line-height:1;}
+    .loading_box{position:relative;z-index:999}
+    .loading_bg{position:fixed;top:0;right:0;bottom:0;left:0;background:rgba(0,0,0,.3)}
+    .loading_circle{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(1)}
+    .loading_circle::before{content:'酷';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;font-size:48px;text-shadow:0 3px 0 rgba(0,0,0,.2)}
+    .loading_item{border:20px solid transparent;border-color:#4DB6AC transparent #4DB6AC #4DB6AC;border-radius:100%;position:relative;background:rgba(255,0,0,0)}
+    .loading_icon{position:absolute;top:-20px;bottom:-20px;width:20px;left:50%;transform:translateX(-50%) rotate(45deg);z-index:1}
+    .loading_icon_bottom{transform:translateX(-50%) rotate(135deg)}
+    .loading_icon::before{content:'';width:20px;height:20px;position:absolute;top:0;right:0;border-radius:50%;background:#4DB6AC}
+    .loading_max{animation:circle 3s linear infinite;height:192px;width:192px;border-color:#000 transparent #000 #000}
+    .loading_max .loading_icon::before{background:#000}
+    .loading_mid{animation:circle 5s linear infinite;height:152px;width:152px;border-color:#2d9344 transparent #2d9344 #2d9344}
+    .loading_mid .loading_icon::before{background:#2d9344}
+    .loading_min{animation:circle 5s linear infinite;height:112px;width:112px;border-color:#e63a31 transparent #e63a31 #e63a31}
+    .loading_min .loading_icon::before{background:#e63a31}
+    @keyframes circle{0%{transform:rotate(0)}
+    100%{transform:rotate(360deg)}
+    }
+  </style>
+</head>
+<body>
+  <div class="loading_box">
+    <div class="loading_bg"></div>
+    <div class="loading_circle">
+      <div class="loading_item loading_max">
+        <div class="loading_icon loading_icon_top"></div>
+        <div class="loading_icon loading_icon_bottom"></div>
+        <div class="loading_item loading_mid">
+          <div class="loading_icon loading_icon_top"></div>
+          <div class="loading_icon loading_icon_bottom"></div>
+          <div class="loading_item loading_min">
+            <div class="loading_icon loading_icon_top"></div>
+            <div class="loading_icon loading_icon_bottom"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
