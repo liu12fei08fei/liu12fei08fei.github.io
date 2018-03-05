@@ -1,0 +1,1286 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title># 前端性能优化必备服务器知识</title>
+<style>
+
+body {
+  background-color: white;
+}
+
+.markdown-body {
+  min-width: 200px;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 20px;
+
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  color: #333;
+  overflow: hidden;
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+.markdown-body a {
+  background: transparent;;word-wrap: break-word; word-break: break-all;
+}
+
+.markdown-body a:active,
+.markdown-body a:hover {
+  outline: 0;
+}
+
+.markdown-body strong {
+  font-weight: bold;
+}
+
+.markdown-body h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+.markdown-body img {
+  border: 0;
+}
+
+.markdown-body hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+
+.markdown-body pre {
+  overflow: auto;
+}
+
+.markdown-body code,
+.markdown-body kbd,
+.markdown-body pre {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+.markdown-body input {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+.markdown-body html input[disabled] {
+  cursor: default;
+}
+
+.markdown-body input {
+  line-height: normal;
+}
+
+.markdown-body input[type="checkbox"] {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.markdown-body table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.markdown-body td,
+.markdown-body th {
+  padding: 0;
+}
+
+.markdown-body * {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body input {
+  font: 13px/1.4 Helvetica, arial, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.markdown-body a {
+  color: #4183c4;
+  text-decoration: none;
+}
+
+.markdown-body a:hover,
+.markdown-body a:focus,
+.markdown-body a:active {
+  text-decoration: underline;
+}
+
+.markdown-body hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.markdown-body hr:before {
+  display: table;
+  content: "";
+}
+
+.markdown-body hr:after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  line-height: 1.1;
+}
+
+.markdown-body h1 {
+  font-size: 30px;
+}
+
+.markdown-body h2 {
+  font-size: 21px;
+}
+
+.markdown-body h3 {
+  font-size: 16px;
+}
+
+.markdown-body h4 {
+  font-size: 14px;
+}
+
+.markdown-body h5 {
+  font-size: 12px;
+}
+
+.markdown-body h6 {
+  font-size: 11px;
+}
+
+.markdown-body blockquote {
+  margin: 0;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body ol ol,
+.markdown-body ul ol {
+  list-style-type: lower-roman;
+}
+
+.markdown-body ul ul ol,
+.markdown-body ul ol ol,
+.markdown-body ol ul ol,
+.markdown-body ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+.markdown-body dd {
+  margin-left: 0;
+}
+
+.markdown-body code {
+  font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+.markdown-body pre {
+  margin-top: 0;
+  margin-bottom: 0;
+  font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+.markdown-body kbd {
+  background-color: #e7e7e7;
+  background-image: -webkit-linear-gradient(#fefefe, #e7e7e7);
+  background-image: linear-gradient(#fefefe, #e7e7e7);
+  background-repeat: repeat-x;
+  border-radius: 2px;
+  border: 1px solid #cfcfcf;
+  color: #000;
+  padding: 3px 5px;
+  line-height: 10px;
+  font: 11px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  display: inline-block;
+}
+
+.markdown-body>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+.markdown-body .anchor {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  padding-right: 6px;
+  padding-left: 30px;
+  margin-left: -30px;
+}
+
+.markdown-body .anchor:focus {
+  outline: none;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  position: relative;
+  margin-top: 1em;
+  margin-bottom: 16px;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.markdown-body h1 .octicon-link,
+.markdown-body h2 .octicon-link,
+.markdown-body h3 .octicon-link,
+.markdown-body h4 .octicon-link,
+.markdown-body h5 .octicon-link,
+.markdown-body h6 .octicon-link {
+  display: none;
+  color: #000;
+  vertical-align: middle;
+}
+
+.markdown-body h1:hover .anchor,
+.markdown-body h2:hover .anchor,
+.markdown-body h3:hover .anchor,
+.markdown-body h4:hover .anchor,
+.markdown-body h5:hover .anchor,
+.markdown-body h6:hover .anchor {
+  height: 1em;
+  padding-left: 8px;
+  margin-left: -30px;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.markdown-body h1:hover .anchor .octicon-link,
+.markdown-body h2:hover .anchor .octicon-link,
+.markdown-body h3:hover .anchor .octicon-link,
+.markdown-body h4:hover .anchor .octicon-link,
+.markdown-body h5:hover .anchor .octicon-link,
+.markdown-body h6:hover .anchor .octicon-link {
+  display: inline-block;
+}
+
+.markdown-body h1 {
+  padding-bottom: 0.3em;
+  font-size: 2.25em;
+  line-height: 1.2;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h2 {
+  padding-bottom: 0.3em;
+  font-size: 1.75em;
+  line-height: 1.225;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h3 {
+  font-size: 1.5em;
+  line-height: 1.43;
+}
+
+.markdown-body h4 {
+  font-size: 1.25em;
+}
+
+.markdown-body h5 {
+  font-size: 1em;
+}
+
+.markdown-body h6 {
+  font-size: 1em;
+  color: #777;
+}
+
+.markdown-body p,
+.markdown-body blockquote,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl,
+.markdown-body table,
+.markdown-body pre {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.markdown-body hr {
+  height: 4px;
+  padding: 0;
+  margin: 16px 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 2em;
+}
+
+.markdown-body ul ul,
+.markdown-body ul ol,
+.markdown-body ol ol,
+.markdown-body ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body li>p {
+  margin-top: 16px;
+}
+
+.markdown-body dl {
+  padding: 0;
+}
+
+.markdown-body dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown-body dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+.markdown-body blockquote {
+  padding: 0 15px;
+  color: #777;
+  border-left: 4px solid #ddd;
+}
+
+.markdown-body blockquote>:first-child {
+  margin-top: 0;
+}
+
+.markdown-body blockquote>:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all;
+}
+
+.markdown-body table th {
+  font-weight: bold;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  padding: 6px 13px;
+  border: 1px solid #ddd;
+}
+
+.markdown-body table tr {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+.markdown-body img {
+  max-width: 100%;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body code {
+  padding: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(0,0,0,0.04);
+  border-radius: 3px;
+}
+
+.markdown-body code:before,
+.markdown-body code:after {
+  letter-spacing: -0.2em;
+  content: "\00a0";
+}
+
+.markdown-body pre>code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+.markdown-body .highlight {
+  margin-bottom: 16px;
+}
+
+.markdown-body .highlight pre,
+.markdown-body pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f7f7f7;
+  border-radius: 3px;
+}
+
+.markdown-body .highlight pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+.markdown-body pre {
+  word-wrap: normal;
+}
+
+.markdown-body pre code {
+  display: inline;
+  max-width: initial;
+  padding: 0;
+  margin: 0;
+  overflow: initial;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+.markdown-body pre code:before,
+.markdown-body pre code:after {
+  content: normal;
+}
+
+.markdown-body .highlight {
+  background: #fff;
+}
+
+.markdown-body .highlight .mf,
+.markdown-body .highlight .mh,
+.markdown-body .highlight .mi,
+.markdown-body .highlight .mo,
+.markdown-body .highlight .il,
+.markdown-body .highlight .m {
+  color: #945277;
+}
+
+.markdown-body .highlight .s,
+.markdown-body .highlight .sb,
+.markdown-body .highlight .sc,
+.markdown-body .highlight .sd,
+.markdown-body .highlight .s2,
+.markdown-body .highlight .se,
+.markdown-body .highlight .sh,
+.markdown-body .highlight .si,
+.markdown-body .highlight .sx,
+.markdown-body .highlight .s1 {
+  color: #df5000;
+}
+
+.markdown-body .highlight .kc,
+.markdown-body .highlight .kd,
+.markdown-body .highlight .kn,
+.markdown-body .highlight .kp,
+.markdown-body .highlight .kr,
+.markdown-body .highlight .kt,
+.markdown-body .highlight .k,
+.markdown-body .highlight .o {
+  font-weight: bold;
+}
+
+.markdown-body .highlight .kt {
+  color: #458;
+}
+
+.markdown-body .highlight .c,
+.markdown-body .highlight .cm,
+.markdown-body .highlight .c1 {
+  color: #998;
+  font-style: italic;
+}
+
+.markdown-body .highlight .cp,
+.markdown-body .highlight .cs {
+  color: #999;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .cs {
+  font-style: italic;
+}
+
+.markdown-body .highlight .n {
+  color: #333;
+}
+
+.markdown-body .highlight .na,
+.markdown-body .highlight .nv,
+.markdown-body .highlight .vc,
+.markdown-body .highlight .vg,
+.markdown-body .highlight .vi {
+  color: #008080;
+}
+
+.markdown-body .highlight .nb {
+  color: #0086B3;
+}
+
+.markdown-body .highlight .nc {
+  color: #458;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .no {
+  color: #094e99;
+}
+
+.markdown-body .highlight .ni {
+  color: #800080;
+}
+
+.markdown-body .highlight .ne {
+  color: #990000;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .nf {
+  color: #945277;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .nn {
+  color: #555;
+}
+
+.markdown-body .highlight .nt {
+  color: #000080;
+}
+
+.markdown-body .highlight .err {
+  color: #a61717;
+  background-color: #e3d2d2;
+}
+
+.markdown-body .highlight .gd {
+  color: #000;
+  background-color: #fdd;
+}
+
+.markdown-body .highlight .gd .x {
+  color: #000;
+  background-color: #faa;
+}
+
+.markdown-body .highlight .ge {
+  font-style: italic;
+}
+
+.markdown-body .highlight .gr {
+  color: #aa0000;
+}
+
+.markdown-body .highlight .gh {
+  color: #999;
+}
+
+.markdown-body .highlight .gi {
+  color: #000;
+  background-color: #dfd;
+}
+
+.markdown-body .highlight .gi .x {
+  color: #000;
+  background-color: #afa;
+}
+
+.markdown-body .highlight .go {
+  color: #888;
+}
+
+.markdown-body .highlight .gp {
+  color: #555;
+}
+
+.markdown-body .highlight .gs {
+  font-weight: bold;
+}
+
+.markdown-body .highlight .gu {
+  color: #800080;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .gt {
+  color: #aa0000;
+}
+
+.markdown-body .highlight .ow {
+  font-weight: bold;
+}
+
+.markdown-body .highlight .w {
+  color: #bbb;
+}
+
+.markdown-body .highlight .sr {
+  color: #017936;
+}
+
+.markdown-body .highlight .ss {
+  color: #8b467f;
+}
+
+.markdown-body .highlight .bp {
+  color: #999;
+}
+
+.markdown-body .highlight .gc {
+  color: #999;
+  background-color: #EAF2F5;
+}
+
+.markdown-body .octicon {
+  line-height: 1;
+  display: inline-block;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.markdown-body .octicon-link:before {
+  content: '\f05c';
+}
+
+.markdown-body .task-list-item {
+  list-style-type: none;
+}
+
+.markdown-body .task-list-item+.task-list-item {
+  margin-top: 3px;
+}
+
+.markdown-body .task-list-item input {
+  float: left;
+  margin: 0.3em 0 0.25em -1.6em;
+  vertical-align: middle;
+}
+table td{ word-wrap: break-word !important; word-break: break-all !important; }
+/*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+  -webkit-text-size-adjust: none;
+}
+
+.hljs-comment,
+.diff .hljs-header {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.css .rule .hljs-keyword,
+.hljs-winutils,
+.nginx .hljs-title,
+.hljs-subst,
+.hljs-request,
+.hljs-status {
+  color: #333;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-hexcolor,
+.ruby .hljs-constant {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-tag .hljs-value,
+.hljs-doctag,
+.tex .hljs-formula {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-id,
+.scss .hljs-preprocessor {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-list .hljs-keyword,
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-class .hljs-title,
+.hljs-type,
+.vhdl .hljs-literal,
+.tex .hljs-command {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-tag .hljs-title,
+.hljs-rule .hljs-property,
+.django .hljs-tag .hljs-keyword {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-attribute,
+.hljs-variable,
+.lisp .hljs-body,
+.hljs-name {
+  color: #008080;
+}
+
+.hljs-regexp {
+  color: #009926;
+}
+
+.hljs-symbol,
+.ruby .hljs-symbol .hljs-string,
+.lisp .hljs-keyword,
+.clojure .hljs-keyword,
+.scheme .hljs-keyword,
+.tex .hljs-special,
+.hljs-prompt {
+  color: #990073;
+}
+
+.hljs-built_in {
+  color: #0086b3;
+}
+
+.hljs-preprocessor,
+.hljs-pragma,
+.hljs-pi,
+.hljs-doctype,
+.hljs-shebang,
+.hljs-cdata {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.diff .hljs-change {
+  background: #0086b3;
+}
+
+.hljs-chunk {
+  color: #aaa;
+}
+
+
+</style>
+<style> @media print{ .hljs{overflow: visible; word-wrap: break-word !important;} }</style></head><body><div class="markdown-body">
+<h1 id="toc_0">前端性能优化必备服务器知识</h1>
+
+<ul>
+<li>
+<a href="#toc_0">前端性能优化必备服务器知识</a>
+<ul>
+<li>
+<a href="#toc_1">性能优化的本质</a>
+</li>
+<li>
+<a href="#toc_2">成本</a>
+</li>
+<li>
+<a href="#toc_3">浏览器加载顺序，处理HTML的整个过程</a>
+<ul>
+<li>
+<a href="#toc_4">参数说明</a>
+</li>
+<li>
+<a href="#toc_5">模块说明</a>
+<ul>
+<li>
+<a href="#toc_6">CSS渲染是在unload之后</a>
+</li>
+<li>
+<a href="#toc_7">JS修改HTML结构，是重新触发Processing过程</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_8">DNS详解</a>
+<ul>
+<li>
+<a href="#toc_9">DNS介绍</a>
+</li>
+<li>
+<a href="#toc_10">顶级域名</a>
+</li>
+<li>
+<a href="#toc_11">域名资源记录</a>
+</li>
+<li>
+<a href="#toc_12">域名服务器</a>
+</li>
+<li>
+<a href="#toc_13">域名解析</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_14">TCP三次握手≈</a>
+</li>
+<li>
+<a href="#toc_15">TCP四次挥手-断开TCP连接</a>
+</li>
+<li>
+<a href="#toc_16">CDN与集群</a>
+<ul>
+<li>
+<a href="#toc_17">CDN</a>
+</li>
+<li>
+<a href="#toc_18">云服务</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<h2 id="toc_1">性能优化的本质</h2>
+
+<ul>
+<li>前端优化不是说，代码写的效率有多高，玩一些编码上的技巧，实际的优化不是这样的；这种只是代码层面的优化</li>
+<li>代码层面的优化是有限的，实际我们需要在这个项目周期中的各个环节进行优化</li>
+<li>找到周期内，各个环节中的性能瓶颈，把瓶颈消除掉，是整体性的优化，这才是真正的性能优化</li>
+<li>源代码上的优化实际上是算法上的优化</li>
+</ul>
+
+<h2 id="toc_2">成本</h2>
+
+<ul>
+<li>n个合作伙伴完成一件事情的成本是n+1或者更多</li>
+<li>因为有沟通成本在里面，即使一个人做事情，也是有沟通成本的</li>
+<li>自己和自己商量怎么做更好</li>
+</ul>
+
+<h2 id="toc_3">浏览器加载顺序，处理HTML的整个过程</h2>
+
+<ul>
+<li>浏览器实现标准</li>
+<li>处理流程</li>
+</ul>
+
+<p><img src="http://p1fg8xetu.bkt.clouddn.com/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8A%A0%E8%BD%BD%E9%A1%BA%E5%BA%8F.png" alt="浏览器加载顺序"/></p>
+
+<h3 id="toc_4">参数说明</h3>
+
+<ul>
+<li>navigationStart 加载起始时间</li>
+<li>redirectStart 重定向开始时间（如果发生了HTTP重定向，每次重定向都和当前文档同域的话，就返回开始重定向的fetchStart的值。其他情况，则返回0）</li>
+<li>redirectEnd 重定向结束时间（如果发生了HTTP重定向，每次重定向都和当前文档同域的话，就返回最后一次重定向接受完数据的时间。其他情况则返回0）</li>
+<li>fetchStart 浏览器发起资源请求时，如果有缓存，则返回读取缓存的开始时间</li>
+<li>domainLookupStart 查询DNS的开始时间。如果请求没有发起DNS请求，如keep-alive，缓存等，则返回fetchStart</li>
+<li>domainLookupEnd 查询DNS的结束时间。如果没有发起DNS请求，同上 </li>
+<li>connectStart 开始建立TCP请求的时间。如果请求是keep-alive，缓存等，则返回domainLookupEnd</li>
+<li>(secureConnectionStart) 如果在进行TLS或SSL，则返回握手时间，安全连接</li>
+<li>connectEnd 完成TCP链接的时间。如果是keep-alive，缓存等，同connectStart</li>
+<li>requestStart 发起请求的时间</li>
+<li>responseStart 服务器开始响应的时间</li>
+</ul>
+
+<h3 id="toc_5">模块说明</h3>
+
+<p><strong>prompt for unload 提示卸载</strong></p>
+
+<ul>
+<li>处理之前页面的流程</li>
+</ul>
+
+<p><strong>redirect 重定向</strong></p>
+
+<ul>
+<li>从这开始处理新页面的流程</li>
+<li>处理缓存和跳转，进行本地跳转，不是服务器端跳转</li>
+</ul>
+
+<p><strong>app cache 应用程序缓存</strong></p>
+
+<ul>
+<li>处理本地缓存，本地有缓存，取本地缓存，没有缓存，直接跳过</li>
+</ul>
+
+<p><em>unload 卸载</em></p>
+
+<blockquote>
+<p>把前面页面中，缓存在内存中的数据，清除掉<br/>
+同时，把页面中已经显示的页面数据清除掉</p>
+</blockquote>
+
+<p><strong>dns DNS</strong></p>
+
+<blockquote>
+<p>这里的DNS是本地路由器，路由器实际是负责DNS中转<br/>
+真正的DNS服务器，是存在运营商端，运营商会把DNS服务器地址发过来</p>
+</blockquote>
+
+<ul>
+<li>本地没有缓存，需要请求服务器资源</li>
+<li>进行域名解析，拿到服务器真实ip</li>
+</ul>
+
+<p><strong>tcp TCP</strong></p>
+
+<ul>
+<li>拿到服务器ip，网络传输层，开始工作</li>
+<li>先建立TCP连接，只有建立了TCP连接，HTTP才能工作</li>
+</ul>
+
+<p><em>TCP and HTTP relation</em></p>
+
+<blockquote>
+<p>TCP是路<br/>
+HTTP是车<br/>
+没有路，没法发车</p>
+</blockquote>
+
+<p><strong>request 请求</strong></p>
+
+<ul>
+<li>HTTP开始发车</li>
+<li>向服务器发出请求</li>
+</ul>
+
+<p><strong>response 响应</strong></p>
+
+<ul>
+<li>服务器返回响应</li>
+</ul>
+
+<p><strong>processing 处理</strong></p>
+
+<ul>
+<li>处理请求过来的资源=&gt;html/css/js/image/video/audio...</li>
+<li>请求回来的数据，是已二进制的形式存储在内存中</li>
+<li>需要把二进制数据进行处理，处理成适当的格式</li>
+<li>processing主要是处理HTML的，即DOM树解析和渲染</li>
+</ul>
+
+<p><em>dom loading DOM加载</em></p>
+
+<blockquote>
+<p>开始解析dom文档<br/>
+开始解析并渲染dom树<br/>
+格式化成dom树</p>
+</blockquote>
+
+<p><em>dom interactive DOM交互</em></p>
+
+<blockquote>
+<p>dom树解析完毕<br/>
+html本身就是文本文件，只不过内部承载了信息</p>
+</blockquote>
+
+<p><em>dom content loaded DOM加载的内容</em></p>
+
+<blockquote>
+<p>处理dom树，是CPU+内存协同完成<br/>
+通过流水线的形式，进行工作<br/>
+处理完成放在内存指定的位置中</p>
+</blockquote>
+
+<p><em>dom complete DOM完成</em></p>
+
+<blockquote>
+<p>整个DOM操作完成，走下生产线</p>
+</blockquote>
+
+<p><em>load event start 负载的启</em><br/>
+<em>load event end Load事件结束</em></p>
+
+<blockquote>
+<p>进行页面渲染<br/>
+浏览器通过unload先处理，整个浏览器环境<br/>
+然后在触发开发人员自己书写的unload事件<br/>
+然后交给显存里面，显卡把显存里面的信息拿出来，进行渲染</p>
+</blockquote>
+
+<h4 id="toc_6">CSS渲染是在unload之后</h4>
+
+<ul>
+<li>也就是HTML解析完成之后</li>
+</ul>
+
+<h4 id="toc_7">JS修改HTML结构，是重新触发Processing过程</h4>
+
+<ul>
+<li>只是改变html文档的部分内容</li>
+</ul>
+
+<h2 id="toc_8">DNS详解</h2>
+
+<h3 id="toc_9">DNS介绍</h3>
+
+<ul>
+<li>DNS是Domain Name System，域名系统，用于将域名转换为IP</li>
+<li>本质就是数据的映射，处理关联关系，即key =&gt; value</li>
+<li>域名=&gt;more IP，即一个域名对应多个IP</li>
+</ul>
+
+<h3 id="toc_10">顶级域名</h3>
+
+<ul>
+<li>域名级别是网址分类的一个标准，包括顶级域名、二级域名等。</li>
+<li>一个完整的域名由二个或二个以上部分组成，各部分之间用英文的句号&quot;.&quot;来分隔，倒数第一个&quot;.&quot;的右边部分称为顶级域名（TLD，也称为一级域名，包含一个合法字符串，和一个域名后缀），顶级域名的左边部分字符串到下个&quot;.&quot;为止称为二级域名（SLD），二级域名的左边部分称为三级域名，以此类推，每一级的域名控制它下一级域名的分配。</li>
+</ul>
+
+<h3 id="toc_11">域名资源记录</h3>
+
+<ul>
+<li>域名后面对应的是什么</li>
+<li>资源服务</li>
+</ul>
+
+<h3 id="toc_12">域名服务器</h3>
+
+<ul>
+<li>域名和IP对应关系，保存在服务器上</li>
+<li>接收域名转换服务的机器，即：域名服务器</li>
+<li>域名服务器，内容包括：域名和IP对应的数据库、实现DNS通信协议的程序（DNS服务程序）</li>
+</ul>
+
+<h3 id="toc_13">域名解析</h3>
+
+<ul>
+<li>是一个动作</li>
+<li>我们发送域名，域名服务器返回指定IP，这个过程叫做域名解析</li>
+</ul>
+
+<p><strong>DNS服务器</strong></p>
+
+<ul>
+<li>树形结构</li>
+<li>具有等级：全世界共有13台根域名服务器</li>
+</ul>
+
+<p><strong>根域名服务器</strong></p>
+
+<ul>
+<li>根服务器主要用来管理互联网的主目录，全世界只有13台（这13台根域名服务器名字分别为“A”至“M”），1个为主根服务器在美国。其余12个均为辅根服务器，其中9个在美国，欧洲2个，位于英国和瑞典，亚洲1个位于日本。</li>
+</ul>
+
+<h2 id="toc_14">TCP三次握手≈</h2>
+
+<p><strong>为什么要挥手（为什么要断开链路）？</strong></p>
+
+<ul>
+<li>因为服务器维持连接要消耗系统资源（内存、CPU...）</li>
+<li>数据传输：带宽数据(实际我们要传输的数据)+带外数据(维持这个链路的其他数据，是一种损耗，由计算机处理，即：费电、损耗硬件)</li>
+</ul>
+
+<p><strong>TCP和UDP</strong></p>
+
+<ul>
+<li>TCP是要创建稳定的链路，即：打电话</li>
+<li>UDP只管传输，至于到没到不知道，即网络，好比-用喇叭通知</li>
+</ul>
+
+<p><strong>s三次握手是什么？</strong></p>
+
+<ul>
+<li>TCP在进行连接的时候的一种连接机制</li>
+<li>目的：是为了建立一个稳定的链路</li>
+<li>怎么建立一个稳定的链路？</li>
+</ul>
+
+<p><strong>为什么三次握手？</strong></p>
+
+<ul>
+<li>从流程上证明，必须经过三次交互才能确定，两边形成了稳定的链路（数学上进行了证明）</li>
+<li>消息传输是畅通的，无论是发出消息还是返回消息，都能够正常的接收</li>
+<li>第一次是客户端发起请求，SYN seq=x，发送数据包</li>
+<li>传输的数据顺序不一定是我们传输的顺序，原因是我们不知道数据走的是哪个路由器</li>
+<li>所以需要传输顺序号，接收端通过顺序号，把接收到的信息进行组装，seq=x</li>
+<li>还有应答号，ack=x+1、服务器返回自己的顺序号seq=y</li>
+</ul>
+
+<p><strong>为什么会不稳定？</strong></p>
+
+<ul>
+<li>原因是，传输层后面具有，网络层、数据链路层、物理层</li>
+<li>TCP错误会直接返回到HTTP层</li>
+</ul>
+
+<p><strong>例子</strong></p>
+
+<pre><code>“喂，你听得到吗？”
+“我听得到呀，你听得到我吗？”
+“我能听到你，今天balabala……”
+</code></pre>
+
+<h2 id="toc_15">TCP四次挥手-断开TCP连接</h2>
+
+<ul>
+<li>一般是客户端主动发起断开请求</li>
+<li>服务器也可以主动断开，只有一件事情发生，即：超时</li>
+<li>或者说服务器认为客户端有问题，做了非法操作</li>
+<li>在正常的流程中，一般是客户端主动发起断开请求</li>
+<li>开始发送断开请求包，服务器收到请求包的时候，需要给出应答</li>
+<li>服务器会再发送一条确认数据，客户端进行确认传输</li>
+</ul>
+
+<p><strong>为什么不能三次挥手？</strong></p>
+
+<ul>
+<li>因为数据传输是双向的</li>
+<li>客户端确认没有数据发送</li>
+<li>服务器也要确认自己是否还有数据进行传输</li>
+</ul>
+
+<p><strong>为什么服务器连续发送两次，而不是发送一次包？</strong></p>
+
+<ul>
+<li>因为服务器要检查自己的状态</li>
+<li>为了减少响应时间，分开发送</li>
+</ul>
+
+<p><strong>查看浏览器和服务器之间有多少个路由</strong></p>
+
+<pre><code>// linux and mac
+traceroute www.baidu.com
+
+// windows
+tracert www.baidu.com
+</code></pre>
+
+<ul>
+<li>把经过的路由ip全部展示出来</li>
+<li>星号(*)表示隐藏的路由器</li>
+</ul>
+
+<p><strong>tcpdump</strong></p>
+
+<ul>
+<li>用来抓包的</li>
+<li>安装<code>yum install tcpdump</code></li>
+<li><code>tcpdump -i eth0 tcp</code></li>
+</ul>
+
+<blockquote>
+<p><code>-i</code>接口<br/>
+监听物理网卡所有的包，tcp的包</p>
+</blockquote>
+
+<ul>
+<li><code>tcpdump -i eth0 host 61.135.169.121</code></li>
+<li>监听百度的连接</li>
+</ul>
+
+<blockquote>
+<p><code>61.135.169.121</code>是通过<code>ping www.baidu.com</code></p>
+</blockquote>
+
+<p><strong>ifconfig</strong></p>
+
+<ul>
+<li><code>eth0</code>物理网卡</li>
+<li><code>lo</code>本地环路地址，虚拟网卡</li>
+</ul>
+
+<p><strong>curl</strong></p>
+
+<ul>
+<li>命令行请求网站</li>
+</ul>
+
+<h2 id="toc_16">CDN与集群</h2>
+
+<h3 id="toc_17">CDN</h3>
+
+<ul>
+<li>是一种分布式的方案</li>
+</ul>
+
+<p><strong>传统的方案，就是服务器就是一台</strong></p>
+
+<ul>
+<li>服务器压力过大</li>
+<li>客户端可能在不同的地理位置(跨越的路由过多)、不同的网络里面(运营商的网)</li>
+<li>会导致请求反应很慢</li>
+<li>CDN就是用来加速的</li>
+<li>可以使用市场上的CDN服务，只需要简单的配置即可</li>
+</ul>
+
+<blockquote>
+<p>为了解决这些问题，采用多台服务器，都是镜像服务器<br/>
+目的就是追求最快的响应<br/>
+CDN非常复杂，有专门的上市公司做这块</p>
+</blockquote>
+
+<h3 id="toc_18">云服务</h3>
+
+<ul>
+<li>不是CDN，是分布式的一种应用</li>
+</ul>
+
+</div></body>
+
+</html>
