@@ -4,8 +4,9 @@
 <meta charset="utf-8">
 <title># 雅虎军规</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-<meta name="format-detection" content="telephone=no">
+  <meta name="format-detection" content="telephone=no">
 <style>
+
 body {
   background-color: white;
 }
@@ -871,7 +872,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <a href="#toc_10">8.跨域分离组件</a>
 </li>
 <li>
-<a href="#toc_11">9.尽量少用iframe</a>
+<a href="#toc_11">9.尽量少用<code>iframe</code></a>
 </li>
 <li>
 <a href="#toc_12">10.杜绝404</a>
@@ -1097,13 +1098,13 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <li>分离组件可以最大化并行下载，但要确保只用不超过2-4个域，因为存在DNS查找的代价。例如，可以把HTML和动态内容部署在<code>www.example.org</code>，而把静态组件分离到<code>static1.example.org</code>和<code>static2.example.org</code>。</li>
 </ul>
 
-<h3 id="toc_11">9.尽量少用iframe</h3>
+<h3 id="toc_11">9.尽量少用<code>iframe</code></h3>
 
 <ul>
-<li>用iframe可以把一个HTML文档插入到父文档里，重要的是明白iframe是如何工作的并高效地使用它。</li>
+<li>用<code>iframe</code>可以把一个HTML文档插入到父文档里，重要的是明白<code>iframe</code>是如何工作的并高效地使用它。</li>
 </ul>
 
-<p><strong><iframe>的优点：</strong></p>
+<p><strong><code>&lt;iframe&gt;</code>的优点：</strong></p>
 
 <ul>
 <li>引入缓慢的第三方内容，比如标志和广告</li>
@@ -1111,10 +1112,10 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <li>并行下载脚本</li>
 </ul>
 
-<p><strong><iframe>的缺点：</strong></p>
+<p><strong><code>&lt;iframe&gt;</code>的缺点：</strong></p>
 
 <ul>
-<li>代价高昂，即使是空白的iframe</li>
+<li>代价高昂，即使是空白的<code>iframe</code></li>
 <li>阻塞页面加载</li>
 <li>非语义</li>
 </ul>
