@@ -841,47 +841,56 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <a href="#toc_0">webpack</a>
 <ul>
 <li>
-<a href="#toc_1">html-webpack-plugin</a>
+<a href="#toc_1">项目代码</a>
 </li>
 <li>
-<a href="#toc_2">bable-loader</a>
+<a href="#toc_2">html-webpack-plugin</a>
 </li>
 <li>
-<a href="#toc_3">webpack-dev-server</a>
+<a href="#toc_3">bable-loader</a>
 </li>
 <li>
-<a href="#toc_4">style-loadercss-loader</a>
+<a href="#toc_4">webpack-dev-server</a>
 </li>
 <li>
-<a href="#toc_5">file-loader</a>
+<a href="#toc_5">style-loadercss-loader</a>
 </li>
 <li>
-<a href="#toc_6">url-loader</a>
+<a href="#toc_6">file-loader</a>
 </li>
 <li>
-<a href="#toc_7">引入字体</a>
+<a href="#toc_7">url-loader</a>
 </li>
 <li>
-<a href="#toc_8">css模块化</a>
+<a href="#toc_8">引入字体</a>
 </li>
 <li>
-<a href="#toc_9">sass</a>
+<a href="#toc_9">css模块化</a>
 </li>
 <li>
-<a href="#toc_10">自动清除指定文件夹</a>
+<a href="#toc_10">sass</a>
+</li>
+<li>
+<a href="#toc_11">自动清除指定文件夹</a>
 </li>
 </ul>
 </li>
 </ul>
 
 
-<h2 id="toc_1">html-webpack-plugin</h2>
+<h2 id="toc_1">项目代码</h2>
+
+<ul>
+<li><a href="https://github.com/liu12fei08fei/webpack4.git">webpack4代码</a></li>
+</ul>
+
+<h2 id="toc_2">html-webpack-plugin</h2>
 
 <ul>
 <li>自动生成html文件，并插入设定的内容</li>
 </ul>
 
-<h2 id="toc_2">bable-loader</h2>
+<h2 id="toc_3">bable-loader</h2>
 
 <ul>
 <li>实现es6转es5语法</li>
@@ -889,7 +898,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <li>把render生成的js进行转化</li>
 </ul>
 
-<h2 id="toc_3">webpack-dev-server</h2>
+<h2 id="toc_4">webpack-dev-server</h2>
 
 <ul>
 <li>一个小型的<code>Node.js Express</code>服务器</li>
@@ -908,7 +917,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <li>在webpack.config中，和entry同级下，进行配置</li>
 </ul>
 
-<h2 id="toc_4">style-loader\css-loader</h2>
+<h2 id="toc_5">style-loader\css-loader</h2>
 
 <ul>
 <li>style-loader把css文件动态的插入到html中</li>
@@ -916,7 +925,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <li>css-loader使你能够使用类似@import和url（...）的方法实现require的功能，style-loader将所有的计算后的样式加入页面中，二者组合在一起使你能够把样式表嵌入webpack打包后的js文件中。</li>
 </ul>
 
-<h2 id="toc_5">file-loader</h2>
+<h2 id="toc_6">file-loader</h2>
 
 <ul>
 <li>引入css中url图片，引入html中img图片</li>
@@ -925,7 +934,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <li><code>options=&gt;name</code>默认：<code>[hash].[ext]</code>，ext是文件名</li>
 </ul>
 
-<h2 id="toc_6">url-loader</h2>
+<h2 id="toc_7">url-loader</h2>
 
 <ul>
 <li>增强型的file-loader</li>
@@ -935,7 +944,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <li>超出限制的图片，使用file-loader来进行复制并引入；这里就体现了增强能力</li>
 </ul>
 
-<h2 id="toc_7">引入字体</h2>
+<h2 id="toc_8">引入字体</h2>
 
 <blockquote>
 <p>webpack匹配的时候，会忽略?后面的字符，也就是为什么能够匹配到woff2?a...</p>
@@ -952,7 +961,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <li>之前写的时候，缺少了<code>woff2</code></li>
 </ul>
 
-<h2 id="toc_8">css模块化</h2>
+<h2 id="toc_9">css模块化</h2>
 
 <ul>
 <li><code>css-loader</code>中的<code>options</code>中<code>modules: true</code></li>
@@ -983,13 +992,13 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <li>hash:base64:8是hash编码，base64格式，8位数值</li>
 </ul>
 
-<h2 id="toc_9">sass</h2>
+<h2 id="toc_10">sass</h2>
 
 <ul>
 <li>webpack使用<code>sass-loader</code>进行处理，依赖<code>node-sass</code></li>
 </ul>
 
-<h2 id="toc_10">自动清除指定文件夹</h2>
+<h2 id="toc_11">自动清除指定文件夹</h2>
 
 <ul>
 <li>每次重新打包都需要手动把之前的文件删除掉</li>
