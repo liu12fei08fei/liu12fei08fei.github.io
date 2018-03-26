@@ -6,7 +6,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
 <meta name="format-detection" content="telephone=no">
 <style>
-
 body {
   background-color: white;
 }
@@ -842,47 +841,50 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <a href="#toc_0">模块化进化史</a>
 <ul>
 <li>
-<a href="#toc_1">简介-问题</a>
+<a href="#toc_1">模块带来的产物=&gt;tree-shaking</a>
 </li>
 <li>
-<a href="#toc_2">全局function</a>
+<a href="#toc_2">简介-问题</a>
 </li>
 <li>
-<a href="#toc_3">命名空间</a>
+<a href="#toc_3">全局function</a>
 </li>
 <li>
-<a href="#toc_4">IIFE模式-匿名函数自执行</a>
+<a href="#toc_4">命名空间</a>
 </li>
 <li>
-<a href="#toc_5">通过IIFE进行简单演化，使得一个模块只做一件事情</a>
+<a href="#toc_5">IIFE模式-匿名函数自执行</a>
 </li>
 <li>
-<a href="#toc_6">模块化规范</a>
+<a href="#toc_6">通过IIFE进行简单演化，使得一个模块只做一件事情</a>
+</li>
+<li>
+<a href="#toc_7">模块化规范</a>
 <ul>
 <li>
-<a href="#toc_7">CommonJS</a>
+<a href="#toc_8">CommonJS</a>
 <ul>
 <li>
-<a href="#toc_8">实现</a>
+<a href="#toc_9">实现</a>
 </li>
 </ul>
 </li>
 <li>
-<a href="#toc_9">ES6模块</a>
+<a href="#toc_10">ES6模块</a>
 <ul>
 <li>
-<a href="#toc_10">规范</a>
+<a href="#toc_11">规范</a>
 <ul>
 <li>
-<a href="#toc_11">常规暴露</a>
+<a href="#toc_12">常规暴露</a>
 </li>
 <li>
-<a href="#toc_12">默认暴露</a>
+<a href="#toc_13">默认暴露</a>
 </li>
 </ul>
 </li>
 <li>
-<a href="#toc_13">实现</a>
+<a href="#toc_14">实现</a>
 </li>
 </ul>
 </li>
@@ -893,7 +895,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </ul>
 
 
-<h2 id="toc_1">简介-问题</h2>
+<h2 id="toc_1"><a href="https://github.com/liu12fei08fei/tree-shaking">模块带来的产物=&gt;tree-shaking</a></h2>
+
+<h2 id="toc_2">简介-问题</h2>
 
 <ul>
 <li><p>模块化的出现是因为，前端开发遇到了问题，正是这些问题导致了技术的迭代和进步</p></li>
@@ -919,7 +923,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 <li>以上的现象就是导致了这样会很难维护。很可能出现牵一发而动全身的情况，导致项目出现严重的问题</li>
 </ol>
 
-<h2 id="toc_2">全局function</h2>
+<h2 id="toc_3">全局function</h2>
 
 <blockquote>
 <p>全局函数模式：将不同的功能封装成不同的全局函数</p>
@@ -937,7 +941,7 @@ function getName(){
 <li>缺点2：容易命名冲突</li>
 </ul>
 
-<h2 id="toc_3">命名空间</h2>
+<h2 id="toc_4">命名空间</h2>
 
 <ul>
 <li><code>namespace</code>模式：简单对象封装</li>
@@ -956,7 +960,7 @@ function getName(){
 <li>缺点2：容易命名冲突</li>
 </ul>
 
-<h2 id="toc_4">IIFE模式-匿名函数自执行</h2>
+<h2 id="toc_5">IIFE模式-匿名函数自执行</h2>
 
 <ul>
 <li>IFEE模式：匿名函数自调用（闭包）</li>
@@ -973,7 +977,7 @@ function getName(){
 })(window);
 </code></pre>
 
-<h2 id="toc_5">通过IIFE进行简单演化，使得一个模块只做一件事情</h2>
+<h2 id="toc_6">通过IIFE进行简单演化，使得一个模块只做一件事情</h2>
 
 <ul>
 <li>IIFE模式增强：引入依赖</li>
@@ -989,7 +993,7 @@ function getName(){
 })(window);
 </code></pre>
 
-<h2 id="toc_6">模块化规范</h2>
+<h2 id="toc_7">模块化规范</h2>
 
 <blockquote>
 <p>CommonJS：node就是基于此，进行模块化开发的<br/>
@@ -998,7 +1002,7 @@ CMD：只了解，阿里人写的，适用范围不广；卖给了国外，很�
 es6</p>
 </blockquote>
 
-<h3 id="toc_7">CommonJS</h3>
+<h3 id="toc_8">CommonJS</h3>
 
 <ul>
 <li>每个文件都可当做一个模块</li>
@@ -1040,7 +1044,7 @@ export.xxx = value;
 <li>自定义模块：xxx为模块文件路径</li>
 </ul>
 
-<h4 id="toc_8">实现</h4>
+<h4 id="toc_9">实现</h4>
 
 <p><strong>服务器端实现</strong></p>
 
@@ -1055,9 +1059,9 @@ export.xxx = value;
 <li>也称为CommonJS的浏览器端的打包工具</li>
 </ul>
 
-<h3 id="toc_9">ES6模块</h3>
+<h3 id="toc_10">ES6模块</h3>
 
-<h4 id="toc_10">规范</h4>
+<h4 id="toc_11">规范</h4>
 
 <ul>
 <li>依赖模块需要编译打包处理</li>
@@ -1070,7 +1074,7 @@ export.xxx = value;
 <li>引入模块：<code>import</code></li>
 </ul>
 
-<h5 id="toc_11">常规暴露</h5>
+<h5 id="toc_12">常规暴露</h5>
 
 <p><strong>使用-分别暴露</strong></p>
 
@@ -1085,13 +1089,13 @@ var job = 2;
 export {age,job}
 </code></pre>
 
-<h5 id="toc_12">默认暴露</h5>
+<h5 id="toc_13">默认暴露</h5>
 
 <ul>
 <li>可以暴露任意数据类型，暴露什么数据接收到的就是什么数据</li>
 </ul>
 
-<h4 id="toc_13">实现</h4>
+<h4 id="toc_14">实现</h4>
 
 <ul>
 <li>Babel</li>
