@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>返回截流</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" >
+	<meta name="format-detection" content="telephone=no" >
+</head>
+<style>
+body{margin:0;padding:0;font-family:'helvetica neue', tahoma, 'hiragino sans gb', stheiti, 'wenquanyi micro hei', \5FAE\8F6F\96C5\9ED1, \5B8B\4F53, sans-serif;line-height:1;}
+a{padding:100px;background:rgba(0,0,0,.3);}
+.box{height:60px;line-height:60px;text-align:center;font-size:30px;background:red;color:#fff;}
+</style>
+<body>
+<h1>今日截流页面</h1>
+<div class="box">取消</div>
+<script src="./js/jq.js"></script>
+<script>
+var timer = setTimeout(function(){
+	window.location.hash = 1;
+},10);
+var switchBoo = true;
+$(window).on('hashchange',function(){
+	var hash = window.location.hash.substr(1);
+	var url = './red.html';
+	// 为空表示用户要离开
+	if(hash===''){
+		// 离开页面之前
+		// window.location.assign(url);
+		if(switchBoo){
+			window.location.replace(url);
+		}else{
+			history.go(-1);
+		}
+	}else{
+		// 进入页面之后
+		console.log('进入页面之后!');
+	}
+});
+document.querySelector('.box').onclick=function(){
+	switchBoo = false;
+	alert('好的');
+}
+</script>
+</body>
+</html>

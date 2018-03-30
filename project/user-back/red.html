@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+    <meta name="format-detection" content="telephone=no">
+    <title>幸运红包</title>
+    <style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'helvetica neue', tahoma, 'hiragino sans gb', stheiti, 'wenquanyi micro hei', Microsoft YaHei, SimSun, sans-serif;
+        line-height: 1;
+        background: #4c4c4c;
+    }
+    .red__box{position:fixed;top:50%;left:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);-webkit-transform-style:preserve-3d;transform-style:preserve-3d;-webkit-perspective:8000px;perspective:8000px}
+    .red__box .title{font-size:18px;text-align:center;color:#fff;padding-bottom:16px}
+    .red__box .box{width:280px;height:360px;background:#d64f47;border-radius:6px;margin:0 auto;position:relative;overflow:hidden}
+    .red__box .inner{position:absolute;top:0;left:-40px;right:-40px;bottom:40%;z-index:1;background:-webkit-gradient(linear,left top, left bottom,from(#db564d),to(#a5352f));background:linear-gradient(to bottom,#db564d,#a5352f);-webkit-box-shadow:0 1px 2px 0 #c0423c;box-shadow:0 1px 2px 0 #c0423c;z-index:1;height:215px;border-radius:0 0 50% 50%;overflow:hidden;}
+    .red__box .money::after{content:'';background:#fffae4;position:absolute;top:-10px;left:-10px;right:-10px;bottom:0;border-radius:10px;z-index:-1}
+    .red__box .money::before{content:'';position:absolute;top:0;bottom:0;right:0;left:0;border:solid 1px #fbd3ad;border-radius:10px}
+    .red__box .money{content:'';font-size:56px;color:#c39343;position:absolute;top:30px;right:70px;left:70px;border-radius:10px;bottom:0;z-index:3;background:#fffae4;text-align:center;padding-top:66px}
+    .red__box .inner span{font-size:24px;padding-left:2px}
+    .red__box .info{position:absolute;left:0;bottom:0;right:0;top:215px;text-align:center;padding-top:6px;}
+    .red__box .mname{font-size:16px;color:#FBD3AD;line-height:1.4;}
+    .red__box .mbtn{background:-webkit-gradient(linear,left top, left bottom,from(#DB695A),to(#B42813));background:linear-gradient(to bottom,#DB695A,#B42813);border-radius:6px;font-size:16px;color:#fff;text-align:center;line-height:45px;height:45px;margin:8px auto 0;-webkit-box-shadow:0 2px 6px 0 rgba(59,7,0,.5);box-shadow:0 2px 6px 0 rgba(59,7,0,.5);display:table;padding:0 12px;}
+    .red__box .firm{font-size:14px;color:#FF968C;position:absolute;left:12px;right:12px;bottom:12px;text-align:center;}
+    .red__box .firm::before{content:'';width:5px;height:5px;background:#F5786B;border-radius:50%;position:absolute;bottom:0;left:0;}
+    .red__box .firm::after{content:'';width:5px;height:5px;background:#F5786B;border-radius:50%;position:absolute;bottom:0;right:0;}
+    .red__box .outer{color:#FBD3AD;position:absolute;top:0;left:-40px;right:-40px;bottom:40%;z-index:1;background:#DB564D;-webkit-box-shadow:0 1px 2px 0 #c0423c;box-shadow:0 1px 2px 0 #c0423c;z-index:1;height:215px;border-radius:0 0 50% 50%;overflow:hidden;-webkit-box-shadow:0 1px 2px 0 #C0423C;box-shadow:0 1px 2px 0 #C0423C;text-align:center;line-height:1.5;-webkit-box-sizing:border-box;box-sizing:border-box;}
+    .red__box .oname{font-size:30px;padding-top:47px;}
+    .red__box .odesc{font-size:16px;padding-top:8px;}
+    .red__box .open{width:100px;height:100px;border-radius:50%;background:#DBBB86;-webkit-box-shadow:0 1px 2px 0 #C0423C,0 0 0 5px #DBBB86 inset,0 0 0 6px #CEAC79 inset;box-shadow:0 1px 2px 0 #C0423C,0 0 0 5px #DBBB86 inset,0 0 0 6px #CEAC79 inset;position:absolute;z-index:4;border-radius:50%;color:#665600;font-size:45px;text-align:center;line-height:100px;left:50%;bottom:40%;margin:0 0 -50px -50px;}
+    /*动画*/
+    .red__box{-webkit-transform-style: preserve-3d;transform-style: preserve-3d;-webkit-perspective: 800px;perspective: 800px;-webkit-perspective-origin:bottom;perspective-origin:bottom;}
+    .red__box .open{-webkit-animation:rotateY 1s linear;animation:rotateY 1s linear;-webkit-animation-fill-mode:forwards;animation-fill-mode:forwards;}
+    .red__box .info{opacity:0;-webkit-animation:opacity_1 .6s linear 1s;animation:opacity_1 .6s linear 1s;-webkit-animation-fill-mode:forwards;animation-fill-mode:forwards;-webkit-transform:translateY(-100%);transform:translateY(-100%);}
+    @-webkit-keyframes opacity_1{
+        form{opacity:1;-webkit-transform:translateY(-100%);transform:translateY(-100%);}
+        to{opacity:1;-webkit-transform:translateY(0);transform:translateY(0);}
+    }
+    @keyframes opacity_1{
+        form{opacity:1;-webkit-transform:translateY(-100%);transform:translateY(-100%);}
+        to{opacity:1;-webkit-transform:translateY(0);transform:translateY(0);}
+    }
+    @-webkit-keyframes rotateY{
+        form{-webkit-transform:rotateY(0);transform:rotateY(0);opacity:1;}
+        99%{-webkit-transform:rotateY(360deg);transform:rotateY(360deg);opacity:1;}
+        to{-webkit-transform:rotateY(360deg);transform:rotateY(360deg);opacity:0;}
+    }
+    @keyframes rotateY{
+        form{-webkit-transform:rotateY(0);transform:rotateY(0);opacity:1;}
+        99%{-webkit-transform:rotateY(360deg);transform:rotateY(360deg);opacity:1;}
+        to{-webkit-transform:rotateY(360deg);transform:rotateY(360deg);opacity:0;}
+    }
+    .red__box .outer{-webkit-animation:scrollTop .6s linear 1s;animation:scrollTop .6s linear 1s;-webkit-transform-origin:top;transform-origin:top;-webkit-animation-fill-mode:forwards;animation-fill-mode:forwards;-webkit-transform:translateY(0);transform:translateY(0);}
+    @-webkit-keyframes scrollTop{
+        form{-webkit-transform:translateY(0);transform:translateY(0);}
+        to{-webkit-transform:translateY(-100%);transform:translateY(-100%);}
+    }
+    @keyframes scrollTop{
+        form{-webkit-transform:translateY(0);transform:translateY(0);}
+        to{-webkit-transform:translateY(-100%);transform:translateY(-100%);}
+    }
+    .red__box .money{-webkit-animation:scrollTop2 .4s linear 1s;animation:scrollTop2 .4s linear 1s;-webkit-transform-origin:top;transform-origin:top;-webkit-transform:translateY(100%);transform:translateY(100%);-webkit-animation-fill-mode:forwards;animation-fill-mode:forwards;}
+    @-webkit-keyframes scrollTop2{
+        form{-webkit-transform:translateY(-100%);transform:translateY(-100%);}
+        to{-webkit-transform:translateY(0);transform:translateY(0);}
+    }
+    @keyframes scrollTop2{
+        form{-webkit-transform:translateY(-100%);transform:translateY(-100%);}
+        to{-webkit-transform:translateY(0);transform:translateY(0);}
+    }
+    </style>
+</head>
+
+<body>
+    <div class="red__box">
+        <div class="title">恭喜获得可提现幸运红包</div>
+        <div class="box">
+            <div class="inner">
+                <!-- 金钱动画部分 -->
+                <div class="money">0.00<span>元</span></div>
+            </div>
+            <!-- 文字动画部分 -->
+            <div class="info">
+                <div class="mname">恭喜您!<br>奖励已入账</div>
+                <div class="mbtn">前往酷划APP提现</div>
+            </div>
+            <div class="outer">
+                <div class="oname">幸运红包</div>
+                <div class="odesc">恭喜发财 大吉大利</div>
+            </div>
+            <div class="open">拆</div>
+            <div class="firm">酷划锁屏</div>
+        </div>
+    </div>
+    <script src="./js/jq.js"></script>
+    <script>
+    var num = (Math.random()*2+3).toFixed(2);
+    console.log(num);
+    $('.red__box .money').html(num+'<span>元</span>')
+    </script>
+</body>
+</html>
