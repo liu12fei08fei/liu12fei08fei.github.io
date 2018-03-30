@@ -1,0 +1,1428 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title># Vue源码分析</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+<meta name="format-detection" content="telephone=no">
+<style>
+
+body {
+  background-color: white;
+}
+
+.markdown-body {
+  min-width: 200px;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 20px;
+
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  color: #333;
+  overflow: hidden;
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+.markdown-body a {
+  background: transparent;;word-wrap: break-word; word-break: break-all;
+}
+
+.markdown-body a:active,
+.markdown-body a:hover {
+  outline: 0;
+}
+
+.markdown-body strong {
+  font-weight: bold;
+}
+
+.markdown-body h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+.markdown-body img {
+  border: 0;
+}
+
+.markdown-body hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+
+.markdown-body pre {
+  overflow: auto;
+}
+
+.markdown-body code,
+.markdown-body kbd,
+.markdown-body pre {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+.markdown-body input {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+.markdown-body html input[disabled] {
+  cursor: default;
+}
+
+.markdown-body input {
+  line-height: normal;
+}
+
+.markdown-body input[type="checkbox"] {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.markdown-body table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.markdown-body td,
+.markdown-body th {
+  padding: 0;
+}
+
+.markdown-body * {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body input {
+  font: 13px/1.4 Helvetica, arial, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.markdown-body a {
+  color: #4183c4;
+  text-decoration: none;
+}
+
+.markdown-body a:hover,
+.markdown-body a:focus,
+.markdown-body a:active {
+  text-decoration: underline;
+}
+
+.markdown-body hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.markdown-body hr:before {
+  display: table;
+  content: "";
+}
+
+.markdown-body hr:after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  line-height: 1.1;
+}
+
+.markdown-body h1 {
+  font-size: 30px;
+}
+
+.markdown-body h2 {
+  font-size: 21px;
+}
+
+.markdown-body h3 {
+  font-size: 16px;
+}
+
+.markdown-body h4 {
+  font-size: 14px;
+}
+
+.markdown-body h5 {
+  font-size: 12px;
+}
+
+.markdown-body h6 {
+  font-size: 11px;
+}
+
+.markdown-body blockquote {
+  margin: 0;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body ol ol,
+.markdown-body ul ol {
+  list-style-type: lower-roman;
+}
+
+.markdown-body ul ul ol,
+.markdown-body ul ol ol,
+.markdown-body ol ul ol,
+.markdown-body ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+.markdown-body dd {
+  margin-left: 0;
+}
+
+.markdown-body code {
+  font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+.markdown-body pre {
+  margin-top: 0;
+  margin-bottom: 0;
+  font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+.markdown-body kbd {
+  background-color: #e7e7e7;
+  background-image: -webkit-linear-gradient(#fefefe, #e7e7e7);
+  background-image: linear-gradient(#fefefe, #e7e7e7);
+  background-repeat: repeat-x;
+  border-radius: 2px;
+  border: 1px solid #cfcfcf;
+  color: #000;
+  padding: 3px 5px;
+  line-height: 10px;
+  font: 11px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  display: inline-block;
+}
+
+.markdown-body>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+.markdown-body .anchor {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  padding-right: 6px;
+  padding-left: 30px;
+  margin-left: -30px;
+}
+
+.markdown-body .anchor:focus {
+  outline: none;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  position: relative;
+  margin-top: 1em;
+  margin-bottom: 16px;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.markdown-body h1 .octicon-link,
+.markdown-body h2 .octicon-link,
+.markdown-body h3 .octicon-link,
+.markdown-body h4 .octicon-link,
+.markdown-body h5 .octicon-link,
+.markdown-body h6 .octicon-link {
+  display: none;
+  color: #000;
+  vertical-align: middle;
+}
+
+.markdown-body h1:hover .anchor,
+.markdown-body h2:hover .anchor,
+.markdown-body h3:hover .anchor,
+.markdown-body h4:hover .anchor,
+.markdown-body h5:hover .anchor,
+.markdown-body h6:hover .anchor {
+  height: 1em;
+  padding-left: 8px;
+  margin-left: -30px;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.markdown-body h1:hover .anchor .octicon-link,
+.markdown-body h2:hover .anchor .octicon-link,
+.markdown-body h3:hover .anchor .octicon-link,
+.markdown-body h4:hover .anchor .octicon-link,
+.markdown-body h5:hover .anchor .octicon-link,
+.markdown-body h6:hover .anchor .octicon-link {
+  display: inline-block;
+}
+
+.markdown-body h1 {
+  padding-bottom: 0.3em;
+  font-size: 2.25em;
+  line-height: 1.2;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h2 {
+  padding-bottom: 0.3em;
+  font-size: 1.75em;
+  line-height: 1.225;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h3 {
+  font-size: 1.5em;
+  line-height: 1.43;
+}
+
+.markdown-body h4 {
+  font-size: 1.25em;
+}
+
+.markdown-body h5 {
+  font-size: 1em;
+}
+
+.markdown-body h6 {
+  font-size: 1em;
+  color: #777;
+}
+
+.markdown-body p,
+.markdown-body blockquote,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl,
+.markdown-body table,
+.markdown-body pre {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.markdown-body hr {
+  height: 4px;
+  padding: 0;
+  margin: 16px 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 2em;
+}
+
+.markdown-body ul ul,
+.markdown-body ul ol,
+.markdown-body ol ol,
+.markdown-body ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body li>p {
+  margin-top: 16px;
+}
+
+.markdown-body dl {
+  padding: 0;
+}
+
+.markdown-body dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown-body dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+.markdown-body blockquote {
+  padding: 0 15px;
+  color: #777;
+  border-left: 4px solid #ddd;
+}
+
+.markdown-body blockquote>:first-child {
+  margin-top: 0;
+}
+
+.markdown-body blockquote>:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all;
+}
+
+.markdown-body table th {
+  font-weight: bold;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  padding: 6px 13px;
+  border: 1px solid #ddd;
+}
+
+.markdown-body table tr {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+.markdown-body img {
+  max-width: 100%;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body code {
+  padding: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(0,0,0,0.04);
+  border-radius: 3px;
+}
+
+.markdown-body code:before,
+.markdown-body code:after {
+  letter-spacing: -0.2em;
+  content: "\00a0";
+}
+
+.markdown-body pre>code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+.markdown-body .highlight {
+  margin-bottom: 16px;
+}
+
+.markdown-body .highlight pre,
+.markdown-body pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f7f7f7;
+  border-radius: 3px;
+}
+
+.markdown-body .highlight pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+.markdown-body pre {
+  word-wrap: normal;
+}
+
+.markdown-body pre code {
+  display: inline;
+  max-width: initial;
+  padding: 0;
+  margin: 0;
+  overflow: initial;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+.markdown-body pre code:before,
+.markdown-body pre code:after {
+  content: normal;
+}
+
+.markdown-body .highlight {
+  background: #fff;
+}
+
+.markdown-body .highlight .mf,
+.markdown-body .highlight .mh,
+.markdown-body .highlight .mi,
+.markdown-body .highlight .mo,
+.markdown-body .highlight .il,
+.markdown-body .highlight .m {
+  color: #945277;
+}
+
+.markdown-body .highlight .s,
+.markdown-body .highlight .sb,
+.markdown-body .highlight .sc,
+.markdown-body .highlight .sd,
+.markdown-body .highlight .s2,
+.markdown-body .highlight .se,
+.markdown-body .highlight .sh,
+.markdown-body .highlight .si,
+.markdown-body .highlight .sx,
+.markdown-body .highlight .s1 {
+  color: #df5000;
+}
+
+.markdown-body .highlight .kc,
+.markdown-body .highlight .kd,
+.markdown-body .highlight .kn,
+.markdown-body .highlight .kp,
+.markdown-body .highlight .kr,
+.markdown-body .highlight .kt,
+.markdown-body .highlight .k,
+.markdown-body .highlight .o {
+  font-weight: bold;
+}
+
+.markdown-body .highlight .kt {
+  color: #458;
+}
+
+.markdown-body .highlight .c,
+.markdown-body .highlight .cm,
+.markdown-body .highlight .c1 {
+  color: #998;
+  font-style: italic;
+}
+
+.markdown-body .highlight .cp,
+.markdown-body .highlight .cs {
+  color: #999;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .cs {
+  font-style: italic;
+}
+
+.markdown-body .highlight .n {
+  color: #333;
+}
+
+.markdown-body .highlight .na,
+.markdown-body .highlight .nv,
+.markdown-body .highlight .vc,
+.markdown-body .highlight .vg,
+.markdown-body .highlight .vi {
+  color: #008080;
+}
+
+.markdown-body .highlight .nb {
+  color: #0086B3;
+}
+
+.markdown-body .highlight .nc {
+  color: #458;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .no {
+  color: #094e99;
+}
+
+.markdown-body .highlight .ni {
+  color: #800080;
+}
+
+.markdown-body .highlight .ne {
+  color: #990000;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .nf {
+  color: #945277;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .nn {
+  color: #555;
+}
+
+.markdown-body .highlight .nt {
+  color: #000080;
+}
+
+.markdown-body .highlight .err {
+  color: #a61717;
+  background-color: #e3d2d2;
+}
+
+.markdown-body .highlight .gd {
+  color: #000;
+  background-color: #fdd;
+}
+
+.markdown-body .highlight .gd .x {
+  color: #000;
+  background-color: #faa;
+}
+
+.markdown-body .highlight .ge {
+  font-style: italic;
+}
+
+.markdown-body .highlight .gr {
+  color: #aa0000;
+}
+
+.markdown-body .highlight .gh {
+  color: #999;
+}
+
+.markdown-body .highlight .gi {
+  color: #000;
+  background-color: #dfd;
+}
+
+.markdown-body .highlight .gi .x {
+  color: #000;
+  background-color: #afa;
+}
+
+.markdown-body .highlight .go {
+  color: #888;
+}
+
+.markdown-body .highlight .gp {
+  color: #555;
+}
+
+.markdown-body .highlight .gs {
+  font-weight: bold;
+}
+
+.markdown-body .highlight .gu {
+  color: #800080;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .gt {
+  color: #aa0000;
+}
+
+.markdown-body .highlight .ow {
+  font-weight: bold;
+}
+
+.markdown-body .highlight .w {
+  color: #bbb;
+}
+
+.markdown-body .highlight .sr {
+  color: #017936;
+}
+
+.markdown-body .highlight .ss {
+  color: #8b467f;
+}
+
+.markdown-body .highlight .bp {
+  color: #999;
+}
+
+.markdown-body .highlight .gc {
+  color: #999;
+  background-color: #EAF2F5;
+}
+
+.markdown-body .octicon {
+  line-height: 1;
+  display: inline-block;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.markdown-body .octicon-link:before {
+  content: '\f05c';
+}
+
+.markdown-body .task-list-item {
+  list-style-type: none;
+}
+
+.markdown-body .task-list-item+.task-list-item {
+  margin-top: 3px;
+}
+
+.markdown-body .task-list-item input {
+  float: left;
+  margin: 0.3em 0 0.25em -1.6em;
+  vertical-align: middle;
+}
+table td{ word-wrap: break-word !important; word-break: break-all !important; }
+/*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+  -webkit-text-size-adjust: none;
+}
+
+.hljs-comment,
+.diff .hljs-header {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.css .rule .hljs-keyword,
+.hljs-winutils,
+.nginx .hljs-title,
+.hljs-subst,
+.hljs-request,
+.hljs-status {
+  color: #333;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-hexcolor,
+.ruby .hljs-constant {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-tag .hljs-value,
+.hljs-doctag,
+.tex .hljs-formula {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-id,
+.scss .hljs-preprocessor {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-list .hljs-keyword,
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-class .hljs-title,
+.hljs-type,
+.vhdl .hljs-literal,
+.tex .hljs-command {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-tag .hljs-title,
+.hljs-rule .hljs-property,
+.django .hljs-tag .hljs-keyword {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-attribute,
+.hljs-variable,
+.lisp .hljs-body,
+.hljs-name {
+  color: #008080;
+}
+
+.hljs-regexp {
+  color: #009926;
+}
+
+.hljs-symbol,
+.ruby .hljs-symbol .hljs-string,
+.lisp .hljs-keyword,
+.clojure .hljs-keyword,
+.scheme .hljs-keyword,
+.tex .hljs-special,
+.hljs-prompt {
+  color: #990073;
+}
+
+.hljs-built_in {
+  color: #0086b3;
+}
+
+.hljs-preprocessor,
+.hljs-pragma,
+.hljs-pi,
+.hljs-doctype,
+.hljs-shebang,
+.hljs-cdata {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.diff .hljs-change {
+  background: #0086b3;
+}
+
+.hljs-chunk {
+  color: #aaa;
+}
+
+
+</style>
+
+<style> @media print{ .hljs{overflow: visible; word-wrap: break-word !important;} }</style></head><body><div class="markdown-body">
+<h1 id="toc_0">Vue源码分析</h1>
+
+<ul>
+<li>
+<a href="#toc_0">Vue源码分析</a>
+<ul>
+<li>
+<a href="#toc_1">Vue架构概览-src</a>
+</li>
+<li>
+<a href="#toc_2">vue在编译的时候能够编译很多个版本，在不同场景下使用</a>
+</li>
+<li>
+<a href="#toc_3">core解剖</a>
+</li>
+<li>
+<a href="#toc_4">双向绑定（响应式原理）所涉及到的技术</a>
+<ul>
+<li>
+<a href="#toc_5">实现数据绑定的做法：</a>
+</li>
+<li>
+<a href="#toc_6">MVC、MVP、MVVM</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_7"><code>Object.defineProperty()</code></a>
+<ul>
+<li>
+<a href="#toc_8">兼容性</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_9">设计模式</a>
+<ul>
+<li>
+<a href="#toc_10">什么是设计模式？</a>
+</li>
+<li>
+<a href="#toc_11">作用</a>
+</li>
+<li>
+<a href="#toc_12">构成</a>
+</li>
+<li>
+<a href="#toc_13">设计模式、框架、架构名词解释</a>
+<ul>
+<li>
+<a href="#toc_14">设计模式</a>
+</li>
+<li>
+<a href="#toc_15">框架</a>
+</li>
+<li>
+<a href="#toc_16">架构</a>
+</li>
+<li>
+<a href="#toc_17">设计模式和框架的区别</a>
+</li>
+<li>
+<a href="#toc_18">工具库</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_19">观察者模式</a>
+<ul>
+<li>
+<a href="#toc_20">定义</a>
+</li>
+<li>
+<a href="#toc_21">观察者模式流程</a>
+</li>
+<li>
+<a href="#toc_22">观察者和订阅者的具体区别</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_23">事件队列：异步macrotask宏队列 和 microtask微队列 简介</a>
+<ul>
+<li>
+<a href="#toc_24">为什么js是单线程？</a>
+</li>
+<li>
+<a href="#toc_25">setstate</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_26">es6 proxy代理</a>
+</li>
+<li>
+<a href="#toc_27">Reflect反射</a>
+</li>
+<li>
+<a href="#toc_28">实例：使用Proxy实现观察者模式</a>
+</li>
+<li>
+<a href="#toc_29">虚拟dom-Virtual DOM</a>
+<ul>
+<li>
+<a href="#toc_30">为什么说操作DOM是昂贵的？</a>
+</li>
+<li>
+<a href="#toc_31">虚拟dom诞生</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<h2 id="toc_1">Vue架构概览-src</h2>
+
+<ul>
+<li>./compiler目录是编译模板</li>
+<li>./core目录是vue的核心（也是后面的重点）</li>
+<li>./entries目录是生产打包的入口（在之前的版本中存在）</li>
+<li>./platforms目录是针对核心模块的‘平台’模块
+
+<ul>
+<li>platforms目录下有：web目录、weex目录</li>
+<li>web目录下有对应的./comliler、./runtime、./server、./util目录</li>
+</ul></li>
+<li>./server目录是处理服务器渲染</li>
+<li>./sfc目录处理单文件vue</li>
+<li>./shared目录提供全局用到的工具函数</li>
+</ul>
+
+<h2 id="toc_2">vue在编译的时候能够编译很多个版本，在不同场景下使用</h2>
+
+<ul>
+<li>位置：<code>build/config</code></li>
+<li>编译的过程并不是直接输出<code>*.min.js</code>，而是<code>build</code>出多个模板环境
+
+<ul>
+<li><code>web-full-prod</code>生成全部的生产环境</li>
+<li><code>web server renderer-CommonJS</code>专门给服务器端使用的<code>CommonJS</code>环境</li>
+<li><code>weex-factory</code>专门提供给<code>weex</code>环境使用</li>
+</ul></li>
+<li>结论:<code>Vue.js</code>的组成是由 <code>core</code> + 对应的 ‘平台’ 补充代码构成(独立构建和运行时构建 只是 <code>platforms</code> 下 <code>web</code> 平台的两种选择)。</li>
+</ul>
+
+<h2 id="toc_3">core解剖</h2>
+
+<blockquote>
+<p>vue.js的目标是通过尽可能简单的API实现响应的数据绑定和组合的视图组件</p>
+</blockquote>
+
+<ul>
+<li>components：模板编译的代码</li>
+<li>global-api：最上层的文件接口</li>
+<li>instance：生命周期-&gt;init.js</li>
+<li>observer：数据收集与订阅</li>
+<li>util：常用工具方法类</li>
+<li>vdom：虚拟dom</li>
+</ul>
+
+<h2 id="toc_4">双向绑定（响应式原理）所涉及到的技术</h2>
+
+<blockquote>
+<p>Object.defineProperty<br/>
+Observer<br/>
+Watcher<br/>
+Dep<br/>
+Directive</p>
+</blockquote>
+
+<p><img src="http://p1fg8xetu.bkt.clouddn.com/bidirectional_data_binding.jpg" alt="双向数据绑定"/></p>
+
+<h3 id="toc_5">实现数据绑定的做法：</h3>
+
+<ol>
+<li>发布者-订阅者模式：<code>backbone.js</code></li>
+<li>脏值检查：<code>angular.js</code></li>
+<li>数据劫持：<code>vue.js</code></li>
+</ol>
+
+<h3 id="toc_6">MVC、MVP、MVVM</h3>
+
+<p><strong>MVC</strong></p>
+
+<ul>
+<li>View传送指令到Controller</li>
+<li>Controller完成业务逻辑后，要求Model改变状态</li>
+<li>Model将新的数据发送到View，用户得到反馈</li>
+</ul>
+
+<p><em>用户可以通过改变View或者改变Controller来达到目的</em></p>
+
+<p><strong>MVP</strong></p>
+
+<ul>
+<li>各部分之间的通信，都是双向的</li>
+<li>View与Model不发生练习，都是通过Presenter传递</li>
+<li>View非常薄，不部署任何逻辑，称为‘被动视图’，重点是<span style="color:red;">没有主动性</span></li>
+</ul>
+
+<p><strong>MVVM</strong></p>
+
+<ul>
+<li>和MVP基本上模式完全一样</li>
+<li>唯一的区别就是，MVVM采用双向绑定，<span style="color:red;">view具有主动性</span></li>
+</ul>
+
+<h2 id="toc_7"><code>Object.defineProperty()</code></h2>
+
+<blockquote>
+<p>分为数据属性和访问器属性</p>
+</blockquote>
+
+<ul>
+<li>作用：修改属性默认的特性，即控制变量的变量</li>
+<li>这里用到的数访问器属性操作中的，getter和setter函数</li>
+</ul>
+
+<pre><code>var book = {
+    _year:2004,
+    edition:1
+};
+Object.defineProperty(book,&quot;year&quot;,{
+    get:function(){
+        return this._year;
+    },
+    set:function(newVal){
+        if(newVal&gt;2004){
+            this._year = newVal;
+            this.edition += newVal -2004;
+        }
+    }
+});
+
+console.log(book.year)
+// 这里访问Object.defineProperty定义的属性
+book.year = 2005;
+console.log(book.edition);
+</code></pre>
+
+<h3 id="toc_8">兼容性</h3>
+
+<ul>
+<li>IE8是第一个实现<code>Object.defineProperty</code>方法的浏览器版本</li>
+<li>然后，这个版本的实现存在诸多限制：只能在DOM对象上使用这个方法，而且只能创建访问器属性</li>
+</ul>
+
+<h2 id="toc_9">设计模式</h2>
+
+<h3 id="toc_10">什么是设计模式？</h3>
+
+<ul>
+<li>一套可以被复用的，编目（标准和规则）分明的经验总结</li>
+</ul>
+
+<h3 id="toc_11">作用</h3>
+
+<ul>
+<li>让我们写的代码可复用，提高我们的代码的可维护性</li>
+<li>代码更容易被他人理解、保证代码可靠性</li>
+</ul>
+
+<h3 id="toc_12">构成</h3>
+
+<blockquote>
+<p>创建型设计模式：解决对象在创建时产生的一系列问题<br/>
+结构型设计模式：解决类或对象之间组合时产生的一些列问题<br/>
+行为型设计模式：解决类或对象之间的交互以及职责分配的一些问题</p>
+</blockquote>
+
+<ul>
+<li>创建型模式：单例模式、抽象工厂模式、建造者模式、工厂模式、原型模式</li>
+<li>结构型模式：适配器模式、桥接模式、装饰模式、组合模式、外观模式、享元模式、代理模式</li>
+<li>行为型模式：模版方法模式、命令模式、迭代器模式、观察者模式、中介者模式、备忘录模式、解释器模式(Interpreter模式)、状态模式、策略模式、职责链模式(责任链模式)、访问者模式</li>
+</ul>
+
+<h3 id="toc_13">设计模式、框架、架构名词解释</h3>
+
+<h4 id="toc_14">设计模式</h4>
+
+<ul>
+<li>就是可以被复用，众人知晓，编目分明的经验的总结，侧重于解决某个（些）问题的</li>
+</ul>
+
+<h4 id="toc_15">框架</h4>
+
+<ul>
+<li>在某一些软件领域中，将公用的部分提取，抽象出来形成统一的整体，往往是一个半成品，我们需要对他们进行再次加工完成项目的开发，设计了一套思想，引导我们去实现</li>
+</ul>
+
+<h4 id="toc_16">架构</h4>
+
+<ul>
+<li>设计的蓝图，没有具体的实现，框架是一种实现了的架构</li>
+</ul>
+
+<h4 id="toc_17">设计模式和框架的区别</h4>
+
+<ul>
+<li>设计模式是一个单一的思想，存在就是为了解决某一类问题</li>
+<li>框架是一套思想的统一，因此可以包含多个设计模式，他们在解决问题的思想上是统一的（一个框架可以包含多个设计模式，是设计模式的结晶）</li>
+</ul>
+
+<h4 id="toc_18">工具库</h4>
+
+<ul>
+<li>只是一些方法的封装，每一个方法之间具有独立性</li>
+<li>框架也是一套方法的封装，框架中的方法彼此之间是有联系的，彼此分工合作实现需求</li>
+</ul>
+
+<h3 id="toc_19">观察者模式</h3>
+
+<h4 id="toc_20">定义</h4>
+
+<ul>
+<li>定义对象间的一种一对多的依赖关系。</li>
+<li>当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并被自动更新</li>
+</ul>
+
+<h4 id="toc_21">观察者模式流程</h4>
+
+<ul>
+<li>订阅者也被称为观察者（Observer），订阅者是最常用的一种观察者模式的实现</li>
+<li>观察者观察的对象，即目标（subject）</li>
+</ul>
+
+<h4 id="toc_22">观察者和订阅者的具体区别</h4>
+
+<blockquote>
+<p>发布 + 订阅 = 观察者模式</p>
+</blockquote>
+
+<ul>
+<li>在观察者模式中，观察者需要直接订阅目标事件；在目标发出内容改变的事件后，直接接受事件并作出响应</li>
+<li>在发布者模式中，发布者和订阅者之间多了一个发布通道；一方面从发布者接受事件，另一方面想订阅者发布事件；订阅者需要从事件通道订阅事件</li>
+</ul>
+
+<pre><code>// 基于jQuery
+(function($){
+    var o = $({});
+    $.subscribe = function(){
+        o.on.apply(o, arguments);
+    };
+    $.unsubscribe = function(){
+        o.off.apply(o, arguments);
+    };
+    $.publish = function(){
+        o.trigger.apply(o, arguments);
+    };
+}(jQuery));
+// 订阅
+$.subscribe(&#39;/some/topic&#39;,function(e,a,b,c){
+    console.log(a+b+c);
+});
+// 发布
+$.publish(&#39;/some/topic&#39;,[&#39;a&#39;,&#39;b&#39;,&#39;c&#39;]);
+// 退订
+$.unsubscribe(&#39;/some/topic&#39;);
+</code></pre>
+
+<h2 id="toc_23">事件队列：异步macrotask宏队列 和 microtask微队列 简介</h2>
+
+<blockquote>
+<p>事件队列，通过eventLoop实现快速处理<br/>
+先执行，microtask：<code>promise</code>、<code>observe</code><br/>
+最后执行，macrotask：<code>ajax</code>、<code>click</code>、<code>set Timeout</code></p>
+</blockquote>
+
+<pre><code>// node运行
+setTimeout(function(){
+    console.log(5);
+},0);
+setImmediate(function(){
+    console.log(6);
+});
+new Promise(function(resolve){
+    console.log(1);
+    resolve();
+    console.log(2);
+}).then(function(){
+    console.log(4);
+});
+console.log(&#39;哈哈哈&#39;);
+process.nextTick(function(){
+    console.log(3);
+});
+// 依次输出
+// 1 2 哈哈哈 3 4 5 6
+</code></pre>
+
+<p><img src="http://p1fg8xetu.bkt.clouddn.com/eventLoop.jpg" alt="event loop"/></p>
+
+<h3 id="toc_24">为什么js是单线程？</h3>
+
+<ul>
+<li>js之所以采用单线程，原因是一开始设计的时候不想让浏览器变得太复杂，因为多线程需要共享资源、且有可能修改彼此的运行结果，对于一种网页脚本语言来说，这就太复杂了。</li>
+<li>比如，假定js同时有两个线程，一个线程在某个DOM节点上添加内容，另一个线程删除了这个节点，这时浏览器应该以哪个线程为准？</li>
+<li>在Java中会使用锁来解决这种竞态条件，而js并不想这样来解决。 </li>
+<li>单线程模型带来的问题：主要是新的任务被加在队列的尾部，只有前面的所有任务运行结束，才会轮到它执行。如果有一个任务特别耗时，后面的任务都会停在那里等待，造成浏览器失去响应，又称“假死”。为了避免“假死”，当某个操作在一定时间后仍无法结束，浏览器就会跳出提示框，询问用户是否要强行停止脚本运行。</li>
+<li>javascript 是的单线程的，于是就产生了一种任务执行机制叫 <span style="color:red;">eventloop</span>。它维护了一个任务队列，完成一个任务才会开始下一个任务。</li>
+</ul>
+
+<h3 id="toc_25">setstate</h3>
+
+<ul>
+<li>React通过this.state来访问state，通过this.setState()方法来更新state。当this.setState()方法被调用的时候，React会重新调用render方法来重新渲染UI</li>
+<li>Vue的DOM更新是异步的，所以如果需要等待DOM更新后执行操作就需要：</li>
+</ul>
+
+<pre><code>this.show = false
+// 这里data更新了，但对应的DOM还没更新
+Vue.nextTick(() =&gt; {
+  // 这里跟`show`对应的DOM也被更新了
+})
+</code></pre>
+
+<ul>
+<li>类似React里this.setState(state, callback)中的callback</li>
+</ul>
+
+<p><strong>vue的实际问题</strong></p>
+
+<ul>
+<li>在我们使用vue进行开发的过程中，可能会遇到一种情况：当生成vue实例后，当再次给数据赋值时，有时候并不会自动更新到视图上去；所以一般是把自己用到的值提前的保存在data中，避免这种问题的发生</li>
+<li>例子：</li>
+</ul>
+
+<pre><code>var vm = new Vue({
+    el:&#39;#vm_box&#39;,
+    data:{
+        btn:&#39;阿牛&#39;,
+        box:&#39;内容&#39;
+    }
+})
+vm.$data.sex = &#39;男&#39;
+console.log(vm.$data);
+</code></pre>
+
+<p><img src="http://p1fg8xetu.bkt.clouddn.com/setDate.jpg" alt="setDate"/></p>
+
+<ul>
+<li>根据上面的原理图，能够明白，当后添加属性的时候，并没有触发<code>Watcher</code></li>
+<li>所以在Vue3.0把这套原理删除掉，采用es6提出的<code>Proxy</code>和<code>Reflect</code></li>
+</ul>
+
+<h2 id="toc_26">es6 proxy代理</h2>
+
+<blockquote>
+<p>扩展（增强）对象一些功能</p>
+</blockquote>
+
+<p><strong>作用：</strong></p>
+
+<ul>
+<li>vue中的拦截</li>
+<li>预警、上报、扩展功能、统计、增强对象等等</li>
+<li>深入来说，几乎所有的需求都可以用到</li>
+<li>proxy是设计模式的一种，代理模式</li>
+</ul>
+
+<p><strong>当访问对象没有的属性，抛出错误</strong></p>
+
+<pre><code>const obj = {
+    name:&#39;怪岸咖啡&#39;
+};
+const newObj = new Proxy(obj,{
+    get(target,property){
+        if(property in target){
+            return target[property];
+        }else{
+            console.warn(&#39;^_^&#39;)
+            throw new ReferenceError(`${property}属性不在此对象上`);
+        }
+    }
+});
+console.log(newObj.name);
+console.log(newObj.a);
+</code></pre>
+
+<h2 id="toc_27">Reflect反射</h2>
+
+<ul>
+<li>操作对象而提供的API</li>
+<li>方便了我们进行各种之前的操作，让其更加的合理和友好</li>
+</ul>
+
+<h2 id="toc_28">实例：使用Proxy实现观察者模式</h2>
+
+<ul>
+<li>观察者模式（Observer mode）指的是函数自动观察数据对象，一旦对象有变化，函数就会自动执行</li>
+</ul>
+
+<pre><code>// 观察者函数集合
+const queuedObservers = new Set();
+const observe = fn =&gt; queuedObservers.add(fn);
+// 返回一个原始对象Proxy代理
+const observable = obj =&gt; new Proxy(obj, {set});
+// 数据对象person是观察目标
+const person = observable({
+  name: &#39;张三&#39;,
+  age: 20
+});
+
+observe(print);
+person.name = &#39;李四&#39;;
+
+// 函数print是观察者，数据对象发生变化，print就会自动执行
+function print() {
+  console.log(`${person.name}, ${person.age}`)
+}
+// 拦截函数set，会自动执行所有观察者
+function set(target, key, value, receiver) {
+  const result = Reflect.set(target, key, value, receiver);
+  queuedObservers.forEach(observer =&gt; observer());
+  return result;
+}
+</code></pre>
+
+<h2 id="toc_29">虚拟dom-Virtual DOM</h2>
+
+<h3 id="toc_30">为什么说操作DOM是昂贵的？</h3>
+
+<ul>
+<li>直接代码</li>
+</ul>
+
+<pre><code>var dom = document.getElementById(&#39;vm_box&#39;);
+var arr = [];
+for(var item in dom){
+    arr.push(item);
+}
+console.log(JSON.stringify(arr));
+</code></pre>
+
+<p><strong>一个基本的DOM身上绑定了235个属性和方法</strong></p>
+
+<ul>
+<li>什么叫牵一发而动全身</li>
+<li>什么叫庞然大物</li>
+<li>这只是第一层，还可以多维遍历</li>
+</ul>
+
+<p><code>[&quot;align&quot;,&quot;title&quot;,&quot;lang&quot;,&quot;translate&quot;,&quot;dir&quot;,&quot;dataset&quot;,&quot;hidden&quot;,&quot;tabIndex&quot;,&quot;accessKey&quot;,&quot;draggable&quot;,&quot;spellcheck&quot;,&quot;contentEditable&quot;,&quot;isContentEditable&quot;,&quot;offsetParent&quot;,&quot;offsetTop&quot;,&quot;offsetLeft&quot;,&quot;offsetWidth&quot;,&quot;offsetHeight&quot;,&quot;style&quot;,&quot;innerText&quot;,&quot;outerText&quot;,&quot;onabort&quot;,&quot;onblur&quot;,&quot;oncancel&quot;,&quot;oncanplay&quot;,&quot;oncanplaythrough&quot;,&quot;onchange&quot;,&quot;onclick&quot;,&quot;onclose&quot;,&quot;oncontextmenu&quot;,&quot;oncuechange&quot;,&quot;ondblclick&quot;,&quot;ondrag&quot;,&quot;ondragend&quot;,&quot;ondragenter&quot;,&quot;ondragleave&quot;,&quot;ondragover&quot;,&quot;ondragstart&quot;,&quot;ondrop&quot;,&quot;ondurationchange&quot;,&quot;onemptied&quot;,&quot;onended&quot;,&quot;onerror&quot;,&quot;onfocus&quot;,&quot;oninput&quot;,&quot;oninvalid&quot;,&quot;onkeydown&quot;,&quot;onkeypress&quot;,&quot;onkeyup&quot;,&quot;onload&quot;,&quot;onloadeddata&quot;,&quot;onloadedmetadata&quot;,&quot;onloadstart&quot;,&quot;onmousedown&quot;,&quot;onmouseenter&quot;,&quot;onmouseleave&quot;,&quot;onmousemove&quot;,&quot;onmouseout&quot;,&quot;onmouseover&quot;,&quot;onmouseup&quot;,&quot;onmousewheel&quot;,&quot;onpause&quot;,&quot;onplay&quot;,&quot;onplaying&quot;,&quot;onprogress&quot;,&quot;onratechange&quot;,&quot;onreset&quot;,&quot;onresize&quot;,&quot;onscroll&quot;,&quot;onseeked&quot;,&quot;onseeking&quot;,&quot;onselect&quot;,&quot;onstalled&quot;,&quot;onsubmit&quot;,&quot;onsuspend&quot;,&quot;ontimeupdate&quot;,&quot;ontoggle&quot;,&quot;onvolumechange&quot;,&quot;onwaiting&quot;,&quot;onwheel&quot;,&quot;onauxclick&quot;,&quot;ongotpointercapture&quot;,&quot;onlostpointercapture&quot;,&quot;onpointerdown&quot;,&quot;onpointermove&quot;,&quot;onpointerup&quot;,&quot;onpointercancel&quot;,&quot;onpointerover&quot;,&quot;onpointerout&quot;,&quot;onpointerenter&quot;,&quot;onpointerleave&quot;,&quot;nonce&quot;,&quot;click&quot;,&quot;focus&quot;,&quot;blur&quot;,&quot;ontouchcancel&quot;,&quot;ontouchend&quot;,&quot;ontouchmove&quot;,&quot;ontouchstart&quot;,&quot;namespaceURI&quot;,&quot;prefix&quot;,&quot;localName&quot;,&quot;tagName&quot;,&quot;id&quot;,&quot;className&quot;,&quot;classList&quot;,&quot;slot&quot;,&quot;attributes&quot;,&quot;shadowRoot&quot;,&quot;assignedSlot&quot;,&quot;innerHTML&quot;,&quot;outerHTML&quot;,&quot;scrollTop&quot;,&quot;scrollLeft&quot;,&quot;scrollWidth&quot;,&quot;scrollHeight&quot;,&quot;clientTop&quot;,&quot;clientLeft&quot;,&quot;clientWidth&quot;,&quot;clientHeight&quot;,&quot;onbeforecopy&quot;,&quot;onbeforecut&quot;,&quot;onbeforepaste&quot;,&quot;oncopy&quot;,&quot;oncut&quot;,&quot;onpaste&quot;,&quot;onsearch&quot;,&quot;onselectstart&quot;,&quot;previousElementSibling&quot;,&quot;nextElementSibling&quot;,&quot;children&quot;,&quot;firstElementChild&quot;,&quot;lastElementChild&quot;,&quot;childElementCount&quot;,&quot;onwebkitfullscreenchange&quot;,&quot;onwebkitfullscreenerror&quot;,&quot;setPointerCapture&quot;,&quot;releasePointerCapture&quot;,&quot;hasPointerCapture&quot;,&quot;hasAttributes&quot;,&quot;getAttributeNames&quot;,&quot;getAttribute&quot;,&quot;getAttributeNS&quot;,&quot;setAttribute&quot;,&quot;setAttributeNS&quot;,&quot;removeAttribute&quot;,&quot;removeAttributeNS&quot;,&quot;hasAttribute&quot;,&quot;hasAttributeNS&quot;,&quot;getAttributeNode&quot;,&quot;getAttributeNodeNS&quot;,&quot;setAttributeNode&quot;,&quot;setAttributeNodeNS&quot;,&quot;removeAttributeNode&quot;,&quot;closest&quot;,&quot;matches&quot;,&quot;webkitMatchesSelector&quot;,&quot;attachShadow&quot;,&quot;getElementsByTagName&quot;,&quot;getElementsByTagNameNS&quot;,&quot;getElementsByClassName&quot;,&quot;insertAdjacentElement&quot;,&quot;insertAdjacentText&quot;,&quot;insertAdjacentHTML&quot;,&quot;requestPointerLock&quot;,&quot;getClientRects&quot;,&quot;getBoundingClientRect&quot;,&quot;scrollIntoView&quot;,&quot;scrollIntoViewIfNeeded&quot;,&quot;animate&quot;,&quot;before&quot;,&quot;after&quot;,&quot;replaceWith&quot;,&quot;remove&quot;,&quot;prepend&quot;,&quot;append&quot;,&quot;querySelector&quot;,&quot;querySelectorAll&quot;,&quot;webkitRequestFullScreen&quot;,&quot;webkitRequestFullscreen&quot;,&quot;scroll&quot;,&quot;scrollTo&quot;,&quot;scrollBy&quot;,&quot;createShadowRoot&quot;,&quot;getDestinationInsertionPoints&quot;,&quot;ELEMENT_NODE&quot;,&quot;ATTRIBUTE_NODE&quot;,&quot;TEXT_NODE&quot;,&quot;CDATA_SECTION_NODE&quot;,&quot;ENTITY_REFERENCE_NODE&quot;,&quot;ENTITY_NODE&quot;,&quot;PROCESSING_INSTRUCTION_NODE&quot;,&quot;COMMENT_NODE&quot;,&quot;DOCUMENT_NODE&quot;,&quot;DOCUMENT_TYPE_NODE&quot;,&quot;DOCUMENT_FRAGMENT_NODE&quot;,&quot;NOTATION_NODE&quot;,&quot;DOCUMENT_POSITION_DISCONNECTED&quot;,&quot;DOCUMENT_POSITION_PRECEDING&quot;,&quot;DOCUMENT_POSITION_FOLLOWING&quot;,&quot;DOCUMENT_POSITION_CONTAINS&quot;,&quot;DOCUMENT_POSITION_CONTAINED_BY&quot;,&quot;DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC&quot;,&quot;nodeType&quot;,&quot;nodeName&quot;,&quot;baseURI&quot;,&quot;isConnected&quot;,&quot;ownerDocument&quot;,&quot;parentNode&quot;,&quot;parentElement&quot;,&quot;childNodes&quot;,&quot;firstChild&quot;,&quot;lastChild&quot;,&quot;previousSibling&quot;,&quot;nextSibling&quot;,&quot;nodeValue&quot;,&quot;textContent&quot;,&quot;hasChildNodes&quot;,&quot;getRootNode&quot;,&quot;normalize&quot;,&quot;cloneNode&quot;,&quot;isEqualNode&quot;,&quot;isSameNode&quot;,&quot;compareDocumentPosition&quot;,&quot;contains&quot;,&quot;lookupPrefix&quot;,&quot;lookupNamespaceURI&quot;,&quot;isDefaultNamespace&quot;,&quot;insertBefore&quot;,&quot;appendChild&quot;,&quot;replaceChild&quot;,&quot;removeChild&quot;,&quot;addEventListener&quot;,&quot;removeEventListener&quot;,&quot;dispatchEvent&quot;]</code></p>
+
+<h3 id="toc_31">虚拟dom诞生</h3>
+
+<ul>
+<li>相对于 DOM 对象，原生的 JavaScript 对象处理起来更快，而且更简单。DOM 树上的结构、属性信息我们都可以很容易地用 JavaScript 对象表示出来：</li>
+</ul>
+
+<pre><code>// html
+&lt;ul id=&#39;list&#39;&gt;
+  &lt;li class=&#39;item&#39;&gt;Item 1&lt;/li&gt;
+  &lt;li class=&#39;item&#39;&gt;Item 2&lt;/li&gt;
+  &lt;li class=&#39;item&#39;&gt;Item 3&lt;/li&gt;
+&lt;/ul&gt;
+
+// js
+var element = {
+  tagName: &#39;ul&#39;, // 节点标签名
+  props: { // DOM的属性，用一个对象存储键值对
+    id: &#39;list&#39;
+  },
+  children: [ // 该节点的子节点
+    {tagName: &#39;li&#39;, props: {class: &#39;item&#39;}, children: [&quot;Item 1&quot;]},
+    {tagName: &#39;li&#39;, props: {class: &#39;item&#39;}, children: [&quot;Item 2&quot;]},
+    {tagName: &#39;li&#39;, props: {class: &#39;item&#39;}, children: [&quot;Item 3&quot;]},
+  ]
+}
+</code></pre>
+
+<ul>
+<li>从上面能够明白，虚拟dom是把我们要做的事情，最简单最直接的表现出来</li>
+<li>没有任何的附加条件，而用dom操作一个dom第一层就有200多个属性和方法，可想而知多个dom是多么可怕的消耗</li>
+<li>思考牵引：类似我们使用display:none/block;来回切换介绍优化性能，是一个道理，就是让我们最直接的做自己想做的事情</li>
+</ul>
+
+<p><strong>document.createDocumentFragment</strong></p>
+
+<ul>
+<li>创建一个虚拟的节点对象或者说，用来创建文档碎片节点。它可以包含各种类型的节点，在创建之初是空的</li>
+<li>文档片段存在于内存中，并不在DOM树中，所以将子元素插入到文档片段时不会引起页面回流(对元素位置和几何上的计算)。因此，使用文档片段document fragments 通常会起到优化性能的作用</li>
+</ul>
+
+</div></body>
+
+</html>
