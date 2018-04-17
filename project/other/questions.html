@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+	<!-- 设置此文档字符编码，以便utf-8范围的所有字符(如emoji)都能正确显示 -->
+	<meta charset="utf-8">
+	<!-- 设置文档标题 -->
+	<title>答题</title>
+	<!-- 移动端兼容 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+	<!-- 禁用自动检测和格式化可能的电话号码 -->
+	<meta name="format-detection" content="telephone=no">
+	<!-- 360浏览器启动webkit内核渲染 -->
+	<meta name="renderer" content="webkit">
+	<!-- QQ移动浏览器，在指定方向上锁定屏幕（锁定横/竖屏=landscape/portrait） -->
+	<meta name="x5-orientation" content="portrait">
+	<!-- UC移动浏览器，在指定方向上锁定屏幕（锁定横/竖屏=landscape/portrait） -->
+	<meta name="screen-orientation" content="portrait">
+	<!-- 保证不同浏览器，html带来的效果一样 -->
+	<link rel="stylesheet" href="http://www.coohua.com/assets/css/neat.min.css">
+	<script>
+		function Rem() {
+			// 获取视窗宽度
+			var htmlWidth = document.documentElement.clientWidth || document.body.clientWidth,
+				// 获取html的DOM
+				htmlDom = document.getElementsByTagName('html')[0],
+				oSize = htmlWidth / 3.75;
+			htmlDom.style.fontSize = oSize + 'px';
+		}
+		window.addEventListener('resize', Rem, false);
+		Rem();
+	</script>
+</head>
+<style>
+	body{-webkit-tap-highlight-color: rgba(0,0,0,0);line-height:1;word-break: break-all;}
+	.table{display:table;table-layout:fixed;width:100%;}
+	.cell{display:table-cell;vertical-align:middle;}
+	/*封面*/
+	.over{padding:0 16px;}
+	.over_title{font-size: 18px;color: #323232;padding-top:28px;}
+	.over_name{font-size: 16px;color: #4A90E2;padding-top:24px;}
+	.over_text{font-size: 14px;color: #323232;padding-top:14px;line-height:1.5;}
+	.over_btn{padding:32px 0;}
+	.over_btn_text{background: #4A90E2;box-shadow: 0 2px 4px 0 #4A90E2;height:54px;line-height:54px;text-align:center;font-size: 18px;color: #FFFFFF;border-radius:54px;}
+	/*答题区*/
+	.answer{padding:0 16px;display:none;}
+	.answer_title{font-size: 18px;color: #323232;text-align:center;padding-top:28px;}
+	.answer_title span{color:#ff743a;}
+	.answer_name{font-size: 16px;color: #4A90E2;padding:24px 0 12px;}
+	.answer_box{}
+	.answer_item{}
+	.answer_label{font-size: 14px;color: #323232;position:relative;padding:6px 0;padding-left:32px;line-height:22px;display:block;}
+	.answer_label::before{content:'';width:20px;height:20px;border-radius:50%;border: 1px solid #C7C7C7;position:absolute;top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%);left:0;z-index:1;}
+	.answer_label::after{display:none;content:'';width:20px;height:20px;border-radius:50%;border: 1px solid #4A90E2;position:absolute;top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%);left:0;background:#4A90E2 url(./img/ok.png) no-repeat center;background-size:14px;z-index:2;}
+	input:checked+label::after{display:block;}
+	.answer_item input{display:none;}
+	.answer_btn{padding:32px 0;}
+	.answer_btn_text{background: #4A90E2;box-shadow: 0 2px 4px 0 #4A90E2;height:54px;line-height:54px;text-align:center;font-size: 18px;color: #FFFFFF;border-radius:54px;}
+	.show{display:block;}
+	/*动画*/
+	.fade-enter-active, .fade-leave-active {
+	  transition: opacity .5s;
+	}
+	.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+	  opacity: 0;
+	}
+</style>
+<body>
+	<div id="vm_box">
+		<!-- 封面 -->
+		<div class="over" v-show="overToggle">
+			<div class="over_title">先阅读以下内容了解火锅浏览器</div>
+			<div v-for="(item,idx) in overList" :key="idx">
+				<div class="over_name" v-text="item.name"></div>
+				<div class="over_text" v-text="item.text"></div>
+			</div>
+			<div class="over_btn">
+				<div class="over_btn_text" @click="beginAnswerFn">我已阅读  开始答题</div>
+			</div>
+		</div>
+		<!-- 答题区 -->
+		<transition name="fade">
+			<div class="answer" v-show="!overToggle" :class="{'show':!overToggle}">
+				<div class="answer_title">完成答题任务 奖励<span>200金币</span></div>
+				<div v-for="(pitem,pidx) in answerList" :key="pidx">
+					<div class="answer_name" v-text="pitem.name"></div>
+					<div class="answer_box">
+						<div class="answer_item" v-for="(item,idx) in pitem.arr" :key="idx">
+							<input type="radio" :id="'liu'+pidx+idx" :name="'liu'+pidx" :value="item.id" v-model="userList[pidx]">
+							<label :for="'liu'+pidx+idx" class="answer_label" v-text="item.name"></label>
+						</div>
+					</div>
+				</div>
+				<div class="answer_btn">
+					<div class="answer_btn_text" @click="submitFormFn">回答完毕 提交答案</div>
+				</div>
+			</div>
+		</transition>
+	</div>
+	<!-- 声明式编程 -->
+	<script src="http://www.coohua.com/assets/scripts/vue.min.js"></script>
+	<!-- js开发区域 -->
+	<script>
+		(function(w){
+			var vm = new Vue({
+				el:'#vm_box',
+				data:{
+					// 封面控制
+					overToggle:true,
+					userList:[],
+					// 封面
+					overList:[{
+						name:'火锅浏览器是什么？',
+						text:'火锅浏览器的愿景是：让您的时间更有价值，上网看资讯的同时，能天天领红包。获得的金币可提现到微信，只要赚到10元就能提现，让用户不仅能快捷上网，还能有所收益。'
+					},{
+						name:'火锅浏览器为什么给您金币奖励？',
+						text:'大家的时间都是有价值的，在您使用过程中展现和点击的广告，都会给平台创造收入。火锅浏览器将千万网友的上网阅读行为，创新性的进行整合变现，与您一起共享收益，实现用户、平台、媒体的的共赢。'
+					},{
+						name:'金币奖励如何获得？',
+						text:'只要你每天登录火锅浏览器，阅读文章、领取红包、签到做任务、邀请收徒、参与活动都能获得金币奖励。20金币=0.01元，当天获得的金币，次日凌晨会自动转换成零钱，存入您的账户。'
+					},{
+						name:'邀请收徒有什么好处？',
+						text:'邀请亲朋好友一起玩火锅浏览器，即收徒弟，能获得丰厚的现金红包。徒弟持续登录和阅读，也能持续为您进贡金币，让您有源源不断的收益。'
+					}],
+					answerList:[{
+						name:'火锅浏览器有什么作用？',
+						arr:[{
+							id:10,
+							name:'上网看资讯，天天领红包'
+						},{
+							id:11,
+							name:'聊天交友'
+						},{
+							id:12,
+							name:'购物拼团'
+						}]
+					},{
+						name:'火锅浏览器为什么给用户发奖励？',
+						arr:[{
+							id:20,
+							name:'整合广告收入，与用户共享收益'
+						},{
+							id:21,
+							name:'有钱任性'
+						},{
+							id:22,
+							name:'宣传噱头'
+						}]
+					},{
+						name:'金币有什么用？',
+						arr:[{
+							id:30,
+							name:'20金币=0.01元，赚到10元就能微信提现'
+						},{
+							id:31,
+							name:'升级装备'
+						},{
+							id:32,
+							name:'提升等级'
+						}]
+					},{
+						name:'如何获得金币？',
+						arr:[{
+							id:40,
+							name:'浏览网页，阅读资讯，邀请收徒等'
+						},{
+							id:41,
+							name:'啥都不干'
+						},{
+							id:42,
+							name:'随便乱点'
+						}]
+					},{
+						name:'邀请收徒有什么好处？',
+						arr:[{
+							id:50,
+							name:'获得现金红包和金币进贡，奖励更丰厚'
+						},{
+							id:51,
+							name:'为了炫耀'
+						},{
+							id:52,
+							name:'我不知道'
+						}]
+					}]
+				},
+				methods:{
+					// 提交
+					submitFormFn:function(){
+						// 获取答案
+						var arr = this.userList;
+						console.log(arr);
+					},
+					// 开启答题
+					beginAnswerFn:function(){
+						this.overToggle = false;
+					}
+				},
+				mounted:function(){},
+				created:function(){}
+			});
+			w.vm = vm;
+		})(window);
+	</script>
+	<noscript>
+		console.info('当前浏览器不支持JS或者关闭了JS功能!');
+	</noscript>
+</body>
+</html>
