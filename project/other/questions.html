@@ -17,18 +17,6 @@
 	<meta name="screen-orientation" content="portrait">
 	<!-- 保证不同浏览器，html带来的效果一样 -->
 	<link rel="stylesheet" href="http://www.coohua.com/assets/css/neat.min.css">
-	<script>
-		function Rem() {
-			// 获取视窗宽度
-			var htmlWidth = document.documentElement.clientWidth || document.body.clientWidth,
-				// 获取html的DOM
-				htmlDom = document.getElementsByTagName('html')[0],
-				oSize = htmlWidth / 3.75;
-			htmlDom.style.fontSize = oSize + 'px';
-		}
-		window.addEventListener('resize', Rem, false);
-		Rem();
-	</script>
 </head>
 <style>
 	body{-webkit-tap-highlight-color: rgba(0,0,0,0);line-height:1;word-break: break-all;}
@@ -55,7 +43,6 @@
 	.answer_item input{display:none;}
 	.answer_btn{padding:32px 0;}
 	.answer_btn_text{background: #4A90E2;box-shadow: 0 2px 4px 0 #4A90E2;height:54px;line-height:54px;text-align:center;font-size: 18px;color: #FFFFFF;border-radius:54px;}
-	.show{display:block;}
 	/*动画*/
 	.fade-enter-active, .fade-leave-active {
 	  transition: opacity .5s;
@@ -63,6 +50,29 @@
 	.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
 	  opacity: 0;
 	}
+	/*错误*/
+	.error{display:none;text-align:center;}
+	.error_bg{position:fixed;top:0;right:0;bottom:0;left:0;background:rgba(0,0,0,.5);z-index:998;}
+	.error_box{position:fixed;top:50%;left:50px;right:50px;transform: translateY(-50%);z-index: 999;background:#fff;border-radius: 20px;padding:36px 30px;}
+	.error_name{font-size: 20px;color: #333333;}
+	.error_num{font-size: 16px;color: #323232;padding:20px 0 16px;}
+	.error_num span{color:#FF743A;}
+	.error_btn{background: #4A90E2;box-shadow: 0 2px 4px 0 #4A90E2;font-size: 18px;color: #FFFFFF;height:42px;line-height: 42px;border-radius:42px;text-align:center;}
+	/*正确*/
+	.tips{display:none;text-align:center;}
+	.tips_bg{position:fixed;top:0;right:0;bottom:0;left:0;background:rgba(0,0,0,.5);z-index:998;}
+	.tips_box{position:fixed;top:50%;left:50px;right:50px;transform: translateY(-50%);z-index: 999;background:#fff;border-radius: 20px;padding:36px 30px;}
+	.tips_name{font-size: 20px;color: #333333;}
+	.tips_num{font-size: 30px;color: #FF743A;padding:20px 0 16px;}
+	.tips_btn{background: #4A90E2;box-shadow: 0 2px 4px 0 #4A90E2;font-size: 18px;color: #FFFFFF;height:42px;line-height: 42px;border-radius:42px;text-align:center;}
+	/*奖励提示*/
+	.light{display:none;position:fixed;bottom:20%;left:50%;transform:translateX(-50%);z-index:999;}
+	.light_box{width:150px;height:156px;background:url(./img/light.png) no-repeat center;background-size:contain;margin:0 auto;position:relative;}
+	.light_num{position:absolute;color:#fff;line-height:1;text-align:center;width:80px;top:50%;left:50%;transform:translate(-50%,-50%);margin:-6px 0 0 -6px;font-size:14px;}
+	.light_num span{display:inline-block;font-size:22px;}
+	.light_ribbon{width:154px;height:60px;background:url(./img/ribbon.png) no-repeat center;background-size:contain;margin:-64px auto 0;text-align:center;color:#fff;font-size:14px;line-height:50px;position:relative;z-index:2;}
+	/*显示模块*/
+	.show{display:block;}
 </style>
 <body>
 	<div id="vm_box">
@@ -95,6 +105,33 @@
 				</div>
 			</div>
 		</transition>
+		<!-- 错误弹框 -->
+		<div class="error" :class="{'show':error.toggle}">
+			<div class="error_bg"></div>
+			<div class="error_box">
+				<div class="error_name">部分答案错误</div>
+				<div class="error_num">
+					第<span v-text="error.text"></span>题回答错误
+				</div>
+				<div class="error_btn" @click="hideErrorFn">检查答案</div>
+			</div>
+		</div>
+		<!-- 正确 -->
+		<div class="tips" :class="{'show':tips.toggle}">
+			<div class="tips_bg"></div>
+			<div class="tips_box">
+				<div class="tips_name">恭喜获得任务奖励</div>
+				<div class="tips_num">+<span v-text="tips.text"></span>金币</div>
+				<div class="tips_btn" @click="hideTipsFn">领取奖励</div>
+			</div>
+		</div>
+		<!-- 奖励提示 -->
+		<div class="light" :class="{'show':light.toggle}">
+			<div class="light_box">
+				<div class="light_num"><span v-text="'+'+light.text"></span>金币</div>
+			</div>
+			<div class="light_ribbon">完成任务奖励</div>
+		</div>
 	</div>
 	<!-- 声明式编程 -->
 	<script src="http://www.coohua.com/assets/scripts/vue.min.js"></script>
@@ -104,6 +141,21 @@
 			var vm = new Vue({
 				el:'#vm_box',
 				data:{
+					// 完成奖励
+					light:{
+						toggle:false,
+						text:200
+					},
+					// 正确提示
+					tips:{
+						toggle:false,
+						text:200
+					},
+					// 错误提示信息
+					error:{
+						toggle:false,
+						text:''
+					},
 					// 封面控制
 					overToggle:true,
 					userList:[],
@@ -123,6 +175,7 @@
 					}],
 					answerList:[{
 						name:'火锅浏览器有什么作用？',
+						correct:10,
 						arr:[{
 							id:10,
 							name:'上网看资讯，天天领红包'
@@ -135,6 +188,7 @@
 						}]
 					},{
 						name:'火锅浏览器为什么给用户发奖励？',
+						correct:20,
 						arr:[{
 							id:20,
 							name:'整合广告收入，与用户共享收益'
@@ -147,6 +201,7 @@
 						}]
 					},{
 						name:'金币有什么用？',
+						correct:30,
 						arr:[{
 							id:30,
 							name:'20金币=0.01元，赚到10元就能微信提现'
@@ -159,6 +214,7 @@
 						}]
 					},{
 						name:'如何获得金币？',
+						correct:40,
 						arr:[{
 							id:40,
 							name:'浏览网页，阅读资讯，邀请收徒等'
@@ -171,6 +227,7 @@
 						}]
 					},{
 						name:'邀请收徒有什么好处？',
+						correct:50,
 						arr:[{
 							id:50,
 							name:'获得现金红包和金币进贡，奖励更丰厚'
@@ -184,11 +241,48 @@
 					}]
 				},
 				methods:{
+					// 正确弹框
+					hideTipsFn:function(){
+						var _this = this;
+						// this.tips.toggle = false;
+						this.light.text = 200;
+						this.light.toggle = true;
+						var timer = null;
+						clearTimeout(timer);
+						timer = setTimeout(function(){
+							_this.tips.toggle = false;
+							_this.light.toggle = false;
+							location.reload();
+						},1000);
+					},
+					// 关闭错误弹框
+					hideErrorFn:function(){
+						this.error.toggle = false;
+					},
 					// 提交
 					submitFormFn:function(){
-						// 获取答案
+						var _this = this;
+						// 获取用户答案
 						var arr = this.userList;
-						console.log(arr);
+						// 获取正确答案
+						var rightArr = this.answerList.map(function(item,idx){
+							return item.correct;
+						});
+						// 存储错误答案
+						var endArr = [];
+						rightArr.forEach(function(item,idx){
+							if(item!=arr[idx]){
+								endArr.push(idx+1);
+							}
+						});
+						if(endArr.length>0){
+							_this.error.text = String(endArr);
+							_this.error.toggle = true;
+							return false;
+						}
+						_this.tips.text = 200;
+						_this.tips.toggle = true;
+						console.log('正确');
 					},
 					// 开启答题
 					beginAnswerFn:function(){
