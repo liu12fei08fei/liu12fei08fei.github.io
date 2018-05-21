@@ -7,74 +7,74 @@
 </head>
 <body>
 <style>
-body{margin:0;background:#eee;font-family:"Helvetica Neue",Helvetica,Arial,'Microsoft YaHei',sans-serif;}
-input{border:none;padding:0;width:100%;font-size:15px;color:#474747;outline:none;height:30px;line-height:30px;text-align:center;}
-input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{color:#e4e4e4}
-textarea:-moz-placeholder,input:-moz-placeholder{color:#e4e4e4}
-textarea::-moz-placeholder,input::-moz-placeholder{color:#e4e4e4}
-textarea:-ms-input-placeholder,input:-ms-input-placeholder{color:#e4e4e4}
-.table{display:table;table-layout:fixed;}
-.cell{display:table-cell;position:relative;}
-/*结构*/
-.upfit_box{}
-.upfit_box>.box{position:relative;overflow:hidden;box-shadow:0 -1px 0 0 rgb(224, 219, 219);-webkit-overflow-scrolling:touch;}
-/*内容*/
-.up_num{text-align:center;font-size:0;padding:28px 0;}
-.up_num .num{background:#e4e4e4;color:#474747;font-size:12px;height:22px;line-height:22px;padding:0 8px;border-radius:6px;display:inline-block;overflow:hidden;}
-/*问题部分*/
-.up_doctor{padding:0 62px 0 12px;}
-.up_doctor+.up_doctor{margin-top:38px;}
-.up_doctor .cell{vertical-align:top;}
-.up_doctor .doctor{width:44px;padding:6px 6px 0 0;}
-.up_doctor .head{overflow:hidden;width:44px;height:44px;}
-.up_doctor .head img{float:left;width:100%;}
-.up_doctor .text{background:#fff;color:#474747;font-size:15px;line-height:150%;letter-spacing:2.4px;padding:14px 10px;overflow:hidden;border-radius:0 6px 6px 6px;}
-.up_doctor .icon{overflow:hidden;width:16px;height:16px;position:absolute;top:0;left:-16px;}
-.up_doctor .icon img{float:left;width:100%;}
-/*用户部分*/
-.up_user{padding:0 12px 0 62px;margin-top:38px;}
-.up_user .table{width:100%;}
-.up_user .cell{vertical-align:bottom;}
-.up_user .user{width:44px;padding:0 0 6px 6px;}
-.up_user .head{overflow:hidden;width:44px;height:44px;}
-.up_user .head img{float:left;width:100%;}
-.up_user .text{background:#fff;color:#474747;font-size:15px;line-height:150%;letter-spacing:2.4px;padding:12px 10px;overflow:hidden;border-radius:6px 6px 0 6px;}
-.up_user .icon{overflow:hidden;width:16px;height:16px;position:absolute;bottom:0;right:-16px;}
-.up_user .icon img{float:left;width:100%;}
-/*输入内容*/
-.up_user .write{overflow:hidden;padding:5px;box-sizing:border-box;border:solid 1px #d8d8d8;border-radius:6px;}
-.up_user .write input{float:left;}
-.up_user .btn{background:#ccc;text-align:center;font-size:15px;height:40px;line-height:40px;color:#fff;border-radius:6px;margin-top:10px;}
-.up_user .hover{background:#fda626;}
-/*单选内容*/
-.up_user .radio{line-height:160%;box-sizing:border-box;border:solid 1px #d8d8d8;border-radius:6px;text-align:center;padding:10px 6px;}
-.up_user .radio+.radio{margin-top:10px;}
-/*单选交互*/
-.radio_hover{}
-.radio_hover .hover{background:#fec167;border-color:#fec167;color:#fff;}
-/*多选内容*/
-.se_select{overflow:hidden;}
-.se_select .select{width:100%;float:left;box-sizing:border-box;border:solid 1px #d8d8d8;border-radius:6px;text-align:center;margin-top:6px;padding:10px 6px;line-height:160%;}
-@media screen and (max-width:375px){
-    .up_user .radio,.se_select .select{font-size:13px;}
-}
-@media screen and (max-width:320px){
-    .up_user .radio,.se_select .select{font-size:12px;}
-}
-/*多选交互*/
-.select_hover{}
-.select_hover .hover{background:#fec167;border-color:#fec167;color:#fff;}
-.up_submit{background:#fda626;font-size:18px;text-align:center;height:40px;line-height:40px;color:#fff;overflow:hidden;border-radius:6px;box-shadow:0 2px 3px -1px rgba(253,166,38,1);position:absolute;left:12px;right:12px;bottom:14px;}
-/*提交按钮*/
-.up_bottom{height:92px;}
-.up_submit{position:fixed;left:0;right:0;bottom:0;padding:0 12px 14px;background:#eee;z-index:1001;}
-.up_submit .submit{background:#fda626;font-size:18px;text-align:center;height:40px;line-height:40px;color:#fff;overflow:hidden;border-radius:6px;box-shadow:0 2px 3px -1px rgba(253,166,38,1);}
+    body{margin:0;background:#eee;font-family:"Helvetica Neue",Helvetica,Arial,'Microsoft YaHei',sans-serif;}
+    input{border:none;padding:0;width:100%;font-size:15px;color:#474747;outline:none;height:30px;line-height:30px;text-align:center;}
+    input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{color:#e4e4e4}
+    textarea:-moz-placeholder,input:-moz-placeholder{color:#e4e4e4}
+    textarea::-moz-placeholder,input::-moz-placeholder{color:#e4e4e4}
+    textarea:-ms-input-placeholder,input:-ms-input-placeholder{color:#e4e4e4}
+    .table{display:table;table-layout:fixed;}
+    .cell{display:table-cell;position:relative;}
+    /*结构*/
+    .upfit_box{}
+    .upfit_box>.box{position:relative;overflow:hidden;box-shadow:0 -1px 0 0 rgb(224, 219, 219);-webkit-overflow-scrolling:touch;}
+    /*内容*/
+    .up_num{text-align:center;font-size:0;padding:28px 0;}
+    .up_num .num{background:#e4e4e4;color:#474747;font-size:12px;height:22px;line-height:22px;padding:0 8px;border-radius:6px;display:inline-block;overflow:hidden;}
+    /*问题部分*/
+    .up_doctor{padding:0 62px 0 12px;}
+    .up_doctor+.up_doctor{margin-top:38px;}
+    .up_doctor .cell{vertical-align:top;}
+    .up_doctor .doctor{width:44px;padding:6px 6px 0 0;}
+    .up_doctor .head{overflow:hidden;width:44px;height:44px;}
+    .up_doctor .head img{float:left;width:100%;}
+    .up_doctor .text{background:#fff;color:#474747;font-size:15px;line-height:150%;letter-spacing:2.4px;padding:14px 10px;overflow:hidden;border-radius:0 6px 6px 6px;}
+    .up_doctor .icon{overflow:hidden;width:16px;height:16px;position:absolute;top:0;left:-16px;}
+    .up_doctor .icon img{float:left;width:100%;}
+    /*用户部分*/
+    .up_user{padding:0 12px 0 62px;margin-top:38px;}
+    .up_user .table{width:100%;}
+    .up_user .cell{vertical-align:bottom;}
+    .up_user .user{width:44px;padding:0 0 6px 6px;}
+    .up_user .head{overflow:hidden;width:44px;height:44px;}
+    .up_user .head img{float:left;width:100%;}
+    .up_user .text{background:#fff;color:#474747;font-size:15px;line-height:150%;letter-spacing:2.4px;padding:12px 10px;overflow:hidden;border-radius:6px 6px 0 6px;}
+    .up_user .icon{overflow:hidden;width:16px;height:16px;position:absolute;bottom:0;right:-16px;}
+    .up_user .icon img{float:left;width:100%;}
+    /*输入内容*/
+    .up_user .write{overflow:hidden;padding:5px;box-sizing:border-box;border:solid 1px #d8d8d8;border-radius:6px;}
+    .up_user .write input{float:left;}
+    .up_user .btn{background:#ccc;text-align:center;font-size:15px;height:40px;line-height:40px;color:#fff;border-radius:6px;margin-top:10px;}
+    .up_user .hover{background:#fda626;}
+    /*单选内容*/
+    .up_user .radio{line-height:160%;box-sizing:border-box;border:solid 1px #d8d8d8;border-radius:6px;text-align:center;padding:10px 6px;}
+    .up_user .radio+.radio{margin-top:10px;}
+    /*单选交互*/
+    .radio_hover{}
+    .radio_hover .hover{background:#fec167;border-color:#fec167;color:#fff;}
+    /*多选内容*/
+    .se_select{overflow:hidden;}
+    .se_select .select{width:100%;float:left;box-sizing:border-box;border:solid 1px #d8d8d8;border-radius:6px;text-align:center;margin-top:6px;padding:10px 6px;line-height:160%;}
+    @media screen and (max-width:375px){
+        .up_user .radio,.se_select .select{font-size:13px;}
+    }
+    @media screen and (max-width:320px){
+        .up_user .radio,.se_select .select{font-size:12px;}
+    }
+    /*多选交互*/
+    .select_hover{}
+    .select_hover .hover{background:#fec167;border-color:#fec167;color:#fff;}
+    .up_submit{background:#fda626;font-size:18px;text-align:center;height:40px;line-height:40px;color:#fff;overflow:hidden;border-radius:6px;box-shadow:0 2px 3px -1px rgba(253,166,38,1);position:absolute;left:12px;right:12px;bottom:14px;}
+    /*提交按钮*/
+    .up_bottom{height:92px;}
+    .up_submit{position:fixed;left:0;right:0;bottom:0;padding:0 12px 14px;background:#eee;z-index:1001;}
+    .up_submit .submit{background:#fda626;font-size:18px;text-align:center;height:40px;line-height:40px;color:#fff;overflow:hidden;border-radius:6px;box-shadow:0 2px 3px -1px rgba(253,166,38,1);}
 </style>
 <div class="upfit_box"></div>
 <form method="post" class="up_form">
     <input type="hidden" name="answer" id="answer"/>
 </form>
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 <script>
 $(function(){
     // 页面高度
