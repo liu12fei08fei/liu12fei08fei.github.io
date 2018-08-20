@@ -1,0 +1,1639 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title>react-native开发总结</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+<meta name="format-detection" content="telephone=no">
+<style>
+body {
+  background-color: white;
+}
+
+.markdown-body {
+  min-width: 200px;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 20px;
+
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  color: #333;
+  overflow: hidden;
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+.markdown-body a {
+  background: transparent;;word-wrap: break-word; word-break: break-all;
+}
+
+.markdown-body a:active,
+.markdown-body a:hover {
+  outline: 0;
+}
+
+.markdown-body strong {
+  font-weight: bold;
+}
+
+.markdown-body h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+.markdown-body img {
+  border: 0;
+}
+
+.markdown-body hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+
+.markdown-body pre {
+  overflow: auto;
+}
+
+.markdown-body code,
+.markdown-body kbd,
+.markdown-body pre {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+.markdown-body input {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+.markdown-body html input[disabled] {
+  cursor: default;
+}
+
+.markdown-body input {
+  line-height: normal;
+}
+
+.markdown-body input[type="checkbox"] {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.markdown-body table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.markdown-body td,
+.markdown-body th {
+  padding: 0;
+}
+
+.markdown-body * {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body input {
+  font: 13px/1.4 Helvetica, arial, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.markdown-body a {
+  color: #4183c4;
+  text-decoration: none;
+}
+
+.markdown-body a:hover,
+.markdown-body a:focus,
+.markdown-body a:active {
+  text-decoration: underline;
+}
+
+.markdown-body hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.markdown-body hr:before {
+  display: table;
+  content: "";
+}
+
+.markdown-body hr:after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  line-height: 1.1;
+}
+
+.markdown-body h1 {
+  font-size: 30px;
+}
+
+.markdown-body h2 {
+  font-size: 21px;
+}
+
+.markdown-body h3 {
+  font-size: 16px;
+}
+
+.markdown-body h4 {
+  font-size: 14px;
+}
+
+.markdown-body h5 {
+  font-size: 12px;
+}
+
+.markdown-body h6 {
+  font-size: 11px;
+}
+
+.markdown-body blockquote {
+  margin: 0;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body ol ol,
+.markdown-body ul ol {
+  list-style-type: lower-roman;
+}
+
+.markdown-body ul ul ol,
+.markdown-body ul ol ol,
+.markdown-body ol ul ol,
+.markdown-body ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+.markdown-body dd {
+  margin-left: 0;
+}
+
+.markdown-body code {
+  font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+.markdown-body pre {
+  margin-top: 0;
+  margin-bottom: 0;
+  font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+.markdown-body kbd {
+  background-color: #e7e7e7;
+  background-image: -webkit-linear-gradient(#fefefe, #e7e7e7);
+  background-image: linear-gradient(#fefefe, #e7e7e7);
+  background-repeat: repeat-x;
+  border-radius: 2px;
+  border: 1px solid #cfcfcf;
+  color: #000;
+  padding: 3px 5px;
+  line-height: 10px;
+  font: 11px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  display: inline-block;
+}
+
+.markdown-body>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+.markdown-body .anchor {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  padding-right: 6px;
+  padding-left: 30px;
+  margin-left: -30px;
+}
+
+.markdown-body .anchor:focus {
+  outline: none;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  position: relative;
+  margin-top: 1em;
+  margin-bottom: 16px;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.markdown-body h1 .octicon-link,
+.markdown-body h2 .octicon-link,
+.markdown-body h3 .octicon-link,
+.markdown-body h4 .octicon-link,
+.markdown-body h5 .octicon-link,
+.markdown-body h6 .octicon-link {
+  display: none;
+  color: #000;
+  vertical-align: middle;
+}
+
+.markdown-body h1:hover .anchor,
+.markdown-body h2:hover .anchor,
+.markdown-body h3:hover .anchor,
+.markdown-body h4:hover .anchor,
+.markdown-body h5:hover .anchor,
+.markdown-body h6:hover .anchor {
+  height: 1em;
+  padding-left: 8px;
+  margin-left: -30px;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.markdown-body h1:hover .anchor .octicon-link,
+.markdown-body h2:hover .anchor .octicon-link,
+.markdown-body h3:hover .anchor .octicon-link,
+.markdown-body h4:hover .anchor .octicon-link,
+.markdown-body h5:hover .anchor .octicon-link,
+.markdown-body h6:hover .anchor .octicon-link {
+  display: inline-block;
+}
+
+.markdown-body h1 {
+  padding-bottom: 0.3em;
+  font-size: 2.25em;
+  line-height: 1.2;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h2 {
+  padding-bottom: 0.3em;
+  font-size: 1.75em;
+  line-height: 1.225;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h3 {
+  font-size: 1.5em;
+  line-height: 1.43;
+}
+
+.markdown-body h4 {
+  font-size: 1.25em;
+}
+
+.markdown-body h5 {
+  font-size: 1em;
+}
+
+.markdown-body h6 {
+  font-size: 1em;
+  color: #777;
+}
+
+.markdown-body p,
+.markdown-body blockquote,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl,
+.markdown-body table,
+.markdown-body pre {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.markdown-body hr {
+  height: 4px;
+  padding: 0;
+  margin: 16px 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 2em;
+}
+
+.markdown-body ul ul,
+.markdown-body ul ol,
+.markdown-body ol ol,
+.markdown-body ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body li>p {
+  margin-top: 16px;
+}
+
+.markdown-body dl {
+  padding: 0;
+}
+
+.markdown-body dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown-body dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+.markdown-body blockquote {
+  padding: 0 15px;
+  color: #777;
+  border-left: 4px solid #ddd;
+}
+
+.markdown-body blockquote>:first-child {
+  margin-top: 0;
+}
+
+.markdown-body blockquote>:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all;
+}
+
+.markdown-body table th {
+  font-weight: bold;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  padding: 6px 13px;
+  border: 1px solid #ddd;
+}
+
+.markdown-body table tr {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+.markdown-body img {
+  max-width: 100%;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body code {
+  padding: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(0,0,0,0.04);
+  border-radius: 3px;
+}
+
+.markdown-body code:before,
+.markdown-body code:after {
+  letter-spacing: -0.2em;
+  content: "\00a0";
+}
+
+.markdown-body pre>code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+.markdown-body .highlight {
+  margin-bottom: 16px;
+}
+
+.markdown-body .highlight pre,
+.markdown-body pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f7f7f7;
+  border-radius: 3px;
+}
+
+.markdown-body .highlight pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+.markdown-body pre {
+  word-wrap: normal;
+}
+
+.markdown-body pre code {
+  display: inline;
+  max-width: initial;
+  padding: 0;
+  margin: 0;
+  overflow: initial;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+.markdown-body pre code:before,
+.markdown-body pre code:after {
+  content: normal;
+}
+
+.markdown-body .highlight {
+  background: #fff;
+}
+
+.markdown-body .highlight .mf,
+.markdown-body .highlight .mh,
+.markdown-body .highlight .mi,
+.markdown-body .highlight .mo,
+.markdown-body .highlight .il,
+.markdown-body .highlight .m {
+  color: #945277;
+}
+
+.markdown-body .highlight .s,
+.markdown-body .highlight .sb,
+.markdown-body .highlight .sc,
+.markdown-body .highlight .sd,
+.markdown-body .highlight .s2,
+.markdown-body .highlight .se,
+.markdown-body .highlight .sh,
+.markdown-body .highlight .si,
+.markdown-body .highlight .sx,
+.markdown-body .highlight .s1 {
+  color: #df5000;
+}
+
+.markdown-body .highlight .kc,
+.markdown-body .highlight .kd,
+.markdown-body .highlight .kn,
+.markdown-body .highlight .kp,
+.markdown-body .highlight .kr,
+.markdown-body .highlight .kt,
+.markdown-body .highlight .k,
+.markdown-body .highlight .o {
+  font-weight: bold;
+}
+
+.markdown-body .highlight .kt {
+  color: #458;
+}
+
+.markdown-body .highlight .c,
+.markdown-body .highlight .cm,
+.markdown-body .highlight .c1 {
+  color: #998;
+  font-style: italic;
+}
+
+.markdown-body .highlight .cp,
+.markdown-body .highlight .cs {
+  color: #999;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .cs {
+  font-style: italic;
+}
+
+.markdown-body .highlight .n {
+  color: #333;
+}
+
+.markdown-body .highlight .na,
+.markdown-body .highlight .nv,
+.markdown-body .highlight .vc,
+.markdown-body .highlight .vg,
+.markdown-body .highlight .vi {
+  color: #008080;
+}
+
+.markdown-body .highlight .nb {
+  color: #0086B3;
+}
+
+.markdown-body .highlight .nc {
+  color: #458;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .no {
+  color: #094e99;
+}
+
+.markdown-body .highlight .ni {
+  color: #800080;
+}
+
+.markdown-body .highlight .ne {
+  color: #990000;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .nf {
+  color: #945277;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .nn {
+  color: #555;
+}
+
+.markdown-body .highlight .nt {
+  color: #000080;
+}
+
+.markdown-body .highlight .err {
+  color: #a61717;
+  background-color: #e3d2d2;
+}
+
+.markdown-body .highlight .gd {
+  color: #000;
+  background-color: #fdd;
+}
+
+.markdown-body .highlight .gd .x {
+  color: #000;
+  background-color: #faa;
+}
+
+.markdown-body .highlight .ge {
+  font-style: italic;
+}
+
+.markdown-body .highlight .gr {
+  color: #aa0000;
+}
+
+.markdown-body .highlight .gh {
+  color: #999;
+}
+
+.markdown-body .highlight .gi {
+  color: #000;
+  background-color: #dfd;
+}
+
+.markdown-body .highlight .gi .x {
+  color: #000;
+  background-color: #afa;
+}
+
+.markdown-body .highlight .go {
+  color: #888;
+}
+
+.markdown-body .highlight .gp {
+  color: #555;
+}
+
+.markdown-body .highlight .gs {
+  font-weight: bold;
+}
+
+.markdown-body .highlight .gu {
+  color: #800080;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .gt {
+  color: #aa0000;
+}
+
+.markdown-body .highlight .ow {
+  font-weight: bold;
+}
+
+.markdown-body .highlight .w {
+  color: #bbb;
+}
+
+.markdown-body .highlight .sr {
+  color: #017936;
+}
+
+.markdown-body .highlight .ss {
+  color: #8b467f;
+}
+
+.markdown-body .highlight .bp {
+  color: #999;
+}
+
+.markdown-body .highlight .gc {
+  color: #999;
+  background-color: #EAF2F5;
+}
+
+.markdown-body .octicon {
+  line-height: 1;
+  display: inline-block;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.markdown-body .octicon-link:before {
+  content: '\f05c';
+}
+
+.markdown-body .task-list-item {
+  list-style-type: none;
+}
+
+.markdown-body .task-list-item+.task-list-item {
+  margin-top: 3px;
+}
+
+.markdown-body .task-list-item input {
+  float: left;
+  margin: 0.3em 0 0.25em -1.6em;
+  vertical-align: middle;
+}
+table td{ word-wrap: break-word !important; word-break: break-all !important; }
+/*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+  -webkit-text-size-adjust: none;
+}
+
+.hljs-comment,
+.diff .hljs-header {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.css .rule .hljs-keyword,
+.hljs-winutils,
+.nginx .hljs-title,
+.hljs-subst,
+.hljs-request,
+.hljs-status {
+  color: #333;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-hexcolor,
+.ruby .hljs-constant {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-tag .hljs-value,
+.hljs-doctag,
+.tex .hljs-formula {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-id,
+.scss .hljs-preprocessor {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-list .hljs-keyword,
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-class .hljs-title,
+.hljs-type,
+.vhdl .hljs-literal,
+.tex .hljs-command {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-tag .hljs-title,
+.hljs-rule .hljs-property,
+.django .hljs-tag .hljs-keyword {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-attribute,
+.hljs-variable,
+.lisp .hljs-body,
+.hljs-name {
+  color: #008080;
+}
+
+.hljs-regexp {
+  color: #009926;
+}
+
+.hljs-symbol,
+.ruby .hljs-symbol .hljs-string,
+.lisp .hljs-keyword,
+.clojure .hljs-keyword,
+.scheme .hljs-keyword,
+.tex .hljs-special,
+.hljs-prompt {
+  color: #990073;
+}
+
+.hljs-built_in {
+  color: #0086b3;
+}
+
+.hljs-preprocessor,
+.hljs-pragma,
+.hljs-pi,
+.hljs-doctype,
+.hljs-shebang,
+.hljs-cdata {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.diff .hljs-change {
+  background: #0086b3;
+}
+
+.hljs-chunk {
+  color: #aaa;
+}
+
+
+</style>
+<style> @media print{ .hljs{overflow: visible; word-wrap: break-word !important;} }</style></head><body><div class="markdown-body">
+<h1 id="toc_0">rn_test</h1>
+
+<ul>
+<li>
+<a href="#toc_0">rn_test</a>
+<ul>
+<li>
+<a href="#toc_1">说明</a>
+</li>
+<li>
+<a href="#toc_2">简介</a>
+</li>
+<li>
+<a href="#toc_3">安装</a>
+</li>
+<li>
+<a href="#toc_4">运行</a>
+</li>
+<li>
+<a href="#toc_5">资源</a>
+</li>
+<li>
+<a href="#toc_6">未探索的资源</a>
+</li>
+<li>
+<a href="#toc_7">新增页面需要在三个地方进行操作</a>
+</li>
+<li>
+<a href="#toc_8">优化package.json使开发更加方便</a>
+</li>
+<li>
+<a href="#toc_9">flex布局常用属性</a>
+</li>
+<li>
+<a href="#toc_10">图片</a>
+</li>
+<li>
+<a href="#toc_11">链接原生库</a>
+</li>
+<li>
+<a href="#toc_12">开发技巧</a>
+</li>
+<li>
+<a href="#toc_13">处理触摸事件</a>
+</li>
+<li>
+<a href="#toc_14">解决版本冲突问题</a>
+</li>
+<li>
+<a href="#toc_15">解决路由失效问题</a>
+</li>
+<li>
+<a href="#toc_16">AsyncStorage保存报错</a>
+</li>
+<li>
+<a href="#toc_17">react-native支持的style props</a>
+</li>
+<li>
+<a href="#toc_18">StatusBar解决android状态栏问题</a>
+</li>
+<li>
+<a href="#toc_19">Platform区分ios and android平台</a>
+</li>
+<li>
+<a href="#toc_20">请求fetch封装</a>
+</li>
+<li>
+<a href="#toc_21">请求环境+请求地址定义</a>
+</li>
+<li>
+<a href="#toc_22"><code>react-native-scrollable-tab-view</code></a>
+</li>
+<li>
+<a href="#toc_23">react-native初始化报错，导致无法初始化</a>
+</li>
+<li>
+<a href="#toc_24">动态切换状态</a>
+</li>
+<li>
+<a href="#toc_25">声明周期-初始渲染 and 检测<code>goBack()</code></a>
+<ul>
+<li>
+<a href="#toc_26">检测<code>goBack()</code></a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_27">安卓打包</a>
+<ul>
+<li>
+<a href="#toc_28">第一步：生成Android签名证书</a>
+</li>
+<li>
+<a href="#toc_29">第二步：设置gradle变量</a>
+</li>
+<li>
+<a href="#toc_30">第三步：在gradle配置文件中添加签名配置</a>
+</li>
+<li>
+<a href="#toc_31">第四步：签名打包APK</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_32">错误处理</a>
+</li>
+<li>
+<a href="#toc_33">app的logo and name</a>
+<ul>
+<li>
+<a href="#toc_34">android</a>
+</li>
+<li>
+<a href="#toc_35">IOS</a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<h2 id="toc_1">说明</h2>
+
+<ul>
+<li>从项目开始启动（2018-07-02）到项目进入测试（2018-08-20）</li>
+<li>从我基本没用过react，到直接上手react-native</li>
+<li>其实从内心我是又爱又怕，爱是我确实很早就像下手除Vue以外的框架，多接触和学习一些不一样的思想；怕是前端就我一个，一切坑都由自己来抗；可想而知，内外压力一定会很大</li>
+<li>过程就是日复一日的研究在研究，不停地问问题，然后在研究；开发rn很想开发小程序，更多时候还是利用rn提供的组件，再加上一些js技巧</li>
+<li>结果：自己对社区的利用更加的顺手，面对难题不在过分畏惧而是不断深入思考，直至解决</li>
+<li>心理：其实直面难题并不难，难的是自己看到了难题背后还有无数个难题，这时候自己就不想面对了；后来知道与其逃避，不如遇到一个干掉一个，不然攻城狮不是白叫了</li>
+<li>下面是自己在实际中从开始到结束总结的一些东西，后续随着进展还会更新</li>
+</ul>
+
+<h2 id="toc_2">简介</h2>
+
+<ul>
+<li><a href="https://gitee.com/liu12fei08fei/rn_test">项目总结代码地址</a></li>
+<li>记录开发react-native中各种有意思的事情</li>
+<li>最新探索，用来进行各种尝试的空间</li>
+<li>完成的探索，记录所有已经完成的模块、功能和效果</li>
+<li>中转站，暂时无用</li>
+</ul>
+
+<h2 id="toc_3">安装</h2>
+
+<p><strong>全局脚手架</strong></p>
+
+<pre><code>npm i -g react-native-cli
+</code></pre>
+
+<p><strong>安装基础项目</strong></p>
+
+<pre><code>react-native init &lt;项目名称&gt;
+</code></pre>
+
+<h2 id="toc_4">运行</h2>
+
+<p><strong>优化后的运行</strong></p>
+
+<ul>
+<li>ios：<code>npm run ios</code></li>
+<li>android：<code>npm run android</code></li>
+<li>ios and android：<code>npm run s</code></li>
+</ul>
+
+<p><strong>原始启动</strong></p>
+
+<ul>
+<li>ios：<code>react-native run-ios</code></li>
+<li>android：<code>react-native run-android</code></li>
+</ul>
+
+<h2 id="toc_5">资源</h2>
+
+<ul>
+<li><a href="https://github.com/react-navigation/react-navigation">navigation集成</a></li>
+<li><a href="https://github.com/oblador/react-native-vector-icons">集成icons</a></li>
+<li><a href="https://github.com/crazycodeboy/react-native-easy-toast">react-native-easy-toast</a></li>
+<li><a href="https://github.com/jondot/awesome-react-native">rn资源列表</a></li>
+<li><a href="https://github.com/dancormier/react-native-swipeout">横向滑动展示按钮效果</a></li>
+<li><a href="https://github.com/valerybugakov/react-native-custom-actionsheet">自定义行动列表</a></li>
+<li><a href="https://github.com/danchokobo/react-native-code-verification">密码输入效果</a></li>
+<li><a href="https://github.com/skv-headless/react-native-scrollable-tab-view">选项卡导航之间滑动</a></li>
+<li><a href="https://github.com/cssivision/react-native-qrcode">二维码生成</a></li>
+</ul>
+
+<h2 id="toc_6">未探索的资源</h2>
+
+<blockquote>
+<p>365个库中寻找77个</p>
+</blockquote>
+
+<ol>
+<li><a href="https://github.com/beefe/react-native-picker">select选择控件</a></li>
+<li><a href="https://github.com/App2Sales/react-native-switch-selector">开关式选择列表</a></li>
+<li><a href="https://github.com/yonahforst/react-native-emoji-picker">表情选择器</a></li>
+<li><a href="https://github.com/Tinysymphony/react-native-drawer-menu">左右滑动层</a></li>
+<li><a href="https://github.com/Spikef/react-native-phone-picker">手机号选择控件</a></li>
+<li><a href="https://github.com/zecaptus/react-native-md-motion-buttons">登录动画</a></li>
+<li><a href="https://github.com/merryjs/photo-viewer">图片查看器</a></li>
+<li><a href="https://github.com/SoftZen/react-native-bouncy-drawer">菜单操作动画</a></li>
+<li><a href="https://github.com/charlot567/react-native-comparison-slider">滑动操作图片展示样式</a></li>
+<li><a href="https://github.com/moschan/react-native-newsticker">操作打字效果</a></li>
+<li><a href="https://github.com/prscX/react-native-siri-wave-view">声音可视化</a></li>
+<li><a href="https://github.com/mfrachet/rn-placeholder">占位符</a></li>
+<li><a href="https://github.com/oblador/react-native-lightbox">图片查看器</a></li>
+<li><a href="https://github.com/react-native-community/react-native-blur">模糊背景效果</a></li>
+<li><a href="https://github.com/ivpusic/react-native-image-crop-picker">本地图片超级操作</a></li>
+<li><a href="https://github.com/meteor-factory/react-native-tinder-swipe-cards">四面八方拖动效果</a></li>
+<li><a href="https://github.com/sbycrosz/react-native-credit-card-input">信用卡输入效果</a></li>
+<li><a href="https://github.com/jmurzy/react-native-foldview">展开动画效果</a></li>
+<li><a href="https://github.com/tomauty/react-native-chart">chart</a></li>
+<li><a href="https://github.com/crazycodeboy/react-native-splash-screen">初始化启动页</a></li>
+<li><a href="https://github.com/wix/react-native-calendars">日期</a></li>
+<li><a href="https://github.com/archriss/react-native-snap-carousel">左右滑动操作卡片效果</a></li>
+<li><a href="https://github.com/gitim/react-native-sortable-list">列表拖拽</a></li>
+<li><a href="https://github.com/JesperLekland/react-native-svg-charts">chart</a></li>
+<li><a href="https://github.com/spikef/react-native-gesture-password">密码锁效果</a></li>
+<li><a href="https://github.com/djchie/react-native-star-rating">星级评价</a></li>
+<li><a href="https://github.com/jgrancher/react-native-sketch">手动签字</a></li>
+<li><a href="https://github.com/24ark/react-native-step-indicator">滑动时间轴效果</a></li>
+<li><a href="https://github.com/xcarpentier/react-native-country-picker-modal">国家26字母选择</a></li>
+<li><a href="https://github.com/cnjon/react-native-pdf-view">PDF查看</a></li>
+<li><a href="https://github.com/i6mi6/react-native-alphabetlistview">26字母选择</a></li>
+<li><a href="https://github.com/naoufal/react-native-activity-view">分享</a></li>
+<li><a href="https://github.com/jeanregisser/react-native-popover">对话框</a></li>
+<li><a href="https://github.com/taskrabbit/react-native-parsed-text">电话、地址等操作</a></li>
+<li><a href="https://github.com/kayla-tech/react-native-privacy-snapshot">后台信息保护</a></li>
+<li><a href="https://github.com/anvilabs/react-native-image-carousel">图片查看器</a></li>
+<li><a href="https://github.com/chitezh/react-native-swiper-animated">左右滑动动画</a></li>
+<li><a href="https://github.com/rauchy/react-native-offline-mode">无网络操作</a></li>
+<li><a href="https://github.com/instea/react-native-color-picker">颜色选择器</a></li>
+<li><a href="https://github.com/wix/react-native-custom-segmented-control">左右滑动tab动效</a></li>
+<li><a href="https://github.com/mastermoo/react-native-pulse-loader">加载中效果</a></li>
+<li><a href="https://github.com/machadogj/react-native-carousel-control">左右滑动效果，类似酷划锁屏</a></li>
+<li><a href="https://github.com/awesomejerry/react-native-qrcode-svg">二维码生成器</a></li>
+<li><a href="https://github.com/zachgibson/react-native-parallax-swiper">图片查看器</a></li>
+<li><a href="https://github.com/bamlab/react-native-image-header-scroll-view">视差效果</a></li>
+<li><a href="https://github.com/Tinysymphony/react-native-calendar-select">日期</a></li>
+<li><a href="https://github.com/prscX/react-native-shine-button">点击效果</a>、</li>
+<li><a href="https://github.com/geremih/react-native-circular-action-menu">扇形菜单</a></li>
+<li><a href="https://github.com/johanneslumpe/react-native-gesture-recognizers">手势识别</a></li>
+</ol>
+
+<h2 id="toc_7">新增页面需要在三个地方进行操作</h2>
+
+<ol>
+<li>data里面的<code>complete.js</code>中添加数据，方便在<code>完成的探索</code>中出现</li>
+<li>navigators中的<code>AppStackNavigators.js</code>里面进行<code>引入=&gt;注册</code>，使得路由正常</li>
+<li>pages里面添加页面</li>
+</ol>
+
+<h2 id="toc_8">优化package.json使开发更加方便</h2>
+
+<ul>
+<li>在<code>scripts</code>中添加，如下内容：</li>
+</ul>
+
+<pre><code>&quot;ios&quot;:&quot;react-native run-ios&quot;,
+&quot;android&quot;:&quot;react-native run-android&quot;,
+&quot;s&quot;:&quot;npm run ios &amp;&amp; npm run android&quot;,
+</code></pre>
+
+<h2 id="toc_9">flex布局常用属性</h2>
+
+<ul>
+<li>防止在flex中出现，固定元素被挤压的问题，使用<code>flex:1</code>进行优化</li>
+</ul>
+
+<pre><code>display: &#39;flex&#39;;
+flexDirection: row | row-reverse | column | column-reverse;
+flexWrap: nowrap | wrap | wrap-reverse;
+flexFlow: &lt;flex-direction&gt; || &lt;flex-wrap&gt;;
+justifyContent: flex-start | flex-end | center | space-between | space-around;
+alignItems: flex-start | flex-end | center | baseline | stretch;
+alignContent: flex-start | flex-end | center | space-between | space-around | stretch;
+
+order: &lt;integer&gt;;
+flexGrow: &lt;number&gt;; /* default 0 */
+flexShrink: &lt;number&gt;; /* default 1 */
+flexBasis: &lt;length&gt; | auto; /* default auto */
+flex: none | [ &lt;&#39;flex-grow&#39;&gt; &lt;&#39;flex-shrink&#39;&gt;? || &lt;&#39;flex-basis&#39;&gt; ]
+alignSelf: auto | flex-start | flex-end | center | baseline | stretch;
+</code></pre>
+
+<h2 id="toc_10">图片</h2>
+
+<p><strong>图片使用</strong></p>
+
+<pre><code>&lt;Image source={require(&#39;./my-icon.png&#39;)} /&gt;
+</code></pre>
+
+<p><strong>命名规则</strong></p>
+
+<ul>
+<li><code>icon_test.png</code></li>
+<li><code>icon_test@2x.png</code></li>
+<li><code>icon_test@3x.png</code></li>
+</ul>
+
+<h2 id="toc_11">链接原生库</h2>
+
+<p><strong>第一步</strong></p>
+
+<blockquote>
+<p>安装带原生依赖的库</p>
+</blockquote>
+
+<pre><code>npm install &lt;某个带有原生依赖的库&gt; --save
+</code></pre>
+
+<p><strong>第二步</strong></p>
+
+<blockquote>
+<p>运行以下命令，它会根据<code>package.json</code>文件中的<code>dependencies</code>和<code>devDependencies</code>记录来链接所有需要链接的库</p>
+</blockquote>
+
+<pre><code>react-native link
+</code></pre>
+
+<h2 id="toc_12">开发技巧</h2>
+
+<ul>
+<li>启动hot或者debug的时候，切记不要同时启动ios and android，两者会发生冲突，导致出现程序崩溃，从而影响开发</li>
+<li>最好的方式是，启动一个hot或debug，这样可以良好的进行开发；另一个手动足够了</li>
+</ul>
+
+<h2 id="toc_13">处理触摸事件</h2>
+
+<blockquote>
+<p>使用&quot;Touchable&quot;开头的一系列组件<br/>
+通过onPress属性接受一个点击事件的处理函数</p>
+</blockquote>
+
+<ul>
+<li>两种方式绑定事件，并处理点击范围</li>
+<li>推荐第二种，方便传递数据</li>
+</ul>
+
+<pre><code>_onPressButton=((item)=&gt;{
+  alert(1)
+  console.log(item);
+})
+render() {
+  return (
+    &lt;View&gt;
+      &lt;TouchableHighlight onPress={this._onPressButton}&gt;
+        &lt;View style={[S.btn,{backgroundColor:`${this.state.bg}`}]}&gt;
+          &lt;Text style={S.btnText}&gt;{this.state.bg}&lt;/Text&gt;
+        &lt;/View&gt;
+      &lt;/TouchableHighlight&gt;
+      &lt;TouchableHighlight onPress={()=&gt;{
+        this._onPressButton(this.state.bg)
+      }}&gt;
+        &lt;View style={[S.btn,{backgroundColor:`${this.state.bg}`}]}&gt;
+          &lt;Text style={S.btnText}&gt;{this.state.bg}&lt;/Text&gt;
+        &lt;/View&gt;
+      &lt;/TouchableHighlight&gt;
+    &lt;/View&gt;
+  );
+}
+</code></pre>
+
+<h2 id="toc_14">解决版本冲突问题</h2>
+
+<p><strong>js版本和rn版本出现冲突</strong></p>
+
+<ul>
+<li>Watchman是由Facebook提供的监视文件系统变更的工具。安装此工具可以提高开发时的性能（packager可以快速捕捉文件的变化从而实现实时刷新）。</li>
+<li>清除Watchman：<code>watchman watch-del-all</code></li>
+<li>清除rn缓存：<code>react-native start --reset-cache</code></li>
+</ul>
+
+<h2 id="toc_15">解决路由失效问题</h2>
+
+<ul>
+<li><code>createTabNavigator</code>要在<code>createStackNavigator</code>里面进行注册，才能够使用<code>createStackNavigator</code>具有的方法，这个是我第二次配置的时候掉进的一个坑</li>
+</ul>
+
+<p><strong>this.props.navigation属性详细说明</strong></p>
+
+<ul>
+<li>在<code>createTabNavigator</code>里面没有<code>push</code>、<code>replace</code>等方法</li>
+<li>在<code>createStackNavigator</code>中存在<code>push</code>、<code>replace</code>等方法</li>
+</ul>
+
+<h2 id="toc_16">AsyncStorage保存报错</h2>
+
+<blockquote>
+<p><code>JSON value &#39;&lt;null&gt;&#39; of type NSNull</code></p>
+</blockquote>
+
+<ul>
+<li>当保存值为<code>undefined</code>的时候，报错</li>
+<li>防止这种问题发生最好在<code>this.state</code>中保存初始值为空，必要时可以提醒用户</li>
+</ul>
+
+<h2 id="toc_17">react-native支持的style props</h2>
+
+<ul>
+<li>查看最新版属性支持情况，最简单的直接在页面使用错误的属性，然后查看报错信息😂</li>
+</ul>
+
+<pre><code>Valid style props: [
+  &quot;alignContent&quot;,
+  &quot;alignItems&quot;,
+  &quot;alignSelf&quot;,
+  &quot;aspectRatio&quot;,
+  &quot;backfaceVisibility&quot;,
+  &quot;backgroundColor&quot;,
+  &quot;borderBottomColor&quot;,
+  &quot;borderBottomEndRadius&quot;,
+  &quot;borderBottomLeftRadius&quot;,
+  &quot;borderBottomRightRadius&quot;,
+  &quot;borderBottomStartRadius&quot;,
+  &quot;borderBottomWidth&quot;,
+  &quot;borderColor&quot;,
+  &quot;borderEndColor&quot;,
+  &quot;borderEndWidth&quot;,
+  &quot;borderLeftColor&quot;,
+  &quot;borderLeftWidth&quot;,
+  &quot;borderRadius&quot;,
+  &quot;borderRightColor&quot;,
+  &quot;borderRightWidth&quot;,
+  &quot;borderStartColor&quot;,
+  &quot;borderStartWidth&quot;,
+  &quot;borderStyle&quot;,
+  &quot;borderTopColor&quot;,
+  &quot;borderTopEndRadius&quot;,
+  &quot;borderTopLeftRadius&quot;,
+  &quot;borderTopRightRadius&quot;,
+  &quot;borderTopStartRadius&quot;,
+  &quot;borderTopWidth&quot;,
+  &quot;borderWidth&quot;,
+  &quot;bottom&quot;,
+  &quot;color&quot;,
+  &quot;decomposedMatrix&quot;,
+  &quot;direction&quot;,
+  &quot;display&quot;,
+  &quot;elevation&quot;,
+  &quot;end&quot;,
+  &quot;flex&quot;,
+  &quot;flexBasis&quot;,
+  &quot;flexDirection&quot;,
+  &quot;flexGrow&quot;,
+  &quot;flexShrink&quot;,
+  &quot;flexWrap&quot;,
+  &quot;fontFamily&quot;,
+  &quot;fontSize&quot;,
+  &quot;fontStyle&quot;,
+  &quot;fontVariant&quot;,
+  &quot;fontWeight&quot;,
+  &quot;height&quot;,
+  &quot;includeFontPadding&quot;,
+  &quot;justifyContent&quot;,
+  &quot;left&quot;,
+  &quot;letterSpacing&quot;,
+  &quot;lineHeight&quot;,
+  &quot;margin&quot;,
+  &quot;marginBottom&quot;,
+  &quot;marginEnd&quot;,
+  &quot;marginHorizontal&quot;,
+  &quot;marginLeft&quot;,
+  &quot;marginRight&quot;,
+  &quot;marginStart&quot;,
+  &quot;marginTop&quot;,
+  &quot;marginVertical&quot;,
+  &quot;maxHeight&quot;,
+  &quot;maxWidth&quot;,
+  &quot;minHeight&quot;,
+  &quot;minWidth&quot;,
+  &quot;opacity&quot;,
+  &quot;overflow&quot;,
+  &quot;overlayColor&quot;,
+  &quot;padding&quot;,
+  &quot;paddingBottom&quot;,
+  &quot;paddingEnd&quot;,
+  &quot;paddingHorizontal&quot;,
+  &quot;paddingLeft&quot;,
+  &quot;paddingRight&quot;,
+  &quot;paddingStart&quot;,
+  &quot;paddingTop&quot;,
+  &quot;paddingVertical&quot;,
+  &quot;position&quot;,
+  &quot;resizeMode&quot;,
+  &quot;right&quot;,
+  &quot;rotation&quot;,
+  &quot;scaleX&quot;,
+  &quot;scaleY&quot;,
+  &quot;shadowColor&quot;,
+  &quot;shadowOffset&quot;,
+  &quot;shadowOpacity&quot;,
+  &quot;shadowRadius&quot;,
+  &quot;start&quot;,
+  &quot;textAlign&quot;,
+  &quot;textAlignVertical&quot;,
+  &quot;textDecorationColor&quot;,
+  &quot;textDecorationLine&quot;,
+  &quot;textDecorationStyle&quot;,
+  &quot;textShadowColor&quot;,
+  &quot;textShadowOffset&quot;,
+  &quot;textShadowRadius&quot;,
+  &quot;textTransform&quot;,
+  &quot;tintColor&quot;,
+  &quot;top&quot;,
+  &quot;transform&quot;,
+  &quot;transformMatrix&quot;,
+  &quot;translateX&quot;,
+  &quot;translateY&quot;,
+  &quot;width&quot;,
+  &quot;writingDirection&quot;,
+  &quot;zIndex&quot;
+]
+</code></pre>
+
+<h2 id="toc_18">StatusBar解决android状态栏问题</h2>
+
+<p><em>设置StatusBar</em></p>
+
+<pre><code>&lt;StatusBar
+     backgroundColor=&quot;transparent&quot;
+     translucent
+   /&gt;
+</code></pre>
+
+<p><em>设置顶部模块的样式</em></p>
+
+<ul>
+<li>注：padding值需要+高度值=&gt;height最终值</li>
+</ul>
+
+<pre><code>height: 50,
+paddingTop: 10,
+</code></pre>
+
+<h2 id="toc_19">Platform区分ios and android平台</h2>
+
+<blockquote>
+<p>三种方法实现跨平台：</p>
+</blockquote>
+
+<ol>
+<li><code>Platform.OS</code></li>
+<li>使用<code>Platform</code>的<code>select</code>方法</li>
+<li>使用不能组件名：ios使用<code>header.ios.js</code>；android使用<code>header.android.js</code></li>
+</ol>
+
+<pre><code>const instructions = Platform.select({
+  ios: &#39;ios&#39;,
+  android: &#39;android&#39;,
+});
+</code></pre>
+
+<h2 id="toc_20">请求fetch封装</h2>
+
+<ul>
+<li><code>HttpUtils.js</code></li>
+</ul>
+
+<p><strong>引入</strong></p>
+
+<pre><code>import HttpUtils from &#39;../../HttpUtils&#39;;
+</code></pre>
+
+<p><strong>使用</strong></p>
+
+<ul>
+<li>在全局<code>global.data.domain</code>保存请求域名</li>
+<li>请求需要header传递token的使用<code>,global.data.token</code></li>
+</ul>
+
+<pre><code>HttpUtils.post(`${apiConfig}`, {
+        platform: &#39;ios&#39;
+    },global.data.token)
+    .then(rtn =&gt; {
+        global.data.config = rtn;
+        // console.log(`配置=&gt;( ${JSON.stringify(rtn)} )`);
+    })
+    .catch(err =&gt; {
+        console.log(&#39;error&#39;, err)
+    })
+</code></pre>
+
+<h2 id="toc_21">请求环境+请求地址定义</h2>
+
+<p><strong>请求环境</strong></p>
+
+<ul>
+<li>在<code>addr.js</code>中<code>env</code>变量定义</li>
+</ul>
+
+<p><strong>请求地址</strong></p>
+
+<ul>
+<li>在<code>addr.js</code>中<code>addrList</code>统一管理所有请求地址</li>
+</ul>
+
+<p><strong>使用</strong></p>
+
+<pre><code>import addrList from &#39;../../addr&#39;;
+const {apiConfig}=addrList;
+</code></pre>
+
+<h2 id="toc_22"><code>react-native-scrollable-tab-view</code></h2>
+
+<ul>
+<li>解决逗号影响的报错问题：在路径<code>~/node_modules/react-native-scrollable-tab-viewSceneComponent.js</code>下删除即可</li>
+</ul>
+
+<h2 id="toc_23">react-native初始化报错，导致无法初始化</h2>
+
+<ul>
+<li>重新设置一下地址</li>
+</ul>
+
+<pre><code>npm config set registry https://registry.npm.taobao.org
+npm config set disturl https://npm.taobao.org/dist
+</code></pre>
+
+<h2 id="toc_24">动态切换状态</h2>
+
+<ul>
+<li>采用对象的形式来操作，这样可以使用state里面的参数，来动态切换</li>
+<li>解决了直接应用的报错问题，以后遇到同样的问题要及时想到对象方式</li>
+</ul>
+
+<h2 id="toc_25">声明周期-初始渲染 and 检测<code>goBack()</code></h2>
+
+<ul>
+<li>为了保证页面的数据实时性，最好在初始的时候进行请求</li>
+</ul>
+
+<pre><code>componentDidMount(){}
+</code></pre>
+
+<h3 id="toc_26">检测<code>goBack()</code></h3>
+
+<blockquote>
+<p>需要重新加载app</p>
+</blockquote>
+
+<p><strong>第一步</strong></p>
+
+<ul>
+<li>在删除组件的时候，定义<code>goBack</code>事件</li>
+</ul>
+
+<pre><code>componentWillUnmount(){
+  DeviceEventEmitter.emit(&#39;goBack&#39;, &#39;goBack刷新返回页面数据&#39;);
+}
+</code></pre>
+
+<p><strong>第二步</strong></p>
+
+<ul>
+<li>在初始渲染中监听，<code>goBack</code>自定义事件</li>
+</ul>
+
+<pre><code>componentDidMount(){
+  // 接收
+  this.deEmitter = DeviceEventEmitter.addListener(&#39;goBack&#39;, (a) =&gt; {
+    this.loadData();
+  });
+}
+</code></pre>
+
+<h2 id="toc_27">安卓打包</h2>
+
+<h3 id="toc_28">第一步：<a href="https://developer.android.com/studio/publish/app-signing">生成Android签名证书</a></h3>
+
+<h3 id="toc_29">第二步：设置gradle变量</h3>
+
+<ul>
+<li>将你的签名证书copy到<code>android/app</code>目录下</li>
+<li>编辑<code>~/.gradle/gradle.properties</code>或<code>../android/gradle.properties</code>(一个是全局<code>gradle.properties</code>，一个是项目中的<code>gradle.properties</code>，大家可以根据需要进行修改) ，加入如下代码：</li>
+</ul>
+
+<pre><code>MYAPP_RELEASE_STORE_FILE=ch09-keystore.jks
+MYAPP_RELEASE_KEY_ALIAS=ch09-keystore
+MYAPP_RELEASE_STORE_PASSWORD=123456
+MYAPP_RELEASE_KEY_PASSWORD=123456
+</code></pre>
+
+<h3 id="toc_30">第三步：在gradle配置文件中添加签名配置</h3>
+
+<ul>
+<li>编辑<code>android/app/build.gradle</code>文件添加如下代码：</li>
+</ul>
+
+<pre><code>...
+android {
+    ...
+    defaultConfig { ... }
+    signingConfigs {
+        release {
+            storeFile file(MYAPP_RELEASE_STORE_FILE)
+            storePassword MYAPP_RELEASE_STORE_PASSWORD
+            keyAlias MYAPP_RELEASE_KEY_ALIAS
+            keyPassword MYAPP_RELEASE_KEY_PASSWORD
+        }
+    }
+    buildTypes {
+        release {
+            ...
+            signingConfig signingConfigs.release
+        }
+    }
+}
+...
+</code></pre>
+
+<h3 id="toc_31">第四步：签名打包APK</h3>
+
+<ul>
+<li>terminal进入项目下的android目录，运行如下代码：</li>
+</ul>
+
+<pre><code>./gradlew assembleRelease
+</code></pre>
+
+<ul>
+<li>签名打包成功后你会在<code>android/app/build/outputs/apk/</code>目录下看到签名成功后的<code>app-release.apk</code>文件。</li>
+<li>提示：如果你需要对apk进行混淆打包 编辑android/app/build.gradle：</li>
+</ul>
+
+<pre><code>/**
+ * Run Proguard to shrink the Java bytecode in release builds.
+ */
+def enableProguardInReleaseBuilds = true
+</code></pre>
+
+<h2 id="toc_32">错误处理</h2>
+
+<pre><code>fetch(apiLogin, {
+    method: &#39;POST&#39;,
+    headers: {
+      &#39;Accept&#39;: &#39;application/json&#39;,//通过头指定，获取的数据类型是JSON
+      &#39;Content-Type&#39;: &#39;application/json&#39;,
+      &#39;Authorization&#39;:global.data.token,
+    },
+    body: JSON.stringify({
+      // 请求参数
+    })
+  })
+  .then(result =&gt; {
+    const {status,statusText} = result;
+    if(status&gt;=200&amp;&amp;status&lt;300||status==304){
+      // 成功
+      const promise = result.json()
+      promise.then(rtn=&gt;{
+        // 成功
+      })
+    }else if(status==403){
+      // 跳转登录
+      this.props.navigation.replace(&#39;login&#39;);
+    }else{
+      // 提醒 statusText
+      this.refs.toast.show(statusText);
+    }
+  })
+  .catch(error =&gt; {
+    if(Object.prototype.toString.call(error) === &#39;[object Object]&#39;){
+        this.refs.toast.show(JSON.stringify(error))
+    }else{
+        this.refs.toast.show(error)
+    }
+  })
+</code></pre>
+
+<h2 id="toc_33">app的logo and name</h2>
+
+<h3 id="toc_34">android</h3>
+
+<p><strong>LOGO</strong></p>
+
+<ul>
+<li>将logo分别放到<code>android/app/src/main/res</code>下的四个文件夹中,命名为<code>ic_launcher.png</code></li>
+<li>没有对应上的文件夹放一张<code>1024*1024</code>或者<code>512*512</code>的即可</li>
+</ul>
+
+<p><strong>app名称</strong></p>
+
+<ul>
+<li>在<code>android/app/src/main/res/values/strings.xml</code>中更改</li>
+</ul>
+
+<h3 id="toc_35">IOS</h3>
+
+<p><strong>LOGO</strong></p>
+
+<ul>
+<li><code>xcode&gt;</code> 根目录 <code>&gt;Images.xcassets</code> 将生成的图标拖入对应的位置</li>
+</ul>
+
+<p><strong>app名称</strong></p>
+
+<ul>
+<li><code>xcode&gt;</code> 根目录 <code>&gt;Info.plist</code> 中修改 <code>Bundlename</code> 和 <code>General&gt; DIsplay Name</code></li>
+</ul>
+
+</div></body>
+
+</html>
