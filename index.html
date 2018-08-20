@@ -289,7 +289,7 @@
     <div class="voice_item"></div>
 </div>
 <!-- 视频 -->
-<video src="http://p1g0rvvn6.bkt.clouddn.com/sunrise.mp4" id="sunrise" autoplay="" loop=""></video>
+<video src="http://p1g0rvvn6.bkt.clouddn.com/sunrise.mp4" id="sunrise" autoplay="autoplay" loop=""></video>
 <script>
 console.log(`
 佛曰:
@@ -336,11 +336,14 @@ document.getElementById("voice").onclick=play;
 function play() {
     var voice = document.getElementById('voice');
     var obj = document.getElementById("audios");
+    var onSunrise = document.getElementById("sunrise");
     if (obj.paused) {
         obj.play();
+        onSunrise.play();
         voice.setAttribute("class", "voice voice_open");
     } else {
         obj.pause();
+        onSunrise.pause();
         voice.setAttribute("class", "voice voice_shut");
     }
 
