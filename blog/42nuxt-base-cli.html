@@ -1,0 +1,1320 @@
+<!DOCTYPE html><html>
+
+<head>
+<meta charset="utf-8">
+<title># nuxt搭建和配置多页架构</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+<meta name="format-detection" content="telephone=no">
+<style>
+body {
+  background-color: white;
+}
+
+.markdown-body {
+  min-width: 200px;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 20px;
+
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  color: #333;
+  overflow: hidden;
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+.markdown-body a {
+  background: transparent;;word-wrap: break-word; word-break: break-all;
+}
+
+.markdown-body a:active,
+.markdown-body a:hover {
+  outline: 0;
+}
+
+.markdown-body strong {
+  font-weight: bold;
+}
+
+.markdown-body h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+.markdown-body img {
+  border: 0;
+}
+
+.markdown-body hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+
+.markdown-body pre {
+  overflow: auto;
+}
+
+.markdown-body code,
+.markdown-body kbd,
+.markdown-body pre {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+.markdown-body input {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+.markdown-body html input[disabled] {
+  cursor: default;
+}
+
+.markdown-body input {
+  line-height: normal;
+}
+
+.markdown-body input[type="checkbox"] {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.markdown-body table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.markdown-body td,
+.markdown-body th {
+  padding: 0;
+}
+
+.markdown-body * {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body input {
+  font: 13px/1.4 Helvetica, arial, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.markdown-body a {
+  color: #4183c4;
+  text-decoration: none;
+}
+
+.markdown-body a:hover,
+.markdown-body a:focus,
+.markdown-body a:active {
+  text-decoration: underline;
+}
+
+.markdown-body hr {
+  height: 0;
+  margin: 15px 0;
+  overflow: hidden;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.markdown-body hr:before {
+  display: table;
+  content: "";
+}
+
+.markdown-body hr:after {
+  display: table;
+  clear: both;
+  content: "";
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  line-height: 1.1;
+}
+
+.markdown-body h1 {
+  font-size: 30px;
+}
+
+.markdown-body h2 {
+  font-size: 21px;
+}
+
+.markdown-body h3 {
+  font-size: 16px;
+}
+
+.markdown-body h4 {
+  font-size: 14px;
+}
+
+.markdown-body h5 {
+  font-size: 12px;
+}
+
+.markdown-body h6 {
+  font-size: 11px;
+}
+
+.markdown-body blockquote {
+  margin: 0;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body ol ol,
+.markdown-body ul ol {
+  list-style-type: lower-roman;
+}
+
+.markdown-body ul ul ol,
+.markdown-body ul ol ol,
+.markdown-body ol ul ol,
+.markdown-body ol ol ol {
+  list-style-type: lower-alpha;
+}
+
+.markdown-body dd {
+  margin-left: 0;
+}
+
+.markdown-body code {
+  font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+.markdown-body pre {
+  margin-top: 0;
+  margin-bottom: 0;
+  font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+}
+
+.markdown-body kbd {
+  background-color: #e7e7e7;
+  background-image: -webkit-linear-gradient(#fefefe, #e7e7e7);
+  background-image: linear-gradient(#fefefe, #e7e7e7);
+  background-repeat: repeat-x;
+  border-radius: 2px;
+  border: 1px solid #cfcfcf;
+  color: #000;
+  padding: 3px 5px;
+  line-height: 10px;
+  font: 11px Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  display: inline-block;
+}
+
+.markdown-body>*:first-child {
+  margin-top: 0 !important;
+}
+
+.markdown-body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+.markdown-body .anchor {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
+  padding-right: 6px;
+  padding-left: 30px;
+  margin-left: -30px;
+}
+
+.markdown-body .anchor:focus {
+  outline: none;
+}
+
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  position: relative;
+  margin-top: 1em;
+  margin-bottom: 16px;
+  font-weight: bold;
+  line-height: 1.4;
+}
+
+.markdown-body h1 .octicon-link,
+.markdown-body h2 .octicon-link,
+.markdown-body h3 .octicon-link,
+.markdown-body h4 .octicon-link,
+.markdown-body h5 .octicon-link,
+.markdown-body h6 .octicon-link {
+  display: none;
+  color: #000;
+  vertical-align: middle;
+}
+
+.markdown-body h1:hover .anchor,
+.markdown-body h2:hover .anchor,
+.markdown-body h3:hover .anchor,
+.markdown-body h4:hover .anchor,
+.markdown-body h5:hover .anchor,
+.markdown-body h6:hover .anchor {
+  height: 1em;
+  padding-left: 8px;
+  margin-left: -30px;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.markdown-body h1:hover .anchor .octicon-link,
+.markdown-body h2:hover .anchor .octicon-link,
+.markdown-body h3:hover .anchor .octicon-link,
+.markdown-body h4:hover .anchor .octicon-link,
+.markdown-body h5:hover .anchor .octicon-link,
+.markdown-body h6:hover .anchor .octicon-link {
+  display: inline-block;
+}
+
+.markdown-body h1 {
+  padding-bottom: 0.3em;
+  font-size: 2.25em;
+  line-height: 1.2;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h2 {
+  padding-bottom: 0.3em;
+  font-size: 1.75em;
+  line-height: 1.225;
+  border-bottom: 1px solid #eee;
+}
+
+.markdown-body h3 {
+  font-size: 1.5em;
+  line-height: 1.43;
+}
+
+.markdown-body h4 {
+  font-size: 1.25em;
+}
+
+.markdown-body h5 {
+  font-size: 1em;
+}
+
+.markdown-body h6 {
+  font-size: 1em;
+  color: #777;
+}
+
+.markdown-body p,
+.markdown-body blockquote,
+.markdown-body ul,
+.markdown-body ol,
+.markdown-body dl,
+.markdown-body table,
+.markdown-body pre {
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.markdown-body hr {
+  height: 4px;
+  padding: 0;
+  margin: 16px 0;
+  background-color: #e7e7e7;
+  border: 0 none;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 2em;
+}
+
+.markdown-body ul ul,
+.markdown-body ul ol,
+.markdown-body ol ol,
+.markdown-body ol ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.markdown-body li>p {
+  margin-top: 16px;
+}
+
+.markdown-body dl {
+  padding: 0;
+}
+
+.markdown-body dl dt {
+  padding: 0;
+  margin-top: 16px;
+  font-size: 1em;
+  font-style: italic;
+  font-weight: bold;
+}
+
+.markdown-body dl dd {
+  padding: 0 16px;
+  margin-bottom: 16px;
+}
+
+.markdown-body blockquote {
+  padding: 0 15px;
+  color: #777;
+  border-left: 4px solid #ddd;
+}
+
+.markdown-body blockquote>:first-child {
+  margin-top: 0;
+}
+
+.markdown-body blockquote>:last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body table {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  word-break: normal;
+  word-break: keep-all;
+}
+
+.markdown-body table th {
+  font-weight: bold;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  padding: 6px 13px;
+  border: 1px solid #ddd;
+}
+
+.markdown-body table tr {
+  background-color: #fff;
+  border-top: 1px solid #ccc;
+}
+
+.markdown-body table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+.markdown-body img {
+  max-width: 100%;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.markdown-body code {
+  padding: 0;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(0,0,0,0.04);
+  border-radius: 3px;
+}
+
+.markdown-body code:before,
+.markdown-body code:after {
+  letter-spacing: -0.2em;
+  content: "\00a0";
+}
+
+.markdown-body pre>code {
+  padding: 0;
+  margin: 0;
+  font-size: 100%;
+  word-break: normal;
+  white-space: pre;
+  background: transparent;
+  border: 0;
+}
+
+.markdown-body .highlight {
+  margin-bottom: 16px;
+}
+
+.markdown-body .highlight pre,
+.markdown-body pre {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #f7f7f7;
+  border-radius: 3px;
+}
+
+.markdown-body .highlight pre {
+  margin-bottom: 0;
+  word-break: normal;
+}
+
+.markdown-body pre {
+  word-wrap: normal;
+}
+
+.markdown-body pre code {
+  display: inline;
+  max-width: initial;
+  padding: 0;
+  margin: 0;
+  overflow: initial;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: transparent;
+  border: 0;
+}
+
+.markdown-body pre code:before,
+.markdown-body pre code:after {
+  content: normal;
+}
+
+.markdown-body .highlight {
+  background: #fff;
+}
+
+.markdown-body .highlight .mf,
+.markdown-body .highlight .mh,
+.markdown-body .highlight .mi,
+.markdown-body .highlight .mo,
+.markdown-body .highlight .il,
+.markdown-body .highlight .m {
+  color: #945277;
+}
+
+.markdown-body .highlight .s,
+.markdown-body .highlight .sb,
+.markdown-body .highlight .sc,
+.markdown-body .highlight .sd,
+.markdown-body .highlight .s2,
+.markdown-body .highlight .se,
+.markdown-body .highlight .sh,
+.markdown-body .highlight .si,
+.markdown-body .highlight .sx,
+.markdown-body .highlight .s1 {
+  color: #df5000;
+}
+
+.markdown-body .highlight .kc,
+.markdown-body .highlight .kd,
+.markdown-body .highlight .kn,
+.markdown-body .highlight .kp,
+.markdown-body .highlight .kr,
+.markdown-body .highlight .kt,
+.markdown-body .highlight .k,
+.markdown-body .highlight .o {
+  font-weight: bold;
+}
+
+.markdown-body .highlight .kt {
+  color: #458;
+}
+
+.markdown-body .highlight .c,
+.markdown-body .highlight .cm,
+.markdown-body .highlight .c1 {
+  color: #998;
+  font-style: italic;
+}
+
+.markdown-body .highlight .cp,
+.markdown-body .highlight .cs {
+  color: #999;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .cs {
+  font-style: italic;
+}
+
+.markdown-body .highlight .n {
+  color: #333;
+}
+
+.markdown-body .highlight .na,
+.markdown-body .highlight .nv,
+.markdown-body .highlight .vc,
+.markdown-body .highlight .vg,
+.markdown-body .highlight .vi {
+  color: #008080;
+}
+
+.markdown-body .highlight .nb {
+  color: #0086B3;
+}
+
+.markdown-body .highlight .nc {
+  color: #458;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .no {
+  color: #094e99;
+}
+
+.markdown-body .highlight .ni {
+  color: #800080;
+}
+
+.markdown-body .highlight .ne {
+  color: #990000;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .nf {
+  color: #945277;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .nn {
+  color: #555;
+}
+
+.markdown-body .highlight .nt {
+  color: #000080;
+}
+
+.markdown-body .highlight .err {
+  color: #a61717;
+  background-color: #e3d2d2;
+}
+
+.markdown-body .highlight .gd {
+  color: #000;
+  background-color: #fdd;
+}
+
+.markdown-body .highlight .gd .x {
+  color: #000;
+  background-color: #faa;
+}
+
+.markdown-body .highlight .ge {
+  font-style: italic;
+}
+
+.markdown-body .highlight .gr {
+  color: #aa0000;
+}
+
+.markdown-body .highlight .gh {
+  color: #999;
+}
+
+.markdown-body .highlight .gi {
+  color: #000;
+  background-color: #dfd;
+}
+
+.markdown-body .highlight .gi .x {
+  color: #000;
+  background-color: #afa;
+}
+
+.markdown-body .highlight .go {
+  color: #888;
+}
+
+.markdown-body .highlight .gp {
+  color: #555;
+}
+
+.markdown-body .highlight .gs {
+  font-weight: bold;
+}
+
+.markdown-body .highlight .gu {
+  color: #800080;
+  font-weight: bold;
+}
+
+.markdown-body .highlight .gt {
+  color: #aa0000;
+}
+
+.markdown-body .highlight .ow {
+  font-weight: bold;
+}
+
+.markdown-body .highlight .w {
+  color: #bbb;
+}
+
+.markdown-body .highlight .sr {
+  color: #017936;
+}
+
+.markdown-body .highlight .ss {
+  color: #8b467f;
+}
+
+.markdown-body .highlight .bp {
+  color: #999;
+}
+
+.markdown-body .highlight .gc {
+  color: #999;
+  background-color: #EAF2F5;
+}
+
+.markdown-body .octicon {
+  line-height: 1;
+  display: inline-block;
+  text-decoration: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.markdown-body .octicon-link:before {
+  content: '\f05c';
+}
+
+.markdown-body .task-list-item {
+  list-style-type: none;
+}
+
+.markdown-body .task-list-item+.task-list-item {
+  margin-top: 3px;
+}
+
+.markdown-body .task-list-item input {
+  float: left;
+  margin: 0.3em 0 0.25em -1.6em;
+  vertical-align: middle;
+}
+table td{ word-wrap: break-word !important; word-break: break-all !important; }
+/*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+  -webkit-text-size-adjust: none;
+}
+
+.hljs-comment,
+.diff .hljs-header {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.css .rule .hljs-keyword,
+.hljs-winutils,
+.nginx .hljs-title,
+.hljs-subst,
+.hljs-request,
+.hljs-status {
+  color: #333;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-hexcolor,
+.ruby .hljs-constant {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-tag .hljs-value,
+.hljs-doctag,
+.tex .hljs-formula {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-id,
+.scss .hljs-preprocessor {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-list .hljs-keyword,
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-class .hljs-title,
+.hljs-type,
+.vhdl .hljs-literal,
+.tex .hljs-command {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-tag .hljs-title,
+.hljs-rule .hljs-property,
+.django .hljs-tag .hljs-keyword {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-attribute,
+.hljs-variable,
+.lisp .hljs-body,
+.hljs-name {
+  color: #008080;
+}
+
+.hljs-regexp {
+  color: #009926;
+}
+
+.hljs-symbol,
+.ruby .hljs-symbol .hljs-string,
+.lisp .hljs-keyword,
+.clojure .hljs-keyword,
+.scheme .hljs-keyword,
+.tex .hljs-special,
+.hljs-prompt {
+  color: #990073;
+}
+
+.hljs-built_in {
+  color: #0086b3;
+}
+
+.hljs-preprocessor,
+.hljs-pragma,
+.hljs-pi,
+.hljs-doctype,
+.hljs-shebang,
+.hljs-cdata {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.diff .hljs-change {
+  background: #0086b3;
+}
+
+.hljs-chunk {
+  color: #aaa;
+}
+
+
+</style>
+<style> @media print{ .hljs{overflow: visible; word-wrap: break-word !important;} }</style></head><body><div class="markdown-body">
+<h1 id="toc_0">nuxt搭建和配置多页架构</h1>
+
+<blockquote>
+<p>模块：nuxt、vue、vue-router、vuex、elementUI、Font Awesome、Animate.css、axios <br/>
+实践新语法：async-await</p>
+</blockquote>
+
+<ul>
+<li>
+<a href="#toc_0">nuxt搭建和配置多页架构</a>
+<ul>
+<li>
+<a href="#toc_1">例子代码基础架构和配置</a>
+</li>
+<li>
+<a href="#toc_2">总结</a>
+</li>
+<li>
+<a href="#toc_3">Build Setup</a>
+</li>
+<li>
+<a href="#toc_4">集成内容</a>
+</li>
+<li>
+<a href="#toc_5">网页<code>z-index</code>即堆叠层级说明</a>
+</li>
+<li>
+<a href="#toc_6">elementUI继承</a>
+</li>
+<li>
+<a href="#toc_7">nuxt中vue-router</a>
+</li>
+<li>
+<a href="#toc_8">请求数据</a>
+<ul>
+<li>
+<a href="#toc_9">组件局部引用和使用方法（全局使用请看下面全局配置）</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_10">更改域名和端口</a>
+</li>
+<li>
+<a href="#toc_11">开发代理域名配置</a>
+</li>
+<li>
+<a href="#toc_12">Vuex的理解</a>
+<ul>
+<li>
+<a href="#toc_13">两种使用方式</a>
+</li>
+<li>
+<a href="#toc_14">第一种分页面管理状态</a>
+<ul>
+<li>
+<a href="#toc_15">state/index.js文件</a>
+</li>
+<li>
+<a href="#toc_16">state/test.js文件</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_17">第二种整个网站公用一个状态index.js文件</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_18">使用Vuex来处理表单问题</a>
+</li>
+<li>
+<a href="#toc_19">全局方法属性等配置</a>
+</li>
+<li>
+<a href="#toc_20">post and get</a>
+<ul>
+<li>
+<a href="#toc_21">post</a>
+</li>
+</ul>
+</li>
+<li>
+<a href="#toc_22">错误集合</a>
+<ul>
+<li>
+<a href="#toc_23">前后台结构不一致</a>
+</li>
+<li>
+<a href="#toc_24">使用router中params传参出现刷新页面，相关参数被清空的问题</a>
+</li>
+<li>
+<a href="#toc_25"><code>vuex.esm.js:383 [vuex] unknown mutation type: updatePhone</code></a>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<h2 id="toc_1">例子代码基础架构和配置</h2>
+
+<ul>
+<li><a href="https://gitee.com/liu12fei08fei/nuxt-base-cli">例子代码基础架构和配置-即nuxt-base-cli</a></li>
+</ul>
+
+<h2 id="toc_2">总结</h2>
+
+<blockquote>
+<p>说说，搭建一个架构需要做的基础事项，剩下的就是对代码和组件<br/>
+搭建架构新体会：🤔</p>
+</blockquote>
+
+<ul>
+<li>🤗UI框架的选择，在快速开发阶段，最重要的就是减少常用组件的开发（在不需要定制化的时候，需要定制的自己封装）</li>
+<li>😎框架的责任就是把以前人工做的事情逐渐变成自动化，使得开发人员把精力和时间放在最重要的位置上😋</li>
+<li>😪全局icon的使用，这里使用<code>Font Awesome</code>减少图片的使用；当然还有很多是没有的这里可以先使用svg进行开发，后续使用<code>iconfont</code>和<code>svg</code>转字体进行替换</li>
+<li>😛使用<code>animate.css</code>增强页面的交互效果，一些小效果直接使用全局样式封装即可</li>
+<li>🤠大面积使用组件：把每个小模块单独封装一个组件，这样管理、扩展、二次开发都是非常方便的，这也就是为什么说现在的三大框架解决了项目冗余和无法维护的问题</li>
+<li>🤡大量组件面临的就是组件和组件之间的响应问题：这里直接使用<code>vuex</code>来操作</li>
+<li>😈<code>vuex</code>带来的问题是，<code>form</code>表单的处理，也就是<code>v-model</code>的优势已经无法使用了，这里直接使用双向数据绑定的原理<code>get and set</code>方法进行处理</li>
+<li>🤓<code>vuex</code>同步数据使用<code>mutation</code>操作，异步数据先使用<code>action</code>后再用<code>mutation</code>操作；具体操作在下面和实际例子中都有，并且对基础方法进行了封装，使得代码数量更加的少</li>
+<li>👻<code>vue-router</code>，使用它就忘掉<code>&lt;a/&gt;</code>标签，有两种使用方法，一种是<code>html</code>使用，一种是<code>js</code>使用，具体下面有详细介绍</li>
+<li>👽前端开发，跨域问题不可避免，这里使用<code>@nuxtjs/axios and  @nuxtjs/proxy</code>来进行配置</li>
+<li>😺请求方法的封装，减少公共部分的代码量，对错误进行统一处理和捕捉</li>
+<li>😸之前一直使用<code>Promise</code>，开发中的感受就是这简直是神迹，在使用<code>async-await</code>这就是超级神迹😍</li>
+<li>😤剩下的就没有这么好玩了，开始堆码，在堆码的过程中为了给自己增加点乐趣😭，多进行不同的尝试，开始我的<code>react</code>之路，期待兴奋开心，我先健个身👨‍🎓</li>
+</ul>
+
+<p><strong>记得之前在一灯</strong></p>
+
+<ul>
+<li>当时不明白，佳哥为什么不教开发整套网站和页面，现在才终于明白，那有什么乐趣✊，闭着眼睛敲就行了👨‍👧‍👧🙏</li>
+</ul>
+
+<h2 id="toc_3">Build Setup</h2>
+
+<pre><code class="language-bash"># install dependencies
+$ npm install # Or yarn install
+
+# serve with hot reload at localhost:3000
+$ npm run dev
+
+# build for production and launch server
+$ npm run build
+$ npm start
+
+# generate static project
+$ npm run generate
+</code></pre>
+
+<h2 id="toc_4">集成内容</h2>
+
+<ul>
+<li><a href="http://element.eleme.io/#/zh-CN"><code>elementUI</code>减少基础组件的开发，提高效率</a></li>
+<li><a href="http://fontawesome.dashgame.com/"><code>Font Awesome</code>丰富网站<code>icon</code></a></li>
+<li><a href="https://github.com/daneden/animate.css"><code>Animate.css</code>增强交互效果</a></li>
+</ul>
+
+<h2 id="toc_5">网页<code>z-index</code>即堆叠层级说明</h2>
+
+<ul>
+<li>页面内容设置为9即9一下</li>
+<li>基本弹框设置为99</li>
+</ul>
+
+<h2 id="toc_6">elementUI继承</h2>
+
+<ul>
+<li>在<code>plugins</code>文件夹下创建<code>element-ui.js</code>文件，内容为：</li>
+</ul>
+
+<pre><code>import Vue from &#39;vue&#39;
+import Element from &#39;element-ui&#39;
+Vue.use(Element);
+</code></pre>
+
+<ul>
+<li><code>nuxt.config.js</code>文件添加</li>
+</ul>
+
+<pre><code>build: {
+  // add
+  vendor: [&#39;element-ui&#39;],
+},
+css: [
+// add
+  {src:&#39;element-ui/lib/theme-chalk/index.css&#39;},
+],
+plugins: [{src:&#39;~plugins/element-ui&#39;, ssr: true}],
+</code></pre>
+
+<h2 id="toc_7">nuxt中vue-router</h2>
+
+<blockquote>
+<p>使用方法还是一样的没有变化<br/>
+例子：</p>
+</blockquote>
+
+<p><strong>html导航</strong></p>
+
+<pre><code>&lt;nuxt-link to=&quot;/test&quot;&gt;test&lt;/nuxt-link&gt;
+</code></pre>
+
+<p><strong>js导航</strong></p>
+
+<pre><code>this.$router.push({
+  path:&#39;/user&#39;,
+  query:{
+    age:18
+  }
+})
+</code></pre>
+
+<p><strong>路由传参</strong></p>
+
+<blockquote>
+<p>注意：这种方法不能被seo到<br/>
+而且当刷新页面的时候，相关数据会被清空</p>
+</blockquote>
+
+<p><strong>定义</strong></p>
+
+<pre><code>&lt;nuxt-link :to=&quot;{name:&#39;login&#39;,params:{userId:&#39;signin&#39;}}&quot;&gt;&lt;div class=&quot;nav_item sign_item&quot;&gt;登录&lt;/div&gt;&lt;/nuxt-link&gt;
+</code></pre>
+
+<p><strong>使用</strong></p>
+
+<pre><code>&lt;h1&gt;{{$route.params.userId}}&lt;/h1&gt;
+</code></pre>
+
+<h2 id="toc_8">请求数据</h2>
+
+<ul>
+<li><a href="https://axios.nuxtjs.org/">使用@nuxtjs/axios模块</a></li>
+<li>在<code>nuxt.config.js</code>中进行配置：</li>
+</ul>
+
+<pre><code>module.exports = {
+    modules: [
+        &#39;@nuxtjs/axios&#39;,
+        &#39;@nuxtjs/proxy&#39;,
+    ],
+    proxy: {
+        &#39;/api&#39;: {
+            target: &#39;http://api.douban.com&#39;,
+            pathRewrite: { &#39;^/api/&#39;: &#39;&#39; }
+        }
+    }
+
+}
+</code></pre>
+
+<h3 id="toc_9">组件局部引用和使用方法（全局使用请看下面全局配置）</h3>
+
+<p><strong>引入</strong></p>
+
+<pre><code>import axios from &#39;axios&#39;
+</code></pre>
+
+<p><strong>使用</strong></p>
+
+<pre><code>methods:{
+  async requestData(){
+    const url = &#39;http://api.douban.com/v2/movie/top250?start=1&amp;count=10&#39;;
+    let { data } = await axios.get(&#39;api/v2/movie/top250?start=1&amp;count=10&#39;)
+    console.log(data)
+    return { users: data.data }
+  },
+},
+</code></pre>
+
+<h2 id="toc_10">更改域名和端口</h2>
+
+<ul>
+<li>方法多种，这里使用<code>package.json</code>中进行配置</li>
+</ul>
+
+<pre><code>&quot;config&quot;:{
+  &quot;nuxt&quot;:{
+    &quot;post&quot;:&quot;0.0.0.0&quot;,
+    &quot;port&quot;:&quot;3002&quot;
+  }
+},
+</code></pre>
+
+<h2 id="toc_11">开发代理域名配置</h2>
+
+<ul>
+<li>配置项在<code>assets/js/agent.js</code>文件</li>
+<li>导航的配置文件在<code>assets/js/nav.js</code>文件</li>
+<li>地址的配置文件在<code>assets/js/address.js</code>文件</li>
+</ul>
+
+<h2 id="toc_12">Vuex的理解</h2>
+
+<blockquote>
+<p>组件和组件之间的传值管理，即状态管理模式</p>
+</blockquote>
+
+<ul>
+<li>在<code>ssr</code>中<code>Vuex</code>并不是鸡肋，<code>Vuex</code>更重要的是维护用户的状态</li>
+<li><code>Vuex</code>不能跨页面，只是用来管理同一个页面之间组件和组件之间的状态</li>
+<li><code>Vuex</code>解决了组件和组件之间传值的麻烦，父子、同级、子父之间</li>
+</ul>
+
+<h3 id="toc_13">两种使用方式</h3>
+
+<h3 id="toc_14">第一种分页面管理状态</h3>
+
+<h4 id="toc_15">state/index.js文件</h4>
+
+<p><strong>定义</strong></p>
+
+<pre><code>export const state=()=&gt;({
+    amount:0
+})
+
+export const mutations={
+    add(state){
+        state.amount++;
+    }
+}
+</code></pre>
+
+<p><strong>使用</strong></p>
+
+<pre><code>// 变量
+{{$store.state.amount}}
+
+// 方法
+@click=&quot;$store.commit(&#39;add&#39;)&quot;
+</code></pre>
+
+<h4 id="toc_16">state/test.js文件</h4>
+
+<p><strong>定义</strong></p>
+
+<pre><code>export const state=()=&gt;({
+    amount:100
+})
+
+export const mutations={
+    add(state){
+        state.amount++;
+    }
+}
+</code></pre>
+
+<p><strong>使用</strong></p>
+
+<pre><code>// 变量
+{{$store.state.test.amount}}
+
+// 方法
+@click=&quot;$store.commit(&#39;test/add&#39;)&quot;
+</code></pre>
+
+<h3 id="toc_17">第二种整个网站公用一个状态index.js文件</h3>
+
+<pre><code>// import Vue from &#39;vue&#39;
+// import Vuex from &#39;vuex&#39;
+
+// Vue.use(Vuex)
+
+// const store = ()=&gt;new Vuex.Store({
+//  state:{
+//      amount:0,
+//  },
+//  mutations:{
+//      add(state){
+//          state.amount++;
+//      }
+//  }
+// })
+</code></pre>
+
+<h2 id="toc_18">使用Vuex来处理表单问题</h2>
+
+<blockquote>
+<p>当使用Vuex的时候，处理表单就变得不那么简单了</p>
+</blockquote>
+
+<ul>
+<li>在正常情况下，我们使用<code>v-model</code>就足够了，但是在<code>vuex</code>中却无法使用</li>
+<li>在<code>vuex</code>我要要在组件中使用计算属性中<code>get and set</code>来结合<code>vuex</code>中的<code>state and commit</code>实现双向数据绑定，即：直接使用双向数据绑定的原理</li>
+</ul>
+
+<h2 id="toc_19">全局方法属性等配置</h2>
+
+<ul>
+<li>在<code>plugins</code>里面添加<code>.js</code>文件，例如：</li>
+</ul>
+
+<pre><code>import Vue from &#39;vue&#39;
+import axios from &#39;axios&#39;
+
+const data = {
+    install(Vue){
+        Vue.prototype.$axios = axios;
+    }
+};
+
+Vue.use(data)
+</code></pre>
+
+<ul>
+<li>在<code>nuxt.config.js</code>里面的<code>plugins</code>配置，例如：</li>
+</ul>
+
+<pre><code>plugins: [
+    {src:&#39;~plugins/element-ui&#39;, ssr: true},
+    {src:&#39;~plugins/address&#39;,ssr:false},
+    {src:&#39;~plugins/axios&#39;,ssr:false},
+  ],
+</code></pre>
+
+<p><strong>使用</strong></p>
+
+<pre><code>console.log(this.$axios)
+</code></pre>
+
+<h2 id="toc_20">post and get</h2>
+
+<h3 id="toc_21">post</h3>
+
+<pre><code>async onPhoneRepeat(mobile) {
+  const {env,checkUserName}=this.$addr;
+  const params = {
+    loginName: mobile
+  };
+  return await this.$requestPost(this,`${env}${checkUserName}`,params);
+},
+</code></pre>
+
+<h2 id="toc_22">错误集合</h2>
+
+<h3 id="toc_23">前后台结构不一致</h3>
+
+<p><strong>错误内容</strong></p>
+
+<p><code>[Vue warn]: The client-side rendered virtual DOM tree is not matching server-rendered content. This is likely caused by incorrect HTML markup, for example nesting block-level elements inside&lt;p&gt;, or missing &lt;tbody&gt;. Bailing hydration and performing full client-side render.</code></p>
+
+<p><strong>解决办法</strong></p>
+
+<ul>
+<li>问题描述：服务端与客户端渲染的DOM结构不一样。上图中出现的这个问题是element-ui没有允许在服务端使用导致的。</li>
+<li>在<code>nuxt.config.js</code>中的<code>plugins</code>属性，设置：</li>
+</ul>
+
+<pre><code>plugins: [{src:&#39;~plugins/element-ui&#39;, ssr: true}],
+</code></pre>
+
+<ul>
+<li><code>false</code>设置为<code>true</code></li>
+</ul>
+
+<h3 id="toc_24">使用router中params传参出现刷新页面，相关参数被清空的问题</h3>
+
+<ul>
+<li>一是可以使用本地缓存，把参数缓存起来</li>
+<li>二是使用router中的query进行传参，例子：</li>
+</ul>
+
+<p><strong>定义</strong></p>
+
+<pre><code>&lt;nuxt-link :to=&quot;{name:&#39;login&#39;,query:{userId:&#39;signin&#39;}}&quot;&gt;&lt;div class=&quot;nav_item sign_item&quot;&gt;登录&lt;/div&gt;&lt;/nuxt-link&gt;
+</code></pre>
+
+<p><strong>使用</strong></p>
+
+<pre><code>&lt;h1&gt;{{$route.query.userId}}&lt;/h1&gt;
+</code></pre>
+
+<h3 id="toc_25"><code>vuex.esm.js:383 [vuex] unknown mutation type: updatePhone</code></h3>
+
+<ul>
+<li>是由于没有在<code>mutation</code>里面定义<code>updatePhone</code>方法</li>
+<li>出现的原因就是搞错了<code>state</code>模块</li>
+</ul>
+
+</div></body>
+
+</html>
